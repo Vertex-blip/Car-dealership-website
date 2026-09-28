@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Assignment 3 source-code evidence</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; padding: 32px; color: #17212b; background: #f3f5f7; font: 15px/1.45 Consolas, "Courier New", monospace; }
+    main { max-width: 1380px; margin: auto; }
+    h1 { font: 700 26px/1.2 system-ui, sans-serif; }
+    h2 { font: 700 17px/1.2 system-ui, sans-serif; color: #15324a; }
+    section { margin: 18px 0; padding: 20px; border-left: 5px solid #b56f3b; background: #fff; box-shadow: 0 4px 14px #14283b14; }
+    pre { margin: 12px 0 0; padding: 16px; overflow: hidden; color: #eaf2f8; background: #17212b; white-space: pre-wrap; overflow-wrap: anywhere; }
+    code { font: inherit; }
+    .source { color: #b7d4e7; }
+    body[data-evidence] section { display: none; }
+    body[data-evidence="media"] #media,
+    body[data-evidence="grid"] #grid,
+    body[data-evidence="nav"] #nav,
+    body[data-evidence="carousel"] #carousel,
+    body[data-evidence="form"] #form { display: block; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Apex Motors · Assignment 3 — source-code evidence</h1>
+    <p>Short excerpts from the submitted files, captured as rendered code for the report.</p>
+    <section id="media"><h2>Tasks 1–2 · typography-cards.html + styles.css</h2><span class="source">styles.css — breakpoints for phone, tablet and desktop; CSS-only card columns</span>
+      <pre><code>.media-demo {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+@media (min-width: 576px) and (max-width: 991.98px) {
+  .media-demo { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .typography-demo h1 { font-size: 2.8rem; }
+}
+@media (min-width: 992px) {
+  .typography-demo h1 { font-size: 3.6rem; }
+}
+@media (max-width: 575.98px) {
+  .media-demo { grid-template-columns: 1fr; }
+}</code></pre>
+    </section>
+    <section id="grid"><h2>Tasks 3–4 · grid-spacing.html</h2><span class="source">Bootstrap responsive columns and spacing utilities in the layout markup</span>
+      <pre><code>&lt;main class="container py-4 px-sm-2 px-lg-3"&gt;
+  &lt;div class="row g-3 g-md-4"&gt;
+    &lt;article class="col-12 col-md-6 col-lg-6"&gt;
+      &lt;div class="p-3 p-sm-4 px-sm-2 px-md-4"&gt;...&lt;/div&gt;
+    &lt;/article&gt;
+  &lt;/div&gt;
+  &lt;div class="row g-3 g-lg-4"&gt;
+    &lt;article class="col-12 col-sm-6 col-lg-4"&gt;...&lt;/article&gt;
+    &lt;article class="col-12 col-sm-6 col-lg-4"&gt;
+      &lt;div class="px-sm-2 px-lg-4 mt-lg-4"&gt;...&lt;/div&gt;
+    &lt;/article&gt;
+  &lt;/div&gt;
+&lt;/main&gt;</code></pre>
+    </section>
+    <section id="nav"><h2>Tasks 5–6 · index.html + buttons.html</h2><span class="source">Bootstrap navbar toggler and Bootstrap button group</span>
+      <pre><code>&lt;nav class="navbar navbar-expand-lg navbar-dark assignment-navbar"
+     aria-label="Assignment pages"&gt;
+  &lt;button class="navbar-toggler" type="button"
+          data-bs-toggle="collapse" data-bs-target="#assignmentNav"
+          aria-controls="assignmentNav" aria-expanded="false"
+          aria-label="Toggle assignment navigation"&gt;
+    &lt;span class="navbar-toggler-icon"&gt;&lt;/span&gt;
+  &lt;/button&gt;
+&lt;/nav&gt;
+&lt;div class="btn-group" role="group" aria-label="Choose a vehicle action"&gt;
+  &lt;a class="btn btn-primary" href="bootstrap-cards.html"&gt;Browse cars&lt;/a&gt;
+  &lt;a class="btn btn-outline-primary" href="carousel.html"&gt;View gallery&lt;/a&gt;
+&lt;/div&gt;</code></pre>
+    </section>
+    <section id="carousel"><h2>Tasks 7–8 · carousel.html + bootstrap-cards.html</h2><span class="source">Nine indicators, descriptive image text and responsive Bootstrap cards</span>
+      <pre><code>&lt;div class="carousel-indicators"&gt;
+  &lt;button type="button" data-bs-target="#vehicleCarousel"
+          data-bs-slide-to="0" class="active" aria-current="true"
+          aria-label="Show vehicle 1 of 9"&gt;&lt;/button&gt;
+  &lt;!-- eight additional indicators, one per slide --&gt;
+&lt;/div&gt;
+&lt;div class="carousel-item active"&gt;
+  &lt;img src="images/car-01.jpg" class="d-block"
+       alt="Black sedan driving along a tree-lined road"&gt;
+&lt;/div&gt;
+&lt;section class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4"&gt;
+  &lt;div class="col"&gt;&lt;article class="card h-100 shadow-sm"&gt;...&lt;/article&gt;&lt;/div&gt;
+&lt;/section&gt;</code></pre>
+    </section>
+    <section id="form"><h2>Tasks 9–10 · responsive-form.html + styles.css</h2><span class="source">Associated labels, responsive controls, validation, live status and keyboard focus</span>
+      <pre><code>&lt;div class="col-12 col-md-6"&gt;
+  &lt;label class="form-label" for="email"&gt;Email address&lt;/label&gt;
+  &lt;input class="form-control" id="email" type="email" required&gt;
+  &lt;div class="invalid-feedback"&gt;Enter a valid email address.&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="input-group"&gt;
+  &lt;span class="input-group-text"&gt;PKR&lt;/span&gt;
+  &lt;input class="form-control" type="number"&gt;
+&lt;/div&gt;
+&lt;p id="formStatus" role="status" aria-live="polite"&gt;&lt;/p&gt;
+a:focus-visible, button:focus-visible {
+  outline: 3px solid #f0a66a;
+  outline-offset: 3px;
+}</code></pre>
+    </section>
+  </main>
+  <script>
+    const evidence = new URLSearchParams(location.search).get("evidence");
+    if (["media", "grid", "nav", "carousel", "form"].includes(evidence)) {
+      document.body.dataset.evidence = evidence;
+    }
+  </script>
+  <footer><strong>Team Apex Motors · Group SE-2507 · Arsen · Kuttibay · Farabi · Muhammad</strong></footer>
+</body>
+</html>
