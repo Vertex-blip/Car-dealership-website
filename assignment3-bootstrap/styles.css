@@ -255,6 +255,22 @@ textarea:focus-visible {
   object-position: center 35%;
 }
 
+.team-card .portrait-kuttibay {
+  object-position: 53% center;
+}
+
+.team-card .portrait-farabi {
+  object-position: center 10%;
+}
+
+.team-card .portrait-arsen {
+  object-position: center 25%;
+}
+
+.team-card .portrait-muhammad {
+  object-position: center 38%;
+}
+
 .report-cover {
   padding: 2rem;
   border-left: 3px solid var(--apex-copper);
