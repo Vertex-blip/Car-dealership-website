@@ -1,16 +1,29 @@
 :root {
-  --apex-ink: #17212b;
-  --apex-navy: #15324a;
-  --apex-copper: #b56f3b;
-  --apex-cream: #f6f3ed;
-  --apex-muted: #53616a;
+  --apex-ink: #17191c;
+  --apex-navy: #1d2b3a;
+  --apex-copper: #9a603a;
+  --apex-cream: #f5f0e7;
+  --apex-paper: #fffdf9;
+  --apex-muted: #5c5c59;
+  --bs-primary: #9a603a;
+  --bs-primary-rgb: 154, 96, 58;
+  --bs-secondary: #46535e;
+  --bs-secondary-rgb: 70, 83, 94;
+  --bs-body-color: #17191c;
+  --bs-body-bg: #f5f0e7;
+  --bs-link-color: #77472b;
+  --bs-link-hover-color: #51301c;
 }
 
 body {
   color: var(--apex-ink);
   background: var(--apex-cream);
-  font-family: Inter, system-ui, -apple-system, "Segoe UI", sans-serif;
-  line-height: 1.6;
+  font-family: Inter, "Segoe UI", system-ui, sans-serif;
+  line-height: 1.65;
+}
+
+img {
+  max-width: 100%;
 }
 
 a:focus-visible,
@@ -18,51 +31,97 @@ button:focus-visible,
 input:focus-visible,
 select:focus-visible,
 textarea:focus-visible {
-  outline: 3px solid #f0a66a;
+  outline: 3px solid #b8784c;
   outline-offset: 3px;
 }
 
 .assignment-navbar {
-  background-color: var(--apex-navy);
+  background: var(--apex-ink);
 }
 
-.assignment-navbar .navbar-brand,
+.assignment-navbar .navbar-brand {
+  display: inline-flex;
+  align-items: center;
+  min-width: 174px;
+  padding: .3rem .55rem;
+  background: var(--apex-paper);
+}
+
+.brand-logo {
+  display: block;
+  width: 164px;
+  height: 42px;
+  object-fit: contain;
+}
+
 .assignment-navbar .nav-link {
-  color: #fff;
+  color: #f5f0e7;
+  font-size: .86rem;
 }
 
 .assignment-navbar .nav-link:hover,
 .assignment-navbar .nav-link:focus-visible,
 .assignment-navbar .nav-link[aria-current="page"] {
-  color: #ffd2ad;
+  color: #d9ad7a;
 }
 
-.brand-mark {
-  color: #ffd2ad;
-  font-weight: 800;
-  letter-spacing: .08em;
+.assignment-navbar .navbar-toggler {
+  border-color: #8a8b89;
 }
 
 .site-footer {
-  color: #f7f5f1;
+  color: #f5f0e7;
   background: var(--apex-ink);
 }
 
+.site-footer p {
+  color: #d5d2cc;
+}
+
 .site-footer a {
-  color: #ffd2ad;
+  color: #e2bd95;
 }
 
 .hero-panel {
-  color: #fff;
-  background: linear-gradient(120deg, #15324a, #28617d);
+  display: flex;
+  min-height: 470px;
+  align-items: center;
+  color: #fffdf9;
+  background:
+    linear-gradient(90deg, rgb(23 25 28 / 88%) 0%, rgb(23 25 28 / 48%) 62%, rgb(23 25 28 / 16%) 100%),
+    url("images/car-06.jpg") center 54% / cover;
+}
+
+.hero-panel .container {
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+}
+
+.hero-panel h1 {
+  max-width: 760px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(2.8rem, 6vw, 5.4rem);
+  font-weight: 500;
+  line-height: 1.02;
+  letter-spacing: -.035em;
+}
+
+.hero-panel .lead {
+  max-width: 620px;
+  color: #eee9df;
+  font-size: 1.12rem;
 }
 
 .eyebrow {
-  color: #ffd2ad;
-  font-size: .8rem;
+  color: #9a603a;
+  font-size: .74rem;
   font-weight: 800;
-  letter-spacing: .14em;
+  letter-spacing: .16em;
   text-transform: uppercase;
+}
+
+.hero-panel .eyebrow {
+  color: #e2bd95;
 }
 
 .text-muted-strong {
@@ -70,7 +129,51 @@ textarea:focus-visible {
 }
 
 .accent-border {
-  border-top: 4px solid var(--apex-copper);
+  border: 0;
+  border-top: 3px solid var(--apex-copper);
+  border-radius: 0;
+  background: var(--apex-paper);
+  box-shadow: 0 12px 30px rgb(23 25 28 / 7%);
+}
+
+.card {
+  border-color: #e3ddd3;
+  border-radius: 0;
+  background: var(--apex-paper);
+}
+
+.card a {
+  color: #77472b;
+}
+
+.card a:hover {
+  color: #51301c;
+}
+
+.card-img-top {
+  height: 220px;
+  object-fit: cover;
+}
+
+.btn {
+  border-radius: 0;
+  font-weight: 650;
+}
+
+.btn-primary {
+  --bs-btn-bg: #9a603a;
+  --bs-btn-border-color: #9a603a;
+  --bs-btn-hover-bg: #794725;
+  --bs-btn-hover-border-color: #794725;
+  --bs-btn-active-bg: #63391d;
+  --bs-btn-active-border-color: #63391d;
+}
+
+.btn-outline-primary {
+  --bs-btn-color: #77472b;
+  --bs-btn-border-color: #9a603a;
+  --bs-btn-hover-bg: #9a603a;
+  --bs-btn-hover-border-color: #9a603a;
 }
 
 .carousel-frame {
@@ -79,8 +182,8 @@ textarea:focus-visible {
 
 .carousel-frame .carousel-item img {
   width: 100%;
-  height: min(62vw, 580px);
-  min-height: 280px;
+  height: min(62vw, 590px);
+  min-height: 290px;
   object-fit: cover;
 }
 
@@ -88,8 +191,8 @@ textarea:focus-visible {
   right: 0;
   bottom: 0;
   left: 0;
-  padding: 3rem 1rem 1.5rem;
-  background: linear-gradient(transparent, rgb(0 0 0 / 82%));
+  padding: 3.5rem 1rem 1.5rem;
+  background: linear-gradient(transparent, rgb(0 0 0 / 84%));
 }
 
 .carousel-caption h2,
@@ -101,38 +204,65 @@ textarea:focus-visible {
 .media-demo {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 1.25rem;
+  gap: 1.35rem;
 }
 
 .media-demo-card {
   min-width: 0;
-  border-top: 4px solid var(--apex-copper);
-  background: #fff;
-  box-shadow: 0 8px 24px rgb(21 50 74 / 10%);
+  overflow: hidden;
+  border-top: 3px solid var(--apex-copper);
+  background: var(--apex-paper);
+  box-shadow: 0 12px 30px rgb(23 25 28 / 8%);
 }
 
 .media-demo-card img {
   display: block;
   width: 100%;
-  height: 190px;
+  height: 205px;
   object-fit: cover;
 }
 
 .media-demo-copy {
-  padding: 1.25rem;
+  padding: 1.35rem;
 }
 
 .typography-demo h1 {
-  font-size: 2.1rem;
-  line-height: 1.12;
+  max-width: 880px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 2.2rem;
+  font-weight: 500;
+  line-height: 1.1;
+  letter-spacing: -.025em;
 }
 
 .typography-demo h2 {
-  font-size: 1.55rem;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.5rem;
+  font-weight: 500;
 }
 
-.typography-demo p {
+.typography-demo p:not(.eyebrow) {
+  max-width: 760px;
   font-size: 1rem;
+}
+
+.team-card {
+  text-align: left;
+}
+
+.team-card .card-img-top {
+  height: 245px;
+  object-position: center 35%;
+}
+
+.report-cover {
+  padding: 2rem;
+  border-left: 3px solid var(--apex-copper);
+  background: var(--apex-paper);
+}
+
+.skip-link {
+  z-index: 1100;
 }
 
 @media (min-width: 576px) and (max-width: 991.98px) {
@@ -141,28 +271,28 @@ textarea:focus-visible {
   }
 
   .typography-demo h1 {
-    font-size: 2.8rem;
+    font-size: 2.9rem;
   }
 
   .typography-demo h2 {
-    font-size: 2rem;
+    font-size: 1.95rem;
   }
 
-  .typography-demo p {
+  .typography-demo p:not(.eyebrow) {
     font-size: 1.1rem;
   }
 }
 
 @media (min-width: 992px) {
   .typography-demo h1 {
-    font-size: 3.6rem;
+    font-size: 3.65rem;
   }
 
   .typography-demo h2 {
-    font-size: 2.4rem;
+    font-size: 2.3rem;
   }
 
-  .typography-demo p {
+  .typography-demo p:not(.eyebrow) {
     font-size: 1.2rem;
   }
 }
@@ -173,7 +303,21 @@ textarea:focus-visible {
   }
 
   .media-demo-card img {
-    height: 220px;
+    height: 225px;
+  }
+
+  .hero-panel {
+    min-height: 420px;
+    background-position: 58% center;
+  }
+
+  .hero-panel .container {
+    padding-top: 3.5rem;
+    padding-bottom: 3.5rem;
+  }
+
+  .team-card .card-img-top {
+    height: 230px;
   }
 }
 

@@ -33,13 +33,18 @@
 }
 @media (min-width: 576px) and (max-width: 991.98px) {
   .media-demo { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .typography-demo h1 { font-size: 2.8rem; }
+  .typography-demo h1 { font-size: 2.9rem; }
+  .typography-demo h2 { font-size: 1.95rem; }
+  .typography-demo p:not(.eyebrow) { font-size: 1.1rem; }
 }
 @media (min-width: 992px) {
-  .typography-demo h1 { font-size: 3.6rem; }
+  .typography-demo h1 { font-size: 3.65rem; }
+  .typography-demo h2 { font-size: 2.3rem; }
+  .typography-demo p:not(.eyebrow) { font-size: 1.2rem; }
 }
 @media (max-width: 575.98px) {
   .media-demo { grid-template-columns: 1fr; }
+  .media-demo-card img { height: 225px; }
 }</code></pre>
     </section>
     <section id="grid"><h2>Tasks 3–4 · grid-spacing.html</h2><span class="source">Bootstrap responsive columns and spacing utilities in the layout markup</span>
@@ -58,30 +63,32 @@
 &lt;/main&gt;</code></pre>
     </section>
     <section id="nav"><h2>Tasks 5–6 · index.html + buttons.html</h2><span class="source">Bootstrap navbar toggler and Bootstrap button group</span>
-      <pre><code>&lt;nav class="navbar navbar-expand-lg navbar-dark assignment-navbar"
-     aria-label="Assignment pages"&gt;
-  &lt;button class="navbar-toggler" type="button"
-          data-bs-toggle="collapse" data-bs-target="#assignmentNav"
-          aria-controls="assignmentNav" aria-expanded="false"
-          aria-label="Toggle assignment navigation"&gt;
-    &lt;span class="navbar-toggler-icon"&gt;&lt;/span&gt;
-  &lt;/button&gt;
-&lt;/nav&gt;
+      <pre><code>&lt;a class="navbar-brand" href="index.html"&gt;
+  &lt;img class="brand-logo" src="images/apex-motors-logo.png"
+       alt="Apex Motors home"&gt;
+&lt;/a&gt;
+&lt;button class="navbar-toggler" type="button"
+        data-bs-toggle="collapse" data-bs-target="#assignmentNav"
+        aria-controls="assignmentNav" aria-expanded="false"
+        aria-label="Toggle assignment navigation"&gt;
+  &lt;span class="navbar-toggler-icon"&gt;&lt;/span&gt;
+&lt;/button&gt;
 &lt;div class="btn-group" role="group" aria-label="Choose a vehicle action"&gt;
   &lt;a class="btn btn-primary" href="bootstrap-cards.html"&gt;Browse cars&lt;/a&gt;
   &lt;a class="btn btn-outline-primary" href="carousel.html"&gt;View gallery&lt;/a&gt;
 &lt;/div&gt;</code></pre>
     </section>
     <section id="carousel"><h2>Tasks 7–8 · carousel.html + bootstrap-cards.html</h2><span class="source">Nine indicators, descriptive image text and responsive Bootstrap cards</span>
-      <pre><code>&lt;div class="carousel-indicators"&gt;
-  &lt;button type="button" data-bs-target="#vehicleCarousel"
-          data-bs-slide-to="0" class="active" aria-current="true"
-          aria-label="Show vehicle 1 of 9"&gt;&lt;/button&gt;
-  &lt;!-- eight additional indicators, one per slide --&gt;
-&lt;/div&gt;
+      <pre><code>&lt;button data-bs-target="#vehicleCarousel" data-bs-slide-to="0"
+        class="active" aria-current="true"
+        aria-label="Show vehicle 1 of 9"&gt;&lt;/button&gt;
+&lt;button data-bs-target="#vehicleCarousel" data-bs-slide-to="1"
+        aria-label="Show vehicle 2 of 9"&gt;&lt;/button&gt;
+&lt;!-- one named indicator for each of the nine slides --&gt;
 &lt;div class="carousel-item active"&gt;
   &lt;img src="images/car-01.jpg" class="d-block"
        alt="Black sedan driving along a tree-lined road"&gt;
+  &lt;div class="carousel-caption"&gt;&lt;h2&gt;Solis GT&lt;/h2&gt;&lt;/div&gt;
 &lt;/div&gt;
 &lt;section class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4"&gt;
   &lt;div class="col"&gt;&lt;article class="card h-100 shadow-sm"&gt;...&lt;/article&gt;&lt;/div&gt;

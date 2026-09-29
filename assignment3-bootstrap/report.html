@@ -3,147 +3,230 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Assignment 3 Report — Apex Motors</title>
+  <title>Assignment 3 Report | Apex Motors · SE-2507</title>
   <style>
-    @page { size: A4; margin: 14mm 15mm; }
+    @page { size: A4; margin: 13mm 14mm; }
+    :root { --ink: #17191c; --navy: #1d2b3a; --cream: #f5f0e7; --copper: #9a603a; --muted: #5c5c59; }
     * { box-sizing: border-box; }
-    body { margin: 0; color: #18232c; background: #fff; font: 10pt/1.48 Arial, sans-serif; }
-    h1, h2, h3 { color: #15324a; line-height: 1.15; }
-    h1 { margin: 0 0 8mm; font-size: 29pt; }
-    h2 { margin: 0 0 3mm; font-size: 18pt; }
-    h3 { margin: 4mm 0 1mm; font-size: 12pt; }
-    p { margin: 0 0 3mm; }
-    .page { min-height: 268mm; page-break-after: always; position: relative; }
+    body { margin: 0; color: var(--ink); background: #fff; font: 9.4pt/1.43 Arial, sans-serif; }
+    h1, h2, h3, p { margin-top: 0; }
+    h1, h2, h3 { color: var(--navy); }
+    h1 { margin-bottom: 5mm; font: 500 31pt/1.08 Georgia, "Times New Roman", serif; letter-spacing: -.4pt; }
+    h2 { margin-bottom: 3mm; font: 500 19pt/1.15 Georgia, "Times New Roman", serif; }
+    h3 { margin: 4mm 0 1.5mm; font-size: 11pt; }
+    p { margin-bottom: 2.5mm; }
+    code { color: #703e22; font: 8.4pt Consolas, "Courier New", monospace; }
+    .page { position: relative; min-height: 269mm; page-break-after: always; }
     .page:last-child { page-break-after: auto; }
-    .cover { display: flex; flex-direction: column; justify-content: center; }
-    .eyebrow { color: #9a5426; font-size: 9pt; font-weight: bold; letter-spacing: 1.5px; text-transform: uppercase; }
-    .lead { max-width: 165mm; color: #45545e; font-size: 13pt; }
-    .hero-image { width: 100%; max-height: 76mm; margin-top: 7mm; object-fit: cover; border-radius: 3mm; }
-    .screenshot { display: block; width: 100%; max-height: 65mm; margin: 2mm 0; object-fit: contain; border: 1px solid #d7dee3; }
-    .screenshot-tall { max-height: 70mm; }
-    .code-screenshot { display: block; width: 100%; max-height: 58mm; margin: 2mm 0; object-fit: contain; border: 1px solid #c9d3da; }
-    .row { display: flex; gap: 5mm; }
+    .eyebrow { margin-bottom: 2mm; color: var(--copper); font-size: 8pt; font-weight: 700; letter-spacing: 1.4pt; text-transform: uppercase; }
+    .muted { color: var(--muted); }
+    .cover { display: flex; min-height: 267mm; flex-direction: column; justify-content: center; padding: 4mm 0; }
+    .logo { width: 65mm; height: 21mm; margin-bottom: 12mm; object-fit: contain; }
+    .lead { max-width: 165mm; color: #434a4e; font-size: 12pt; }
+    .hero { width: 100%; height: 78mm; margin: 7mm 0; border: 1px solid #ddd5c9; object-fit: cover; object-position: top; }
+    .team-row { display: flex; gap: 5mm; margin: 3mm 0 5mm; }
+    .person { width: 25%; text-align: center; }
+    .person img { width: 27mm; height: 27mm; border: 1px solid #ded8ce; border-radius: 50%; object-fit: cover; }
+    .person p { margin: 1mm 0 0; font-weight: 700; }
+    .callout { margin: 3mm 0; padding: 3mm 4mm; border-left: 3px solid var(--copper); background: #f6f3ed; }
+    .row { display: flex; gap: 5mm; align-items: flex-start; }
     .half { width: 50%; }
-    .small { font-size: 8.5pt; color: #53616a; }
-    .callout { padding: 3mm 4mm; border-left: 3px solid #b56f3b; background: #f4f6f7; }
-    ul, ol { margin: 1mm 0 3mm; padding-left: 6mm; }
-    li { margin-bottom: 1.3mm; }
-    table { width: 100%; border-collapse: collapse; font-size: 8.7pt; }
-    th, td { padding: 2.1mm; border: 1px solid #cbd4da; text-align: left; vertical-align: top; }
-    th { color: #fff; background: #15324a; }
-    a { color: #174d70; overflow-wrap: anywhere; }
-    .foot { position: absolute; bottom: 0; color: #65727a; font-size: 8pt; }
-    .link-box { padding: 4mm; border: 1px solid #d7dee3; background: #f7f9fa; }
-    @media screen { body { max-width: 210mm; margin: 16px auto; padding: 15mm; box-shadow: 0 2px 16px #0002; } .page { margin-bottom: 15mm; } }
+    .shot { display: block; width: 100%; max-height: 79mm; margin: 2mm 0; border: 1px solid #d8d4cc; object-fit: contain; object-position: top; }
+    .shot.short { max-height: 54mm; }
+    .caption { color: #61615c; font-size: 8pt; }
+    .steps { margin: 1mm 0 3mm; padding-left: 6mm; }
+    .steps li { margin-bottom: 1.2mm; }
+    .tag { display: inline-block; margin: 0 1mm 1mm 0; padding: 1mm 2mm; color: #53331f; background: #f1e5d8; font: 8pt Consolas, monospace; }
+    table { width: 100%; border-collapse: collapse; font-size: 8.2pt; }
+    th, td { padding: 2mm; border: 1px solid #cfc9bf; text-align: left; vertical-align: top; }
+    th { color: #fff; background: var(--navy); }
+    .url { padding: 3mm; overflow-wrap: anywhere; border: 1px solid #ddd5c9; background: #faf8f4; }
+    .foot { position: absolute; right: 0; bottom: 0; left: 0; padding-top: 2mm; border-top: 1px solid #ded9d0; color: #65635e; font-size: 7.5pt; }
+    .screen-note { padding: 2mm; background: #faf8f4; }
+    @media screen {
+      body { max-width: 210mm; margin: 14px auto; padding: 13mm 14mm; box-shadow: 0 2px 20px #0002; }
+      .page { margin-bottom: 14mm; }
+    }
   </style>
 </head>
 <body>
   <section class="page cover">
+    <img class="logo" src="images/apex-motors-logo.png" alt="Apex Motors logo">
     <p class="eyebrow">Web technologies · Assignment 3</p>
-    <h1>Media Queries<br>+ Bootstrap Grid</h1>
-    <p class="lead">A responsive, eight-page learning site from Apex Motors. This report documents the implementation, source-code evidence, page results and team contributions.</p>
-    <img class="hero-image" src="screenshots/page-home.png" alt="Screenshot of the Assignment 3 Apex Motors home page">
-    <div style="margin-top:8mm">
-      <p><strong>Team:</strong> Apex Motors</p>
-      <p><strong>Group:</strong> SE-2507</p>
-      <p><strong>Members:</strong> Arsen · Kuttibay · Farabi · Muhammad</p>
-      <p><strong>Course:</strong> Web Technologies / Front-End Development</p>
+    <h1>Responsive design,<br>with a human point of view.</h1>
+    <p class="lead">A ten-task study of CSS media queries and Bootstrap 5.3, presented as a cohesive, responsive dealership website.</p>
+    <img class="hero" src="screenshots/page-home.png" alt="Current desktop screenshot of the Apex Motors assignment home page">
+    <div class="row">
+      <div class="half">
+        <p><strong>Team:</strong> Apex Motors</p>
+        <p><strong>Group:</strong> SE-2507</p>
+        <p><strong>Course:</strong> Web Technologies / Front-End Development</p>
+      </div>
+      <div class="half">
+        <p><strong>Members:</strong> Arsen, Kuttibay, Farabi, Muhammad</p>
+        <p><strong>Project:</strong> isolated copy in <code>assignment3-bootstrap/</code></p>
+        <p><strong>Build:</strong> Bootstrap 5.3.3 + project-specific CSS</p>
+      </div>
     </div>
-    <footer class="foot">Apex Motors · Arsen · Kuttibay · Farabi · Muhammad · SE-2507 · Assignment 3</footer>
+    <div class="team-row">
+      <div class="person"><img src="images/arsen.jpg" alt="Arsen, team member"><p>Arsen</p></div>
+      <div class="person"><img src="images/kuttibay.jpg" alt="Kuttibay, team member"><p>Kuttibay</p></div>
+      <div class="person"><img src="images/farabi.jpg" alt="Farabi, team member"><p>Farabi</p></div>
+      <div class="person"><img src="images/muhammad.jpg" alt="Muhammad, team member"><p>Muhammad</p></div>
+    </div>
+    <footer class="foot">Apex Motors · Arsen · Kuttibay · Farabi · Muhammad · SE-2507</footer>
   </section>
 
   <section class="page">
-    <p class="eyebrow">Objective and approach</p>
-    <h2>Build once, adapt to every screen</h2>
-    <p>The goal was to practice responsive web design with CSS media queries and Bootstrap's 12-column grid, then apply Bootstrap components and spacing utilities to a cohesive dealership mini-site. A separate project copy keeps the existing Assignment 1/2 website unchanged.</p>
-    <h3>Step-by-step implementation</h3>
-    <ol>
-      <li>Created the isolated <code>assignment3-bootstrap/</code> project and linked eight task pages through a responsive shared navigation.</li>
-      <li>Added mobile, tablet and desktop media-query breakpoints for typography and a three-card layout built with plain CSS.</li>
-      <li>Replaced demonstration-section layouts with Bootstrap containers, rows and responsive columns; used Bootstrap spacing classes for gutters and padding.</li>
-      <li>Added a collapsible navbar, grouped buttons, a nine-slide local-image carousel, responsive Bootstrap cards and a labeled, validated inquiry form.</li>
-      <li>Reviewed semantic structure, image alternatives, contrast, visible keyboard focus and accessible names for interactive controls.</li>
-      <li>Captured real browser views and source excerpts, then prepared this PDF and the LMS ZIP.</li>
-    </ol>
+    <p class="eyebrow">01 · Responsive foundations</p>
+    <h2>CSS media queries, used with intention</h2>
+    <p>The site keeps the original Assignment 1/2 website outside this folder. Assignment 3 has its own stylesheet, Bootstrap 5.3.3 links, local vehicle photographs, shared navbar, and linked learning pages.</p>
     <h3>Task 1 · Responsive typography</h3>
-    <p>On <code>typography-cards.html</code>, the heading and paragraph use distinct mobile (&lt;576px), tablet (576–991px) and desktop (≥992px) font sizes. Explicit media queries make the size changes easy to inspect and explain.</p>
-    <div class="row"><div class="half"><img class="screenshot" src="screenshots/page-media.png" alt="Browser screenshot of responsive typography and card examples"><p class="small">Resulting page · media queries and card group</p></div><div class="half"><img class="code-screenshot" src="screenshots/code-media.png" alt="Screenshot of source code for media-query breakpoints"><p class="small">Source excerpt · styles.css</p></div></div>
-    <h3>Task 2 · CSS-only card group</h3>
-    <p>The three sample vehicle cards use a dedicated CSS grid: three columns on desktop, two on tablet, and one stacked column on mobile. The card group uses no Bootstrap card or grid classes; its layout is controlled by custom CSS breakpoints.</p>
-    <footer class="foot">Apex Motors · Arsen · Kuttibay · Farabi · Muhammad · SE-2507 · Assignment 3</footer>
+    <ol class="steps">
+      <li>Write actual dealership headings and paragraphs in <code>typography-cards.html</code>.</li>
+      <li>Set smaller type at phone widths, then increase the same heading and paragraph at the 576px tablet and 992px desktop breakpoints.</li>
+      <li>Resize or inspect the page at all three widths and compare the text scale and line wrapping.</li>
+    </ol>
+    <div class="row">
+      <div class="half"><img class="shot" src="screenshots/page-media.png" alt="Desktop screenshot of responsive typography and CSS-only cards"><p class="caption">Desktop · real heading and paragraph with three cards</p></div>
+      <div class="half"><img class="shot" src="screenshots/page-media-mobile.png" alt="Mobile screenshot of the same typography and stacked cards"><p class="caption">Mobile · reduced type scale and stacked cards</p></div>
+    </div>
+    <h3>Task 2 · CSS-only three-card row</h3>
+    <ol class="steps">
+      <li>Build three vehicle articles with semantic HTML and a dedicated <code>.media-demo</code> CSS grid.</li>
+      <li>Use three columns on desktop, two at tablet widths, and one on mobile using CSS media queries only.</li>
+      <li>Keep Bootstrap grid and card classes off this card group so its responsive behavior comes only from project CSS.</li>
+    </ol>
+    <img class="shot short" src="screenshots/code-media.png" alt="Code evidence showing media query and CSS grid declarations">
+    <p class="caption">Source evidence · the card layout and responsive typography breakpoints are in <code>styles.css</code>.</p>
+    <footer class="foot">Apex Motors · Arsen · Kuttibay · Farabi · Muhammad · SE-2507</footer>
   </section>
 
   <section class="page">
-    <p class="eyebrow">Part 2 · Bootstrap foundation</p>
-    <h2>Tasks 3–4 · Grid and spacing utilities</h2>
-    <p><code>grid-spacing.html</code> demonstrates a two-column section using <code>col-lg-6</code> and a three-column section using <code>col-lg-4</code>. Both start full-width on narrow phones, then use tablet and desktop breakpoints. Bootstrap <code>container</code>, <code>row</code>, and gutter classes align content consistently.</p>
-    <p>Spacing is expressed with Bootstrap utilities rather than custom layout margins and padding: examples include <code>py-4</code>, <code>px-sm-2</code>, <code>g-md-4</code>, and <code>mt-lg-4</code>. The utilities adjust at responsive breakpoints.</p>
-    <img class="screenshot screenshot-tall" src="screenshots/page-grid.png" alt="Browser screenshot of two-column and three-column grid examples">
-    <p class="small">Resulting page · Bootstrap columns and spacing</p>
-    <img class="code-screenshot" src="screenshots/code-grid.png" alt="Screenshot of Bootstrap grid and spacing classes in source code">
-    <p class="small">Source excerpt · responsive classes and spacing utilities</p>
-    <footer class="foot">Apex Motors · Arsen · Kuttibay · Farabi · Muhammad · SE-2507 · Assignment 3</footer>
+    <p class="eyebrow">02 · Bootstrap layout system</p>
+    <h2>Tasks 3–4 · Grid and responsive spacing</h2>
+    <h3>Task 3 · Bootstrap grid</h3>
+    <ol class="steps">
+      <li>Wrap both examples in Bootstrap containers and rows with consistent gutters.</li>
+      <li>Use two <code>col-lg-6</code> columns for the feature pair; they stack on phones and split at tablet widths.</li>
+      <li>Use three <code>col-lg-4</code> columns for the next set; <code>col-sm-6</code> shows two columns at small screens.</li>
+      <li>Resize the page to see the columns reflow without horizontal scrolling.</li>
+    </ol>
+    <h3>Task 4 · Bootstrap spacing utilities</h3>
+    <ol class="steps">
+      <li>Replace intended layout spacing with Bootstrap utilities instead of custom margin/padding rules.</li>
+      <li>Use breakpoint-specific examples such as <code>px-sm-2</code>, <code>mt-lg-4</code>, <code>py-4</code>, and responsive gutters.</li>
+      <li>Check that spacing remains legible as the grid changes at phone, tablet, and desktop widths.</li>
+    </ol>
+    <img class="shot" src="screenshots/page-grid.png" alt="Desktop screenshot of two-column and three-column Bootstrap grid examples">
+    <p class="caption">Grid and spacing utilities · visible content comes from <code>grid-spacing.html</code>.</p>
+    <img class="shot short" src="screenshots/code-grid.png" alt="Code screenshot of Bootstrap grid classes and responsive spacing utilities">
+    <p class="caption">Source evidence · <code>col-lg-6</code>, <code>col-lg-4</code>, <code>px-sm-2</code>, and <code>mt-lg-4</code>.</p>
+    <footer class="foot">Apex Motors · Arsen · Kuttibay · Farabi · Muhammad · SE-2507</footer>
   </section>
 
   <section class="page">
-    <p class="eyebrow">Components · navigation and actions</p>
-    <h2>Tasks 5–6 · Navbar and buttons</h2>
-    <p>The navbar links every page, keeps the active page identifiable, and exposes its expanded/collapsed state to assistive technology. The toggler has an accessible label and target relationship.</p>
+    <p class="eyebrow">03 · Navigation and actions</p>
+    <h2>Tasks 5–6 · Bootstrap components</h2>
+    <h3>Task 5 · Collapsible navbar</h3>
+    <ol class="steps">
+      <li>Load the Bootstrap 5.3.3 CSS and JavaScript bundle on the site pages.</li>
+      <li>Place the supplied local Apex Motors logo in a <code>navbar-expand-lg</code> navigation with eight meaningful page links.</li>
+      <li>Connect the accessible toggler to the collapsible menu with matching <code>data-bs-target</code> and <code>id</code>, and keep <code>aria-expanded</code> in sync.</li>
+      <li>Test links at desktop width and the collapsed menu on a narrow viewport.</li>
+    </ol>
     <h3>Task 6 · Bootstrap buttons</h3>
-    <p><code>buttons.html</code> uses Bootstrap's <code>.btn-primary</code>, <code>.btn-secondary</code>, outline variants, <code>.btn-lg</code>, <code>.btn-sm</code>, and <code>.btn-group</code>. Actions are links to relevant site pages or clearly identified demonstration buttons; no custom button replacement styling is used.</p>
-    <div class="row"><div class="half"><img class="screenshot" src="screenshots/page-home.png" alt="Browser screenshot of the linked Assignment 3 home page and navbar"><p class="small">Resulting page · navbar and linked task overview</p></div><div class="half"><img class="screenshot" src="screenshots/page-buttons.png" alt="Browser screenshot of Bootstrap button examples"><p class="small">Resulting page · variants, sizes and related actions</p></div></div>
-    <img class="code-screenshot" src="screenshots/code-nav.png" alt="Screenshot of navbar and button-group source code">
-    <p class="small">Source excerpt · Bootstrap navbar and button group</p>
-    <footer class="foot">Apex Motors · Arsen · Kuttibay · Farabi · Muhammad · SE-2507 · Assignment 3</footer>
+    <ol class="steps">
+      <li>Replace default actions with Bootstrap <code>btn-primary</code>, <code>btn-secondary</code>, and outline variants.</li>
+      <li>Show <code>btn-lg</code> and <code>btn-sm</code> alongside standard actions.</li>
+      <li>Group related navigation actions in an accessible <code>btn-group</code>.</li>
+    </ol>
+    <div class="row">
+      <div class="half"><img class="shot" src="screenshots/page-home.png" alt="Home page showing the real logo in the shared navigation"><p class="caption">Shared navbar · supplied logo and collapsible page links</p></div>
+      <div class="half"><img class="shot" src="screenshots/page-buttons.png" alt="Buttons page showing Bootstrap variants and a button group"><p class="caption">Button page · variants, sizes, and grouped actions</p></div>
+    </div>
+    <img class="shot short" src="screenshots/code-nav.png" alt="Code screenshot of the Bootstrap navbar collapse toggler">
+    <p class="caption">Source evidence · the toggler is wired to the page's Bootstrap collapse target.</p>
+    <footer class="foot">Apex Motors · Arsen · Kuttibay · Farabi · Muhammad · SE-2507</footer>
   </section>
 
   <section class="page">
-    <p class="eyebrow">Components · image carousel and cards</p>
-    <h2>Tasks 7–8 · Explore the collection</h2>
-    <p>The Bootstrap carousel contains nine distinct, local vehicle images, nine matching indicators, descriptive alternative text and captions, and previous/next controls. It sits in a centered Bootstrap grid column. Motion is user-controlled rather than auto-advancing.</p>
-    <h3>Task 8 · Bootstrap cards</h3>
-    <p>The inventory card page has three Bootstrap cards, each with an image, title, description and action. Responsive row/column classes stack on phones, make two columns on medium screens and three on large screens.</p>
-    <div class="row"><div class="half"><img class="screenshot screenshot-tall" src="screenshots/page-carousel.png" alt="Browser screenshot of the vehicle carousel with image, caption, indicators and controls"><p class="small">Resulting page · carousel first slide, indicators and controls</p></div><div class="half"><img class="screenshot" src="screenshots/page-cards.png" alt="Browser screenshot of three responsive Bootstrap vehicle cards"><p class="small">Resulting page · responsive vehicle cards</p></div></div>
-    <img class="code-screenshot" src="screenshots/code-carousel.png" alt="Screenshot of carousel indicator and Bootstrap card source code">
-    <p class="small">Source excerpt · carousel indicators and card grid</p>
-    <footer class="foot">Apex Motors · Arsen · Kuttibay · Farabi · Muhammad · SE-2507 · Assignment 3</footer>
+    <p class="eyebrow">04 · Collection and components</p>
+    <h2>Tasks 7–8 · Carousel and cards</h2>
+    <h3>Task 7 · Bootstrap carousel</h3>
+    <ol class="steps">
+      <li>Keep nine distinct vehicle photographs in the local <code>images/</code> folder.</li>
+      <li>Create nine individually named slides with meaningful alternative text and a matching caption.</li>
+      <li>Pair each slide with its indicator and add previous/next controls with descriptive accessible names.</li>
+      <li>Leave slide changes user-controlled; the carousel supports the Bootstrap keyboard interaction.</li>
+    </ol>
+    <img class="shot" src="screenshots/page-carousel.png" alt="Current browser screenshot of the local vehicle carousel with captions and controls">
+    <p class="caption">Nine photographs are stored locally; no external image host is needed.</p>
+    <img class="shot short" src="screenshots/code-carousel.png" alt="Source screenshot showing carousel indicators and local slide markup">
+    <p class="caption">Source evidence · indicators and corresponding local image slides.</p>
+    <footer class="foot">Apex Motors · Arsen · Kuttibay · Farabi · Muhammad · SE-2507</footer>
   </section>
 
   <section class="page">
-    <p class="eyebrow">Forms and accessibility</p>
-    <h2>Tasks 9–10 · Responsive and inclusive</h2>
-    <p>The inquiry page uses responsive Bootstrap columns and labeled controls, including <code>.form-control</code>, an <code>.input-group</code>, radio choices and a checkbox. Required name/email fields use native validity checks with Bootstrap invalid-feedback states. The demonstration explicitly does not transmit or store entered data.</p>
-    <div class="row"><div class="half"><img class="screenshot" src="screenshots/page-form.png" alt="Browser screenshot of responsive inquiry form and associated labels"><p class="small">Resulting page · labeled fields</p></div><div class="half"><img class="code-screenshot" src="screenshots/code-form.png" alt="Screenshot of form labels, validation and focus-visible code"><p class="small">Source excerpt · form and focus styles</p></div></div>
-    <h3>Accessibility checklist</h3>
-    <ul>
-      <li>Landmark elements, heading hierarchy, a skip link, and descriptive navigation names.</li>
-      <li>Associated form labels, a fieldset/legend for radio choices, status feedback, and visible keyboard focus.</li>
-      <li>Descriptive local image alternatives; sufficient contrast on dark navigation/footer surfaces; reduced-motion styling.</li>
-      <li>Carousel indicators and previous/next controls use descriptive accessible names; carousel does not move without user action.</li>
-    </ul>
-    <footer class="foot">Apex Motors · Arsen · Kuttibay · Farabi · Muhammad · SE-2507 · Assignment 3</footer>
+    <p class="eyebrow">05 · Inventory cards</p>
+    <h2>Task 8 · A responsive Bootstrap card grid</h2>
+    <ol class="steps">
+      <li>Use Bootstrap's responsive row/column utilities to arrange three inventory cards.</li>
+      <li>Give each card a local car photograph with descriptive alternative text, a model title, a concise description, and a clear action.</li>
+      <li>Stack cards on phones, use two columns at medium widths, and show three at large widths.</li>
+      <li>Align card actions to keep the row consistent even when descriptions wrap differently.</li>
+    </ol>
+    <img class="shot" src="screenshots/page-cards.png" alt="Current screenshot of three responsive Bootstrap vehicle cards">
+    <div class="callout"><strong>Design note:</strong> restrained colors, square card edges, real dealership language, and a consistent editorial rhythm connect this learning page to the wider Apex Motors site.</div>
+    <h3>Cross-page navigation</h3>
+    <p class="muted">The cards link to the inquiry form, the carousel links each slide to its own local image, and all pages share the same navbar and team footer.</p>
+    <footer class="foot">Apex Motors · Arsen · Kuttibay · Farabi · Muhammad · SE-2507</footer>
   </section>
 
   <section class="page">
-    <p class="eyebrow">Team, deployment and reflection</p>
-    <h2>Team contribution map</h2>
+    <p class="eyebrow">06 · Accessible inquiry</p>
+    <h2>Task 9 · Responsive Bootstrap form</h2>
+    <ol class="steps">
+      <li>Lay out the form with responsive Bootstrap columns, including <code>col-md-6</code> field pairs.</li>
+      <li>Associate a visible label with every control; use <code>form-control</code>, <code>form-select</code>, and a budget <code>input-group</code>.</li>
+      <li>Include an accessible radio fieldset, a labeled checkbox, and optional free-text details.</li>
+      <li>Validate the required name and email fields; send invalid focus to the first invalid control and announce a result through a live status region.</li>
+      <li>State clearly that this classroom demo does not transmit or store personal information.</li>
+    </ol>
+    <img class="shot" src="screenshots/page-form.png" alt="Current browser screenshot of the labeled, responsive vehicle inquiry form">
+    <img class="shot short" src="screenshots/code-form.png" alt="Code screenshot showing form labels, validation and keyboard focus">
+    <p class="caption">The form's success state is only a local validity demonstration; there is no submission endpoint.</p>
+    <footer class="foot">Apex Motors · Arsen · Kuttibay · Farabi · Muhammad · SE-2507</footer>
+  </section>
+
+  <section class="page">
+    <p class="eyebrow">07 · Inclusive details and delivery</p>
+    <h2>Task 10 · Semantic HTML and accessibility</h2>
+    <ol class="steps">
+      <li>Use a page title, landmark elements, ordered heading levels, and a keyboard-accessible skip link.</li>
+      <li>Provide visible focus, descriptive alternative text, adequate contrast, and meaningful link/button labels.</li>
+      <li>Associate labels with form controls and use a live status region for validation feedback.</li>
+      <li>Keep the carousel user-controlled and honor reduced-motion preferences in project styles.</li>
+      <li>Keep the interface responsive without hiding meaningful text or requiring hover interaction.</li>
+    </ol>
+    <div class="row">
+      <div class="half"><img class="shot" src="screenshots/page-team.png" alt="Current team page showing four genuine member portraits and contribution details"><p class="caption">The contribution page uses the team's four supplied portraits.</p></div>
+      <div class="half"><img class="shot" src="screenshots/page-media-mobile.png" alt="Mobile screenshot showing the responsive page layout"><p class="caption">Mobile evidence · layout reflows to a single card column.</p></div>
+    </div>
+    <h3>Team responsibility map</h3>
     <table>
-      <thead><tr><th>Member</th><th>Page 1</th><th>Page 2</th><th>Bootstrap contribution</th></tr></thead>
+      <thead><tr><th>Member</th><th>Two pages and component contribution</th></tr></thead>
       <tbody>
-        <tr><td>Muhammad</td><td>Typography + CSS card media queries</td><td>Grid + spacing utilities</td><td>Responsive Bootstrap grid and utility classes</td></tr>
-        <tr><td>Arsen</td><td>Nine-image carousel</td><td>Responsive inventory cards</td><td>Carousel and card components</td></tr>
-        <tr><td>Kuttibay</td><td>Buttons and button group</td><td>Responsive inquiry form</td><td>Button variants/group and form components</td></tr>
-        <tr><td>Farabi</td><td>Shared responsive navbar / home page</td><td>Team grid and contribution cards</td><td>Collapsible navbar, grid and cards</td></tr>
+        <tr><td>Arsen</td><td><code>carousel.html</code> · nine-slide carousel; <code>bootstrap-cards.html</code> · responsive inventory cards</td></tr>
+        <tr><td>Kuttibay</td><td><code>buttons.html</code> · button variants/group; <code>responsive-form.html</code> · labeled validated form</td></tr>
+        <tr><td>Farabi</td><td><code>index.html</code> · collapsible navigation; <code>team-grid.html</code> · team contribution page</td></tr>
+        <tr><td>Muhammad</td><td><code>typography-cards.html</code> · media-query layouts; <code>grid-spacing.html</code> · Bootstrap grid/utilities</td></tr>
       </tbody>
     </table>
     <h3>Live website</h3>
-    <div class="link-box"><a href="https://vertex-blip.github.io/Car-dealership-website/assignment3-bootstrap/">https://vertex-blip.github.io/Car-dealership-website/assignment3-bootstrap/</a></div>
-    <h3>Final reflection</h3>
-    <p>This assignment showed how CSS media queries and Bootstrap can complement each other: explicit breakpoints are useful for a small custom card group and typography exercise, while Bootstrap grid, components and spacing utilities speed up consistent layouts across a multi-page site. Local images make the carousel dependable, and accessible labels, focus styles and user-controlled movement improve the experience beyond visual responsiveness.</p>
-    <p>Each teammate can explain a pair of pages and the decisions in their component. The form remains a front-end validation example only, so a production version would need a secure, consent-aware server endpoint. The published copy is isolated from the original Assignment 1/2 pages.</p>
-    <h3>Deliverables</h3>
-    <ul><li>Eight linked HTML pages and shared CSS under <code>assignment3-bootstrap/</code>.</li><li>This PDF report with screenshots of source excerpts and rendered pages.</li><li>A ZIP archive of the complete assignment project for LMS upload.</li></ul>
-    <footer class="foot">Apex Motors · Arsen · Kuttibay · Farabi · Muhammad · SE-2507 · Assignment 3</footer>
+    <p class="url"><a href="https://vertex-blip.github.io/Car-dealership-website/assignment3-bootstrap/">https://vertex-blip.github.io/Car-dealership-website/assignment3-bootstrap/</a></p>
+    <p class="muted">The ZIP contains only this self-contained Assignment 3 project, its local images, report, and evidence. Bootstrap itself is loaded from the official jsDelivr CDN. The existing root-level A1/A2 site is not part of the archive.</p>
+    <footer class="foot">Apex Motors · Arsen · Kuttibay · Farabi · Muhammad · SE-2507</footer>
   </section>
 </body>
 </html>
