@@ -3,16 +3,16 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Apex Motors Assignment 3: responsive media queries and Bootstrap components.">
-  <title>Assignment 3 | Apex Motors</title>
+  <meta name="description" content="Apex Motors Assignment 3: a considered, responsive dealership site built with CSS media queries and Bootstrap 5.3.">
+  <title>Apex Motors | Assignment 3</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="styles.css" rel="stylesheet">
 </head>
 <body>
-  <a class="visually-hidden-focusable position-absolute top-0 start-0 bg-white p-2" href="#main-content">Skip to main content</a>
+  <a class="skip-link visually-hidden-focusable position-absolute top-0 start-0 bg-white p-2" href="#main-content">Skip to main content</a>
   <nav class="navbar navbar-expand-lg navbar-dark assignment-navbar" aria-label="Assignment pages">
     <div class="container">
-      <a class="navbar-brand brand-mark" href="index.html">APEX MOTORS <span class="visually-hidden">Assignment 3 home</span></a>
+      <a class="navbar-brand" href="index.html"><img class="brand-logo" src="images/apex-motors-logo.png" alt="Apex Motors home"></a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#assignmentNav" aria-controls="assignmentNav" aria-expanded="false" aria-label="Toggle assignment navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -22,43 +22,58 @@
           <li class="nav-item"><a class="nav-link" href="typography-cards.html">Media queries</a></li>
           <li class="nav-item"><a class="nav-link" href="grid-spacing.html">Grid &amp; spacing</a></li>
           <li class="nav-item"><a class="nav-link" href="carousel.html">Carousel</a></li>
-          <li class="nav-item"><a class="nav-link" href="bootstrap-cards.html">Cards</a></li>
+          <li class="nav-item"><a class="nav-link" href="bootstrap-cards.html">Inventory</a></li>
           <li class="nav-item"><a class="nav-link" href="buttons.html">Buttons</a></li>
-          <li class="nav-item"><a class="nav-link" href="responsive-form.html">Form</a></li>
-          <li class="nav-item"><a class="nav-link" href="team-grid.html">Team &amp; grid</a></li>
+          <li class="nav-item"><a class="nav-link" href="responsive-form.html">Contact</a></li>
+          <li class="nav-item"><a class="nav-link" href="team-grid.html">Our team</a></li>
         </ul>
       </div>
     </div>
   </nav>
   <main id="main-content">
     <section class="hero-panel">
-      <div class="container py-5">
-        <p class="eyebrow mb-2">SE-2507 · Team Apex Motors</p>
-        <h1 class="display-4 fw-bold">Responsive by design.<br>Built to explore.</h1>
-        <p class="lead col-lg-8">A practical showcase of CSS media queries and Bootstrap 5.3 grid, navigation, carousel, cards, buttons and forms—built as a separate assignment copy.</p>
-        <a class="btn btn-light btn-lg mt-2" href="typography-cards.html">Start with media queries</a>
+      <div class="container">
+        <p class="eyebrow mb-3">Apex Motors · Group SE-2507</p>
+        <h1>Considered cars.<br>Clear decisions.</h1>
+        <p class="lead mt-4 mb-4">A small, thoughtfully curated collection and a straightforward way to explore it. Built as a responsive web-design study by Team Apex Motors.</p>
+        <a class="btn btn-primary btn-lg" href="bootstrap-cards.html">Explore the collection</a>
       </div>
     </section>
-    <section class="container py-5" aria-labelledby="pages-heading">
+
+    <section class="container py-5" aria-labelledby="collection-heading">
       <div class="row align-items-end g-3 mb-4">
-        <div class="col-lg-8"><p class="eyebrow text-uppercase mb-1" style="color:#8c4a21">Assignment tour</p><h2 id="pages-heading" class="mb-0">Eight focused learning pages</h2></div>
-        <div class="col-lg-4"><p class="text-muted-strong mb-0">Use the navigation or start with a task below.</p></div>
+        <div class="col-lg-8">
+          <p class="eyebrow mb-2">A considered selection</p>
+          <h2 id="collection-heading" class="display-6 mb-0">A few good reasons to take the longer way home.</h2>
+        </div>
+        <div class="col-lg-4"><p class="text-muted-strong mb-0">Three local-image cards introduce the Bootstrap collection page.</p></div>
       </div>
-      <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 g-3">
-        <div class="col"><a class="card h-100 text-decoration-none accent-border" href="typography-cards.html"><div class="card-body"><h3 class="h5">01 · Media queries</h3><p class="card-text text-muted-strong">Responsive type and CSS-only cards.</p></div></a></div>
-        <div class="col"><a class="card h-100 text-decoration-none accent-border" href="grid-spacing.html"><div class="card-body"><h3 class="h5">02 · Grid &amp; spacing</h3><p class="card-text text-muted-strong">Two- and three-column Bootstrap layouts.</p></div></a></div>
-        <div class="col"><a class="card h-100 text-decoration-none accent-border" href="carousel.html"><div class="card-body"><h3 class="h5">03 · Carousel</h3><p class="card-text text-muted-strong">Nine local car images and accessible controls.</p></div></a></div>
-        <div class="col"><a class="card h-100 text-decoration-none accent-border" href="bootstrap-cards.html"><div class="card-body"><h3 class="h5">04 · Bootstrap cards</h3><p class="card-text text-muted-strong">Inventory cards arranged in a responsive grid.</p></div></a></div>
-        <div class="col"><a class="card h-100 text-decoration-none accent-border" href="buttons.html"><div class="card-body"><h3 class="h5">05 · Buttons</h3><p class="card-text text-muted-strong">Variants, sizes, outlines and button group.</p></div></a></div>
-        <div class="col"><a class="card h-100 text-decoration-none accent-border" href="responsive-form.html"><div class="card-body"><h3 class="h5">06 · Responsive form</h3><p class="card-text text-muted-strong">Labeled fields, input group and validation.</p></div></a></div>
-        <div class="col"><a class="card h-100 text-decoration-none accent-border" href="team-grid.html"><div class="card-body"><h3 class="h5">07 · Team &amp; grid</h3><p class="card-text text-muted-strong">Bootstrap grid and explicit team roles.</p></div></a></div>
-        <div class="col"><a class="card h-100 text-decoration-none accent-border" href="index.html"><div class="card-body"><h3 class="h5">08 · Navigation</h3><p class="card-text text-muted-strong">This page demonstrates the collapsing navbar.</p></div></a></div>
+      <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+        <div class="col"><article class="card h-100 shadow-sm"><img class="card-img-top" src="images/car-01.jpg" alt="Black sedan driving on a quiet tree-lined road"><div class="card-body"><p class="eyebrow mb-2">Grand touring</p><h3 class="h4">Solis GT</h3><p class="card-text text-muted-strong">Confident, composed, and best enjoyed when the road opens up.</p></div></article></div>
+        <div class="col"><article class="card h-100 shadow-sm"><img class="card-img-top" src="images/car-07.jpg" alt="White SUV crossing a red-rock desert landscape"><div class="card-body"><p class="eyebrow mb-2">All-road comfort</p><h3 class="h4">Meridian Touring</h3><p class="card-text text-muted-strong">An unhurried cabin for long weekends and everyday miles.</p></div></article></div>
+        <div class="col"><article class="card h-100 shadow-sm"><img class="card-img-top" src="images/car-08.jpg" alt="Red performance car in a bright showroom"><div class="card-body"><p class="eyebrow mb-2">Open-air drive</p><h3 class="h4">Solis Roadster</h3><p class="card-text text-muted-strong">A clean silhouette with a little more sky in every journey.</p></div></article></div>
+      </div>
+    </section>
+
+    <section class="container pb-5" aria-labelledby="assignment-heading">
+      <div class="report-cover">
+        <div class="row align-items-center g-4">
+          <div class="col-lg-8">
+            <p class="eyebrow mb-2">Web technologies · Assignment 3</p>
+            <h2 id="assignment-heading" class="h2">One small site. Ten responsive-design tasks.</h2>
+            <p class="text-muted-strong mb-0">Explore the media-query exercises, Bootstrap layout and components, accessible form, and the people behind the work.</p>
+          </div>
+          <div class="col-lg-4 d-flex flex-wrap gap-2">
+            <a class="btn btn-primary" href="typography-cards.html">Start the walkthrough</a>
+            <a class="btn btn-outline-primary" href="report.html">Read the project report</a>
+          </div>
+        </div>
       </div>
     </section>
   </main>
   <footer class="site-footer py-4">
-    <div class="container">
-      <p class="mb-1">Apex Motors · Group SE-2507</p>
+    <div class="container d-flex flex-column flex-md-row justify-content-between gap-2">
+      <p class="mb-0">Apex Motors · Group SE-2507</p>
       <p class="mb-0">Team: Arsen · Kuttibay · Farabi · Muhammad</p>
     </div>
   </footer>
