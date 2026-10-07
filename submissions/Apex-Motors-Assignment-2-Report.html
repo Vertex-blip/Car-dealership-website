@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Assignment 2 Report | Apex Motors · SE-2507</title>
+  <style>
+    @page { size: A4; margin: 12mm 14mm; }
+    :root { --ink: #17191c; --navy: #1d2b3a; --cream: #f5f0e7; --copper: #98572f; --muted: #60615f; --line: #d9d1c4; }
+    * { box-sizing: border-box; }
+    body { margin: 0; color: var(--ink); background: #fff; font: 9.2pt/1.42 Arial, sans-serif; }
+    h1, h2, h3, p { margin-top: 0; }
+    h1, h2, h3 { color: var(--navy); }
+    h1 { margin: 0 0 4mm; font: 500 34pt/1.08 Georgia, "Times New Roman", serif; letter-spacing: -.5pt; }
+    h2 { margin: 0 0 3mm; font: 500 21pt/1.12 Georgia, "Times New Roman", serif; }
+    h3 { margin: 4mm 0 1.5mm; font-size: 11pt; }
+    p { margin-bottom: 2.4mm; }
+    code { color: #713f24; font: 8.1pt Consolas, "Courier New", monospace; }
+    .page { position: relative; min-height: 272mm; padding-bottom: 10mm; page-break-after: always; }
+    .page:last-child { page-break-after: auto; }
+    .cover { display: flex; min-height: 272mm; flex-direction: column; justify-content: center; }
+    .logo { width: 62mm; height: 22mm; margin-bottom: 11mm; object-fit: contain; object-position: left center; }
+    .eyebrow { margin-bottom: 2.5mm; color: var(--copper); font-size: 8pt; font-weight: 700; letter-spacing: 1.5pt; text-transform: uppercase; }
+    .lead { max-width: 164mm; color: #41494e; font-size: 12pt; }
+    .shot { display: block; width: 100%; max-height: 84mm; margin: 4mm 0; border: 1px solid var(--line); object-fit: cover; object-position: top; }
+    .shot.short { max-height: 61mm; }
+    .caption { color: var(--muted); font-size: 8pt; }
+    .team { display: grid; grid-template-columns: 1fr 1fr; gap: 2mm 8mm; margin: 4mm 0; }
+    .team p { margin: 0; }
+    .callout { margin: 3mm 0; padding: 3mm 4mm; border-left: 3px solid var(--copper); background: #f6f3ed; }
+    .row { display: flex; gap: 5mm; align-items: flex-start; }
+    .half { width: 50%; }
+    .flex-page .shot.short { max-height: 44mm; }
+    .steps { margin: 1mm 0 3mm; padding-left: 6mm; }
+    .steps li { margin-bottom: 1.3mm; }
+    .tag { display: inline-block; margin: 0 1mm 1mm 0; padding: 1mm 2mm; color: #53331f; background: #f1e5d8; font: 8pt Consolas, monospace; }
+    table { width: 100%; margin: 2mm 0 3mm; border-collapse: collapse; font-size: 8.2pt; }
+    th, td { padding: 2mm; border: 1px solid #cfc9bf; text-align: left; vertical-align: top; }
+    th { color: #fff; background: var(--navy); }
+    .url { padding: 3mm; overflow-wrap: anywhere; border: 1px solid var(--line); background: #faf8f4; }
+    .url a { color: var(--navy); }
+    .muted { color: var(--muted); }
+    .foot { position: absolute; right: 0; bottom: 0; left: 0; padding-top: 2mm; border-top: 1px solid #ded9d0; color: #65635e; font-size: 7.5pt; }
+    @media screen {
+      body { max-width: 210mm; margin: 14px auto; padding: 12mm 14mm; box-shadow: 0 2px 20px #0002; }
+      .page { margin-bottom: 14mm; }
+    }
+  </style>
+</head>
+<body>
+  <section class="page cover">
+    <img class="logo" src="../images/apex-motors-logo.png" alt="Apex Motors logo">
+    <p class="eyebrow">Web technologies · Assignment 2</p>
+    <h1>Space, rhythm<br>and responsive motion.</h1>
+    <p class="lead">A layout-focused development report on the Flexbox and CSS Grid systems that shape the Apex Motors website.</p>
+    <img class="shot" src="report-evidence/root-inventory.jpg" alt="Browser screenshot of the Apex Motors inventory page with navigation and responsive vehicle cards">
+    <div class="team">
+      <p><strong>Team:</strong> Apex Motors</p><p><strong>Group:</strong> SE-2507</p>
+      <p><strong>Members:</strong> Arsen · Kuttibay</p><p><strong>Members:</strong> Farabi · Muhammad</p>
+      <p><strong>Course:</strong> Web Technologies</p><p><strong>Build:</strong> Framework-free CSS layout</p>
+    </div>
+    <p class="callout"><strong>Objective.</strong> Extend the connected dealership site with purposeful Flexbox and Grid layouts, responsive behavior at narrower widths, and an image gallery whose captions and hover states support browsing.</p>
+    <footer class="foot">Apex Motors · Assignment 2 · Group SE-2507 · Arsen · Kuttibay · Farabi · Muhammad</footer>
+  </section>
+
+  <section class="page flex-page">
+    <p class="eyebrow">01 · Flexible layouts</p>
+    <h2>Use Flexbox where content should flow</h2>
+    <p>Flexbox handles the one-dimensional parts of the site: the brand/navigation row, navigation link wrapping, action groups, and vehicle cards. The same components can redistribute available space without hard-coding a separate layout for every item.</p>
+    <div class="row">
+      <div class="half">
+        <h3>Navigation that can wrap</h3>
+        <p><code>.nav-wrap</code> uses <code>display: flex</code>, alignment, and spacing to place the brand beside the primary navigation. <code>.main-nav</code> is another flex container; links can wrap when there is not enough horizontal room. At narrower widths the header stacks and navigation aligns to the start.</p>
+        <h3>Vehicle cards with flexible height</h3>
+        <p>The home and inventory card groups use Flexbox for even card distribution. Each card is a column flex container; its content area grows and the action link uses <code>margin-top: auto</code> to line up buttons when descriptions differ in length.</p>
+        <p><span class="tag"><code>.nav-wrap { display:flex }</code></span><span class="tag"><code>.main-nav { display:flex }</code></span><span class="tag"><code>.cards { display:flex }</code></span><span class="tag"><code>.card-body { flex:1 }</code></span></p>
+      </div>
+      <div class="half">
+        <h3>Real page evidence · Inventory</h3>
+        <img class="shot short" src="report-evidence/root-inventory.jpg" alt="Browser screenshot of the root inventory page and its vehicle cards">
+        <p class="caption">The six inventory entries share one card structure and clear “See vehicle” actions.</p>
+        <h3>Shared site navigation</h3>
+        <img class="shot short" src="report-evidence/root-home.jpg" alt="Browser screenshot of the home page showing the shared navigation and featured cards">
+        <p class="caption">The same logo and page links appear across the root site's nine pages.</p>
+      </div>
+    </div>
+    <h3>Page responsibility map</h3>
+    <table>
+      <thead><tr><th>Member</th><th>Page lead responsibilities</th><th>Layout focus</th></tr></thead>
+      <tbody>
+        <tr><td>Farabi</td><td><code>index.html</code>, <code>about.html</code></td><td>Home, shared navigation, team presentation</td></tr>
+        <tr><td>Arsen</td><td><code>inventory.html</code>, <code>vehicle-detail.html</code></td><td>Inventory cards and vehicle details</td></tr>
+        <tr><td>Kuttibay</td><td><code>financing.html</code>, <code>contact.html</code></td><td>Customer information and inquiry layout</td></tr>
+        <tr><td>Muhammad</td><td><code>services.html</code>, <code>compare.html</code>, <code>showroom.html</code></td><td>Grid areas, comparison table, gallery</td></tr>
+      </tbody>
+    </table>
+    <p class="muted">Page leads follow the team's documented Apex Motors/A3 responsibility map; shared layout and integration are team work.</p>
+    <footer class="foot">Apex Motors · Assignment 2 · Group SE-2507 · Arsen · Kuttibay · Farabi · Muhammad</footer>
+  </section>
+
+  <section class="page">
+    <p class="eyebrow">02 · Grid-based composition</p>
+    <h2>Grid for page regions and gallery</h2>
+    <p>CSS Grid handles the two-dimensional layouts that need clear rows and columns. The inventory shell names its page areas explicitly, while the showroom gallery uses a three-column image grid with selected images spanning two rows.</p>
+    <div class="row">
+      <div class="half">
+        <h3>Named layout areas</h3>
+        <p>The shared <code>.page-shell</code> names its header, sidebar, and primary content areas explicitly:</p>
+        <p class="callout"><code>grid-template-areas:<br>&nbsp; 'head head'<br>&nbsp; 'side main'<br>&nbsp; 'foot foot';</code></p>
+        <p>The desktop template reserves a <code>foot</code> row; the site footer itself follows the shell in document flow. The sidebar occupies a 240px column. At the 900px breakpoint the shell changes to one column and places the sidebar after the main content.</p>
+        <h3>Showroom image gallery</h3>
+        <p><code>.gallery</code> creates three equal columns and consistent image rows. Figure elements position captions over their images; the second and seventh images span two grid rows to introduce a deliberate visual rhythm.</p>
+        <p><span class="tag"><code>repeat(3, 1fr)</code></span><span class="tag"><code>grid-auto-rows: 220px</code></span><span class="tag"><code>grid-row: span 2</code></span></p>
+      </div>
+      <div class="half">
+        <h3>Real page evidence · Compare</h3>
+        <img class="shot" src="report-evidence/root-compare.jpg" alt="Browser screenshot showing the three-vehicle comparison table">
+        <p class="caption">The table is contained in a scrollable wrapper so wide comparison columns remain usable on small screens.</p>
+      </div>
+    </div>
+    <h3>Gallery structure</h3>
+    <p>Each showroom figure groups an image with a caption, keeping the label associated with the correct vehicle. The grid gives the collection a magazine-like mosaic rather than forcing every photograph into a uniform list.</p>
+    <img class="shot short" src="report-evidence/root-showroom.jpg" alt="Browser screenshot of the Apex Motors showroom page with the image gallery and captions">
+    <p class="caption">Captured from the live-rendered root Showroom page; local vehicle images and caption overlays form the gallery experience.</p>
+    <footer class="foot">Apex Motors · Assignment 2 · Group SE-2507 · Arsen · Kuttibay · Farabi · Muhammad</footer>
+  </section>
+
+  <section class="page">
+    <p class="eyebrow">03 · Responsive rules and interaction</p>
+    <h2>Adapt the composition to the screen</h2>
+    <p>Responsive behavior is implemented in the shared root stylesheet with breakpoints at <code>max-width: 900px</code> and <code>max-width: 620px</code>. The rules change layout structure rather than hiding page content.</p>
+    <div class="row">
+      <div class="half">
+        <h3>Responsive layout changes</h3>
+        <ol class="steps">
+          <li>At 900px, stack the brand and navigation, switch the inventory shell to one column, reduce the inventory grid from three columns to two, and stack split/form layouts.</li>
+          <li>At 620px, stack home cards, reduce the inventory and showroom galleries to one column, simplify the footer/form/stat grids, and tighten section spacing.</li>
+          <li>Remove the showroom's two-row image spans on narrow screens so a single-column gallery has a natural reading order.</li>
+          <li>Keep the compare table inside an overflow wrapper; users can scroll its minimum-width data instead of losing specification columns.</li>
+        </ol>
+      </div>
+      <div class="half">
+        <h3>Hover captions and image feedback</h3>
+        <p>Each <code>&lt;figure&gt;</code> in the showroom contains a caption. On hover the image scales slightly and dims; the caption remains over a dark gradient for readable contrast. The same gallery content is present without hover, so captions are not the only way to identify a vehicle.</p>
+        <p class="callout"><code>.gallery figure:hover img</code> applies the visual change. <code>.gallery figcaption</code> anchors text at the bottom of each figure.</p>
+        <h3>Real page evidence · Gallery</h3>
+        <img class="shot short" src="report-evidence/root-showroom.jpg" alt="Browser screenshot showing the showroom gallery and image captions">
+      </div>
+    </div>
+    <h3>Additional interaction and accessibility details</h3>
+    <p>Navigation and buttons use hover and visible keyboard-focus styles; cards provide a subtle lift; the gallery uses meaningful image alternatives; and the shared CSS reduces motion when the visitor requests it. These small behaviors reinforce the layout without changing the underlying page content.</p>
+    <footer class="foot">Apex Motors · Assignment 2 · Group SE-2507 · Arsen · Kuttibay · Farabi · Muhammad</footer>
+  </section>
+
+  <section class="page">
+    <p class="eyebrow">04 · Rubric walkthrough and reflection</p>
+    <h2>Assignment 2, step by step</h2>
+    <ol class="steps">
+      <li><strong>Reuse the A1 content foundation.</strong> Preserve the shared HTML pages, navigation, imagery, and external stylesheet while enhancing layout behavior.</li>
+      <li><strong>Apply Flexbox to one-dimensional groups.</strong> Align the header/brand/navigation, allow nav links to wrap, distribute card rows, and keep card actions aligned.</li>
+      <li><strong>Use CSS Grid for region-based layouts.</strong> Name the inventory shell's header/sidebar/main/footer areas and define the gallery as a multi-row, three-column composition.</li>
+      <li><strong>Build the image mosaic.</strong> Group every vehicle image and caption in a figure; selectively span images across rows to vary the gallery rhythm.</li>
+      <li><strong>Set responsive breakpoints.</strong> Reflow navigation, cards, shell, gallery, forms, and footer at 900px and 620px while preserving content.</li>
+      <li><strong>Add visual interaction states.</strong> Use hover transitions for image captions, cards, and actions while retaining captions and accessible focus states in the layout.</li>
+      <li><strong>Review the final site in context.</strong> Confirm page links and shared layout patterns remain coherent across all nine pages and both desktop and narrow-screen rules.</li>
+    </ol>
+    <h3>Final reflection</h3>
+    <p>Assignment 2 made layout choices more intentional. Flexbox worked well for navigation and card content that needs to flow and align, while Grid made the inventory shell and image gallery easier to reason about as rows and columns. The most useful learning was that responsive design is not just shrinking a desktop page: the navigation, card groups, sidebars, gallery spans, and table all need considered behavior at different widths. Keeping the page content intact while changing its composition made the website more coherent and easier to extend.</p>
+    <h3>Published root website</h3>
+    <p class="url"><a href="https://vertex-blip.github.io/Car-dealership-website/">https://vertex-blip.github.io/Car-dealership-website/</a></p>
+    <p class="muted">This report documents the framework-free root project. The separately published Bootstrap Assignment 3 project is not part of the root site.</p>
+    <p><strong>Apex Motors · Group SE-2507 · Arsen · Kuttibay · Farabi · Muhammad</strong></p>
+    <footer class="foot">Apex Motors · Assignment 2 · Group SE-2507 · Arsen · Kuttibay · Farabi · Muhammad</footer>
+  </section>
+</body>
+</html>

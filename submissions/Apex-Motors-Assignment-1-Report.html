@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Assignment 1 Report | Apex Motors · SE-2507</title>
+  <style>
+    @page { size: A4; margin: 12mm 14mm; }
+    :root { --ink: #17191c; --navy: #1d2b3a; --cream: #f5f0e7; --copper: #98572f; --muted: #60615f; --line: #d9d1c4; }
+    * { box-sizing: border-box; }
+    body { margin: 0; color: var(--ink); background: #fff; font: 9.2pt/1.42 Arial, sans-serif; }
+    h1, h2, h3, p { margin-top: 0; }
+    h1, h2, h3 { color: var(--navy); }
+    h1 { margin: 0 0 4mm; font: 500 34pt/1.08 Georgia, "Times New Roman", serif; letter-spacing: -.5pt; }
+    h2 { margin: 0 0 3mm; font: 500 21pt/1.12 Georgia, "Times New Roman", serif; }
+    h3 { margin: 4mm 0 1.5mm; font-size: 11pt; }
+    p { margin-bottom: 2.4mm; }
+    code { color: #713f24; font: 8.1pt Consolas, "Courier New", monospace; }
+    .page { position: relative; min-height: 272mm; padding-bottom: 10mm; page-break-after: always; }
+    .page:last-child { page-break-after: auto; }
+    .cover { display: flex; min-height: 272mm; flex-direction: column; justify-content: center; }
+    .logo { width: 62mm; height: 22mm; margin-bottom: 11mm; object-fit: contain; object-position: left center; }
+    .eyebrow { margin-bottom: 2.5mm; color: var(--copper); font-size: 8pt; font-weight: 700; letter-spacing: 1.5pt; text-transform: uppercase; }
+    .lead { max-width: 164mm; color: #41494e; font-size: 12pt; }
+    .shot { display: block; width: 100%; max-height: 84mm; margin: 4mm 0; border: 1px solid var(--line); object-fit: cover; object-position: top; }
+    .shot.short { max-height: 61mm; }
+    .caption { color: var(--muted); font-size: 8pt; }
+    .team { display: grid; grid-template-columns: 1fr 1fr; gap: 2mm 8mm; margin: 4mm 0; }
+    .team p { margin: 0; }
+    .callout { margin: 3mm 0; padding: 3mm 4mm; border-left: 3px solid var(--copper); background: #f6f3ed; }
+    .row { display: flex; gap: 5mm; align-items: flex-start; }
+    .half { width: 50%; }
+    .steps { margin: 1mm 0 3mm; padding-left: 6mm; }
+    .steps li { margin-bottom: 1.3mm; }
+    .tag { display: inline-block; margin: 0 1mm 1mm 0; padding: 1mm 2mm; color: #53331f; background: #f1e5d8; font: 8pt Consolas, monospace; }
+    table { width: 100%; margin: 2mm 0 3mm; border-collapse: collapse; font-size: 8.2pt; }
+    th, td { padding: 2mm; border: 1px solid #cfc9bf; text-align: left; vertical-align: top; }
+    th { color: #fff; background: var(--navy); }
+    .url { padding: 3mm; overflow-wrap: anywhere; border: 1px solid var(--line); background: #faf8f4; }
+    .url a { color: var(--navy); }
+    .muted { color: var(--muted); }
+    .foot { position: absolute; right: 0; bottom: 0; left: 0; padding-top: 2mm; border-top: 1px solid #ded9d0; color: #65635e; font-size: 7.5pt; }
+    @media screen {
+      body { max-width: 210mm; margin: 14px auto; padding: 12mm 14mm; box-shadow: 0 2px 20px #0002; }
+      .page { margin-bottom: 14mm; }
+    }
+  </style>
+</head>
+<body>
+  <section class="page cover">
+    <img class="logo" src="../images/apex-motors-logo.png" alt="Apex Motors logo">
+    <p class="eyebrow">Web technologies · Assignment 1</p>
+    <h1>A considered foundation<br>for the open road.</h1>
+    <p class="lead">A nine-page, framework-free dealership website built with semantic HTML, one shared external stylesheet, and a consistent visual identity.</p>
+    <img class="shot" src="report-evidence/root-home.jpg" alt="Browser screenshot of the Apex Motors home page with shared navigation and featured vehicle cards">
+    <div class="team">
+      <p><strong>Team:</strong> Apex Motors</p><p><strong>Group:</strong> SE-2507</p>
+      <p><strong>Members:</strong> Arsen · Kuttibay</p><p><strong>Members:</strong> Farabi · Muhammad</p>
+      <p><strong>Course:</strong> Web Technologies</p><p><strong>Project:</strong> Framework-free HTML and CSS</p>
+    </div>
+    <p class="callout"><strong>Objective.</strong> Build a clear, navigable dealership website that demonstrates document structure and core HTML/CSS elements across multiple connected pages, with shared styling and real local imagery.</p>
+    <footer class="foot">Apex Motors · Assignment 1 · Group SE-2507 · Arsen · Kuttibay · Farabi · Muhammad</footer>
+  </section>
+
+  <section class="page">
+    <p class="eyebrow">01 · Content and structure</p>
+    <h2>One connected dealership experience</h2>
+    <p>The site is organized as nine standalone HTML pages with consistent page landmarks and a shared visual shell. Each page uses a document title, a header containing the brand and primary navigation, a main content area with headings and sections, and a footer with the team and dealership details.</p>
+    <div class="row">
+      <div class="half">
+        <h3>Semantic HTML in practice</h3>
+        <ol class="steps">
+          <li>Start each document with the HTML doctype, language, character set, and responsive viewport metadata.</li>
+          <li>Use <code>&lt;header&gt;</code>, labeled <code>&lt;nav&gt;</code>, <code>&lt;main&gt;</code>, related <code>&lt;section&gt;</code> elements, and <code>&lt;footer&gt;</code> to expose clear page regions.</li>
+          <li>Represent each inventory entry as an <code>&lt;article&gt;</code> with a vehicle image, title, details, and next action.</li>
+          <li>Use ordered headings, descriptive image alternatives, visible form labels, and table header cells to make content understandable.</li>
+        </ol>
+      </div>
+      <div class="half">
+        <h3>Shared navigation and identity</h3>
+        <p>The same Apex Motors logo and eight-link navigation connect Home, Inventory, Services, Financing, Compare, Showroom, About, and Contact. The footer repeats the brand, address, and all four team names so visitors can orient themselves on every page.</p>
+        <p class="callout">All nine pages link to the same external file: <code>css/style.css</code>. The Assignment 1 site uses no CSS framework.</p>
+        <h3>Local image assets</h3>
+        <p>The logo, vehicle photography, service imagery, showroom image, and member portraits live in the project's <code>images/</code> folder and are reused by their relevant pages.</p>
+      </div>
+    </div>
+    <h3>Page responsibility map</h3>
+    <table>
+      <thead><tr><th>Member</th><th>Page lead responsibilities</th><th>Documented role alignment</th></tr></thead>
+      <tbody>
+        <tr><td>Farabi</td><td><code>index.html</code>, <code>about.html</code></td><td>Home experience, shared navigation, team presentation</td></tr>
+        <tr><td>Arsen</td><td><code>inventory.html</code>, <code>vehicle-detail.html</code></td><td>Vehicle collection, featured-card and detail content</td></tr>
+        <tr><td>Kuttibay</td><td><code>financing.html</code>, <code>contact.html</code></td><td>Customer actions, inquiry form and finance information</td></tr>
+        <tr><td>Muhammad</td><td><code>services.html</code>, <code>compare.html</code>, <code>showroom.html</code></td><td>Service and comparison content, grid/gallery presentation</td></tr>
+      </tbody>
+    </table>
+    <p class="muted">Page leads are aligned with the team's documented Apex Motors/A3 responsibility map; the shared site structure and styling are team work.</p>
+    <footer class="foot">Apex Motors · Assignment 1 · Group SE-2507 · Arsen · Kuttibay · Farabi · Muhammad</footer>
+  </section>
+
+  <section class="page">
+    <p class="eyebrow">02 · External CSS and core elements</p>
+    <h2>Reusable styling, clear page patterns</h2>
+    <p>The shared stylesheet defines brand colors as custom properties, a common type scale, constrained content containers, reusable navigation and footer styles, and the presentation of cards, tables, forms, and imagery. Updating a shared rule keeps the nine pages visually consistent.</p>
+    <h3>Selectors used to target the right elements</h3>
+    <p><span class="tag">element: <code>body</code>, <code>table</code></span><span class="tag">class: <code>.main-nav</code>, <code>.card</code></span><span class="tag">ID: <code>#main-content</code></span><span class="tag">descendant: <code>.main-nav a</code></span><span class="tag">pseudo-class: <code>:hover</code>, <code>:focus-visible</code></span><span class="tag">attribute: <code>[type]</code></span></p>
+    <p>Type selectors provide defaults, class selectors apply reusable components, IDs identify a unique page region, and state selectors give links, buttons, and controls interactive feedback.</p>
+    <div class="row">
+      <div class="half">
+        <h3>Structured comparison table</h3>
+        <p><code>compare.html</code> uses a real table with a header row and named specification rows to compare three vehicles. The shared stylesheet distinguishes column headings, adds alternating row backgrounds, and keeps the table readable in its wrapper.</p>
+        <h3>Labeled inquiry form</h3>
+        <p><code>contact.html</code> connects labels to name, email, interest, date, radio, and message controls. Required fields use browser validity checks and feedback is announced in a status region. This classroom form does not transmit or store personal information.</p>
+      </div>
+      <div class="half">
+        <h3>Real page evidence · Compare</h3>
+        <img class="shot short" src="report-evidence/root-compare.jpg" alt="Browser screenshot of the live-rendered comparison page and its structured vehicle table">
+        <p class="caption">Captured from the framework-free root site; the table displays specification headings and three vehicle columns.</p>
+      </div>
+    </div>
+    <h3>Images, links, and supporting pages</h3>
+    <p>Inventory cards and the detail page pair local car images with descriptive alternative text; services use service photographs; the showroom groups vehicle photography; and About presents the four supplied member portraits. Page links connect these sections to the inquiry and detail journeys.</p>
+    <footer class="foot">Apex Motors · Assignment 1 · Group SE-2507 · Arsen · Kuttibay · Farabi · Muhammad</footer>
+  </section>
+
+  <section class="page">
+    <p class="eyebrow">03 · Rubric walkthrough</p>
+    <h2>Assignment 1, step by step</h2>
+    <ol class="steps">
+      <li><strong>Plan a multi-page subject.</strong> Choose Apex Motors and outline nine useful journeys: browse, compare, learn about services, and contact the dealership.</li>
+      <li><strong>Create each page's document skeleton.</strong> Add metadata, a meaningful title, semantic site landmarks, ordered headings, and page-specific content.</li>
+      <li><strong>Connect the pages.</strong> Reuse the logo and primary navigation across all nine pages; make the footer and related page actions consistent.</li>
+      <li><strong>Build a shared external stylesheet.</strong> Define common brand tokens, containers, type, navigation, buttons, cards, table, form fields, and footer once in <code>css/style.css</code>.</li>
+      <li><strong>Apply varied HTML elements.</strong> Use real links, figures/images, articles, a comparison table, lists, labeled form controls, fieldset/legend, and buttons in the pages where they fit.</li>
+      <li><strong>Choose suitable CSS selectors.</strong> Combine element, class, ID, descendant, pseudo-class, and attribute selectors so shared rules and states have clear targets.</li>
+      <li><strong>Review the connected experience.</strong> Check that links resolve, images have descriptive alternatives, forms expose labels, and the repeated header and footer remain present.</li>
+    </ol>
+    <img class="shot" src="report-evidence/root-contact.jpg" alt="Browser screenshot of the Apex Motors contact page with navigation, labeled form, and dealership information">
+    <p class="caption">Evidence from the existing Contact page: site navigation, semantic page content, labeled form controls, and repeated footer structure.</p>
+    <div class="callout"><strong>Result.</strong> The assignment deliverable is a complete, self-contained root website with nine HTML pages, one shared CSS file, and locally stored images. The two LMS ZIPs package the cumulative root project separately for A1 and A2.</div>
+    <footer class="foot">Apex Motors · Assignment 1 · Group SE-2507 · Arsen · Kuttibay · Farabi · Muhammad</footer>
+  </section>
+
+  <section class="page">
+    <p class="eyebrow">04 · Reflection and publication</p>
+    <h2>Final reflection</h2>
+    <p>Starting with semantic HTML gave the project a stable structure before visual details were added. Building nine pages around the same external stylesheet helped the team see how shared navigation, containers, card patterns, form fields, and a consistent color system reduce repetition without making every page feel identical. Real dealership content also gave each HTML element a clear purpose: a comparison table for specifications, a form for inquiries, and meaningful images for vehicles and people.</p>
+    <p>One lesson was that a page's quality depends on both content and the way it is organized. Descriptive labels, image alternatives, proper table headings, and connected navigation all make the site easier to understand. The framework-free foundation also made the CSS rules visible and gave the team a clean starting point for later layout work.</p>
+    <h3>Published root website</h3>
+    <p class="url"><a href="https://vertex-blip.github.io/Car-dealership-website/">https://vertex-blip.github.io/Car-dealership-website/</a></p>
+    <p class="muted">The live site is the cumulative framework-free Assignment 1/2 project. Assignment 3 remains a separate Bootstrap project in its own folder.</p>
+    <h3>Team</h3>
+    <p>Apex Motors · Group SE-2507 · Arsen · Kuttibay · Farabi · Muhammad</p>
+    <footer class="foot">Apex Motors · Assignment 1 · Group SE-2507 · Arsen · Kuttibay · Farabi · Muhammad</footer>
+  </section>
+</body>
+</html>

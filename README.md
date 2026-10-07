@@ -19,13 +19,17 @@ Then open `http://localhost:8000/`. The root website uses only its own CSS and l
 
 The contact forms are front-end demonstrations only: they validate in the browser and do not send or store personal information.
 
-## Assignment upload archives
+## Assignment submission files
 
 The cumulative nine-page, framework-free website is packaged separately for Assignment 1 and Assignment 2. Each archive includes the same root HTML pages, stylesheet, local images, and README; neither contains the Bootstrap Assignment 3 folder or a nested archive.
 
 - [Assignment 1 ZIP](https://github.com/Vertex-blip/Car-dealership-website/raw/main/submissions/Apex-Motors-Assignment-1.zip)
 - [Assignment 2 ZIP](https://github.com/Vertex-blip/Car-dealership-website/raw/main/submissions/Apex-Motors-Assignment-2.zip)
+- [Assignment 1 report PDF](https://github.com/Vertex-blip/Car-dealership-website/raw/main/submissions/Apex-Motors-Assignment-1-Report.pdf)
+- [Assignment 2 report PDF](https://github.com/Vertex-blip/Car-dealership-website/raw/main/submissions/Apex-Motors-Assignment-2-Report.pdf)
 - [Assignment 3 ZIP](https://github.com/Vertex-blip/Car-dealership-website/raw/main/assignment3-bootstrap/Assignment-3-Project.zip) — pages, assets, screenshots, and report
+
+The Assignment 3 report is [available as a PDF](https://github.com/Vertex-blip/Car-dealership-website/raw/main/assignment3-bootstrap/Assignment-3-Report.pdf). Editable A1/A2 report HTML and captured page evidence are in `submissions/`.
 
 ## Root website pages
 
