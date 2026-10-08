@@ -13,7 +13,7 @@ This is a self-contained Assignment 3 project. It is intentionally separate from
 | `grid-spacing.html` | Two-column `col-lg-6` and three-column `col-lg-4` Bootstrap sections; responsive spacing utilities | Muhammad |
 | `carousel.html` | Nine unique local vehicle photographs, captions, indicators, keyboard support, and previous/next controls | Arsen |
 | `bootstrap-cards.html` | Three image/title/description/action cards in a responsive Bootstrap grid | Arsen |
-| `buttons.html` | Primary, secondary, outline, large/small Bootstrap buttons and an accessible button group | Kuttibay |
+| `buttons.html` | Primary, secondary, outline, large/small Bootstrap buttons and an accessible button group that stacks on tablet and phone widths | Kuttibay |
 | `responsive-form.html` | Responsive labeled form, `form-control`, `input-group`, select, radio, checkbox, and client-side feedback | Kuttibay |
 | `team-grid.html` | Four supplied member portraits, contribution map, and links to each member's two pages | Farabi |
 

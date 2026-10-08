@@ -75,10 +75,14 @@
         aria-label="Toggle assignment navigation"&gt;
   &lt;span class="navbar-toggler-icon"&gt;&lt;/span&gt;
 &lt;/button&gt;
-&lt;div class="btn-group" role="group" aria-label="Choose a vehicle action"&gt;
+&lt;div class="btn-group vehicle-action-group" role="group" aria-label="Choose a vehicle action"&gt;
   &lt;a class="btn btn-primary" href="bootstrap-cards.html"&gt;Browse cars&lt;/a&gt;
   &lt;a class="btn btn-outline-primary" href="carousel.html"&gt;View gallery&lt;/a&gt;
-&lt;/div&gt;</code></pre>
+&lt;/div&gt;
+@media (max-width: 767.98px) {
+  .vehicle-action-group { flex-direction: column; }
+  .vehicle-action-group &gt; .btn { width: 100%; }
+}</code></pre>
     </section>
     <section id="carousel"><h2>Tasks 7–8 · carousel.html + bootstrap-cards.html</h2><span class="source">Nine indicators, descriptive image text and responsive Bootstrap cards</span>
       <pre><code>&lt;button data-bs-target="#vehicleCarousel" data-bs-slide-to="0"

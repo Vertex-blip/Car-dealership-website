@@ -47,6 +47,17 @@ The Assignment 3 report is [available as a PDF](https://github.com/Vertex-blip/C
 
 Shared root styles live in `css/style.css`; all root-site images, including the supplied logo and team portraits, are stored in `images/`. The main pages use responsive Flexbox and CSS Grid layouts, with the comparison table kept readable through horizontal scrolling on narrow screens.
 
+## Midterm upload
+
+Submit `Apex-Motors-Midterm-Project.zip` from `submissions/`. It contains the nine framework-free pages, shared stylesheet, local images, and this README. The clean upload excludes assignment reports and the separate Bootstrap exercise.
+
+| Member | Page contributions |
+| --- | --- |
+| Farabi | `index.html`, `about.html` |
+| Arsen | `inventory.html`, `vehicle-detail.html` |
+| Kuttibay | `financing.html`, `contact.html` |
+| Muhammad | `services.html`, `compare.html`, `showroom.html` |
+
 ## Assignment 3 contribution map
 
 Each teammate is credited on the Assignment 3 pages and has two dedicated exercise pages:
