@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Apex Motors Assignment 4: five interactive JavaScript features for a better dealership experience.">
+  <title>Interactive Studio | Apex Motors</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="js/form-validation.js" defer></script>
+  <script src="js/faq.js" defer></script>
+  <script src="js/popup.js" defer></script>
+  <script src="js/experience.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html" aria-label="Apex Motors Assignment 4 home"><img src="images/apex-motors-logo.png" alt="Apex Motors"></a>
+      <nav class="site-nav" aria-label="On this page">
+        <a href="#validation">Validation</a>
+        <a href="#questions">FAQs</a>
+        <a href="#contact">Popup</a>
+        <a href="#appearance">Appearance</a>
+        <a href="#clock">Live clock</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow">Apex Motors / Assignment 04</p>
+          <h1 id="hero-title">A more responsive way to explore.</h1>
+          <p class="hero-lead">Five small JavaScript interactions make everyday questions, contact, and account details feel simple and clear.</p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#validation">Explore the features <span aria-hidden="true">↗</span></a>
+            <button class="button button-outline-light" type="button" data-open-contact>Ask a question</button>
+          </div>
+        </div>
+        <div class="hero-image" role="img" aria-label="Yellow performance car parked beside a tree-lined street">
+          <div class="hero-image-note"><span class="note-dot"></span> Built for thoughtful journeys</div>
+        </div>
+      </div>
+    </section>
+
+    <div class="feature-ribbon" aria-label="Assignment components">
+      <div class="container ribbon-inner"><span>01 / Validate</span><span>02 / Reveal</span><span>03 / Connect</span><span>04 / Personalize</span><span>05 / Update</span></div>
+    </div>
+
+    <section class="section" id="validation" aria-labelledby="validation-title">
+      <div class="container feature-grid">
+        <div class="section-intro">
+          <p class="eyebrow">01 / Kuttibay</p>
+          <h2 id="validation-title">Clear answers before you continue.</h2>
+          <p>Try the account form. JavaScript checks each required field, the email format, a minimum eight-character password, and the confirmation. The example runs entirely in this browser.</p>
+          <ul class="detail-list"><li>Helpful messages beside each field</li><li>Focus moves to the first error</li><li>No information is submitted or stored</li></ul>
+        </div>
+        <div class="panel form-panel">
+          <div class="panel-heading"><span class="mini-label">Account preview</span><span class="panel-index">JS / 01</span></div>
+          <h3>Create your preview account</h3>
+          <p class="panel-subtitle">This form demonstrates validation only.</p>
+          <form id="account-form" novalidate>
+            <div class="field"><label for="full-name">Full name <span aria-hidden="true">*</span></label><input id="full-name" name="fullName" type="text" autocomplete="name" aria-describedby="full-name-error" required><p class="field-error" id="full-name-error" aria-live="polite"></p></div>
+            <div class="field"><label for="account-email">Email address <span aria-hidden="true">*</span></label><input id="account-email" name="email" type="email" autocomplete="email" aria-describedby="account-email-error" required><p class="field-error" id="account-email-error" aria-live="polite"></p></div>
+            <div class="field"><label for="password">Password <span aria-hidden="true">*</span></label><input id="password" name="password" type="password" autocomplete="new-password" aria-describedby="password-hint password-error" required><p class="field-hint" id="password-hint">Use at least eight characters.</p><p class="field-error" id="password-error" aria-live="polite"></p></div>
+            <div class="field"><label for="confirm-password">Confirm password <span aria-hidden="true">*</span></label><input id="confirm-password" name="confirmPassword" type="password" autocomplete="new-password" aria-describedby="confirm-password-error" required><p class="field-error" id="confirm-password-error" aria-live="polite"></p></div>
+            <button class="button button-primary form-submit" type="submit">Check details <span aria-hidden="true">→</span></button>
+            <p id="account-status" class="form-status" role="status" aria-live="polite"></p>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-tint" id="questions" aria-labelledby="questions-title">
+      <div class="container feature-grid">
+        <div class="section-intro">
+          <p class="eyebrow">02 / Farabi</p>
+          <h2 id="questions-title">Good questions deserve easy answers.</h2>
+          <p>Select a question to reveal its answer. Select it again to close it. The answer moves smoothly into view, while the button reports its state to assistive technology.</p>
+          <div class="section-photo"><img src="images/car-08.jpg" alt="White SUV on a rocky desert road" loading="lazy"></div>
+        </div>
+        <div class="faq-list" id="faq-list">
+          <div class="faq-item"><h3><button type="button" class="faq-toggle" aria-expanded="false" aria-controls="faq-answer-1" id="faq-question-1"><span>Can I arrange a test drive?</span><span class="faq-icon" aria-hidden="true">+</span></button></h3><div class="faq-answer" id="faq-answer-1" role="region" aria-labelledby="faq-question-1" aria-hidden="true"><div class="faq-answer-inner"><p>Yes. Use the contact button to tell us which vehicle interests you and when you are available. The demo form shows how the request would be collected.</p></div></div></div>
+          <div class="faq-item"><h3><button type="button" class="faq-toggle" aria-expanded="false" aria-controls="faq-answer-2" id="faq-question-2"><span>Do you explain financing options?</span><span class="faq-icon" aria-hidden="true">+</span></button></h3><div class="faq-answer" id="faq-answer-2" role="region" aria-labelledby="faq-question-2" aria-hidden="true"><div class="faq-answer-inner"><p>We can walk you through illustrative payment choices and the questions to ask before choosing a plan. Final terms depend on a real lender and application.</p></div></div></div>
+          <div class="faq-item"><h3><button type="button" class="faq-toggle" aria-expanded="false" aria-controls="faq-answer-3" id="faq-question-3"><span>Can I compare vehicles in person?</span><span class="faq-icon" aria-hidden="true">+</span></button></h3><div class="faq-answer" id="faq-answer-3" role="region" aria-labelledby="faq-question-3" aria-hidden="true"><div class="faq-answer-inner"><p>Absolutely. We can show you the cabin, comfort features, and practical differences between vehicles during a showroom visit.</p></div></div></div>
+          <div class="faq-item"><h3><button type="button" class="faq-toggle" aria-expanded="false" aria-controls="faq-answer-4" id="faq-question-4"><span>Does this demo send my information?</span><span class="faq-icon" aria-hidden="true">+</span></button></h3><div class="faq-answer" id="faq-answer-4" role="region" aria-labelledby="faq-question-4" aria-hidden="true"><div class="faq-answer-inner"><p>No. Both forms are front-end demonstrations. They validate what you enter and show local feedback; they do not send data to a server.</p></div></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="contact" aria-labelledby="contact-title">
+      <div class="container contact-feature">
+        <div><p class="eyebrow">03 / Arsen</p><h2 id="contact-title">Start a conversation.</h2><p>Open the contact form as a focused pop-up. Close it with the × button, the Escape key, or a click outside the form.</p><button class="button button-primary" type="button" data-open-contact>Open contact form <span aria-hidden="true">↗</span></button></div>
+        <div class="contact-visual" aria-hidden="true"><span class="contact-visual-number">03</span><span class="contact-visual-caption">A simple way to connect</span></div>
+      </div>
+    </section>
+
+    <section class="section section-tint" id="appearance" aria-labelledby="appearance-title">
+      <div class="container feature-grid feature-grid-compact">
+        <div class="section-intro"><p class="eyebrow">04 / Muhammad</p><h2 id="appearance-title">Set the mood.</h2><p>Each click cycles the page through three calm background colors. JavaScript changes the page background directly, and the current color is announced below.</p></div>
+        <div class="panel mood-panel"><div class="panel-heading"><span class="mini-label">Appearance control</span><span class="panel-index">JS / 04</span></div><div class="color-swatches" aria-hidden="true"><span class="swatch swatch-cream"></span><span class="swatch swatch-sky"></span><span class="swatch swatch-sage"></span></div><h3>Choose your backdrop</h3><p id="color-status" class="muted" role="status" aria-live="polite">Current background: Warm cream</p><button id="change-background" class="button button-dark" type="button">Change background <span aria-hidden="true">↻</span></button></div>
+      </div>
+    </section>
+
+    <section class="section clock-section" id="clock" aria-labelledby="clock-title">
+      <div class="container clock-grid"><div><p class="eyebrow">05 / Muhammad</p><h2 id="clock-title">A moment in real time.</h2><p>A JavaScript <code>Date</code> object provides the current date and time. The display refreshes every second using your device's local time.</p></div><div class="clock-panel"><p class="clock-label">Your local date and time</p><time id="current-datetime" aria-live="off">Loading current time…</time><p id="timezone-label" class="clock-zone"></p></div></div>
+    </section>
+  </main>
+
+  <dialog id="contact-dialog" aria-labelledby="dialog-title" aria-describedby="dialog-description">
+    <div class="dialog-top"><span class="mini-label">Apex Motors / Contact</span><button type="button" class="dialog-close" id="close-contact" aria-label="Close contact form">×</button></div>
+    <h2 id="dialog-title">Let's talk cars.</h2><p id="dialog-description">Tell us what you would like to explore. This front-end demo checks the fields but does not send your message.</p>
+    <form id="contact-form" novalidate>
+      <div class="field"><label for="contact-name">Your name <span aria-hidden="true">*</span></label><input id="contact-name" name="contactName" type="text" autocomplete="name" aria-describedby="contact-name-error" required><p id="contact-name-error" class="field-error" aria-live="polite"></p></div>
+      <div class="field"><label for="contact-email">Email address <span aria-hidden="true">*</span></label><input id="contact-email" name="contactEmail" type="email" autocomplete="email" aria-describedby="contact-email-error" required><p id="contact-email-error" class="field-error" aria-live="polite"></p></div>
+      <div class="field"><label for="contact-message">Your question <span aria-hidden="true">*</span></label><textarea id="contact-message" name="message" rows="3" aria-describedby="contact-message-error" required></textarea><p id="contact-message-error" class="field-error" aria-live="polite"></p></div>
+      <button class="button button-primary form-submit" type="submit">Check message <span aria-hidden="true">→</span></button>
+      <p id="contact-status" class="form-status" role="status" aria-live="polite"></p>
+    </form>
+  </dialog>
+
+  <footer class="site-footer"><div class="container footer-inner"><div><p class="footer-brand">Apex Motors</p><p>JavaScript Assignment 4 · Group SE-2507</p></div><div><p class="footer-label">Our team</p><p>Arsen · Kuttibay · Farabi · Muhammad</p></div><a href="#main-content">Back to top ↑</a></div></footer>
+</body>
+</html>
