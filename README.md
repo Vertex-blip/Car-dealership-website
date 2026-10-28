@@ -1,9 +1,10 @@
 # Apex Motors
 
-Responsive dealership website by Team Apex Motors, Group SE-2507. The repository contains the framework-free Assignment 1/2 site at its root, a Bootstrap-based Assignment 3 copy in `assignment3-bootstrap/`, and an interactive JavaScript Assignment 4 site in `assignment4-javascript/`.
+Responsive dealership website by Team Apex Motors, Group SE-2507. The repository contains the framework-free Assignment 1/2 site at its root, the Bootstrap Assignment 3 in `assignment3-bootstrap/`, the JavaScript Assignment 4 in `assignment4-javascript/`, and the interactive Assignment 5 showroom in `assignment5-dom/`.
 
 ## Live websites
 
+- **Assignment 5 (Advanced JavaScript and DOM):** https://vertex-blip.github.io/Car-dealership-website/assignment5-dom/
 - **Midterm / Assignments 1–2:** https://vertex-blip.github.io/Car-dealership-website/
 - **Assignment 3 (Bootstrap):** https://vertex-blip.github.io/Car-dealership-website/assignment3-bootstrap/
 - **Assignment 4 (JavaScript):** https://vertex-blip.github.io/Car-dealership-website/assignment4-javascript/
@@ -75,3 +76,15 @@ The matching project report and self-contained ZIP are in `assignment3-bootstrap
 ## Assignment 4 JavaScript
 
 The standalone [`assignment4-javascript/`](assignment4-javascript/) site demonstrates required-field and password validation, a smooth FAQ accordion, an accessible contact pop-up, a cycling page background, and a live date/time display. Its four scripts map to the four team members. The folder includes the PDF report, screenshot evidence, a defense guide, and the project ZIP for individual LMS submission.
+
+## Assignment 5: Advanced JavaScript and DOM
+
+The [`assignment5-dom/`](assignment5-dom/) showroom continues the same team, theme, and original vehicle and member photographs. It adds object-driven vehicle cards, category/search/price/saved filters, an image gallery, day/night themes, arrow-key menu navigation, a callback-based three-step booking preview, ratings, sound without overlapping playback, and event-triggered animations. The project uses local assets and runs directly from `index.html` without a build step.
+
+- [Live showroom](https://vertex-blip.github.io/Car-dealership-website/assignment5-dom/)
+- [PDF report](assignment5-dom/Assignment-5-Report.pdf)
+- [Project ZIP](assignment5-dom/Assignment-5-Project.zip)
+- [Complete requirements map](assignment5-dom/REQUIREMENTS.md)
+- [Kazakh defense guide](assignment5-dom/DEFENSE-GUIDE.md)
+
+The booking form is a local coursework demonstration. It validates sample details without creating a real appointment or account. Browser verification evidence is included with the assignment.
