@@ -1,6 +1,6 @@
 # Apex Motors
 
-Responsive dealership website by Team Apex Motors, Group SE-2507. The repository contains the framework-free Assignment 1/2 site at its root, the Bootstrap Assignment 3 in `assignment3-bootstrap/`, the JavaScript Assignment 4 in `assignment4-javascript/`, and the Assignment 5 continuation of the Bootstrap site in `assignment5-dom/`.
+Responsive dealership website by Team Apex Motors, Group SE-2507. The repository contains the framework-free Assignment 1/2 site at its root, Assignment 3 in `assignment3-bootstrap/`, Assignment 4 in `assignment4-javascript/`, and the plain HTML/CSS/JavaScript Assignment 5 in `assignment5-dom/`.
 
 ## Live websites
 
@@ -79,7 +79,7 @@ The standalone [`assignment4-javascript/`](assignment4-javascript/) site demonst
 
 ## Assignment 5: Advanced JavaScript and DOM
 
-The [`assignment5-dom/`](assignment5-dom/) project continues Assignment 3's eight Bootstrap pages. The original `styles.css`, navbar, cream/copper colors, square cards, vehicle photos, and team portraits are retained. Assignment 5 adds a category filter, dynamic cards, Read more, arrow-key menu navigation, a three-step inquiry form using callbacks, background changes, sound, and event-triggered animations. Bootstrap 5.3.3 is bundled locally so the project also works offline.
+The [`assignment5-dom/`](assignment5-dom/) project uses Assignment 3's cream/copper colours, full-width vehicle hero, square cards, logo and team photographs. It is built with plain HTML, CSS and JavaScript, without a framework. All Assignment 5 features are on the main page: a live category filter, object-driven cards, Read more, arrow-key navigation, a three-step inquiry using callbacks, background changes, time, sound and event-triggered animations.
 
 - [Live Assignment 5 site](https://vertex-blip.github.io/Car-dealership-website/assignment5-dom/)
 - [PDF report](assignment5-dom/Assignment-5-Report.pdf)

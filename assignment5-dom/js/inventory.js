@@ -1,4 +1,4 @@
-/* Render the existing Bootstrap cards from objects and filter them by category. */
+/* Build the vehicle cards from objects and filter them by category. */
 (() => {
   'use strict';
   const grid = document.getElementById('inventoryGrid');
@@ -27,24 +27,23 @@
   }
 
   function makeCard(vehicle) {
-    const column = element('div', 'col');
-    const card = element('article', 'card h-100 shadow-sm vehicle-card');
+    const card = element('article', 'vehicle-card card');
     card.dataset.vehicleId = vehicle.id;
     const image = element('img', 'card-img-top');
     image.src = vehicle.image;
     image.alt = vehicle.alt;
     image.width = 1400;
     image.height = 933;
-    const body = element('div', 'card-body d-flex flex-column');
-    const label = element('p', 'text-uppercase small fw-bold text-primary mb-1', vehicle.label());
-    const heading = element('h2', 'card-title h4', vehicle.name);
-    const description = element('p', 'card-text text-muted-strong', vehicle.description);
-    const action = element('a', 'btn btn-primary mt-auto align-self-start', 'Ask about this car');
-    action.href = `responsive-form.html?vehicle=${encodeURIComponent(vehicle.id)}`;
+    const body = element('div', 'card-body');
+    const label = element('p', 'vehicle-label', vehicle.label());
+    const heading = element('h3', 'card-title', vehicle.name);
+    const description = element('p', 'card-text', vehicle.description);
+    const action = element('a', 'btn btn-primary', 'Ask about this car');
+    action.href = '#inquiry';
+    action.dataset.inquire = vehicle.id;
     body.append(label, heading, description, action);
     card.append(image, body);
-    column.append(card);
-    return column;
+    return card;
   }
 
   function render(animate = true) {

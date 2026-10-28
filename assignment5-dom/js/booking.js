@@ -30,7 +30,7 @@
     field.classList.toggle('is-invalid', Boolean(message));
     if (error) {
       error.textContent = message;
-      // Feedback may sit outside an input-group, so show its own Bootstrap state.
+      // Feedback may sit outside a control group, so show its own visible state.
       error.classList.toggle('d-block', Boolean(message));
     }
     return !message;
@@ -95,10 +95,8 @@
       const row = document.createElement('div');
       row.className = 'summary-row';
       const heading = document.createElement('dt');
-      heading.className = 'fw-semibold';
       heading.textContent = label;
       const detail = document.createElement('dd');
-      detail.className = 'mb-0';
       detail.textContent = value;
       row.append(heading, detail);
       summary.append(row);
@@ -165,6 +163,17 @@
   }
   document.getElementById('resetInquiry').addEventListener('click', resetInquiry);
   document.getElementById('newInquiry').addEventListener('click', resetInquiry);
+
+  document.addEventListener('click', event => {
+    const link = event.target.closest('[data-inquire]');
+    const id = link?.dataset.inquire;
+    if (!window.Apex.vehicles.some(vehicle => vehicle.id === id)) return;
+    // A new selection keeps the draft, or begins a blank inquiry after completion.
+    if (form.hidden) resetInquiry();
+    vehicleSelect.value = id;
+    setError('vehicle', '');
+    showStep(0, false);
+  });
 
   form.querySelectorAll('input[name="replyMethod"]').forEach(input => {
     input.addEventListener('change', updatePhoneField);

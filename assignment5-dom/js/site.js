@@ -1,4 +1,4 @@
-/* Shared Assignment 5 additions to the original Bootstrap website. */
+/* Shared data and interactions for the Apex Motors website. */
 (() => {
   'use strict';
 
@@ -42,6 +42,17 @@
   const navigation = document.getElementById('assignmentNav');
   if (navigation) {
     const links = [...navigation.querySelectorAll('.nav-link')];
+    const navToggle = document.getElementById('navToggle');
+    function closeMenu(returnFocus = false) {
+      navigation.classList.remove('is-open');
+      navToggle?.setAttribute('aria-expanded', 'false');
+      if (returnFocus && navToggle?.getClientRects().length) navToggle.focus();
+    }
+    navToggle?.addEventListener('click', () => {
+      const open = navigation.classList.toggle('is-open');
+      navToggle.setAttribute('aria-expanded', String(open));
+      if (open) links[0]?.focus();
+    });
     navigation.addEventListener('keydown', event => {
       const current = links.indexOf(document.activeElement);
       if (current === -1) return;
@@ -54,10 +65,10 @@
         case 'Home': next = 0; break;
         case 'End': next = links.length - 1; break;
         case 'Escape': {
-          const toggler = document.querySelector('[data-bs-target="#assignmentNav"]');
-          if (toggler?.getClientRects().length && navigation.classList.contains('show')) {
-            window.bootstrap?.Collapse.getOrCreateInstance(navigation, {toggle: false}).hide();
-            toggler.focus();
+          if (window.matchMedia('(max-width: 991px)').matches
+              && navigation.classList.contains('is-open')) {
+            event.preventDefault();
+            closeMenu(true);
           }
           return;
         }
@@ -65,6 +76,10 @@
       }
       event.preventDefault();
       links[next].focus();
+    });
+    links.forEach(link => link.addEventListener('click', () => closeMenu()));
+    window.matchMedia('(min-width: 992px)').addEventListener('change', event => {
+      if (event.matches) closeMenu();
     });
   }
 
