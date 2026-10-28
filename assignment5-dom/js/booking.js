@@ -1,182 +1,189 @@
-/* Kuttibay: a stateful, validated multi-step form with explicit navigation callbacks. */
+/* The existing inquiry form now uses three steps and explicit navigation callbacks. */
 (() => {
   'use strict';
-  const form = document.getElementById('booking-form');
+  const form = document.getElementById('inquiryForm');
   if (!form) return;
-  const steps = [...form.querySelectorAll('[data-step]')];
-  const nextButton = document.getElementById('booking-next');
-  const backButton = document.getElementById('booking-back');
-  const submitButton = document.getElementById('booking-submit');
-  const status = document.getElementById('booking-status');
-  const success = document.getElementById('booking-success');
-  const vehicleSelect = document.getElementById('booking-vehicle');
+
+  const steps = [...form.querySelectorAll('[data-inquiry-step]')];
+  const nextButton = document.getElementById('nextStep');
+  const previousButton = document.getElementById('previousStep');
+  const submitButton = document.getElementById('submitInquiry');
+  const status = document.getElementById('formStatus');
+  const success = document.getElementById('inquirySuccess');
+  const vehicleSelect = document.getElementById('vehicle');
+  const phone = document.getElementById('phone');
   const fieldsByStep = [
-    ['booking-vehicle', 'booking-date', 'booking-time'],
-    ['booking-name', 'booking-email', 'booking-phone', 'booking-password', 'booking-confirm'],
-    ['booking-consent']
+    ['fullName', 'email'],
+    ['vehicle', 'budget', 'phone', 'message'],
+    []
   ];
   let currentStep = 0;
 
-  for (const vehicle of window.Apex.vehicles) {
-    const option = document.createElement('option');
-    option.value = vehicle.id;
-    option.textContent = vehicle.name;
-    vehicleSelect.append(option);
+  function replyByPhone() {
+    return form.querySelector('input[name="replyMethod"]:checked')?.value === 'phone';
   }
-
-  function localDateString(date = new Date()) {
-    const month = String(date.getMonth() + 1).padStart(2, '0');
-    const day = String(date.getDate()).padStart(2, '0');
-    return `${date.getFullYear()}-${month}-${day}`;
-  }
-  const dateField = document.getElementById('booking-date');
-  dateField.min = localDateString();
 
   function setError(id, message) {
     const field = document.getElementById(id);
-    const error = document.getElementById(`${id}-error`);
+    const error = document.getElementById(`${id}Error`);
     field.setAttribute('aria-invalid', String(Boolean(message)));
-    if (error) error.textContent = message;
+    field.classList.toggle('is-invalid', Boolean(message));
+    if (error) {
+      error.textContent = message;
+      // Feedback may sit outside an input-group, so show its own Bootstrap state.
+      error.classList.toggle('d-block', Boolean(message));
+    }
     return !message;
   }
 
   function fieldError(id) {
-    const input = document.getElementById(id);
-    const value = input.value.trim();
+    const field = document.getElementById(id);
+    const value = field.value.trim();
     switch (id) {
-      case 'booking-vehicle': return window.Apex.vehicles.some(vehicle => vehicle.id === value) ? '' : 'Choose a vehicle.';
-      case 'booking-date': {
-        // Refresh the minimum so a page left open over midnight still rejects yesterday.
-        dateField.min = localDateString();
-        if (!value) return 'Choose a date.';
-        const parsed = new Date(`${value}T12:00:00`);
-        if (!/^\d{4}-\d{2}-\d{2}$/.test(value) || Number.isNaN(parsed.getTime()) || localDateString(parsed) !== value) return 'Enter a valid date.';
-        return value >= localDateString() ? '' : 'Choose today or a later date.';
-      }
-      case 'booking-time': return value && [...input.options].some(option => option.value === value && !option.disabled) ? '' : 'Choose a time.';
-      case 'booking-name': return value.length >= 2 ? '' : 'Enter your name (at least 2 characters).';
-      case 'booking-email': return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value) ? '' : 'Enter a valid email, for example name@example.com.';
-      case 'booking-phone': return /^\+?[\d\s()\-]+$/.test(value) && value.replace(/\D/g, '').length >= 7 && value.replace(/\D/g, '').length <= 15 ? '' : 'Enter a phone number with 7 to 15 digits.';
-      case 'booking-password': return input.value.replace(/\s/g, '').length >= 8 ? '' : 'Use at least 8 non-space characters for the demo password.';
-      case 'booking-confirm': return input.value && input.value === document.getElementById('booking-password').value ? '' : 'Passwords must match.';
-      case 'booking-consent': return input.checked ? '' : 'Confirm that you understand this is a local demonstration.';
+      case 'fullName': return value.length >= 2 ? '' : 'Enter your full name (at least 2 characters).';
+      case 'email': return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value) ? '' : 'Enter a valid email address, such as name@example.com.';
+      case 'vehicle': return !value || window.Apex.vehicles.some(vehicle => vehicle.id === value) ? '' : 'Choose a vehicle from the list.';
+      case 'budget':
+        if (field.validity.badInput) return 'Enter a valid budget amount.';
+        return !value || (Number.isFinite(Number(value)) && Number(value) >= 0) ? '' : 'Enter a budget of zero or more.';
+      case 'phone':
+        if (!replyByPhone()) return '';
+        return /^\+?[\d\s()\-]+$/.test(value) && value.replace(/\D/g, '').length >= 7
+          && value.replace(/\D/g, '').length <= 15 ? '' : 'Enter a phone number with 7 to 15 digits.';
+      case 'message': return field.value.length <= 600 ? '' : 'Keep the message within 600 characters.';
       default: return '';
     }
+  }
+
+  function updatePhoneField() {
+    const required = replyByPhone();
+    document.getElementById('phoneField').hidden = !required;
+    phone.required = required;
+    phone.disabled = !required;
+    if (!required) setError('phone', '');
   }
 
   function validateStep(index, focusFirst = true) {
     let firstInvalid = null;
     for (const id of fieldsByStep[index]) {
-      const valid = setError(id, fieldError(id));
-      if (!valid && !firstInvalid) firstInvalid = document.getElementById(id);
+      if (!setError(id, fieldError(id)) && !firstInvalid) firstInvalid = document.getElementById(id);
     }
-    if (firstInvalid && focusFirst) firstInvalid.focus();
+    if (focusFirst && firstInvalid) firstInvalid.focus();
     return !firstInvalid;
   }
 
+  function clearResolvedStatus() {
+    // Read validity without adding new error messages before a navigation attempt.
+    if (fieldsByStep[currentStep].every(id => fieldError(id) === '')) status.textContent = '';
+  }
+
   function updateSummary() {
-    const vehicle = window.Apex.vehicles.find(item => item.id === vehicleSelect.value);
-    const dateValue = dateField.value;
-    const date = dateValue ? new Date(`${dateValue}T12:00:00`).toLocaleDateString('en-US', {month: 'long', day: 'numeric', year: 'numeric'}) : 'Not selected';
-    const time = document.getElementById('booking-time');
+    const selectedVehicle = window.Apex.vehicles.find(vehicle => vehicle.id === vehicleSelect.value);
+    const budget = document.getElementById('budget').value;
     const entries = [
-      ['Vehicle', vehicle?.name || 'Not selected'],
-      ['Visit', `${date} · ${time.options[time.selectedIndex]?.textContent || 'Not selected'}`],
-      ['Name', document.getElementById('booking-name').value.trim()],
-      ['Email', document.getElementById('booking-email').value.trim()],
-      ['Phone', document.getElementById('booking-phone').value.trim()]
+      ['Name', document.getElementById('fullName').value.trim()],
+      ['Email', document.getElementById('email').value.trim()],
+      ['Vehicle', selectedVehicle?.name || 'Not selected'],
+      ['Budget', budget ? `${Number(budget).toLocaleString('en-US')} KZT` : 'Not specified'],
+      ['Reply by', replyByPhone() ? `Phone: ${phone.value.trim()}` : 'Email'],
+      ['Test drive', document.getElementById('testDrive').checked ? 'Interested' : 'Not requested'],
+      ['Message', document.getElementById('message').value.trim() || 'No additional message']
     ];
-    const summary = document.getElementById('booking-summary');
+    const summary = document.getElementById('inquirySummary');
     summary.replaceChildren();
     for (const [label, value] of entries) {
       const row = document.createElement('div');
       row.className = 'summary-row';
-      const key = document.createElement('dt');
-      key.textContent = label;
+      const heading = document.createElement('dt');
+      heading.className = 'fw-semibold';
+      heading.textContent = label;
       const detail = document.createElement('dd');
+      detail.className = 'mb-0';
       detail.textContent = value;
-      row.append(key, detail);
+      row.append(heading, detail);
       summary.append(row);
     }
   }
 
-  function showStep(index, focus = true) {
+  function showStep(index, moveFocus = true) {
     currentStep = index;
     steps.forEach((step, position) => { step.hidden = position !== currentStep; });
-    document.querySelectorAll('[data-step-indicator]').forEach(indicator => {
-      const index = Number(indicator.dataset.stepIndicator);
-      indicator.classList.toggle('is-active', index === currentStep);
-      indicator.classList.toggle('is-complete', index < currentStep);
-      if (index === currentStep) indicator.setAttribute('aria-current', 'step');
-      else indicator.removeAttribute('aria-current');
-    });
-    backButton.hidden = currentStep === 0;
+    previousButton.hidden = currentStep === 0;
     nextButton.hidden = currentStep === 2;
     submitButton.hidden = currentStep !== 2;
-    document.getElementById('step-count').textContent = `Step ${currentStep + 1} of 3`;
-    document.getElementById('booking-progress').textContent = ['Choose your drive', 'Your details', 'Review your visit'][currentStep];
+    document.getElementById('inquiryStepCount').textContent = `Step ${currentStep + 1} of 3`;
+    document.querySelectorAll('[data-step-label]').forEach((label, position) => {
+      if (position === currentStep) label.setAttribute('aria-current', 'step');
+      else label.removeAttribute('aria-current');
+    });
+    document.getElementById('inquiryProgress').textContent = [
+      'Step 1 of 3: Your contact details',
+      'Step 2 of 3: Your inquiry',
+      'Step 3 of 3: Review your inquiry'
+    ][currentStep];
     status.textContent = '';
     if (currentStep === 2) updateSummary();
     window.Apex.animate(steps[currentStep]);
-    if (focus) {
-      const heading = steps[currentStep].querySelector('legend');
-      if (heading) { heading.tabIndex = -1; heading.focus(); }
+    const legend = steps[currentStep].querySelector('legend');
+    if (moveFocus && legend) {
+      legend.tabIndex = -1;
+      legend.focus();
     }
   }
 
-  // Higher-order function: it receives showStep as a callback and runs it after navigation.
-  function navigate(direction, onStepChange) {
+  // navigateStep receives a callback; the callback displays the selected step.
+  function navigateStep(direction, onStepChange) {
     if (direction > 0 && !validateStep(currentStep)) {
       status.textContent = 'Please correct the highlighted fields before continuing.';
       return;
     }
-    const nextStep = Math.min(2, Math.max(0, currentStep + direction));
+    const nextStep = Math.max(0, Math.min(2, currentStep + direction));
     onStepChange(nextStep);
   }
-  nextButton.addEventListener('click', () => navigate(1, showStep));
-  backButton.addEventListener('click', () => navigate(-1, showStep));
+  nextButton.addEventListener('click', () => navigateStep(1, showStep));
+  previousButton.addEventListener('click', () => navigateStep(-1, showStep));
 
-  function resetBooking() {
+  function clearValues() {
     form.reset();
-    // All input values, including hidden-step passwords, are explicitly cleared.
-    form.querySelectorAll('input').forEach(input => {
-      if (input.type === 'checkbox') input.checked = false;
+    form.querySelectorAll('input, textarea').forEach(input => {
+      if (input.type === 'radio') input.checked = input.id === 'replyEmail';
+      else if (input.type === 'checkbox') input.checked = false;
       else input.value = '';
     });
     vehicleSelect.value = '';
-    document.getElementById('booking-time').value = '';
     fieldsByStep.flat().forEach(id => setError(id, ''));
-    document.getElementById('booking-summary').replaceChildren();
-    document.getElementById('booking-success-summary').textContent = '';
+    document.getElementById('inquirySummary').replaceChildren();
+    updatePhoneField();
+  }
+
+  function resetInquiry() {
+    clearValues();
     success.hidden = true;
     form.hidden = false;
     showStep(0);
-    status.textContent = 'Form reset. Your entered details have been cleared.';
+    status.textContent = 'The inquiry has been reset. All entered details have been cleared.';
   }
-  document.getElementById('booking-reset').addEventListener('click', resetBooking);
-  document.getElementById('book-again').addEventListener('click', resetBooking);
+  document.getElementById('resetInquiry').addEventListener('click', resetInquiry);
+  document.getElementById('newInquiry').addEventListener('click', resetInquiry);
 
+  form.querySelectorAll('input[name="replyMethod"]').forEach(input => {
+    input.addEventListener('change', updatePhoneField);
+  });
   form.addEventListener('input', event => {
     const id = event.target.id;
-    if (fieldsByStep.flat().includes(id) && event.target.getAttribute('aria-invalid') === 'true') setError(id, fieldError(id));
-    if (id === 'booking-password' && document.getElementById('booking-confirm').value) setError('booking-confirm', fieldError('booking-confirm'));
+    if (fieldsByStep.flat().includes(id) && event.target.getAttribute('aria-invalid') === 'true') {
+      setError(id, fieldError(id));
+    }
+    clearResolvedStatus();
   });
   form.addEventListener('change', event => {
     if (fieldsByStep.flat().includes(event.target.id)) setError(event.target.id, fieldError(event.target.id));
-  });
-  vehicleSelect.addEventListener('change', () => {
-    // A newly chosen vehicle in the gallery restarts navigation but keeps other draft inputs.
-    if (form.hidden) {
-      const selectedVehicle = vehicleSelect.value;
-      resetBooking();
-      vehicleSelect.value = selectedVehicle;
-    }
-    else if (currentStep !== 0) showStep(0, false);
+    clearResolvedStatus();
   });
 
   form.addEventListener('submit', event => {
     event.preventDefault();
-    if (currentStep < 2) { navigate(1, showStep); return; }
+    if (currentStep < 2) { navigateStep(1, showStep); return; }
     for (let index = 0; index < steps.length; index++) {
       if (!validateStep(index, false)) {
         showStep(index, false);
@@ -185,19 +192,20 @@
         return;
       }
     }
-    updateSummary();
-    const vehicle = window.Apex.vehicles.find(item => item.id === vehicleSelect.value);
-    const name = document.getElementById('booking-name').value.trim();
-    document.getElementById('booking-success-summary').textContent = `${name}, your ${vehicle.name} visit preview is ready for ${dateField.value}. This is a local demo: no booking was sent and no account was created.`;
-    // Passwords are never added to a summary, localStorage, a URL, or a request.
-    document.getElementById('booking-password').value = '';
-    document.getElementById('booking-confirm').value = '';
+    const name = document.getElementById('fullName').value.trim();
+    const selectedVehicle = window.Apex.vehicles.find(vehicle => vehicle.id === vehicleSelect.value);
+    const successText = document.getElementById('inquirySuccessText') || success.querySelector('p');
+    if (successText) successText.textContent = `${name}, your sample inquiry${selectedVehicle ? ` about ${selectedVehicle.name}` : ''} is ready. This is a local preview; no information was sent.`;
+    clearValues();
     form.hidden = true;
     success.hidden = false;
     success.tabIndex = -1;
     success.focus();
     window.Apex.animate(success);
-    window.Apex.notify('Your test-drive preview is ready.');
   });
+
+  const requestedVehicle = new URLSearchParams(window.location.search).get('vehicle');
+  if (window.Apex.vehicles.some(vehicle => vehicle.id === requestedVehicle)) vehicleSelect.value = requestedVehicle;
+  updatePhoneField();
   showStep(0, false);
 })();

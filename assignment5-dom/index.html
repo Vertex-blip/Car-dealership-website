@@ -1,989 +1,215 @@
 <!doctype html>
-<html lang="en" data-theme="light">
+<html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta
       name="description"
-      content="Discover the Apex Motors collection, save your favourites and plan a test drive. A student project by Team Apex Motors, SE-2507."
+      content="Apex Motors Assignment 5: our Bootstrap dealership project continued with JavaScript and DOM interactions."
     />
-    <meta name="color-scheme" content="light dark" />
-    <title>Apex Motors | Find your next chapter</title>
+    <title>Apex Motors | Assignment 5</title>
+    <link href="vendor/bootstrap.min.css" rel="stylesheet" />
+    <link href="styles.css?v=bootstrap-a5" rel="stylesheet" />
+    <link href="enhancements.css?v=bootstrap-a5" rel="stylesheet" />
+    <script src="vendor/bootstrap.bundle.min.js" defer></script>
+    <script src="js/site.js?v=bootstrap-a5" defer></script>
     <link rel="icon" href="images/apex-motors-logo.png" />
-    <link rel="stylesheet" href="styles.css" />
-    <script src="js/data.js" defer></script>
-    <script src="js/inventory.js" defer></script>
-    <script src="js/experience.js" defer></script>
-    <script src="js/booking.js" defer></script>
   </head>
   <body>
-    <a class="skip-link" href="#main-content">Skip to content</a>
-    <header class="site-header">
-      <div class="container header-inner">
-        <a class="brand" href="#home" aria-label="Apex Motors home"
+    <a
+      class="skip-link visually-hidden-focusable position-absolute top-0 start-0 bg-white p-2"
+      href="#main-content"
+      >Skip to main content</a
+    >
+    <nav
+      class="navbar navbar-expand-lg navbar-dark bg-dark assignment-navbar"
+      aria-label="Assignment pages"
+    >
+      <div class="container">
+        <a class="navbar-brand bg-light p-1" href="index.html"
           ><img
+            class="brand-logo"
             src="images/apex-motors-logo.png"
-            alt="Apex Motors"
-            width="1250"
-            height="390"
+            alt="Apex Motors home"
         /></a>
         <button
-          id="menu-toggle"
-          class="icon-button menu-toggle"
+          class="navbar-toggler"
           type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#assignmentNav"
+          aria-controls="assignmentNav"
           aria-expanded="false"
-          aria-controls="main-nav"
-          aria-label="Toggle navigation"
+          aria-label="Toggle assignment navigation"
         >
-          <span aria-hidden="true">☰</span>
+          <span class="navbar-toggler-icon"></span>
         </button>
-        <nav id="main-nav" class="main-nav" aria-label="Main navigation">
-          <a href="#collection">The collection</a>
-          <a href="#story">Our approach</a>
-          <a href="#team">The team</a>
-          <a href="#booking">Plan a visit <span aria-hidden="true">↗</span></a>
-        </nav>
-        <button
-          id="theme-toggle"
-          class="theme-button"
-          type="button"
-          aria-pressed="false"
-          aria-label="Toggle night theme"
-        >
-          <span class="theme-symbol" aria-hidden="true">◐</span
-          ><span id="theme-label">Night mode</span>
-        </button>
+        <div class="collapse navbar-collapse" id="assignmentNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="index.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="typography-cards.html"
+                >Typography &amp; cards</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="grid-spacing.html"
+                >Grid &amp; spacing</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="carousel.html">Vehicle carousel</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="bootstrap-cards.html"
+                >Inventory cards</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="buttons.html">Buttons</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="responsive-form.html">Inquiry form</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="team-grid.html">Our team</a>
+            </li>
+          </ul>
+        </div>
       </div>
-    </header>
-
+    </nav>
     <main id="main-content">
-      <section id="home" class="hero container" aria-labelledby="hero-title">
-        <div class="hero-copy">
-          <p class="eyebrow">
-            <span class="status-dot"></span> INDEPENDENT SPIRIT. EXCEPTIONAL
-            DRIVES.
+      <section class="hero-panel">
+        <div class="container py-5">
+          <p class="eyebrow mb-3">Apex Motors · Group SE-2507</p>
+          <h1>Considered cars.<br />Clear decisions.</h1>
+          <p class="lead mt-4 mb-4">
+            A small, thoughtfully curated collection and a straightforward way
+            to explore it. Built as a responsive web-design study by Team Apex
+            Motors.
           </p>
-          <h1 id="hero-title">
-            Your next chapter.<br /><span class="serif">Worth the drive.</span>
-          </h1>
-          <p class="hero-description">
-            Some cars get you there. The right one makes the journey. Find yours
-            with a team that cares about the details.
-          </p>
-          <div class="hero-actions">
-            <a class="button button-primary" href="#collection"
-              >Explore the collection <span aria-hidden="true">↗</span></a
-            ><a class="text-link" href="#booking"
-              >Book a test drive <span aria-hidden="true">→</span></a
-            >
-          </div>
-          <div class="hero-proof">
-            <span class="proof-icon" aria-hidden="true">✓</span>
-            <p>
-              Thoughtfully selected.<br /><strong>Personally guided.</strong>
-            </p>
-            <span class="proof-divider"></span>
-            <p>
-              Six distinct personalities.<br /><strong
-                >One place to start.</strong
-              >
-            </p>
-          </div>
-        </div>
-        <div class="hero-visual">
-          <img
-            class="hero-car"
-            src="images/car-06.jpg"
-            alt="Yellow Lamborghini on a tree-lined street, from our original Apex Motors collection"
-            width="1400"
-            height="933"
-            fetchpriority="high"
-          />
-          <div class="photo-topline">
-            <span class="photo-tag">THE APEX COLLECTION</span
-            ><span class="photo-number">01 — 06</span>
-          </div>
-          <div class="photo-caption">
-            <div>
-              <span class="tiny-label">A LITTLE LESS ORDINARY</span>
-              <p>Made for the long way home.</p>
-            </div>
-            <a
-              href="#collection"
-              class="round-link"
-              aria-label="Discover our cars"
-              >↗</a
-            >
-          </div>
+          <a class="btn btn-primary btn-lg" href="bootstrap-cards.html"
+            >Explore the collection</a
+          >
         </div>
       </section>
 
-      <div class="promise-strip">
-        <div class="container promise-inner">
-          <p><span aria-hidden="true">✧</span> A considered collection</p>
-          <p><span aria-hidden="true">↗</span> A personal approach</p>
-          <p><span aria-hidden="true">◎</span> Every detail matters</p>
-          <span class="strip-note">APEX MOTORS · SINCE 2012</span>
-        </div>
-      </div>
-
-      <section
-        id="collection"
-        class="section container"
-        aria-labelledby="collection-title"
-      >
-        <div class="section-heading">
-          <div>
-            <p class="eyebrow">01 / THE COLLECTION</p>
-            <h2 id="collection-title">Find your kind of drive.</h2>
-          </div>
-          <p class="heading-description">
-            Everyday ease or something extraordinary.<br />Explore, compare the
-            details, make a shortlist.
-          </p>
-        </div>
-        <div class="collection-toolbar">
-          <div
-            class="filter-tabs"
-            role="group"
-            aria-label="Filter vehicles by category"
-          >
-            <button
-              type="button"
-              class="filter-tab is-active"
-              data-filter="all"
-              aria-pressed="true"
-            >
-              All vehicles</button
-            ><button
-              type="button"
-              class="filter-tab"
-              data-filter="sedan"
-              aria-pressed="false"
-            >
-              Sedan</button
-            ><button
-              type="button"
-              class="filter-tab"
-              data-filter="suv"
-              aria-pressed="false"
-            >
-              SUV</button
-            ><button
-              type="button"
-              class="filter-tab"
-              data-filter="sport"
-              aria-pressed="false"
-            >
-              Sport
-            </button>
-          </div>
-          <label class="search-box" for="vehicle-search"
-            ><span aria-hidden="true">⌕</span
-            ><input
-              id="vehicle-search"
-              type="search"
-              placeholder="Search the collection"
-              autocomplete="off"
-            /><span class="sr-only"
-              >Search vehicle names or details</span
-            ></label
-          >
-        </div>
-        <div class="collection-meta">
-          <p id="result-count" role="status" aria-live="polite">
-            Loading the collection…
-          </p>
-          <div class="collection-options">
-            <label class="saved-filter"
-              ><input id="saved-only" type="checkbox" /> Saved only</label
-            ><label class="sort-label" for="sort-select"
-              >Sort by
-              <select id="sort-select">
-                <option value="featured">Featured</option>
-                <option value="price-asc">Price: low to high</option>
-                <option value="price-desc">Price: high to low</option>
-              </select></label
-            >
-          </div>
-        </div>
-        <div id="vehicle-grid" class="vehicle-grid"></div>
-        <div id="empty-state" class="empty-state" hidden>
-          <span aria-hidden="true">⌕</span>
-          <h3>No matches just yet.</h3>
-          <p>Try another search, category or your saved selection.</p>
-          <button
-            id="reset-filters"
-            type="button"
-            class="button button-secondary"
-          >
-            Reset filters <span aria-hidden="true">↻</span>
-          </button>
-        </div>
-        <p class="collection-disclaimer">
-          A student showroom concept. Vehicle names, specifications and USD
-          prices are illustrative; photographs come from our earlier Apex Motors
-          projects.
-        </p>
-        <noscript
-          ><p class="noscript-note">
-            Please enable JavaScript to explore the collection and use the
-            interactive features.
-          </p></noscript
-        >
-      </section>
-
-      <section
-        id="story"
-        class="story-section section"
-        aria-labelledby="story-title"
-      >
-        <div class="container story-grid">
-          <div class="story-photo">
-            <img
-              src="images/showroom-1.jpg"
-              alt="Apex Motors showroom from our previous project"
-              width="1400"
-              height="933"
-              loading="lazy"
-            />
-            <div class="story-photo-label">
-              <span class="serif">Apex.</span
-              ><span>GOOD CARS.<br />BETTER CONVERSATIONS.</span>
-            </div>
-          </div>
-          <div class="story-copy">
-            <p class="eyebrow">02 / THE APEX APPROACH</p>
-            <h2 id="story-title">
-              Driven by curiosity.<br /><span class="serif"
-                >Grounded in care.</span
-              >
+      <section class="container py-5" aria-labelledby="collection-heading">
+        <div class="row align-items-end g-3 mb-4">
+          <div class="col-lg-8">
+            <p class="eyebrow mb-2">A considered selection</p>
+            <h2 id="collection-heading" class="display-6 mb-0">
+              A few good reasons to take the longer way home.
             </h2>
-            <p>
-              We believe finding a car should feel as good as driving it. So we
-              make room for questions, honest conversations and a little
-              discovery.
+          </div>
+          <div class="col-lg-4">
+            <p class="text-muted-strong mb-0">
+              Three local-image cards introduce the Bootstrap collection page.
             </p>
-            <p id="story-extra">
-              Our team takes a personal approach: explore the collection at your
-              pace, save the cars that catch your eye and plan a visit around
-              your day. We are the same four people behind the original Apex
-              Motors project, now bringing the showroom to life.
-            </p>
-            <button
-              id="read-more"
-              class="text-link"
-              type="button"
-              aria-expanded="false"
-              aria-controls="story-extra"
-            >
-              More about our approach <span aria-hidden="true">↗</span>
-            </button>
-            <div class="story-values">
-              <div>
-                <span>01</span>
-                <h3>Explore at your pace</h3>
-                <p>A clear view of every option.</p>
+          </div>
+        </div>
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+          <div class="col">
+            <article class="card h-100 shadow-sm">
+              <img
+                class="card-img-top"
+                src="images/car-01.jpg"
+                alt="Black sedan driving along a tree-lined road"
+              />
+              <div class="card-body">
+                <p class="eyebrow mb-2">Grand touring</p>
+                <h3 class="h4">Solis GT</h3>
+                <p class="card-text text-muted-strong">
+                  Confident, composed, and best enjoyed when the road opens up.
+                </p>
               </div>
-              <div>
-                <span>02</span>
-                <h3>Talk to real people</h3>
-                <p>A familiar team, ready to help.</p>
+            </article>
+          </div>
+          <div class="col">
+            <article class="card h-100 shadow-sm">
+              <img
+                class="card-img-top"
+                src="images/car-07.jpg"
+                alt="Dark sedan driving on a multi-lane road, viewed from behind"
+              />
+              <div class="card-body">
+                <p class="eyebrow mb-2">All-road comfort</p>
+                <h3 class="h4">Meridian Touring</h3>
+                <p class="card-text text-muted-strong">
+                  An unhurried cabin for long weekends and everyday miles.
+                </p>
               </div>
-            </div>
+            </article>
+          </div>
+          <div class="col">
+            <article class="card h-100 shadow-sm">
+              <img
+                class="card-img-top"
+                src="images/car-08.jpg"
+                alt="White SUV parked on a desert road beside red-rock formations"
+              />
+              <div class="card-body">
+                <p class="eyebrow mb-2">Open-air drive</p>
+                <h3 class="h4">Solis Roadster</h3>
+                <p class="card-text text-muted-strong">
+                  A clean silhouette with a little more sky in every journey.
+                </p>
+              </div>
+            </article>
           </div>
         </div>
       </section>
 
-      <section
-        id="booking"
-        class="section container booking-section"
-        aria-labelledby="booking-title"
-      >
-        <div class="booking-intro">
-          <p class="eyebrow">03 / YOUR NEXT MOVE</p>
-          <h2 id="booking-title">
-            Less scrolling.<br /><span class="serif">More driving.</span>
-          </h2>
-          <p>
-            Choose a car. Pick a moment. We'll help you picture what comes next.
-          </p>
-          <div class="booking-note">
-            <span class="note-mark" aria-hidden="true">↗</span>
-            <div>
-              <h3>Make it your kind of visit.</h3>
-              <p>Three simple steps. Go back anytime to change a detail.</p>
-            </div>
-          </div>
-          <p class="demo-note">
-            This is a local booking preview for our coursework. Details are
-            checked in your browser; no real booking or account is created. Use
-            sample details.
-          </p>
-        </div>
-        <div class="booking-panel">
-          <div class="booking-panel-header">
-            <span class="tiny-label">PLAN YOUR TEST DRIVE</span
-            ><span id="step-count">01 / 03</span>
-          </div>
-          <ol class="step-track" aria-label="Booking steps">
-            <li class="step-indicator is-active" data-step-indicator="0">
-              <span>1</span> Your drive
-            </li>
-            <li class="step-indicator" data-step-indicator="1">
-              <span>2</span> About you
-            </li>
-            <li class="step-indicator" data-step-indicator="2">
-              <span>3</span> Review
-            </li>
-          </ol>
-          <p
-            id="booking-progress"
-            class="sr-only"
-            role="status"
-            aria-live="polite"
-          >
-            Step 1 of 3: Your drive
-          </p>
-          <form id="booking-form" novalidate>
-            <fieldset data-step="0">
-              <legend>Start with something you love.</legend>
-              <p class="fieldset-description">
-                All fields are required. Choose a date from today onward.
+      <section class="container pb-5" aria-labelledby="assignment-heading">
+        <div class="report-cover p-4">
+          <div class="row align-items-center g-4">
+            <div class="col-lg-8">
+              <p class="eyebrow mb-2">Web technologies · Assignment 5</p>
+              <h2 id="assignment-heading" class="h2">
+                Our Bootstrap site, with JavaScript.
+              </h2>
+              <p class="text-muted-strong">
+                The same Apex Motors pages now include category filters, a
+                multi-step inquiry form, keyboard navigation and interactive
+                buttons.
               </p>
-              <div class="field">
-                <label for="booking-vehicle">Your vehicle</label
-                ><select
-                  id="booking-vehicle"
-                  name="vehicle"
-                  required
-                  aria-describedby="booking-vehicle-error"
-                >
-                  <option value="">Select a vehicle</option>
-                </select>
-                <p
-                  class="field-error"
-                  id="booking-vehicle-error"
-                  aria-live="polite"
-                ></p>
-              </div>
-              <div class="form-row">
-                <div class="field">
-                  <label for="booking-date">Preferred date</label
-                  ><input
-                    id="booking-date"
-                    name="date"
-                    type="date"
-                    required
-                    aria-describedby="booking-date-error"
-                  />
-                  <p
-                    class="field-error"
-                    id="booking-date-error"
-                    aria-live="polite"
-                  ></p>
-                </div>
-                <div class="field">
-                  <label for="booking-time">Preferred time</label
-                  ><select
-                    id="booking-time"
-                    name="time"
-                    required
-                    aria-describedby="booking-time-error"
-                  >
-                    <option value="">Select a time</option>
-                    <option value="10:00">10:00 AM</option>
-                    <option value="12:00">12:00 PM</option>
-                    <option value="14:00">2:00 PM</option>
-                    <option value="16:00">4:00 PM</option>
-                  </select>
-                  <p
-                    class="field-error"
-                    id="booking-time-error"
-                    aria-live="polite"
-                  ></p>
-                </div>
-              </div>
-            </fieldset>
-            <fieldset data-step="1" hidden>
-              <legend>A little introduction.</legend>
-              <p class="fieldset-description">
-                Sample details only. The password fields demonstrate account
-                validation.
+              <p id="readMoreContent" class="text-muted-strong" hidden>
+                Browse the inventory by category, move through the navigation
+                with arrow keys and try the form without losing your entries
+                when you go Back. On the Buttons page, you can play a short
+                sound, show the time and change the page background.
               </p>
-              <div class="field">
-                <label for="booking-name">Full name</label
-                ><input
-                  id="booking-name"
-                  name="fullName"
-                  type="text"
-                  autocomplete="name"
-                  maxlength="80"
-                  required
-                  aria-describedby="booking-name-error"
-                />
-                <p
-                  class="field-error"
-                  id="booking-name-error"
-                  aria-live="polite"
-                ></p>
-              </div>
-              <div class="form-row">
-                <div class="field">
-                  <label for="booking-email">Email address</label
-                  ><input
-                    id="booking-email"
-                    name="email"
-                    type="email"
-                    autocomplete="email"
-                    maxlength="120"
-                    required
-                    aria-describedby="booking-email-error"
-                  />
-                  <p
-                    class="field-error"
-                    id="booking-email-error"
-                    aria-live="polite"
-                  ></p>
-                </div>
-                <div class="field">
-                  <label for="booking-phone">Phone number</label
-                  ><input
-                    id="booking-phone"
-                    name="phone"
-                    type="tel"
-                    autocomplete="tel"
-                    placeholder="+7 700 123 45 67"
-                    maxlength="30"
-                    required
-                    aria-describedby="booking-phone-error"
-                  />
-                  <p
-                    class="field-error"
-                    id="booking-phone-error"
-                    aria-live="polite"
-                  ></p>
-                </div>
-              </div>
-              <div class="form-row">
-                <div class="field">
-                  <label for="booking-password">Preview password</label
-                  ><input
-                    id="booking-password"
-                    name="password"
-                    type="password"
-                    autocomplete="new-password"
-                    minlength="8"
-                    maxlength="128"
-                    required
-                    aria-describedby="password-hint booking-password-error"
-                  />
-                  <p id="password-hint" class="field-hint">
-                    At least 8 non-space characters. Use a sample password.
-                  </p>
-                  <p
-                    class="field-error"
-                    id="booking-password-error"
-                    aria-live="polite"
-                  ></p>
-                </div>
-                <div class="field">
-                  <label for="booking-confirm">Confirm password</label
-                  ><input
-                    id="booking-confirm"
-                    name="confirmPassword"
-                    type="password"
-                    autocomplete="new-password"
-                    maxlength="128"
-                    required
-                    aria-describedby="booking-confirm-error"
-                  />
-                  <p
-                    class="field-error"
-                    id="booking-confirm-error"
-                    aria-live="polite"
-                  ></p>
-                </div>
-              </div>
-            </fieldset>
-            <fieldset data-step="2" hidden>
-              <legend>Looks like a good plan.</legend>
-              <p class="fieldset-description">
-                Review your details. Use Back to make changes.
-              </p>
-              <dl id="booking-summary" class="booking-summary"></dl>
-              <div class="field">
-                <label class="checkbox-label" for="booking-consent"
-                  ><input
-                    id="booking-consent"
-                    name="consent"
-                    type="checkbox"
-                    required
-                    aria-describedby="booking-consent-error"
-                  /><span
-                    >I understand this is a local preview and no booking will be
-                    sent.</span
-                  ></label
-                >
-                <p
-                  class="field-error"
-                  id="booking-consent-error"
-                  aria-live="polite"
-                ></p>
-              </div>
-            </fieldset>
-            <div class="form-actions">
               <button
-                id="booking-back"
+                id="readMoreButton"
+                class="btn btn-outline-primary btn-sm"
                 type="button"
-                class="button button-secondary"
-                hidden
+                aria-controls="readMoreContent"
+                aria-expanded="false"
               >
-                <span aria-hidden="true">←</span> Back</button
-              ><button
-                id="booking-next"
-                type="button"
-                class="button button-primary"
-              >
-                Continue <span aria-hidden="true">→</span></button
-              ><button
-                id="booking-submit"
-                type="submit"
-                class="button button-primary"
-                hidden
-              >
-                Confirm preview <span aria-hidden="true">✓</span>
+                Read more
               </button>
             </div>
-            <button id="booking-reset" type="button" class="reset-link">
-              Start over
-            </button>
-            <p
-              id="booking-status"
-              class="form-status"
-              role="status"
-              aria-live="polite"
-            ></p>
-          </form>
-          <div
-            id="booking-success"
-            class="booking-success"
-            hidden
-            tabindex="-1"
-          >
-            <span class="success-check" aria-hidden="true">✓</span>
-            <h3>Your preview is ready.</h3>
-            <p id="booking-success-summary"></p>
-            <p>
-              This was a local demonstration. No request was sent and no account
-              was created.
-            </p>
-            <button id="book-again" type="button" class="button button-primary">
-              Plan another drive <span aria-hidden="true">↗</span>
-            </button>
+            <div class="col-lg-4 d-flex flex-wrap gap-2">
+              <a class="btn btn-primary" href="bootstrap-cards.html"
+                >Filter the inventory</a
+              ><a class="btn btn-outline-primary" href="responsive-form.html"
+                >Try the inquiry form</a
+              ><a class="btn btn-outline-primary" href="buttons.html"
+                >Interactive buttons</a
+              >
+            </div>
           </div>
         </div>
       </section>
-
-      <section
-        id="experience"
-        class="experience-section section"
-        aria-labelledby="experience-title"
-      >
-        <div class="container">
-          <div class="section-heading">
-            <div>
-              <p class="eyebrow">04 / THE LITTLE DETAILS</p>
-              <h2 id="experience-title">Make yourself at home.</h2>
-            </div>
-            <p class="heading-description">
-              A little feedback. A small sound.<br />A showroom that feels more
-              like you.
-            </p>
-          </div>
-          <div class="experience-grid">
-            <article class="experience-card rating-card">
-              <p class="tiny-label">YOUR FIRST IMPRESSION</p>
-              <h3>How was the experience?</h3>
-              <div
-                class="rating-stars"
-                role="group"
-                aria-label="Rate your showroom experience"
-              >
-                <button
-                  type="button"
-                  data-rating="1"
-                  aria-label="Rate 1 out of 5"
-                  aria-pressed="false"
-                >
-                  ★</button
-                ><button
-                  type="button"
-                  data-rating="2"
-                  aria-label="Rate 2 out of 5"
-                  aria-pressed="false"
-                >
-                  ★</button
-                ><button
-                  type="button"
-                  data-rating="3"
-                  aria-label="Rate 3 out of 5"
-                  aria-pressed="false"
-                >
-                  ★</button
-                ><button
-                  type="button"
-                  data-rating="4"
-                  aria-label="Rate 4 out of 5"
-                  aria-pressed="false"
-                >
-                  ★</button
-                ><button
-                  type="button"
-                  data-rating="5"
-                  aria-label="Rate 5 out of 5"
-                  aria-pressed="false"
-                >
-                  ★
-                </button>
-              </div>
-              <p id="rating-status" role="status" aria-live="polite">
-                Choose a star to leave your rating.
-              </p>
-              <button id="reset-rating" type="button" class="reset-link">
-                Clear rating
-              </button>
-            </article>
-            <article class="experience-card sound-card">
-              <div class="sound-heading">
-                <p class="tiny-label">A SOUND OF WELCOME</p>
-                <span class="sound-wave" aria-hidden="true">▂▅▃▇▅▂</span>
-              </div>
-              <h3>A small note.<br />A warmer welcome.</h3>
-              <button
-                id="sound-button"
-                type="button"
-                class="button button-dark"
-              >
-                <span aria-hidden="true">♪</span> Play welcome chime
-              </button>
-              <p id="sound-status" role="status" aria-live="polite">
-                A short chime, only when you choose.
-              </p>
-            </article>
-            <article class="experience-card clock-card">
-              <p class="tiny-label">A MOMENT IN REAL TIME</p>
-              <time id="current-datetime">Loading local time…</time>
-              <p id="timezone-label">Your device's local time</p>
-              <button id="show-time" class="text-link" type="button">
-                Capture this moment <span aria-hidden="true">↗</span>
-              </button>
-              <p
-                id="time-feedback"
-                class="time-feedback"
-                role="status"
-                aria-live="polite"
-              ></p>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section id="team" class="section container" aria-labelledby="team-title">
-        <div class="section-heading">
-          <div>
-            <p class="eyebrow">05 / FAMILIAR FACES</p>
-            <h2 id="team-title">The people behind Apex.</h2>
-          </div>
-          <p class="heading-description">
-            The same team. A new chapter.<br />Team Apex Motors · SE-2507
-          </p>
-        </div>
-        <div class="team-grid">
-          <article class="team-card">
-            <div class="team-photo">
-              <img
-                src="images/kuttibay.jpg"
-                alt="Kuttibay"
-                width="600"
-                height="750"
-                loading="lazy"
-              />
-            </div>
-            <div class="team-copy">
-              <h3>Kuttibay</h3>
-              <p>Marketing Specialist</p>
-              <span aria-hidden="true">↗</span>
-            </div>
-          </article>
-          <article class="team-card">
-            <div class="team-photo">
-              <img
-                src="images/farabi.jpg"
-                alt="Farabi"
-                width="600"
-                height="750"
-                loading="lazy"
-              />
-            </div>
-            <div class="team-copy">
-              <h3>Farabi</h3>
-              <p>Owner</p>
-              <span aria-hidden="true">↗</span>
-            </div>
-          </article>
-          <article class="team-card">
-            <div class="team-photo">
-              <img
-                src="images/arsen.jpg"
-                alt="Arsen"
-                width="600"
-                height="750"
-                loading="lazy"
-              />
-            </div>
-            <div class="team-copy">
-              <h3>Arsen</h3>
-              <p>Finance Consultant</p>
-              <span aria-hidden="true">↗</span>
-            </div>
-          </article>
-          <article class="team-card">
-            <div class="team-photo">
-              <img
-                src="images/muhammad.jpg"
-                alt="Muhammad"
-                width="600"
-                height="750"
-                loading="lazy"
-              />
-            </div>
-            <div class="team-copy">
-              <h3>Muhammad</h3>
-              <p>Client Care</p>
-              <span aria-hidden="true">↗</span>
-            </div>
-          </article>
-        </div>
-      </section>
-
-      <section id="questions" class="faq-section section">
-        <div class="container faq-grid">
-          <div>
-            <p class="eyebrow">A FEW GOOD QUESTIONS</p>
-            <h2>Before you<br /><span class="serif">take the wheel.</span></h2>
-            <p>
-              Something else on your mind?<br />Start with a test-drive preview.
-            </p>
-            <a href="#booking" class="text-link"
-              >Plan your visit <span aria-hidden="true">↗</span></a
-            >
-          </div>
-          <div class="faq-list">
-            <article class="faq-item">
-              <h3>
-                <button
-                  class="faq-toggle"
-                  id="faq-q1"
-                  type="button"
-                  aria-expanded="false"
-                  aria-controls="faq-a1"
-                >
-                  <span>How do I explore the collection?</span
-                  ><span class="faq-plus" aria-hidden="true">+</span>
-                </button>
-              </h3>
-              <div
-                id="faq-a1"
-                class="faq-answer"
-                role="region"
-                aria-labelledby="faq-q1"
-                aria-hidden="true"
-              >
-                <div>
-                  <p>
-                    Choose Sedan, SUV or Sport, search by name and sort by
-                    price. Save vehicles with the heart button, then turn on
-                    Saved only to revisit your shortlist.
-                  </p>
-                </div>
-              </div>
-            </article>
-            <article class="faq-item">
-              <h3>
-                <button
-                  class="faq-toggle"
-                  id="faq-q2"
-                  type="button"
-                  aria-expanded="false"
-                  aria-controls="faq-a2"
-                >
-                  <span>Can I change my test-drive details?</span
-                  ><span class="faq-plus" aria-hidden="true">+</span>
-                </button>
-              </h3>
-              <div
-                id="faq-a2"
-                class="faq-answer"
-                role="region"
-                aria-labelledby="faq-q2"
-                aria-hidden="true"
-              >
-                <div>
-                  <p>
-                    Yes. The Back button keeps the values you have entered, so
-                    you can update a car, date or contact detail before
-                    confirming. Start over clears the entire preview.
-                  </p>
-                </div>
-              </div>
-            </article>
-            <article class="faq-item">
-              <h3>
-                <button
-                  class="faq-toggle"
-                  id="faq-q3"
-                  type="button"
-                  aria-expanded="false"
-                  aria-controls="faq-a3"
-                >
-                  <span>Is this a real booking or account?</span
-                  ><span class="faq-plus" aria-hidden="true">+</span>
-                </button>
-              </h3>
-              <div
-                id="faq-a3"
-                class="faq-answer"
-                role="region"
-                aria-labelledby="faq-q3"
-                aria-hidden="true"
-              >
-                <div>
-                  <p>
-                    This is a student project. The form checks sample details
-                    locally without sending them to a server. No appointment or
-                    account is created. Theme preferences may be remembered in
-                    this browser.
-                  </p>
-                </div>
-              </div>
-            </article>
-            <article class="faq-item">
-              <h3>
-                <button
-                  class="faq-toggle"
-                  id="faq-q4"
-                  type="button"
-                  aria-expanded="false"
-                  aria-controls="faq-a4"
-                >
-                  <span>Can I use the site with a keyboard?</span
-                  ><span class="faq-plus" aria-hidden="true">+</span>
-                </button>
-              </h3>
-              <div
-                id="faq-a4"
-                class="faq-answer"
-                role="region"
-                aria-labelledby="faq-q4"
-                aria-hidden="true"
-              >
-                <div>
-                  <p>
-                    Use Tab to move through controls and Enter or Space to
-                    activate buttons. In the main navigation, use the arrow keys
-                    to move between links, or Home and End. Escape closes
-                    vehicle details.
-                  </p>
-                </div>
-              </div>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <div class="closing-banner container">
-        <p>Your next chapter<br />starts with a conversation.</p>
-        <a href="#booking" class="button button-primary"
-          >Let's find your drive <span aria-hidden="true">↗</span></a
-        >
-      </div>
     </main>
-
-    <footer class="site-footer">
-      <div class="container footer-top">
-        <div>
-          <a class="brand footer-brand" href="#home"
-            ><img
-              src="images/apex-motors-logo.png"
-              alt="Apex Motors"
-              width="1250"
-              height="390"
-          /></a>
-          <p>Considered vehicles. Clear advice.</p>
-        </div>
-        <div>
-          <p class="tiny-label">EXPLORE</p>
-          <a href="#collection">The collection</a
-          ><a href="#booking">Plan a test drive</a>
-        </div>
-        <div>
-          <p class="tiny-label">TEAM APEX MOTORS</p>
-          <p>Arsen · Kuttibay · Farabi · Muhammad<br />Group SE-2507</p>
-        </div>
-      </div>
-      <div class="container footer-bottom">
-        <span>© 2026 Apex Motors. A student showroom concept.</span
-        ><span>Assignment 05 / JavaScript &amp; DOM</span
-        ><a href="#home">Back to top ↑</a>
+    <footer class="site-footer py-4">
+      <div
+        class="container d-flex flex-column flex-md-row justify-content-between gap-2"
+      >
+        <p class="mb-0">Apex Motors · Group SE-2507</p>
+        <p class="mb-0">Team: Arsen · Kuttibay · Farabi · Muhammad</p>
       </div>
     </footer>
-
-    <dialog
-      id="vehicle-dialog"
-      class="vehicle-dialog"
-      aria-labelledby="detail-name"
-    >
-      <button
-        id="close-vehicle"
-        type="button"
-        class="dialog-close icon-button"
-        aria-label="Close vehicle details"
-      >
-        ×
-      </button>
-      <div class="detail-layout">
-        <div class="detail-media">
-          <img
-            id="detail-image"
-            src="images/car-06.jpg"
-            alt="Selected vehicle"
-            width="1400"
-            height="933"
-          />
-          <p id="detail-caption" class="detail-caption"></p>
-          <div
-            id="detail-thumbnails"
-            class="detail-thumbnails"
-            role="group"
-            aria-label="Choose a gallery image"
-          ></div>
-        </div>
-        <div class="detail-copy">
-          <p id="detail-category" class="eyebrow"></p>
-          <h2 id="detail-name">Vehicle details</h2>
-          <p id="detail-price" class="detail-price"></p>
-          <div id="detail-specs" class="detail-specs"></div>
-          <p class="demo-note">
-            Illustrative vehicle data for our student showroom. Gallery images
-            show the selected car and our shared showroom and care spaces.
-          </p>
-          <button id="detail-book" type="button" class="button button-primary">
-            Plan a test drive <span aria-hidden="true">↗</span>
-          </button>
-        </div>
-      </div>
-    </dialog>
-    <p id="toast" class="toast" role="status" aria-live="polite"></p>
   </body>
 </html>

@@ -1,6 +1,6 @@
 # Apex Motors
 
-Responsive dealership website by Team Apex Motors, Group SE-2507. The repository contains the framework-free Assignment 1/2 site at its root, the Bootstrap Assignment 3 in `assignment3-bootstrap/`, the JavaScript Assignment 4 in `assignment4-javascript/`, and the interactive Assignment 5 showroom in `assignment5-dom/`.
+Responsive dealership website by Team Apex Motors, Group SE-2507. The repository contains the framework-free Assignment 1/2 site at its root, the Bootstrap Assignment 3 in `assignment3-bootstrap/`, the JavaScript Assignment 4 in `assignment4-javascript/`, and the Assignment 5 continuation of the Bootstrap site in `assignment5-dom/`.
 
 ## Live websites
 
@@ -79,12 +79,12 @@ The standalone [`assignment4-javascript/`](assignment4-javascript/) site demonst
 
 ## Assignment 5: Advanced JavaScript and DOM
 
-The [`assignment5-dom/`](assignment5-dom/) showroom continues the same team, theme, and original vehicle and member photographs. It adds object-driven vehicle cards, category/search/price/saved filters, an image gallery, day/night themes, arrow-key menu navigation, a callback-based three-step booking preview, ratings, sound without overlapping playback, and event-triggered animations. The project uses local assets and runs directly from `index.html` without a build step.
+The [`assignment5-dom/`](assignment5-dom/) project continues Assignment 3's eight Bootstrap pages. The original `styles.css`, navbar, cream/copper colors, square cards, vehicle photos, and team portraits are retained. Assignment 5 adds a category filter, dynamic cards, Read more, arrow-key menu navigation, a three-step inquiry form using callbacks, background changes, sound, and event-triggered animations. Bootstrap 5.3.3 is bundled locally so the project also works offline.
 
-- [Live showroom](https://vertex-blip.github.io/Car-dealership-website/assignment5-dom/)
+- [Live Assignment 5 site](https://vertex-blip.github.io/Car-dealership-website/assignment5-dom/)
 - [PDF report](assignment5-dom/Assignment-5-Report.pdf)
 - [Project ZIP](assignment5-dom/Assignment-5-Project.zip)
 - [Complete requirements map](assignment5-dom/REQUIREMENTS.md)
 - [Kazakh defense guide](assignment5-dom/DEFENSE-GUIDE.md)
 
-The booking form is a local coursework demonstration. It validates sample details without creating a real appointment or account. Browser verification evidence is included with the assignment.
+The inquiry form validates sample details and displays a local preview. It does not send an inquiry or book an appointment. The assignment folder contains browser verification evidence and a page-by-page requirement map.

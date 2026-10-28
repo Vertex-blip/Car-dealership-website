@@ -1,0 +1,85 @@
+/* Assignment 5 additions. The original Assignment 3 styles.css is unchanged. */
+.task-eyebrow {
+  color: #8c4a21;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+#readMoreContent {
+  display: none;
+}
+
+#inventoryGrid .col {
+  min-width: 0;
+}
+
+.inquiry-panel {
+  background: #fff;
+}
+
+.inquiry-steps {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.5rem;
+  padding: 0 0 1rem;
+  border-bottom: 1px solid #e3ddd3;
+  color: var(--apex-muted);
+  list-style: none;
+}
+
+.inquiry-steps [aria-current="step"] {
+  color: #77472b;
+  font-weight: 700;
+}
+
+.inquiry-summary > div {
+  display: grid;
+  grid-template-columns: minmax(100px, 1fr) 2fr;
+  gap: 1rem;
+  padding: 0.65rem 0;
+  border-bottom: 1px solid #e3ddd3;
+}
+
+.inquiry-summary dt {
+  color: var(--apex-muted);
+  font-weight: 500;
+}
+
+.inquiry-summary dd {
+  margin: 0;
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+}
+
+.invalid-feedback:not(:empty) {
+  display: block;
+}
+
+.form-control.is-invalid,
+.form-select.is-invalid {
+  border-color: #b02a37;
+}
+
+#inquirySuccess:focus {
+  outline: 3px solid #b8784c;
+  outline-offset: 3px;
+}
+
+body {
+  transition: background-color 0.3s ease;
+}
+
+@media (max-width: 575.98px) {
+  .inquiry-summary > div {
+    grid-template-columns: 1fr;
+    gap: 0.2rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body {
+    transition: none;
+  }
+}
