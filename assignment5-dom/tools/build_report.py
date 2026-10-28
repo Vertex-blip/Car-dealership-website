@@ -28,6 +28,8 @@ FONTS = Path("C:/Windows/Fonts")
 for family, filename in [("Arial", "arial.ttf"), ("ArialBold", "arialbd.ttf"),
                          ("Georgia", "georgia.ttf"), ("Consolas", "consola.ttf")]:
     pdfmetrics.registerFont(TTFont(family, str(FONTS / filename)))
+pdfmetrics.registerFontFamily("Arial", normal="Arial", bold="ArialBold",
+                             italic="Arial", boldItalic="ArialBold")
 
 INK = colors.HexColor("#17191c")
 NAVY = colors.HexColor("#1d2b3a")
@@ -176,7 +178,7 @@ def build():
     c = canvas.Canvas(str(OUTPUT), pagesize=A4)
     c.setTitle("Apex Motors - Assignment 5: JavaScript and DOM Manipulation")
     c.setAuthor("Team Apex Motors - SE-2507")
-    c.setSubject("Continuation of Assignment 3, implementation steps, code and webpage evidence")
+    c.setSubject("Single-page HTML, CSS and JavaScript project: implementation steps and evidence")
 
     base(c, 1, "")
     c.drawImage(str(ROOT / "images/apex-motors-logo.png"), MARGIN, H - 118,
@@ -188,19 +190,19 @@ def build():
     c.setFont("Georgia", 30)
     c.drawString(MARGIN, H - 189, "JavaScript and DOM")
     c.drawString(MARGIN, H - 225, "Manipulation.")
-    y = paragraph(c, "Continue the Assignment 3 website with DOM updates, event handling, "
+    y = paragraph(c, "A single-page dealership with DOM updates, event handling, "
                      "objects, arrays, callbacks, sound and animation.", MARGIN, H - 244,
                   style=LEAD) - 20
     image_box(c, SHOTS / "report-home-hero.png", MARGIN, y, WIDTH, 200,
-              "The updated home page keeps the original Bootstrap layout and vehicle hero.")
+              "The home page retains the cream/copper design and full-width vehicle hero.")
     y -= 231
     y = paragraph(c, "<b>Team:</b> Apex Motors &nbsp;&nbsp; <b>Group:</b> SE-2507<br/>"
                      "<b>Members:</b> Arsen, Kuttibay, Farabi, Muhammad<br/>"
                      "<b>Prepared:</b> 28 October 2026<br/>"
-                     "<b>Build:</b> Bootstrap 5.3.3 and separate HTML, CSS and JavaScript", MARGIN, y) - 14
-    y = paragraph(c, "<b>Objective.</b> Add the required JavaScript features to the team's existing "
-                     "eight-page dealership site while retaining its navigation, colours, components "
-                     "and photographs.", MARGIN, y) - 12
+                     "<b>Build:</b> HTML, custom CSS and three JavaScript files", MARGIN, y) - 14
+    y = paragraph(c, "<b>Objective.</b> Build a single-page dealership site with all required JavaScript "
+                     "interactions directly available on the main page. Keep the team's familiar "
+                     "colours, vehicle hero, cards and photographs.", MARGIN, y) - 12
     y = paragraph(c, f'<b>Website:</b> <link href="{SITE}" color="#77472b">{SITE}</link><br/>'
                      f'<b>Repository:</b> <link href="{REPO}" color="#77472b">{REPO}</link>',
                   MARGIN, y, style=SMALL)
@@ -227,20 +229,20 @@ def build():
 
     # Source markers below are checked against the final scripts before generation.
     feature(c, 2, "01 · DOM manipulation and styling", "DOM updates and styling",
-            "The brief offers several alternatives. This project uses Read More for content visibility "
-            "and a direct background-colour change for dynamic styling.",
+            "Our approach contains Read More for the content-visibility option. Interactive tools "
+            "provides a direct background-colour change for the dynamic-styling option.",
             ["Select the Read More button and extra text; attach a click listener.",
              "Change style.display and the button state to reveal or hide the extra content.",
              "Cycle a small array of colours and assign the selected colour to body.style.backgroundColor."],
-            [("page-story-expanded.png", "Home: additional content revealed."),
-             ("page-background.png", "Buttons: background changed by JavaScript.")],
-            "dom-style", [("js/site.js", "style.display", 9, 3),
+            [("page-story-expanded.png", "Our approach: additional content revealed."),
+             ("page-background.png", "Interactive tools: background changed by JavaScript.")],
+            "dom-style", [("js/site.js", "readMoreContent.style.display = expanded", 9, 3),
                           ("js/site.js", "style.backgroundColor", 8, 4)],
             web_height=195, code_height=255)
 
     feature(c, 3, "02 · Data structures", "Objects, arrays and vehicle cards",
-            "The three existing inventory cards are generated from structured vehicle data. "
-            "The Bootstrap card layout and original photographs are retained.",
+            "The three inventory cards are generated from structured vehicle data. "
+            "The familiar square card design and original photographs are retained.",
             ["Store each vehicle's name, category, photo and description in an object with a label method.",
              "Keep the vehicle objects in an array and create DOM cards in an explicit for...of loop.",
              "Read object properties and insert content with textContent rather than user-written HTML."],
@@ -262,13 +264,13 @@ def build():
             web_height=210, code_height=250)
 
     feature(c, 5, "04 · Event handling", "Button and keyboard events",
-            "The shared eight-link menu keeps normal link behaviour and adds the required arrow-key "
+            "The five navigation links lead to sections on this page and support the required arrow-key "
             "focus movement. Buttons also update the page through event listeners.",
             ["Select the navigation links and register a keydown listener on the menu.",
              "Detect arrow keys, calculate the next or previous index with wraparound, and focus that link.",
              "Use the time button's click callback to show a newly formatted current time."],
             [("page-keyboard.png", "A menu link receives keyboard focus."),
-             ("page-buttons-sound.png", "Buttons: working time and sound actions.")],
+             ("page-buttons-sound.png", "Interactive tools: working time and sound actions.")],
             "events", [("js/site.js", "keydown", 11, 0),
                        ("js/site.js", "links[next].focus", 3, 1),
                        ("js/site.js", "toLocaleTimeString", 5, 2)],
@@ -304,20 +306,20 @@ def build():
             ["Load one Audio player and start it only after the notification button is clicked.",
              "Pause and rewind the player before each playback; report playback failures clearly.",
              "Animate content, inventory or form changes and respect the reduced-motion preference."],
-            [("page-buttons-sound.png", "Buttons: user-triggered notification sound and feedback.")],
+            [("page-buttons-sound.png", "Interactive tools: user-triggered notification sound and feedback.")],
             "sound-animation", [("js/site.js", "new Audio", 12, 0),
                                 ("js/site.js", "prefers-reduced-motion", 9, 2)],
             web_height=205, code_height=255)
 
-    feature(c, 9, "08 · Structure and user experience", "The same eight-page website",
-            "HTML, CSS and JavaScript are kept separate. The original responsive pages, team photos, "
-            "card layout, carousel, colours and shared navigation continue from Assignment 3.",
-            ["Load the local Bootstrap files, shared stylesheet and external deferred scripts.",
-             "Retain labels, alternative text, visible focus, a skip link and the mobile collapse menu.",
-             "Check all eight pages and the four original team portraits at desktop and phone widths."],
+    feature(c, 9, "08 · Structure and user experience", "One page, separate source files",
+            "HTML, CSS and JavaScript are kept separate. All required features share one main page. "
+            "The colour palette, hero, square cards and photographs continue the team's earlier design.",
+            ["Link the custom stylesheet and three external deferred scripts from index.html.",
+             "Use section anchors, visible labels, alternative text, keyboard focus and a custom mobile menu.",
+             "Check every interaction and the four original team portraits at desktop and phone widths."],
             [("page-team.png", "The same four team members and portraits."),
-             ("page-mobile.png", "Original responsive layout at phone width.")],
-            "structure", [("index.html", "vendor/", 8, 0),
+             ("page-mobile.png", "Responsive main page at phone width.")],
+            "structure", [("index.html", "styles.css", 8, 0),
                           ("styles.css", "--apex-ink", 9, 1)],
             web_height=205, code_height=230)
 
@@ -330,7 +332,8 @@ def build():
     live_path = ROOT / "test-results-live.json"
     if live_path.is_file():
         live = json.loads(live_path.read_text(encoding="utf-8-sig"))
-        y = paragraph(c, "<b>Live verification.</b> " + result_text(live), MARGIN, y) - 13
+        live_summary = result_text(live).removeprefix("Recorded verification: ")
+        y = paragraph(c, "<b>Live verification.</b> " + live_summary, MARGIN, y) - 13
     deployment_path = ROOT / "deployment.json"
     if not deployment_path.is_file():
         deployment_path = ROOT / "reportdeploy.json"
@@ -345,17 +348,17 @@ def build():
         ("DOM and styling", "Read More visibility, dynamic inventory text, result counts and background colour."),
         ("Events and data", "Click listeners, arrow-key focus, object methods, arrays, loops, filter and switch."),
         ("Inquiry", "Invalid values, Next and Back, retained values, review, confirmation and reset."),
-        ("Sound, motion and layout", "Actual audio playback, repeated-click restart, transitions, offline assets and responsive pages.")
+        ("Sound, motion and layout", "Actual audio playback, repeated-click restart, transitions, offline assets and responsive sections.")
     ]:
         y = paragraph(c, f"<b>{heading}.</b> {detail}", MARGIN, y) - 10
-    y = paragraph(c, "<b>Challenges and solutions.</b> A continuation needs to keep existing layout rules "
-                     "while adding state changes. The scripts target small components and keep the Bootstrap "
-                     "markup. Form steps can hide invalid controls, so validation identifies and focuses the "
+    y = paragraph(c, "<b>Challenges and solutions.</b> Keeping the familiar visual design while making all "
+                     "features visible on one page requires clear sections and reusable CSS rules. The scripts "
+                     "target each interactive component. Form steps can hide invalid controls, so validation identifies and focuses the "
                      "correct field before advancing. Repeated sound clicks are handled by restarting one player.",
                   MARGIN, y - 3) - 14
     y = paragraph(c, "<b>Reflection.</b> Reusable functions and structured vehicle data make the added features "
-                     "easier to understand and change. Keeping the original pages also makes the connection "
-                     "between Assignments 3 and 5 clear. The inquiry remains an honest local demonstration.",
+                     "easier to understand and change. A single main page also makes the required interactions "
+                     "easy to find. The inquiry remains an honest local demonstration.",
                   MARGIN, y) - 14
     y = paragraph(c, "<b>Defense and submission.</b> Every member should explain the code and practise a small "
                      "change. The defense is worth 40%. Each student submits the PDF and ZIP individually and "

@@ -1,11 +1,11 @@
 {
   "site_url": "https://vertex-blip.github.io/Car-dealership-website/assignment5-dom/",
-  "application_commit": "7539d5edb9bc29479600e0ae57a1da91a432f400",
-  "workflow_id": 40739785068,
-  "workflow_url": "https://github.com/Vertex-blip/Car-dealership-website/actions/runs/40739785068",
+  "application_commit": "4646afcff20ccb9ebcaa4f92d27460d9889b9cc2",
+  "workflow_id": 40744013953,
+  "workflow_url": "https://github.com/Vertex-blip/Car-dealership-website/actions/runs/40744013953",
   "workflow_conclusion": "success",
   "http_status": 200,
-  "live_checks": 139,
-  "live_passed": 139,
-  "summary": "Application commit 7539d5e was pushed to the shared main branch. GitHub Pages workflow 40739785068 completed successfully. The updated Bootstrap website returned HTTP 200 with the original Assignment 3 heading and local assets. All 139 checks passed on the published site, including all eight pages and desktop/mobile layouts, with zero JavaScript or resource errors."
+  "live_checks": 77,
+  "live_passed": 77,
+  "summary": "Application commit 4646afc was pushed to the shared main branch. GitHub Pages workflow 40744013953 completed successfully. The standalone HTML/CSS/JavaScript page returned HTTP 200. All 77 live browser checks passed, including filtering, keyboard navigation, multi-step inquiry, audio, animations and narrow-screen layouts. No framework resources, external dependencies, JavaScript errors or missing resources were recorded."
 }

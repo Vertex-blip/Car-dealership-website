@@ -2,31 +2,31 @@
 
 Team Apex Motors | SE-2507 | Arsen, Kuttibay, Farabi, Muhammad
 
-The target is Assignment 5. The website continues the same eight-page Assignment 3 project and its existing appearance.
+The site uses one `index.html`, a custom stylesheet and three JavaScript files. Its visual design continues the team's Assignment 3 theme. All required interactions are directly available on this page.
 
-| Requirement | Where it is implemented |
+| Requirement | Implementation and location |
 | --- | --- |
-| Continue the previous project with the same team and theme | Eight original pages, shared Bootstrap navbar/footer, original colours, layout and photographs |
-| Select individual and grouped DOM elements | External scripts use `querySelector`, `querySelectorAll`, and element references |
-| Change content dynamically | Filtered inventory, result count, current-time output, inquiry summary and confirmation |
-| Modify styles directly OR day/night switch | Background button on `buttons.html` changes `document.body.style.backgroundColor` |
-| Choose one content/attribute option | Read More on `index.html` changes the extra content's `style.display` |
-| Button listeners | Read More, category, time, sound, background and form buttons use `addEventListener` |
-| Keyboard events and arrow-key menu navigation | Shared navbar links move focus using arrows, with wraparound |
-| Callback interaction: asynchronous form OR multi-step form | Three-step inquiry passes the step-display function as a callback and retains values on Back |
-| Meaningful `switch` statement | Inventory category filtering: all, touring, performance, adventure |
-| Objects and methods | Vehicle objects hold the displayed data and an object method returns a label |
-| Arrays and explicit loops | Vehicle collection is an array; an explicit `for...of` loop creates cards |
-| Higher-order functions | `filter` selects matching vehicles; callbacks and `forEach` process collections |
-| User-triggered sound with no overlapping clips | Buttons page uses one reusable audio player, paused and rewound before playback |
-| Event-triggered animation | Inventory and content/form state changes use transitions or transforms; reduced-motion preference is respected |
-| HTML, CSS and JS separated | Original `styles.css`, separate `enhancements.css`, and external scripts; no inline event handlers or custom inline script blocks |
-| Readable, reusable code | Named functions separate rendering, category selection, validation, step changes and sound |
-| Theme integration and positive UX | Existing dealership site, working navigation, responsive cards, labels, feedback and keyboard focus |
-| Commit, push and deploy | Application commit `7539d5e`, successful GitHub Pages workflow `40739785068`, HTTP 200 and 139/139 live checks; recorded in the report |
-| PDF report | Team/group, objective, step-by-step tasks, actual code and resulting page screenshots, reflection and website URL |
-| ZIP archive | Standalone project with local Bootstrap, images, sound, styles, scripts, report and evidence |
-| Individual submission and defense | Each member submits PDF/ZIP and explains the work during the practice lesson |
+| Continue the same team and project theme | Apex Motors colours, hero, cards, vehicle photographs and four team portraits |
+| Select individual and grouped DOM elements | External scripts use element selectors and grouped navigation/category buttons |
+| Update content dynamically | `#inventory` cards/count, `#interactive-tools` time/status, `#inquiry` review and confirmation |
+| Modify styles directly OR use a day/night switch | Background button in `#interactive-tools` changes `document.body.style.backgroundColor` |
+| Choose one content/attribute option | Read More in `#about` (Our approach) changes extra content's `style.display` |
+| Button event listeners | Read More, category, time, sound, background and inquiry controls use `addEventListener` |
+| Keyboard events and arrow-key menu navigation | The five anchor links support arrow-key focus movement with wraparound |
+| Callback interaction: asynchronous OR multi-step form | `#inquiry` uses a three-step callback flow; Back retains the input values |
+| Meaningful `switch` statement | `#inventory` category matching: all, touring, performance, adventure |
+| Objects and methods | Vehicle objects hold card information and a method returns the displayed category/year label |
+| Arrays and explicit loops | Three vehicles are stored in an array; `for...of` creates cards |
+| Higher-order functions | `filter` receives a category predicate; `forEach` handles collections and listeners |
+| User-triggered sound without overlap | `#interactive-tools` uses one audio player, paused and rewound before playback |
+| Event-triggered animation | Inventory, content and form changes animate; reduced-motion preferences are respected |
+| Separate HTML, CSS and JS | One HTML file, one custom stylesheet and three external deferred scripts |
+| Readable, reusable functions and variables | Data, card rendering, category matching, validation, navigation, feedback and sound logic are separated |
+| Relevant theme and intuitive UX | Dealership collection, inquiry, visible controls, labels, feedback, keyboard focus and responsive navigation |
+| Commit, push and deploy | Application commit `4646afc`, successful GitHub Pages workflow `40744013953`, HTTP 200 and 77/77 live checks; recorded in the report |
+| PDF report | Objective, team/group, step-by-step tasks, actual code and resulting-page screenshots, reflection and URL |
+| ZIP archive | Standalone project with HTML, CSS, JS, local assets, report and evidence |
+| Individual submission and defense | Each student submits PDF/ZIP and explains the implementation during the practice lesson |
 
 ## Evaluation
 
