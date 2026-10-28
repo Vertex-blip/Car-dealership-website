@@ -19,6 +19,16 @@
   ];
   let currentStep = 0;
 
+  // The cards and inquiry choices share one vehicle array, so new listings stay in sync.
+  const vehicleOptions = document.createDocumentFragment();
+  for (const vehicle of window.Apex.vehicles) {
+    const option = document.createElement('option');
+    option.value = vehicle.id;
+    option.textContent = vehicle.name;
+    vehicleOptions.append(option);
+  }
+  vehicleSelect.append(vehicleOptions);
+
   function replyByPhone() {
     return form.querySelector('input[name="replyMethod"]:checked')?.value === 'phone';
   }

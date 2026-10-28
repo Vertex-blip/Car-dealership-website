@@ -16,6 +16,22 @@ const fileMode = entry.startsWith('file:');
 const capture = process.env.CAPTURE_EVIDENCE === '1' || (process.env.CAPTURE_EVIDENCE !== '0' && channel === 'chrome' && !fileMode);
 const screenshots = path.join(project, 'screenshots');
 const results = [], errors = [], externalRequests = [], frameworkRequests = [], submissions = [];
+const expectedVehicles = [
+  ['solis', 'Solis GT', 'images/car-01.jpg'],
+  ['meridian', 'Meridian S', 'images/car-02.jpg'],
+  ['atlas', 'Atlas X', 'images/car-03.jpg'],
+  ['camaro', 'Chevrolet Camaro', 'images/car-04.jpg'],
+  ['huracan', 'Lamborghini Huracan', 'images/car-06.jpg'],
+  ['panamera', 'Porsche Panamera', 'images/car-07.jpg'],
+  ['expedition', 'Ford Expedition', 'images/car-08.jpg'],
+  ['laferrari', 'Ferrari LaFerrari', 'images/car-09.jpg']
+];
+const vehicleIds = expectedVehicles.map(([id]) => id);
+const categoryIds = [
+  ['touring', ['solis', 'panamera']],
+  ['performance', ['meridian', 'camaro', 'huracan', 'laferrari']],
+  ['adventure', ['atlas', 'expedition']]
+];
 let browser, page;
 fs.mkdirSync(screenshots, {recursive: true});
 
@@ -154,19 +170,28 @@ async function readyToReview() {
     await page.locator('#readMoreButton').click();
     check('Read less hides the same content', !await page.locator('#readMoreContent').isVisible()
       && await page.locator('#readMoreButton').getAttribute('aria-expanded') === 'false');
-    check('The original three vehicle objects render as named cards',
-      JSON.stringify(await page.locator('.vehicle-card h3').allTextContents()) === JSON.stringify(['Solis GT', 'Meridian S', 'Atlas X']));
+    check('All eight vehicles render in their expected order with named cards and local images',
+      JSON.stringify(await page.locator('.vehicle-card').evaluateAll(cards => cards.map(card => [
+        card.dataset.vehicleId, card.querySelector('h3').textContent.trim(), card.querySelector('img').getAttribute('src')
+      ]))) === JSON.stringify(expectedVehicles));
+    const vehicleChoices = await page.locator('#vehicle option').evaluateAll(options =>
+      options.filter(option => option.value).map(option => ({id: option.value, name: option.textContent.trim()})));
+    const authoredChoices = source.match(/<select\b[^>]*\bid="vehicle"[^>]*>([\s\S]*?)<\/select>/i)?.[1] || '';
+    check('JavaScript supplies all eight inquiry choices with names matching the visible cards',
+      JSON.stringify(vehicleChoices.map(choice => choice.id)) === JSON.stringify(vehicleIds)
+      && JSON.stringify(vehicleChoices.map(choice => choice.name)) === JSON.stringify(await page.locator('.vehicle-card h3').allTextContents())
+      && !/<option\b[^>]*\bvalue="[^"]+"/i.test(authoredChoices));
     await snap('page-inventory.png', '#inventory');
-    for (const [category, id] of [['touring', 'solis'], ['performance', 'meridian'], ['adventure', 'atlas']]) {
+    for (const [category, ids] of categoryIds) {
       await page.locator(`[data-category="${category}"]`).click();
-      check(`${category} filters to its matching card with updated count/state`, await page.locator('.vehicle-card').count() === 1
-        && await page.locator('.vehicle-card').getAttribute('data-vehicle-id') === id
-        && (await page.locator('#inventoryCount').textContent()).includes('1 vehicle')
+      check(`${category} shows exactly its matching vehicles with updated count/state`,
+        JSON.stringify(await page.locator('.vehicle-card').evaluateAll(cards => cards.map(card => card.dataset.vehicleId))) === JSON.stringify(ids)
+        && (await page.locator('#inventoryCount').textContent()).includes(`${ids.length} vehicles`)
         && await page.locator(`[data-category="${category}"]`).getAttribute('aria-pressed') === 'true');
     }
     await snap('page-inventory-filtered.png', '#inventory');
     await page.locator('[data-category="all"]').click();
-    check('All vehicles restores all cards with an event-triggered animation', await page.locator('.vehicle-card').count() === 3
+    check('All vehicles restores all cards with an event-triggered animation', await page.locator('.vehicle-card').count() === 8
       && await page.locator('#inventoryGrid').evaluate(element => element.getAnimations().length > 0));
     await page.waitForFunction(() => document.getElementById('inventoryGrid').getAnimations().length === 0);
     await page.emulateMedia({reducedMotion: 'reduce'});
@@ -356,7 +381,7 @@ async function readyToReview() {
     await visit();
     const save = id => page.locator(`[data-save-vehicle="${id}"]`);
     check('Each JavaScript-rendered card has an accessible unselected Save button',
-      await page.locator('[data-save-vehicle]').count() === 3
+      await page.locator('[data-save-vehicle]').count() === 8
       && await save('solis').getAttribute('aria-pressed') === 'false'
       && (await save('solis').getAttribute('aria-label')).includes('Solis GT'));
     await save('solis').focus();
@@ -408,7 +433,7 @@ async function readyToReview() {
     check('Removed favourites stay removed after a reload', await page.locator('.vehicle-card').count() === 0
       && await page.locator('#savedCount').textContent() === '0');
     await page.locator('#savedOnlyButton').click();
-    check('Turning Saved off restores the complete inventory', await page.locator('.vehicle-card').count() === 3);
+    check('Turning Saved off restores the complete inventory', await page.locator('.vehicle-card').count() === 8);
     await save('atlas').click();
     await page.locator('#savedOnlyButton').click();
     for (const width of [320, 390]) {
@@ -427,7 +452,7 @@ async function readyToReview() {
     });
     await page.locator('[data-category="all"]').click();
     check('JavaScript builds new cards from array data and calls the object method at runtime',
-      await page.locator('.vehicle-card').count() === 4
+      await page.locator('.vehicle-card').count() === 9
       && await page.locator('[data-vehicle-id="audit-car"] h3').textContent() === 'Runtime object example'
       && await page.locator('[data-vehicle-id="audit-car"] .vehicle-label').textContent() === 'Runtime method result');
     await page.evaluate(() => { Apex.vehicles.pop(); });
@@ -442,7 +467,7 @@ async function readyToReview() {
       await page.evaluate(value => localStorage.setItem('apex-motors-saved-vehicles', value), stored);
       await visit();
       check(`Stored ${label} is handled without breaking inventory`,
-        await page.locator('.vehicle-card').count() === 3
+        await page.locator('.vehicle-card').count() === 8
         && await page.locator('#savedCount').textContent() === String(expected));
     }
     await page.evaluate(() => localStorage.removeItem('apex-motors-saved-vehicles'));
@@ -464,9 +489,40 @@ async function readyToReview() {
         && /reload|next visit/.test(await restricted.locator('#savedStatus').textContent()));
       await restricted.locator('[data-category="touring"]').click();
       check(`Category filtering still works after a storage ${failure} failure`,
-        await restricted.locator('.vehicle-card').count() === 1);
+        JSON.stringify(await restricted.locator('.vehicle-card').evaluateAll(cards => cards.map(card => card.dataset.vehicleId)))
+          === JSON.stringify(['solis', 'panamera']));
       await restricted.close();
     }
+
+    // Every new listing must work through the same inquiry flow as the originals.
+    for (const [id, name] of expectedVehicles.slice(3)) {
+      await visit();
+      await page.locator(`[data-inquire="${id}"]`).click();
+      const selectedFromCard = await page.locator('#vehicle').inputValue() === id
+        && new URL(page.url()).hash === '#inquiry';
+      await startContact();
+      await page.locator('#nextStep').click();
+      check(`${name} can be selected from its card and appears by name in the inquiry review`,
+        selectedFromCard && await page.locator('[data-inquiry-step="2"]').isVisible()
+        && await page.locator('#inquirySummary').evaluate((summary, expected) =>
+          [...summary.querySelectorAll('.summary-row')].some(row =>
+            row.querySelector('dt').textContent === 'Vehicle' && row.querySelector('dd').textContent === expected), name));
+    }
+    await visit();
+    await save('laferrari').click();
+    await visit();
+    await page.locator('#savedOnlyButton').click();
+    check('A newly added Ferrari remains saved after reload and is the only Saved result',
+      JSON.stringify(await page.locator('.vehicle-card').evaluateAll(cards => cards.map(card => card.dataset.vehicleId)))
+        === JSON.stringify(['laferrari'])
+      && await save('laferrari').getAttribute('aria-pressed') === 'true'
+      && await page.locator('#savedCount').textContent() === '1');
+    await page.locator('[data-inquire="laferrari"]').click();
+    await startContact();
+    await page.locator('#nextStep').click();
+    check('The saved Ferrari inquiry retains its vehicle selection through review',
+      await page.locator('#vehicle').inputValue() === 'laferrari'
+      && (await page.locator('#inquirySummary').textContent()).includes('Ferrari LaFerrari'));
     check('No external or framework network resources are requested', externalRequests.length === 0 && frameworkRequests.length === 0,
       [...externalRequests, ...frameworkRequests].join('\n'));
     check('All interactions complete without JavaScript or missing-resource errors', errors.length === 0, errors.join('\n'));

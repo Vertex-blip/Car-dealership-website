@@ -11,7 +11,7 @@
     };
   }
 
-  // Keep the three original Assignment 3 cards and their local photographs.
+  // Keep the original three listings and extend the collection with local photographs.
   const vehicles = [
     createVehicle('solis', 'Solis GT', 'touring', 'Grand touring', 2024,
       'images/car-01.jpg', 'Black sedan driving along a tree-lined road',
@@ -21,7 +21,22 @@
       'A serene, driver-focused cabin wrapped in a clean, confident silhouette.'),
     createVehicle('atlas', 'Atlas X', 'adventure', 'Adventure', 2023,
       'images/car-03.jpg', 'White fastback car parked in a dimly lit garage',
-      'A roomy, all-weather companion with space for family and a little more gear.')
+      'A roomy, all-weather companion with space for family and a little more gear.'),
+    createVehicle('camaro', 'Chevrolet Camaro', 'performance', 'Performance', 2018,
+      'images/car-04.jpg', 'Turquoise Chevrolet Camaro coupe parked in a desert landscape',
+      'Bold coupe styling and an athletic stance for a drive that feels like an occasion.'),
+    createVehicle('huracan', 'Lamborghini Huracan', 'performance', 'Performance', 2017,
+      'images/car-06.jpg', 'Yellow Lamborghini Huracan on a tree-lined street',
+      'A low-slung silhouette and unmistakable presence for your next memorable drive.'),
+    createVehicle('panamera', 'Porsche Panamera', 'touring', 'Grand touring', 2018,
+      'images/car-07.jpg', 'Rear view of a black Porsche Panamera on a road',
+      'Elegant four-door proportions with the character for a rewarding long-distance journey.'),
+    createVehicle('expedition', 'Ford Expedition', 'adventure', 'Adventure', 2019,
+      'images/car-08.jpg', 'White Ford Expedition SUV in a rocky desert landscape',
+      'A spacious SUV with a confident stance and room for your next family adventure.'),
+    createVehicle('laferrari', 'Ferrari LaFerrari', 'performance', 'Performance', 2015,
+      'images/car-09.jpg', 'Red Ferrari LaFerrari displayed in a showroom',
+      'Sculpted bodywork and dramatic proportions make every arrival feel special.')
   ];
 
   const animations = new WeakMap();
