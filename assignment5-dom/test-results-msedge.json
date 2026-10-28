@@ -1,243 +1,713 @@
 {
   "target": "http://127.0.0.1:8765/assignment5-dom/",
   "channel": "msedge",
-  "viewport": "1440x1000 and 390x844",
-  "checks": 47,
-  "passed": 47,
+  "fileMode": false,
+  "viewports": [
+    320,
+    390,
+    641,
+    768,
+    992,
+    1440
+  ],
+  "checks": 139,
+  "passed": 139,
   "errors": [],
+  "externalRequests": [],
+  "submissions": [],
   "results": [
     {
-      "label": "Six vehicles render from the local data collection",
+      "label": "The original Assignment 3 stylesheet is preserved byte for byte",
       "passed": true,
       "detail": ""
     },
     {
-      "label": "All eagerly loaded images have valid pixels",
+      "label": "index.html: all eight original navigation links remain",
       "passed": true,
       "detail": ""
     },
     {
-      "label": "Desktop page has no horizontal overflow",
+      "label": "index.html: group and all four team members remain",
       "passed": true,
       "detail": ""
     },
     {
-      "label": "ArrowRight moves menu focus forward",
+      "label": "index.html: all local images decode",
       "passed": true,
       "detail": ""
     },
     {
-      "label": "ArrowLeft wraps menu focus to the last item",
+      "label": "index.html: authored HTML has no inline scripts, styles or event attributes",
       "passed": true,
       "detail": ""
     },
     {
-      "label": "Home focuses the first menu item",
+      "label": "index.html: no clipped content or horizontal overflow at 320px",
       "passed": true,
       "detail": ""
     },
     {
-      "label": "Category filter produces a smaller nonempty selection",
+      "label": "index.html: no clipped content or horizontal overflow at 390px",
       "passed": true,
       "detail": ""
     },
     {
-      "label": "Filtering triggers an element animation",
+      "label": "index.html: no clipped content or horizontal overflow at 641px",
       "passed": true,
       "detail": ""
     },
     {
-      "label": "Search combines with category to show an honest empty state",
+      "label": "index.html: no clipped content or horizontal overflow at 768px",
       "passed": true,
       "detail": ""
     },
     {
-      "label": "Reset filters restores the entire collection",
+      "label": "index.html: no clipped content or horizontal overflow at 992px",
       "passed": true,
       "detail": ""
     },
     {
-      "label": "Price ascending sorts the actual rendered listings",
+      "label": "index.html: no clipped content or horizontal overflow at 1440px",
       "passed": true,
       "detail": ""
     },
     {
-      "label": "Price descending reverses the listing order",
+      "label": "typography-cards.html: all eight original navigation links remain",
       "passed": true,
       "detail": ""
     },
     {
-      "label": "Saved-only filter contains the saved vehicle",
+      "label": "typography-cards.html: group and all four team members remain",
       "passed": true,
       "detail": ""
     },
     {
-      "label": "Removing the last saved vehicle updates the empty state",
+      "label": "typography-cards.html: all local images decode",
       "passed": true,
       "detail": ""
     },
     {
-      "label": "Vehicle details open in a modal dialog",
+      "label": "typography-cards.html: authored HTML has no inline scripts, styles or event attributes",
       "passed": true,
       "detail": ""
     },
     {
-      "label": "Thumbnail changes the main image source and meaningful alt",
+      "label": "typography-cards.html: no clipped content or horizontal overflow at 320px",
       "passed": true,
       "detail": ""
     },
     {
-      "label": "Escape closes the dialog",
+      "label": "typography-cards.html: no clipped content or horizontal overflow at 390px",
       "passed": true,
       "detail": ""
     },
     {
-      "label": "Theme control changes the page theme",
+      "label": "typography-cards.html: no clipped content or horizontal overflow at 641px",
       "passed": true,
       "detail": ""
     },
     {
-      "label": "Rating selection updates four stars and the status",
+      "label": "typography-cards.html: no clipped content or horizontal overflow at 768px",
       "passed": true,
       "detail": ""
     },
     {
-      "label": "Rating reset clears the selected stars",
+      "label": "typography-cards.html: no clipped content or horizontal overflow at 992px",
       "passed": true,
       "detail": ""
     },
     {
-      "label": "Selected theme survives a page reload",
+      "label": "typography-cards.html: no clipped content or horizontal overflow at 1440px",
       "passed": true,
       "detail": ""
     },
     {
-      "label": "Read more reveals extra story content",
+      "label": "grid-spacing.html: all eight original navigation links remain",
       "passed": true,
       "detail": ""
     },
     {
-      "label": "Read more closes the extra content",
+      "label": "grid-spacing.html: group and all four team members remain",
       "passed": true,
       "detail": ""
     },
     {
-      "label": "FAQs begin collapsed",
+      "label": "grid-spacing.html: all local images decode",
       "passed": true,
       "detail": ""
     },
     {
-      "label": "FAQ click reveals its associated answer",
+      "label": "grid-spacing.html: authored HTML has no inline scripts, styles or event attributes",
       "passed": true,
       "detail": ""
     },
     {
-      "label": "Time button displays a formatted current time",
+      "label": "grid-spacing.html: no clipped content or horizontal overflow at 320px",
       "passed": true,
       "detail": ""
     },
     {
-      "label": "Live date and time advances",
+      "label": "grid-spacing.html: no clipped content or horizontal overflow at 390px",
       "passed": true,
       "detail": ""
     },
     {
-      "label": "User click decodes and starts actual audio playback",
+      "label": "grid-spacing.html: no clipped content or horizontal overflow at 641px",
       "passed": true,
       "detail": ""
     },
     {
-      "label": "Rapid clicks reuse one audio player without overlapping clips",
+      "label": "grid-spacing.html: no clipped content or horizontal overflow at 768px",
       "passed": true,
       "detail": ""
     },
     {
-      "label": "Sound button supplies playback feedback",
+      "label": "grid-spacing.html: no clipped content or horizontal overflow at 992px",
       "passed": true,
       "detail": ""
     },
     {
-      "label": "All four supplied team portraits decode successfully",
+      "label": "grid-spacing.html: no clipped content or horizontal overflow at 1440px",
       "passed": true,
       "detail": ""
     },
     {
-      "label": "Invalid first step is blocked and identifies errors",
+      "label": "carousel.html: all eight original navigation links remain",
       "passed": true,
       "detail": ""
     },
     {
-      "label": "Valid vehicle and date advance to contact step",
+      "label": "carousel.html: group and all four team members remain",
       "passed": true,
       "detail": ""
     },
     {
-      "label": "Empty contact inputs are rejected",
+      "label": "carousel.html: all local images decode",
       "passed": true,
       "detail": ""
     },
     {
-      "label": "Email, short password and mismatched confirmation are rejected",
+      "label": "carousel.html: authored HTML has no inline scripts, styles or event attributes",
       "passed": true,
       "detail": ""
     },
     {
-      "label": "Back navigation preserves the date and car",
+      "label": "carousel.html: no clipped content or horizontal overflow at 320px",
       "passed": true,
       "detail": ""
     },
     {
-      "label": "Returning to contact preserves entered values",
+      "label": "carousel.html: no clipped content or horizontal overflow at 390px",
       "passed": true,
       "detail": ""
     },
     {
-      "label": "Review shows safe summary with no password",
+      "label": "carousel.html: no clipped content or horizontal overflow at 641px",
       "passed": true,
       "detail": ""
     },
     {
-      "label": "Review requires consent before completion",
+      "label": "carousel.html: no clipped content or horizontal overflow at 768px",
       "passed": true,
       "detail": ""
     },
     {
-      "label": "Successful demo completes without page reload",
+      "label": "carousel.html: no clipped content or horizontal overflow at 992px",
       "passed": true,
       "detail": ""
     },
     {
-      "label": "Sensitive password fields clear after completion",
+      "label": "carousel.html: no clipped content or horizontal overflow at 1440px",
       "passed": true,
       "detail": ""
     },
     {
-      "label": "Book again returns to a blank first step",
+      "label": "bootstrap-cards.html: all eight original navigation links remain",
       "passed": true,
       "detail": ""
     },
     {
-      "label": "Reset clears the currently entered form values",
+      "label": "bootstrap-cards.html: group and all four team members remain",
       "passed": true,
       "detail": ""
     },
     {
-      "label": "Mobile menu opens with an expanded state",
+      "label": "bootstrap-cards.html: all local images decode",
       "passed": true,
       "detail": ""
     },
     {
-      "label": "Selecting mobile navigation closes the menu",
+      "label": "bootstrap-cards.html: authored HTML has no inline scripts, styles or event attributes",
       "passed": true,
       "detail": ""
     },
     {
-      "label": "Mobile page has no horizontal overflow",
+      "label": "bootstrap-cards.html: no clipped content or horizontal overflow at 320px",
       "passed": true,
       "detail": ""
     },
     {
-      "label": "No browser JavaScript or missing-resource errors",
+      "label": "bootstrap-cards.html: no clipped content or horizontal overflow at 390px",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "bootstrap-cards.html: no clipped content or horizontal overflow at 641px",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "bootstrap-cards.html: no clipped content or horizontal overflow at 768px",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "bootstrap-cards.html: no clipped content or horizontal overflow at 992px",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "bootstrap-cards.html: no clipped content or horizontal overflow at 1440px",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "buttons.html: all eight original navigation links remain",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "buttons.html: group and all four team members remain",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "buttons.html: all local images decode",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "buttons.html: authored HTML has no inline scripts, styles or event attributes",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "buttons.html: no clipped content or horizontal overflow at 320px",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "buttons.html: no clipped content or horizontal overflow at 390px",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "buttons.html: no clipped content or horizontal overflow at 641px",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "buttons.html: no clipped content or horizontal overflow at 768px",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "buttons.html: no clipped content or horizontal overflow at 992px",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "buttons.html: no clipped content or horizontal overflow at 1440px",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "responsive-form.html: all eight original navigation links remain",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "responsive-form.html: group and all four team members remain",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "responsive-form.html: all local images decode",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "responsive-form.html: authored HTML has no inline scripts, styles or event attributes",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "responsive-form.html: no clipped content or horizontal overflow at 320px",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "responsive-form.html: no clipped content or horizontal overflow at 390px",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "responsive-form.html: no clipped content or horizontal overflow at 641px",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "responsive-form.html: no clipped content or horizontal overflow at 768px",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "responsive-form.html: no clipped content or horizontal overflow at 992px",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "responsive-form.html: no clipped content or horizontal overflow at 1440px",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "team-grid.html: all eight original navigation links remain",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "team-grid.html: group and all four team members remain",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "team-grid.html: all local images decode",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "team-grid.html: authored HTML has no inline scripts, styles or event attributes",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "team-grid.html: no clipped content or horizontal overflow at 320px",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "team-grid.html: no clipped content or horizontal overflow at 390px",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "team-grid.html: no clipped content or horizontal overflow at 641px",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "team-grid.html: no clipped content or horizontal overflow at 768px",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "team-grid.html: no clipped content or horizontal overflow at 992px",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "team-grid.html: no clipped content or horizontal overflow at 1440px",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Homepage keeps the original 66px navbar and 470px full-width hero",
+      "passed": true,
+      "detail": "{\"navHeight\":66,\"heroHeight\":470,\"heroTop\":66,\"background\":\"rgb(245, 240, 231)\",\"radius\":\"0px\",\"button\":\"rgb(154, 96, 58)\",\"heading\":\"Georgia, \\\"Times New Roman\\\", serif\",\"text\":\"Considered cars.Clear decisions.\"}"
+    },
+    {
+      "label": "Homepage keeps the original cream, copper, square cards and Georgia hero",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Menu ArrowRight focuses item 2",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Menu ArrowLeft focuses item 1",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Menu ArrowLeft focuses item 8",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Menu ArrowDown focuses item 1",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Menu ArrowUp focuses item 8",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Menu Home focuses item 1",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Menu End focuses item 8",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Read more begins hidden",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Read more changes display, content visibility and expanded state",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Read less hides the same content again",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "The original three named inventory cards render from objects",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "touring filters to its matching card and updates count/state",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "performance filters to its matching card and updates count/state",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "adventure filters to its matching card and updates count/state",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "All vehicles restores three cards and triggers an entrance animation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Reduced-motion mode disables the JavaScript entrance animation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Ask about this car preselects the matching inquiry vehicle",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Unknown vehicle query parameters are ignored",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Blank contact details block progression with visible field errors",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Short name and invalid email are rejected",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Correcting contact errors clears obsolete validation feedback",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Valid contact details advance to preferences with matching progress",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "A negative budget is rejected",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Zero is accepted as a valid budget",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Phone reply reveals and requires a phone number",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Phone reply blocks an empty phone number",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Phone reply rejects fewer than seven digits",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Email reply hides and disables phone validation cleanly",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Correcting preference errors clears obsolete validation feedback",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Back retains contact data",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Returning to preferences retains every input and checkbox",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Review displays contact, vehicle, decimal budget, reply, test-drive and message values",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Final submission revalidates earlier steps and returns to the invalid field",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Entered markup remains plain text in the review",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Reset from review clears all fields, errors and step state",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "A valid inquiry completes locally without navigation or POST",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Success clears personal contact details and private draft fields",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "New inquiry returns to a blank first step",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Reset from preferences clears a displayed validation error",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Time button updates the designated output with a real formatted time",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "A user click decodes and advances actual local audio",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Rapid sound clicks reuse one player and complete without overlap or errors",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Background button applies Paper directly and updates feedback",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Background button applies Soft blue directly and updates feedback",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Background button applies Cream directly and updates feedback",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "All nine original carousel slides and indicators remain",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Bootstrap carousel next control works",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Bootstrap carousel previous control works",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Bootstrap carousel indicator selects the ninth photograph",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Bootstrap carousel keyboard arrow wraps from last to first",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "All four original team portraits are present and decoded",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Local Bootstrap opens the mobile navigation with correct expanded state",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Arrow navigation also works inside the expanded mobile menu",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Escape closes mobile navigation and restores toggler focus",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "No external network dependencies are requested",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "All pages and interactions complete without JavaScript or resource errors",
       "passed": true,
       "detail": ""
     }

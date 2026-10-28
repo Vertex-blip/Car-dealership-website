@@ -8,11 +8,14 @@ ROOT = Path(__file__).resolve().parents[1]
 OUTPUT = ROOT / "Assignment-5-Project.zip"
 FOLDER = "Apex-Motors-Assignment-5"
 REQUIRED = [
-    "index.html", "styles.css", "js/data.js", "js/inventory.js",
-    "js/experience.js", "js/booking.js", "assets/notification.wav",
+    "index.html", "typography-cards.html", "grid-spacing.html", "carousel.html",
+    "bootstrap-cards.html", "buttons.html", "responsive-form.html", "team-grid.html",
+    "styles.css", "enhancements.css", "js/site.js", "js/inventory.js",
+    "js/booking.js", "assets/chime.wav", "vendor/bootstrap.min.css",
+    "vendor/bootstrap.bundle.min.js", "vendor/LICENSE.bootstrap.txt",
     "Assignment-5-Report.pdf", "README.md", "REQUIREMENTS.md",
     "DEFENSE-GUIDE.md", "screenshots/test-results.json",
-    "test-results-live.json",
+    "test-results-live.json", "deployment.json",
 ]
 
 

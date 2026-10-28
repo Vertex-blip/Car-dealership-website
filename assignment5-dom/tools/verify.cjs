@@ -1,36 +1,85 @@
-/* End-to-end behavior checks. Install Playwright, then run:
-   node tools/verify.cjs [URL] [chrome|msedge]
-   Defaults to the self-contained local index.html file. */
+/* Browser checks for the Assignment 3 continuation.
+   node tools/verify.cjs [base URL] [chrome|msedge]
+   CAPTURE_EVIDENCE=0 disables screenshots; TEST_RESULT_NAME chooses a result filename. */
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
-const { pathToFileURL } = require('node:url');
+const crypto = require('node:crypto');
+const {pathToFileURL} = require('node:url');
 let playwright;
-try {
-  playwright = require('playwright');
-} catch {
-  const bundled = path.join(process.env.USERPROFILE || '', '.cache', 'codex-runtimes',
-    'codex-primary-runtime', 'dependencies', 'node', 'node_modules', 'playwright');
-  playwright = require(bundled);
+try { playwright = require('playwright'); }
+catch {
+  playwright = require(path.join(process.env.USERPROFILE || '', '.cache', 'codex-runtimes',
+    'codex-primary-runtime', 'dependencies', 'node', 'node_modules', 'playwright'));
 }
 const project = path.resolve(__dirname, '..');
-const target = process.argv[2] || pathToFileURL(path.join(project, 'index.html')).href;
+const base = process.argv[2] || pathToFileURL(project + path.sep).href;
 const channel = process.argv[3] || 'chrome';
-const fileMode = target.startsWith('file:');
-const captureEvidence = process.env.CAPTURE_EVIDENCE === '1'
+const fileMode = base.startsWith('file:');
+const capture = process.env.CAPTURE_EVIDENCE === '1'
   || (process.env.CAPTURE_EVIDENCE !== '0' && channel === 'chrome' && !fileMode);
-const evidence = path.join(project, 'screenshots');
-fs.mkdirSync(evidence, { recursive: true });
+const screenshots = path.join(project, 'screenshots');
+const pages = ['index.html', 'typography-cards.html', 'grid-spacing.html', 'carousel.html',
+  'bootstrap-cards.html', 'buttons.html', 'responsive-form.html', 'team-grid.html'];
 const results = [];
 const errors = [];
-const check = (label, passed, detail = '') => {
-  results.push({ label, passed: Boolean(passed), detail });
-  assert.ok(passed, label + (detail ? ': ' + detail : ''));
-};
+const externalRequests = [];
+const submissions = [];
+let browser;
+let page;
+fs.mkdirSync(screenshots, {recursive: true});
+
+function check(label, passed, detail = '') {
+  results.push({label, passed: Boolean(passed), detail});
+  assert.ok(passed, `${label}${detail ? ': ' + detail : ''}`);
+}
+
+async function visit(name) {
+  await page.goto(new URL(name, base).href, {waitUntil: 'load', timeout: 60000});
+  await page.locator('img').evaluateAll(images => Promise.all(images.map(image => image.decode())));
+}
+
+async function snap(name, selector, fullPage = false) {
+  if (!capture) return;
+  if (selector) {
+    const target = page.locator(selector);
+    await target.scrollIntoViewIfNeeded();
+    await target.locator('img').evaluateAll(images => Promise.all(images.map(image => image.decode())));
+    await target.screenshot({path: path.join(screenshots, name), animations: 'disabled'});
+  } else {
+    await page.screenshot({path: path.join(screenshots, name), fullPage, animations: 'disabled'});
+  }
+}
+
+async function hasOverflow() {
+  return page.evaluate(() => {
+    const elements = document.querySelectorAll('h1,h2,h3,p,article,input,select,textarea,button,img,nav .container');
+    return [...elements].filter(element => !element.closest('.visually-hidden,.visually-hidden-focusable'))
+      .some(element => {
+        const rect = element.getBoundingClientRect();
+        return rect.width > 1 && rect.height > 1 && (rect.left < -2 || rect.right > innerWidth + 2);
+      }) || document.documentElement.scrollWidth > innerWidth + 1;
+  });
+}
+
+async function startContact(name = 'Assignment Test', email = 'student@example.com') {
+  await page.locator('#fullName').fill(name);
+  await page.locator('#email').fill(email);
+  await page.locator('#nextStep').click();
+}
+
+async function readyToReview() {
+  await startContact();
+  await page.locator('#vehicle').selectOption('atlas');
+  await page.locator('#budget').fill('18000000');
+  await page.locator('#testDrive').check();
+  await page.locator('#message').fill('A morning visit would be useful.');
+  await page.locator('#nextStep').click();
+}
 
 (async () => {
-  const browser = await playwright.chromium.launch({ channel, headless: true });
-  const context = await browser.newContext({ viewport: { width: 1440, height: 1000 } });
+  browser = await playwright.chromium.launch({channel, headless: true});
+  const context = await browser.newContext({viewport: {width: 1440, height: 1000}});
   await context.addInitScript(() => {
     const NativeAudio = window.Audio;
     window.__createdSounds = [];
@@ -41,190 +90,299 @@ const check = (label, passed, detail = '') => {
     };
     window.Audio.prototype = NativeAudio.prototype;
   });
-  const page = await context.newPage();
+  page = await context.newPage();
   page.on('pageerror', error => errors.push(error.message));
-  page.on('console', entry => { if (entry.type() === 'error') errors.push(entry.text()); });
-  page.on('response', response => {
-    if (response.status() >= 400) errors.push(`${response.status()} ${response.url()}`);
+  page.on('console', entry => {
+    if (entry.type() === 'error') errors.push(`${entry.text()} ${entry.location().url || ''}`.trim());
   });
-  const snap = async (name, selector) => {
-    if (!captureEvidence) return;
-    if (selector) {
-      const element = page.locator(selector);
-      await element.scrollIntoViewIfNeeded();
-      await element.locator('img').evaluateAll(images => Promise.all(images.map(image => {
-        image.loading = 'eager';
-        return image.decode().catch(() => {});
-      })));
-      await element.screenshot({ path: path.join(evidence, name), animations: 'disabled' });
-    } else {
-      await page.screenshot({ path: path.join(evidence, name), animations: 'disabled' });
+  page.on('response', response => { if (response.status() >= 400) errors.push(`${response.status()} ${response.url()}`); });
+  page.on('request', request => {
+    if (request.method() === 'POST') submissions.push(request.url());
+    if (/^https?:/.test(request.url()) && (fileMode || new URL(request.url()).origin !== new URL(base).origin)) {
+      externalRequests.push(request.url());
     }
-  };
+  });
+
   try {
-    await page.goto(target, { waitUntil: 'networkidle' });
-    await page.locator('.vehicle-card').first().waitFor();
-    check('Six vehicles render from the local data collection', await page.locator('.vehicle-card').count() === 6);
-    check('All eagerly loaded images have valid pixels', await page.locator('img:not([loading="lazy"])').evaluateAll(images => images.every(image => !image.getAttribute('src') || image.complete && image.naturalWidth > 0)));
-    check('Desktop page has no horizontal overflow', await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth));
-    await snap('01-home.png');
+    const referenceStyle = path.join(project, '..', 'assignment3-bootstrap', 'styles.css');
+    if (fs.existsSync(referenceStyle)) {
+      const hash = file => crypto.createHash('sha256').update(fs.readFileSync(file)).digest('hex');
+      check('The original Assignment 3 stylesheet is preserved byte for byte',
+        hash(referenceStyle) === hash(path.join(project, 'styles.css')));
+    }
+    for (const name of pages) {
+      await page.setViewportSize({width: 1440, height: 1000});
+      await visit(name);
+      const links = await page.locator('#assignmentNav .nav-link').evaluateAll(items => items.map(item => item.getAttribute('href')));
+      check(`${name}: all eight original navigation links remain`, JSON.stringify(links) === JSON.stringify(pages));
+      const footer = await page.locator('footer').textContent();
+      check(`${name}: group and all four team members remain`, ['SE-2507', 'Arsen', 'Kuttibay', 'Farabi', 'Muhammad'].every(text => footer.includes(text)));
+      check(`${name}: all local images decode`, await page.locator('img').evaluateAll(images => images.every(image => image.naturalWidth > 0)));
+      const source = fs.readFileSync(path.join(project, name), 'utf8');
+      check(`${name}: authored HTML has no inline scripts, styles or event attributes`,
+        !/<script\b(?![^>]*\bsrc\s*=)[^>]*>/i.test(source)
+        && !/<[^>]+\s(?:style|on(?:click|submit|change|keydown|load))\s*=/i.test(source));
+      for (const width of [320, 390, 641, 768, 992, 1440]) {
+        await page.setViewportSize({width, height: width < 500 ? 844 : 1000});
+        check(`${name}: no clipped content or horizontal overflow at ${width}px`, !await hasOverflow());
+      }
+    }
 
-    const links = page.locator('#main-nav a');
-    await links.first().focus();
+    await visit('index.html');
+    const visual = await page.evaluate(() => ({
+      navHeight: document.querySelector('.assignment-navbar').getBoundingClientRect().height,
+      heroHeight: document.querySelector('.hero-panel').getBoundingClientRect().height,
+      heroTop: document.querySelector('.hero-panel').getBoundingClientRect().top,
+      background: getComputedStyle(document.body).backgroundColor,
+      radius: getComputedStyle(document.querySelector('.card')).borderRadius,
+      button: getComputedStyle(document.querySelector('.btn-primary')).backgroundColor,
+      heading: getComputedStyle(document.querySelector('.hero-panel h1')).fontFamily,
+      text: document.querySelector('.hero-panel h1').textContent
+    }));
+    check('Homepage keeps the original 66px navbar and 470px full-width hero',
+      visual.navHeight === 66 && visual.heroHeight === 470 && visual.heroTop === 66, JSON.stringify(visual));
+    check('Homepage keeps the original cream, copper, square cards and Georgia hero',
+      visual.background === 'rgb(245, 240, 231)' && visual.button === 'rgb(154, 96, 58)'
+      && visual.radius === '0px' && visual.heading.includes('Georgia') && visual.text.includes('Considered cars.'));
+    await snap('page-home.png');
+    const nav = page.locator('#assignmentNav .nav-link');
+    await nav.first().focus();
+    for (const [key, expected] of [['ArrowRight', 1], ['ArrowLeft', 0], ['ArrowLeft', 7],
+      ['ArrowDown', 0], ['ArrowUp', 7], ['Home', 0], ['End', 7]]) {
+      await page.keyboard.press(key);
+      check(`Menu ${key} focuses item ${expected + 1}`, await nav.nth(expected).evaluate(element => element === document.activeElement));
+    }
+    await snap('page-keyboard.png');
+    check('Read more begins hidden', !await page.locator('#readMoreContent').isVisible());
+    await page.locator('#readMoreButton').click();
+    check('Read more changes display, content visibility and expanded state',
+      await page.locator('#readMoreContent').isVisible()
+      && await page.locator('#readMoreContent').evaluate(element => element.style.display === 'block')
+      && await page.locator('#readMoreButton').getAttribute('aria-expanded') === 'true');
+    await snap('page-story-expanded.png', 'section[aria-labelledby="assignment-heading"]');
+    await page.locator('#readMoreButton').click();
+    check('Read less hides the same content again', !await page.locator('#readMoreContent').isVisible()
+      && await page.locator('#readMoreButton').getAttribute('aria-expanded') === 'false');
+
+    await visit('bootstrap-cards.html');
+    check('The original three named inventory cards render from objects',
+      JSON.stringify(await page.locator('.vehicle-card h2').allTextContents()) === JSON.stringify(['Solis GT', 'Meridian S', 'Atlas X']));
+    await snap('page-inventory.png', 'main');
+    for (const [category, id] of [['touring', 'solis'], ['performance', 'meridian'], ['adventure', 'atlas']]) {
+      await page.locator(`[data-category="${category}"]`).click();
+      check(`${category} filters to its matching card and updates count/state`,
+        await page.locator('.vehicle-card').count() === 1
+        && await page.locator('.vehicle-card').getAttribute('data-vehicle-id') === id
+        && (await page.locator('#inventoryCount').textContent()).includes('1 vehicle')
+        && await page.locator(`[data-category="${category}"]`).getAttribute('aria-pressed') === 'true');
+    }
+    await snap('page-inventory-filtered.png', 'main');
+    await page.locator('[data-category="all"]').click();
+    check('All vehicles restores three cards and triggers an entrance animation',
+      await page.locator('.vehicle-card').count() === 3
+      && await page.locator('#inventoryGrid').evaluate(element => element.getAnimations().length > 0));
+    await page.waitForFunction(() => document.getElementById('inventoryGrid').getAnimations().length === 0);
+    await page.emulateMedia({reducedMotion: 'reduce'});
+    await page.locator('[data-category="touring"]').click();
+    check('Reduced-motion mode disables the JavaScript entrance animation',
+      await page.locator('#inventoryGrid').evaluate(element => element.getAnimations().length === 0));
+    await page.emulateMedia({reducedMotion: 'no-preference'});
+    await page.locator('.vehicle-card a').click();
+    await page.waitForURL('**/responsive-form.html?vehicle=solis');
+    check('Ask about this car preselects the matching inquiry vehicle', await page.locator('#vehicle').inputValue() === 'solis');
+    await visit('responsive-form.html?vehicle=not-a-car');
+    check('Unknown vehicle query parameters are ignored', await page.locator('#vehicle').inputValue() === '');
+
+    await page.locator('#nextStep').click();
+    check('Blank contact details block progression with visible field errors',
+      await page.locator('[data-inquiry-step="0"]').isVisible()
+      && await page.locator('#fullNameError').isVisible() && await page.locator('#emailError').isVisible()
+      && await page.locator('#fullName').evaluate(element => element === document.activeElement));
+    await snap('page-form-errors.png', '.inquiry-panel');
+    await page.locator('#fullName').fill('A');
+    await page.locator('#email').fill('not-an-email');
+    await page.locator('#nextStep').click();
+    check('Short name and invalid email are rejected', await page.locator('#fullName').getAttribute('aria-invalid') === 'true'
+      && await page.locator('#email').getAttribute('aria-invalid') === 'true');
+    await page.locator('#fullName').fill('Assignment Test');
+    await page.locator('#email').fill('student@example.com');
+    check('Correcting contact errors clears obsolete validation feedback',
+      (await page.locator('#formStatus').textContent()).trim() === '');
+    await snap('page-form-contact.png', '.inquiry-panel');
+    await page.locator('#nextStep').click();
+    check('Valid contact details advance to preferences with matching progress',
+      await page.locator('[data-inquiry-step="1"]').isVisible()
+      && await page.locator('[data-step-label="1"]').getAttribute('aria-current') === 'step'
+      && (await page.locator('#inquiryStepCount').textContent()).includes('Step 2'));
+    await page.locator('#vehicle').selectOption('atlas');
+    await page.locator('#budget').fill('-1');
+    await page.locator('#nextStep').click();
+    check('A negative budget is rejected', await page.locator('#budget').getAttribute('aria-invalid') === 'true'
+      && await page.locator('[data-inquiry-step="1"]').isVisible());
+    await page.locator('#budget').fill('0');
+    await page.locator('#nextStep').click();
+    check('Zero is accepted as a valid budget', await page.locator('[data-inquiry-step="2"]').isVisible());
+    await page.locator('#previousStep').click();
+    await page.locator('#budget').fill('18000000.50');
+    await page.locator('#replyPhone').check();
+    check('Phone reply reveals and requires a phone number', await page.locator('#phoneField').isVisible()
+      && await page.locator('#phone').getAttribute('required') !== null);
+    await page.locator('#nextStep').click();
+    check('Phone reply blocks an empty phone number', await page.locator('#phone').getAttribute('aria-invalid') === 'true');
+    await page.locator('#phone').fill('123');
+    await page.locator('#nextStep').click();
+    check('Phone reply rejects fewer than seven digits', await page.locator('#phone').getAttribute('aria-invalid') === 'true');
+    await page.locator('#replyEmail').check();
+    check('Email reply hides and disables phone validation cleanly', !await page.locator('#phoneField').isVisible()
+      && await page.locator('#phone').isDisabled() && await page.locator('#phone').getAttribute('aria-invalid') === 'false'
+      && (await page.locator('#formStatus').textContent()).trim() === '');
+    await page.locator('#replyPhone').check();
+    await page.locator('#phone').fill('+7 701 123 4567');
+    await page.locator('#testDrive').check();
+    await page.locator('#message').fill('A morning visit would be useful.');
+    check('Correcting preference errors clears obsolete validation feedback',
+      (await page.locator('#formStatus').textContent()).trim() === '');
+    await snap('page-form-preferences.png', '.inquiry-panel');
+    await page.locator('#previousStep').click();
+    check('Back retains contact data', await page.locator('#fullName').inputValue() === 'Assignment Test'
+      && await page.locator('#email').inputValue() === 'student@example.com');
+    await page.locator('#nextStep').click();
+    check('Returning to preferences retains every input and checkbox',
+      await page.locator('#vehicle').inputValue() === 'atlas'
+      && await page.locator('#budget').inputValue() === '18000000.50'
+      && await page.locator('#replyPhone').isChecked() && await page.locator('#testDrive').isChecked()
+      && await page.locator('#phone').inputValue() === '+7 701 123 4567'
+      && await page.locator('#message').inputValue() === 'A morning visit would be useful.');
+    await page.locator('#nextStep').click();
+    const summary = await page.locator('#inquirySummary').textContent();
+    check('Review displays contact, vehicle, decimal budget, reply, test-drive and message values',
+      await page.locator('[data-inquiry-step="2"]').isVisible()
+      && ['Assignment Test', 'student@example.com', 'Atlas X', '18,000,000.5', '+7 701 123 4567',
+        'Interested', 'A morning visit would be useful.'].every(value => summary.includes(value)));
+    await snap('page-form-review.png', '.inquiry-panel');
+    await page.locator('#email').evaluate(element => { element.value = 'stale-invalid-value'; });
+    await page.locator('#submitInquiry').click();
+    check('Final submission revalidates earlier steps and returns to the invalid field',
+      await page.locator('[data-inquiry-step="0"]').isVisible()
+      && await page.locator('#email').evaluate(element => element === document.activeElement));
+    await page.locator('#email').fill('student@example.com');
+    await page.locator('#fullName').fill('<b>Plain text</b>');
+    await page.locator('#nextStep').click();
+    await page.locator('#nextStep').click();
+    check('Entered markup remains plain text in the review',
+      (await page.locator('#inquirySummary').textContent()).includes('<b>Plain text</b>')
+      && await page.locator('#inquirySummary b').count() === 0);
+    await page.locator('#resetInquiry').click();
+    check('Reset from review clears all fields, errors and step state',
+      await page.locator('[data-inquiry-step="0"]').isVisible()
+      && await page.locator('#fullName').inputValue() === '' && await page.locator('#email').inputValue() === ''
+      && await page.locator('#vehicle').inputValue() === '' && await page.locator('#budget').inputValue() === ''
+      && await page.locator('#message').inputValue() === '' && !await page.locator('#testDrive').isChecked()
+      && await page.locator('#replyEmail').isChecked() && await page.locator('.is-invalid').count() === 0);
+    await readyToReview();
+    const urlBefore = page.url();
+    await page.locator('#submitInquiry').click();
+    check('A valid inquiry completes locally without navigation or POST',
+      await page.locator('#inquirySuccess').isVisible() && page.url() === urlBefore && submissions.length === 0);
+    check('Success clears personal contact details and private draft fields',
+      await page.locator('#fullName').inputValue() === '' && await page.locator('#email').inputValue() === ''
+      && await page.locator('#phone').inputValue() === '' && await page.locator('#message').inputValue() === '');
+    await snap('page-form-success.png', '.inquiry-panel');
+    await page.locator('#newInquiry').click();
+    check('New inquiry returns to a blank first step', await page.locator('[data-inquiry-step="0"]').isVisible()
+      && !await page.locator('#inquirySuccess').isVisible() && await page.locator('#vehicle').inputValue() === '');
+    await startContact();
+    await page.locator('#budget').fill('-2');
+    await page.locator('#nextStep').click();
+    await page.locator('#resetInquiry').click();
+    check('Reset from preferences clears a displayed validation error',
+      await page.locator('[data-inquiry-step="0"]').isVisible()
+      && await page.locator('#budget').inputValue() === '' && await page.locator('.is-invalid').count() === 0);
+
+    await visit('buttons.html');
+    const initialTime = await page.locator('#timeOutput').textContent();
+    await page.locator('#timeButton').click();
+    check('Time button updates the designated output with a real formatted time',
+      (await page.locator('#timeOutput').textContent()) !== initialTime
+      && /\d{2}:\d{2}:\d{2}/.test(await page.locator('#timeOutput').textContent()));
+    await page.locator('#soundButton').click();
+    await page.waitForFunction(() => window.Apex.sound.currentTime > 0, {timeout: 5000});
+    check('A user click decodes and advances actual local audio', await page.evaluate(() =>
+      Apex.sound.readyState >= 2 && Apex.sound.currentTime > 0 && Apex.sound.duration > 0));
+    await page.evaluate(() => { for (let click = 0; click < 5; click++) document.getElementById('soundButton').click(); });
+    await page.waitForFunction(() => document.getElementById('soundButton').dataset.audioState === 'ended');
+    check('Rapid sound clicks reuse one player and complete without overlap or errors',
+      await page.evaluate(() => __createdSounds.length === 1 && __createdSounds[0] === Apex.sound)
+      && (await page.locator('#soundStatus').textContent()).includes('Notification played'));
+    await snap('page-buttons-sound.png', 'main');
+    for (const [color, label] of [['rgb(255, 253, 249)', 'Paper'], ['rgb(233, 238, 242)', 'Soft blue'], ['rgb(245, 240, 231)', 'Cream']]) {
+      await page.locator('#backgroundButton').click();
+      await page.waitForFunction(expected => getComputedStyle(document.body).backgroundColor === expected, color);
+      check(`Background button applies ${label} directly and updates feedback`,
+        await page.evaluate(expected => document.body.style.backgroundColor === expected, color)
+        && (await page.locator('#backgroundStatus').textContent()).includes(label));
+      if (label === 'Soft blue') await snap('page-background.png', 'main');
+    }
+
+    await visit('carousel.html');
+    check('All nine original carousel slides and indicators remain',
+      await page.locator('.carousel-item').count() === 9 && await page.locator('[data-bs-slide-to]').count() === 9);
+    await page.locator('.carousel-control-next').click();
+    await page.waitForFunction(() => [...document.querySelectorAll('.carousel-item')].findIndex(item => item.classList.contains('active')) === 1
+      && !document.querySelector('.carousel-item-next,.carousel-item-prev'));
+    check('Bootstrap carousel next control works', await page.locator('.carousel-item').nth(1).evaluate(element => element.classList.contains('active')));
+    await page.locator('.carousel-control-prev').click();
+    await page.waitForFunction(() => document.querySelector('.carousel-item').classList.contains('active')
+      && !document.querySelector('.carousel-item-next,.carousel-item-prev'));
+    check('Bootstrap carousel previous control works', await page.locator('.carousel-item').first().evaluate(element => element.classList.contains('active')));
+    await page.locator('[data-bs-slide-to="8"]').click();
+    await page.waitForFunction(() => [...document.querySelectorAll('.carousel-item')].findIndex(item => item.classList.contains('active')) === 8
+      && !document.querySelector('.carousel-item-next,.carousel-item-prev'));
+    check('Bootstrap carousel indicator selects the ninth photograph', await page.locator('[data-bs-slide-to="8"]').getAttribute('aria-current') === 'true');
+    await page.locator('.carousel-control-next').focus();
     await page.keyboard.press('ArrowRight');
-    check('ArrowRight moves menu focus forward', await links.nth(1).evaluate(element => element === document.activeElement));
-    await page.keyboard.press('Home');
-    await page.keyboard.press('ArrowLeft');
-    check('ArrowLeft wraps menu focus to the last item', await links.last().evaluate(element => element === document.activeElement));
-    await page.keyboard.press('Home');
-    check('Home focuses the first menu item', await links.first().evaluate(element => element === document.activeElement));
-    await snap('11-keyboard.png');
+    await page.waitForFunction(() => document.querySelector('.carousel-item').classList.contains('active')
+      && !document.querySelector('.carousel-item-next,.carousel-item-prev'));
+    check('Bootstrap carousel keyboard arrow wraps from last to first', await page.locator('.carousel-item').first().evaluate(element => element.classList.contains('active')));
+    await snap('page-carousel.png', 'main');
 
-    await page.locator('[data-filter="suv"]').click();
-    const suvCount = await page.locator('.vehicle-card').count();
-    check('Category filter produces a smaller nonempty selection', suvCount > 0 && suvCount < 6);
-    check('Filtering triggers an element animation', await page.locator('#vehicle-grid').evaluate(element => element.getAnimations().length > 0));
-    await snap('02-inventory-filtered.png', '#collection');
-    await page.locator('#vehicle-search').fill('no vehicle has this name');
-    check('Search combines with category to show an honest empty state', await page.locator('.vehicle-card').count() === 0 && await page.locator('#empty-state').isVisible());
-    await page.locator('#reset-filters').click();
-    check('Reset filters restores the entire collection', await page.locator('.vehicle-card').count() === 6);
-    await page.locator('#sort-select').selectOption('price-asc');
-    const ascendingPrices = await page.locator('.vehicle-price').allTextContents();
-    const numericPrices = ascendingPrices.map(value => Number(value.replace(/[^\d.]/g, '')));
-    check('Price ascending sorts the actual rendered listings', numericPrices.every((value, index) => index === 0 || value >= numericPrices[index - 1]));
-    await page.locator('#sort-select').selectOption('price-desc');
-    const descendingPrices = (await page.locator('.vehicle-price').allTextContents()).map(value => Number(value.replace(/[^\d.]/g, '')));
-    check('Price descending reverses the listing order', descendingPrices.every((value, index) => index === 0 || value <= descendingPrices[index - 1]));
-    await page.locator('#sort-select').selectOption('featured');
-    await page.locator('.save-button').first().click();
-    await page.locator('#saved-only').check();
-    check('Saved-only filter contains the saved vehicle', await page.locator('.vehicle-card').count() === 1);
-    await page.locator('.save-button').first().click();
-    check('Removing the last saved vehicle updates the empty state', await page.locator('.vehicle-card').count() === 0);
-    await page.locator('#reset-filters').click();
-
-    await page.locator('[data-view-car]').first().click();
-    check('Vehicle details open in a modal dialog', await page.locator('#vehicle-dialog').evaluate(dialog => dialog.open));
-    const initialSource = await page.locator('#detail-image').getAttribute('src');
-    await page.locator('#detail-thumbnails button').nth(1).click();
-    check('Thumbnail changes the main image source and meaningful alt', initialSource !== await page.locator('#detail-image').getAttribute('src') && Boolean(await page.locator('#detail-image').getAttribute('alt')));
-    await snap('03-gallery.png', '#vehicle-dialog');
+    await visit('team-grid.html');
+    check('All four original team portraits are present and decoded',
+      await page.locator('.team-card img').count() === 4
+      && await page.locator('.team-card img').evaluateAll(images => images.every(image => image.naturalWidth > 0)));
+    await snap('page-team.png', 'main');
+    await visit('typography-cards.html');
+    await snap('page-typography.png', 'main');
+    await visit('grid-spacing.html');
+    await snap('page-grid.png', 'main');
+    await visit('index.html');
+    await page.setViewportSize({width: 390, height: 844});
+    await page.locator('.navbar-toggler').click();
+    await page.waitForFunction(() => document.getElementById('assignmentNav').classList.contains('show'));
+    check('Local Bootstrap opens the mobile navigation with correct expanded state', await page.locator('.navbar-toggler').getAttribute('aria-expanded') === 'true');
+    await nav.first().focus();
+    await page.keyboard.press('ArrowDown');
+    check('Arrow navigation also works inside the expanded mobile menu', await nav.nth(1).evaluate(element => element === document.activeElement));
     await page.keyboard.press('Escape');
-    check('Escape closes the dialog', !await page.locator('#vehicle-dialog').evaluate(dialog => dialog.open));
-
-    const beforeTheme = await page.locator('html').getAttribute('data-theme');
-    await page.locator('#theme-toggle').click();
-    check('Theme control changes the page theme', await page.locator('html').getAttribute('data-theme') !== beforeTheme);
-    await page.locator('[data-rating="4"]').click();
-    check('Rating selection updates four stars and the status', await page.locator('[data-rating].is-selected').count() === 4 && /4/.test(await page.locator('#rating-status').textContent()));
-    await snap('04-theme-rating.png', '#experience');
-    await page.locator('#reset-rating').click();
-    check('Rating reset clears the selected stars', await page.locator('[data-rating].is-selected').count() === 0);
-    const changedTheme = await page.locator('html').getAttribute('data-theme');
-    await page.reload({ waitUntil: 'networkidle' });
-    check('Selected theme survives a page reload', await page.locator('html').getAttribute('data-theme') === changedTheme);
-    await page.locator('#theme-toggle').click();
-
-    await page.locator('#read-more').click();
-    check('Read more reveals extra story content', await page.locator('#story-extra').isVisible());
-    await snap('12-story-expanded.png', '#story');
-    await page.locator('#read-more').click();
-    check('Read more closes the extra content', !await page.locator('#story-extra').isVisible());
-    const faq = page.locator('.faq-toggle').first();
-    check('FAQs begin collapsed', await faq.getAttribute('aria-expanded') === 'false');
-    await faq.click();
-    check('FAQ click reveals its associated answer', await faq.getAttribute('aria-expanded') === 'true');
-    await snap('13-faq-expanded.png', '#questions');
-    await page.locator('#show-time').click();
-    check('Time button displays a formatted current time', (await page.locator('#time-feedback').textContent()).trim().length > 0);
-    const clock = await page.locator('#current-datetime').textContent();
-    await page.waitForTimeout(1150);
-    check('Live date and time advances', await page.locator('#current-datetime').textContent() !== clock);
-    await page.locator('#sound-button').click();
-    await page.waitForTimeout(80);
-    check('User click decodes and starts actual audio playback', await page.evaluate(() => window.Apex.sound.readyState >= 2 && !window.Apex.sound.paused && window.Apex.sound.currentTime > 0));
-    await page.locator('#sound-button').click();
-    await page.locator('#sound-button').click();
-    check('Rapid clicks reuse one audio player without overlapping clips', await page.evaluate(() => window.__createdSounds.length === 1 && window.__createdSounds.filter(sound => !sound.paused && !sound.ended).length <= 1));
-    check('Sound button supplies playback feedback', (await page.locator('#sound-status').textContent()).trim().length > 0);
-    await snap('09-sound-story-faq.png', '#experience');
-
-    await page.locator('#team').scrollIntoViewIfNeeded();
-    await page.locator('#team img').evaluateAll(images => Promise.all(images.map(image => {
-      image.loading = 'eager';
-      return image.decode().catch(() => {});
-    })));
-    check('All four supplied team portraits decode successfully', await page.locator('#team img').evaluateAll(images => images.length === 4 && images.every(image => image.naturalWidth > 0)));
-    await snap('14-team.png', '#team');
-
-    await page.locator('#booking-next').click();
-    check('Invalid first step is blocked and identifies errors', await page.locator('[data-step="0"]').isVisible() && await page.locator('#booking-form [aria-invalid="true"]').count() > 0);
-    await snap('05-booking-errors.png', '#booking');
-    const today = await page.evaluate(() => {
-      const date = new Date();
-      date.setDate(date.getDate() + 1);
-      return [date.getFullYear(), String(date.getMonth() + 1).padStart(2, '0'), String(date.getDate()).padStart(2, '0')].join('-');
-    });
-    await page.locator('#booking-vehicle').selectOption({ index: 1 });
-    await page.locator('#booking-date').fill(today);
-    await page.locator('#booking-time').selectOption({ index: 1 });
-    await page.locator('#booking-next').click();
-    check('Valid vehicle and date advance to contact step', await page.locator('[data-step="1"]').isVisible());
-    await page.locator('#booking-next').click();
-    check('Empty contact inputs are rejected', await page.locator('[data-step="1"]').isVisible() && await page.locator('#booking-email').getAttribute('aria-invalid') === 'true');
-    await page.locator('#booking-name').fill('Assignment Test');
-    await page.locator('#booking-email').fill('invalid-email');
-    await page.locator('#booking-phone').fill('+7 701 123 4567');
-    await page.locator('#booking-password').fill('short');
-    await page.locator('#booking-confirm').fill('different');
-    await page.locator('#booking-next').click();
-    check('Email, short password and mismatched confirmation are rejected', await page.locator('#booking-email').getAttribute('aria-invalid') === 'true' && await page.locator('#booking-password').getAttribute('aria-invalid') === 'true' && await page.locator('#booking-confirm').getAttribute('aria-invalid') === 'true');
-    await page.locator('#booking-email').fill('student@example.com');
-    await page.locator('#booking-password').fill('DemoPassword12');
-    await page.locator('#booking-confirm').fill('DemoPassword12');
-    await snap('06-booking-contact.png', '#booking');
-    await page.locator('#booking-back').click();
-    check('Back navigation preserves the date and car', await page.locator('#booking-date').inputValue() === today && Boolean(await page.locator('#booking-vehicle').inputValue()));
-    await page.locator('#booking-next').click();
-    check('Returning to contact preserves entered values', await page.locator('#booking-email').inputValue() === 'student@example.com');
-    await page.locator('#booking-next').click();
-    check('Review shows safe summary with no password', await page.locator('[data-step="2"]').isVisible() && (await page.locator('#booking-summary').textContent()).includes('student@example.com') && !(await page.locator('#booking-summary').textContent()).includes('DemoPassword12'));
-    await snap('07-booking-review.png', '#booking');
-    await page.locator('#booking-submit').click();
-    check('Review requires consent before completion', !await page.locator('#booking-success').isVisible());
-    await page.locator('#booking-consent').check();
-    const sameURL = page.url();
-    await page.locator('#booking-submit').click();
-    check('Successful demo completes without page reload', await page.locator('#booking-success').isVisible() && page.url() === sameURL);
-    check('Sensitive password fields clear after completion', await page.locator('#booking-password').inputValue() === '' && await page.locator('#booking-confirm').inputValue() === '');
-    await snap('08-booking-success.png', '#booking');
-    await page.locator('#book-again').click();
-    check('Book again returns to a blank first step', await page.locator('[data-step="0"]').isVisible() && await page.locator('#booking-date').inputValue() === '' && await page.locator('#booking-email').inputValue() === '');
-    await page.locator('#booking-vehicle').selectOption({ index: 1 });
-    await page.locator('#booking-reset').click();
-    check('Reset clears the currently entered form values', await page.locator('#booking-vehicle').inputValue() === '');
-
-    await page.setViewportSize({ width: 390, height: 844 });
-    await page.evaluate(() => scrollTo(0, 0));
-    await page.locator('#menu-toggle').click();
-    check('Mobile menu opens with an expanded state', await page.locator('#menu-toggle').getAttribute('aria-expanded') === 'true');
-    await page.locator('#main-nav a').first().click();
-    check('Selecting mobile navigation closes the menu', await page.locator('#menu-toggle').getAttribute('aria-expanded') === 'false');
-    check('Mobile page has no horizontal overflow', await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth));
-    await page.evaluate(() => scrollTo(0, 0));
-    await snap('10-mobile.png');
-    check('No browser JavaScript or missing-resource errors', errors.length === 0, errors.join('\n'));
+    await page.waitForFunction(() => !document.getElementById('assignmentNav').classList.contains('show'));
+    check('Escape closes mobile navigation and restores toggler focus',
+      await page.locator('.navbar-toggler').getAttribute('aria-expanded') === 'false'
+      && await page.locator('.navbar-toggler').evaluate(element => element === document.activeElement));
+    await snap('page-mobile.png');
+    check('No external network dependencies are requested', externalRequests.length === 0, externalRequests.join('\n'));
+    check('All pages and interactions complete without JavaScript or resource errors', errors.length === 0, errors.join('\n'));
   } catch (error) {
-    results.push({ label: 'Run completed', passed: false, detail: error.stack });
-    await page.screenshot({ path: path.join(evidence, 'failure.png'), fullPage: false }).catch(() => {});
+    results.push({label: 'Run completed', passed: false, detail: error.stack});
+    if (page) await page.screenshot({path: path.join(screenshots, 'failure.png'), fullPage: false}).catch(() => {});
     process.exitCode = 1;
   } finally {
-    const summary = { target, channel, viewport: '1440x1000 and 390x844', checks: results.length,
-      passed: results.filter(result => result.passed).length, errors, results };
-    const resultName = process.env.TEST_RESULT_NAME || `test-results-${channel}${fileMode ? '-file' : ''}.json`;
-    fs.writeFileSync(path.join(project, resultName), JSON.stringify(summary, null, 2) + '\n');
-    console.log(JSON.stringify(summary, null, 2));
-    await browser.close();
+    const summary = {target: base, channel, fileMode, viewports: [320, 390, 641, 768, 992, 1440],
+      checks: results.length, passed: results.filter(result => result.passed).length,
+      errors, externalRequests, submissions, results};
+    const filename = process.env.TEST_RESULT_NAME || `test-results-${channel}${fileMode ? '-file' : ''}.json`;
+    fs.writeFileSync(path.join(project, filename), JSON.stringify(summary, null, 2) + '\n');
+    console.log(JSON.stringify({target: base, channel, checks: summary.checks, passed: summary.passed,
+      errors, failed: results.filter(result => !result.passed)}, null, 2));
+    if (browser) await browser.close();
   }
-})();
+})().catch(error => { console.error(error); process.exitCode = 1; });
