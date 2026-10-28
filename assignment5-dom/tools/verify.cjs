@@ -189,6 +189,12 @@ async function readyToReview() {
     check('Short names and invalid email addresses are rejected', await page.locator('#fullName').getAttribute('aria-invalid') === 'true'
       && await page.locator('#email').getAttribute('aria-invalid') === 'true');
     await page.locator('#fullName').fill('Assignment Test');
+    await page.locator('#email').fill('student@-domain.com');
+    await page.locator('#nextStep').click();
+    check('JavaScript also rejects email domains invalid under the browser email rules',
+      await page.locator('#email').getAttribute('aria-invalid') === 'true'
+      && await page.locator('[data-inquiry-step="0"]').isVisible());
+    await page.locator('#fullName').fill('Assignment Test');
     await page.locator('#email').fill('student@example.com');
     check('Corrected contact values clear obsolete validation feedback', (await page.locator('#formStatus').textContent()).trim() === '');
     await snap('page-form-contact.png', '.inquiry-panel');
@@ -281,6 +287,10 @@ async function readyToReview() {
     await page.locator('#submitInquiry').click();
     check('A valid preview completes without reload or network submission', await page.locator('#inquirySuccess').isVisible()
       && page.url() === urlBefore && submissions.length === 0);
+    check('Completion replaces the previous review progress instead of leaving step three active',
+      (await page.locator('#inquiryStepCount').textContent()) === 'Complete'
+      && (await page.locator('#inquiryProgress').textContent()).includes('complete')
+      && await page.locator('[data-step-label][aria-current]').count() === 0);
     check('Success clears personal details and private draft fields', await page.locator('#fullName').inputValue() === ''
       && await page.locator('#email').inputValue() === '' && await page.locator('#phone').inputValue() === ''
       && await page.locator('#message').inputValue() === '');
@@ -340,6 +350,123 @@ async function readyToReview() {
       && new URL(page.url()).hash === '#inventory');
     await page.evaluate(() => scrollTo(0, 0));
     await snap('page-mobile.png');
+
+    // Verify the complete save -> storage -> reload -> filter -> remove story.
+    await page.setViewportSize({width: 1440, height: 1000});
+    await visit();
+    const save = id => page.locator(`[data-save-vehicle="${id}"]`);
+    check('Each JavaScript-rendered card has an accessible unselected Save button',
+      await page.locator('[data-save-vehicle]').count() === 3
+      && await save('solis').getAttribute('aria-pressed') === 'false'
+      && (await save('solis').getAttribute('aria-label')).includes('Solis GT'));
+    await save('solis').focus();
+    await page.keyboard.press('Space');
+    check('Keyboard saving updates the heart, saved count and status while retaining focus',
+      await save('solis').getAttribute('aria-pressed') === 'true'
+      && await page.locator('#savedCount').textContent() === '1'
+      && (await page.locator('#savedStatus').textContent()).includes('Solis GT')
+      && await save('solis').evaluate(element => element === document.activeElement));
+    await page.locator('[data-category="performance"]').click();
+    await save('meridian').click();
+    await page.locator('[data-category="all"]').click();
+    check('Saving in a category retains the other saved car when all cars return',
+      await save('solis').getAttribute('aria-pressed') === 'true'
+      && await save('meridian').getAttribute('aria-pressed') === 'true'
+      && await page.locator('#savedCount').textContent() === '2');
+    await visit();
+    check('Reload restores the saved cars and count from browser storage',
+      await save('solis').getAttribute('aria-pressed') === 'true'
+      && await save('meridian').getAttribute('aria-pressed') === 'true'
+      && await save('atlas').getAttribute('aria-pressed') === 'false'
+      && await page.locator('#savedCount').textContent() === '2');
+    await page.locator('#savedOnlyButton').click();
+    check('Saved filter shows exactly the saved cars with its pressed state and result count',
+      await page.locator('.vehicle-card').count() === 2
+      && await page.locator('#savedOnlyButton').getAttribute('aria-pressed') === 'true'
+      && (await page.locator('#inventoryCount').textContent()).includes('2 saved vehicles'));
+    await snap('page-favorites.png', '#inventory');
+    await page.locator('[data-category="adventure"]').click();
+    check('Saved and category filters combine and explain an empty category',
+      await page.locator('.vehicle-card').count() === 0
+      && await page.locator('.inventory-empty').isVisible()
+      && (await page.locator('#inventoryCount').textContent()).includes('0 saved vehicles')
+      && await page.locator('#savedCount').textContent() === '2');
+    await page.locator('[data-category="all"]').click();
+    await save('solis').click();
+    check('Removing a saved car immediately removes its card and keeps keyboard focus usable',
+      await page.locator('.vehicle-card').count() === 1
+      && await page.locator('#savedCount').textContent() === '1'
+      && await save('meridian').evaluate(element => element === document.activeElement));
+    await page.keyboard.press('Enter');
+    check('Removing the last saved car shows an empty state and focuses the Saved filter',
+      await page.locator('.vehicle-card').count() === 0
+      && await page.locator('.inventory-empty').isVisible()
+      && await page.locator('#savedCount').textContent() === '0'
+      && await page.locator('#savedOnlyButton').evaluate(element => element === document.activeElement));
+    await visit();
+    await page.locator('#savedOnlyButton').click();
+    check('Removed favourites stay removed after a reload', await page.locator('.vehicle-card').count() === 0
+      && await page.locator('#savedCount').textContent() === '0');
+    await page.locator('#savedOnlyButton').click();
+    check('Turning Saved off restores the complete inventory', await page.locator('.vehicle-card').count() === 3);
+    await save('atlas').click();
+    await page.locator('#savedOnlyButton').click();
+    for (const width of [320, 390]) {
+      await page.setViewportSize({width, height: 844});
+      check(`Saved cards, heart buttons and controls fit at ${width}px`, !await hasOverflow());
+    }
+    await page.setViewportSize({width: 1440, height: 1000});
+    await save('atlas').click();
+    await page.locator('#savedOnlyButton').click();
+
+    // Change the data at runtime: static HTML cannot pass this requirement check.
+    await page.evaluate(() => {
+      const original = Apex.vehicles[0];
+      Apex.vehicles.push({...original, id: 'audit-car', name: 'Runtime object example',
+        label() { return 'Runtime method result'; }});
+    });
+    await page.locator('[data-category="all"]').click();
+    check('JavaScript builds new cards from array data and calls the object method at runtime',
+      await page.locator('.vehicle-card').count() === 4
+      && await page.locator('[data-vehicle-id="audit-car"] h3').textContent() === 'Runtime object example'
+      && await page.locator('[data-vehicle-id="audit-car"] .vehicle-label').textContent() === 'Runtime method result');
+    await page.evaluate(() => { Apex.vehicles.pop(); });
+    await page.locator('[data-category="all"]').click();
+
+    // Broken/blocked browser storage must not disable the rest of the application.
+    for (const [label, stored, expected] of [
+      ['malformed JSON', '{broken', 0],
+      ['a non-array value', '{"solis":true}', 0],
+      ['duplicates and obsolete IDs', '["solis","solis","unknown",null,7]', 1]
+    ]) {
+      await page.evaluate(value => localStorage.setItem('apex-motors-saved-vehicles', value), stored);
+      await visit();
+      check(`Stored ${label} is handled without breaking inventory`,
+        await page.locator('.vehicle-card').count() === 3
+        && await page.locator('#savedCount').textContent() === String(expected));
+    }
+    await page.evaluate(() => localStorage.removeItem('apex-motors-saved-vehicles'));
+    for (const failure of ['read', 'write']) {
+      const restricted = await context.newPage();
+      restricted.on('pageerror', error => errors.push(error.message));
+      await restricted.addInitScript(mode => {
+        if (mode === 'read') {
+          Object.defineProperty(window, 'localStorage', {get() { throw new DOMException('Storage blocked', 'SecurityError'); }});
+        } else {
+          Storage.prototype.setItem = function () { throw new DOMException('Storage full', 'QuotaExceededError'); };
+        }
+      }, failure);
+      await restricted.goto(entry, {waitUntil: 'load'});
+      await restricted.locator('[data-save-vehicle="solis"]').click();
+      check(`A storage ${failure} failure keeps saving usable and explains its temporary lifetime`,
+        await restricted.locator('[data-save-vehicle="solis"]').getAttribute('aria-pressed') === 'true'
+        && await restricted.locator('#savedCount').textContent() === '1'
+        && /reload|next visit/.test(await restricted.locator('#savedStatus').textContent()));
+      await restricted.locator('[data-category="touring"]').click();
+      check(`Category filtering still works after a storage ${failure} failure`,
+        await restricted.locator('.vehicle-card').count() === 1);
+      await restricted.close();
+    }
     check('No external or framework network resources are requested', externalRequests.length === 0 && frameworkRequests.length === 0,
       [...externalRequests, ...frameworkRequests].join('\n'));
     check('All interactions complete without JavaScript or missing-resource errors', errors.length === 0, errors.join('\n'));

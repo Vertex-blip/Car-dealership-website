@@ -41,7 +41,8 @@
     const value = field.value.trim();
     switch (id) {
       case 'fullName': return value.length >= 2 ? '' : 'Enter your full name (at least 2 characters).';
-      case 'email': return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value) ? '' : 'Enter a valid email address, such as name@example.com.';
+      case 'email': return !field.validity.typeMismatch && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)
+        ? '' : 'Enter a valid email address, such as name@example.com.';
       case 'vehicle': return !value || window.Apex.vehicles.some(vehicle => vehicle.id === value) ? '' : 'Choose a vehicle from the list.';
       case 'budget':
         if (field.validity.badInput) return 'Enter a valid budget amount.';
@@ -208,6 +209,9 @@
     clearValues();
     form.hidden = true;
     success.hidden = false;
+    document.getElementById('inquiryStepCount').textContent = 'Complete';
+    document.getElementById('inquiryProgress').textContent = 'Inquiry preview complete.';
+    document.querySelectorAll('[data-step-label]').forEach(label => label.removeAttribute('aria-current'));
     success.tabIndex = -1;
     success.focus();
     window.Apex.animate(success);

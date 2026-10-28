@@ -313,6 +313,12 @@ textarea:focus-visible,
 #inventoryCount {
   margin: 0 0 16px;
 }
+.saved-status {
+  margin: 0 0 8px;
+}
+.saved-filter {
+  margin-left: auto;
+}
 .vehicle-grid {
   display: grid;
   grid-template-columns: 1fr;
@@ -358,6 +364,32 @@ textarea:focus-visible,
 .card-body .btn {
   align-self: flex-start;
   margin-top: auto;
+}
+.vehicle-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  margin-top: auto;
+}
+.vehicle-actions .btn {
+  margin-top: 0;
+}
+.save-vehicle {
+  display: inline-flex;
+  gap: 6px;
+  align-items: center;
+}
+.save-vehicle[aria-pressed="true"] {
+  color: #fff;
+  background: var(--apex-copper);
+}
+.inventory-empty {
+  grid-column: 1 / -1;
+  margin: 0;
+  padding: 28px;
+  border: 1px dashed var(--apex-copper);
+  background: var(--apex-paper);
 }
 .info-panel {
   padding: 24px;

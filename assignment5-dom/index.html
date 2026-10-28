@@ -9,10 +9,10 @@
     />
     <title>Apex Motors | Interactive collection</title>
     <link rel="icon" href="images/apex-motors-logo.png" />
-    <link rel="stylesheet" href="styles.css?v=plain-a5" />
-    <script src="js/site.js?v=plain-a5" defer></script>
-    <script src="js/inventory.js?v=plain-a5" defer></script>
-    <script src="js/booking.js?v=plain-a5" defer></script>
+    <link rel="stylesheet" href="styles.css?v=saved-a5" />
+    <script src="js/site.js?v=saved-a5" defer></script>
+    <script src="js/inventory.js?v=saved-a5" defer></script>
+    <script src="js/booking.js?v=saved-a5" defer></script>
   </head>
   <body>
     <a class="skip-link" href="#main-content">Skip to main content</a>
@@ -72,14 +72,14 @@
             <h2 id="inventory-heading">Find your next favourite.</h2>
           </div>
           <p class="section-lead">
-            Choose a category. The collection updates here, without reloading
-            the page.
+            Choose a category and save the cars you like. Your saved collection
+            stays in this browser for your next visit.
           </p>
         </div>
         <div
           class="filter-controls"
           role="group"
-          aria-label="Filter vehicles by category"
+          aria-label="Filter the vehicle collection"
         >
           <button
             class="btn btn-primary"
@@ -113,77 +113,35 @@
           >
             Adventure
           </button>
+          <button
+            id="savedOnlyButton"
+            class="btn btn-outline-primary saved-filter"
+            type="button"
+            aria-pressed="false"
+            aria-controls="inventoryGrid"
+          >
+            <span aria-hidden="true">♥</span> Saved (<span id="savedCount">0</span>)
+          </button>
         </div>
+        <p id="savedStatus" class="mini-status saved-status" role="status" aria-live="polite">
+          Press Save on a car to keep it in your saved collection.
+        </p>
         <p
           id="inventoryCount"
           class="mini-status muted"
           role="status"
           aria-live="polite"
         >
-          3 vehicles shown.
+          Loading vehicles…
         </p>
-        <div id="inventoryGrid" class="vehicle-grid">
-          <article class="vehicle-card card">
-            <img
-              class="card-img-top"
-              src="images/car-01.jpg"
-              alt="Black sedan travelling on a tree-lined road"
-            />
-            <div class="card-body">
-              <p class="vehicle-label">Grand touring · 2024</p>
-              <h3 class="card-title">Solis GT</h3>
-              <p class="card-text">
-                A poised drive with crisp steering and the composure for a full
-                day on the road.
-              </p>
-              <a class="btn btn-primary" href="#inquiry" data-inquire="solis"
-                >Ask about this car</a
-              >
-            </div>
-          </article>
-          <article class="vehicle-card card">
-            <img
-              class="card-img-top"
-              src="images/car-02.jpg"
-              alt="Silver estate car travelling on a road"
-            />
-            <div class="card-body">
-              <p class="vehicle-label">Performance · 2024</p>
-              <h3 class="card-title">Meridian S</h3>
-              <p class="card-text">
-                A serene, driver-focused cabin wrapped in a clean, confident
-                silhouette.
-              </p>
-              <a class="btn btn-primary" href="#inquiry" data-inquire="meridian"
-                >Ask about this car</a
-              >
-            </div>
-          </article>
-          <article class="vehicle-card card">
-            <img
-              class="card-img-top"
-              src="images/car-03.jpg"
-              alt="White performance car parked in a dimly lit garage"
-            />
-            <div class="card-body">
-              <p class="vehicle-label">Adventure · 2023</p>
-              <h3 class="card-title">Atlas X</h3>
-              <p class="card-text">
-                A companion for your everyday plans and the longer way home.
-              </p>
-              <a class="btn btn-primary" href="#inquiry" data-inquire="atlas"
-                >Ask about this car</a
-              >
-            </div>
-          </article>
-        </div>
+        <div id="inventoryGrid" class="vehicle-grid"></div>
         <p class="mini-status muted">
           Classroom demonstration. Vehicle names and descriptions are sample
           listings from our earlier project.
         </p>
         <noscript
           ><p>
-            Please enable JavaScript to use the filters and inquiry form.
+            Please enable JavaScript to view the cars, save your favourites and use the inquiry form.
           </p></noscript
         >
       </section>
