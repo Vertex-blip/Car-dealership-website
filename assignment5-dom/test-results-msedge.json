@@ -1,0 +1,245 @@
+{
+  "target": "http://127.0.0.1:8765/assignment5-dom/",
+  "channel": "msedge",
+  "viewport": "1440x1000 and 390x844",
+  "checks": 47,
+  "passed": 47,
+  "errors": [],
+  "results": [
+    {
+      "label": "Six vehicles render from the local data collection",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "All eagerly loaded images have valid pixels",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Desktop page has no horizontal overflow",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "ArrowRight moves menu focus forward",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "ArrowLeft wraps menu focus to the last item",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Home focuses the first menu item",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Category filter produces a smaller nonempty selection",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Filtering triggers an element animation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Search combines with category to show an honest empty state",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Reset filters restores the entire collection",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Price ascending sorts the actual rendered listings",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Price descending reverses the listing order",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Saved-only filter contains the saved vehicle",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Removing the last saved vehicle updates the empty state",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Vehicle details open in a modal dialog",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Thumbnail changes the main image source and meaningful alt",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Escape closes the dialog",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Theme control changes the page theme",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Rating selection updates four stars and the status",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Rating reset clears the selected stars",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Selected theme survives a page reload",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Read more reveals extra story content",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Read more closes the extra content",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "FAQs begin collapsed",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "FAQ click reveals its associated answer",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Time button displays a formatted current time",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Live date and time advances",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "User click decodes and starts actual audio playback",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Rapid clicks reuse one audio player without overlapping clips",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Sound button supplies playback feedback",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "All four supplied team portraits decode successfully",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Invalid first step is blocked and identifies errors",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Valid vehicle and date advance to contact step",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Empty contact inputs are rejected",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Email, short password and mismatched confirmation are rejected",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Back navigation preserves the date and car",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Returning to contact preserves entered values",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Review shows safe summary with no password",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Review requires consent before completion",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Successful demo completes without page reload",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Sensitive password fields clear after completion",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Book again returns to a blank first step",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Reset clears the currently entered form values",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Mobile menu opens with an expanded state",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Selecting mobile navigation closes the menu",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Mobile page has no horizontal overflow",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "No browser JavaScript or missing-resource errors",
+      "passed": true,
+      "detail": ""
+    }
+  ]
+}
