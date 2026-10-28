@@ -7,23 +7,24 @@ The site uses one `index.html`, a custom stylesheet and three JavaScript files. 
 | Requirement | Implementation and location |
 | --- | --- |
 | Continue the same team and project theme | Apex Motors colours, hero, cards, vehicle photographs and four team portraits |
-| Select individual and grouped DOM elements | External scripts use element selectors and grouped navigation/category buttons |
-| Update content dynamically | `#inventory` cards/count, `#interactive-tools` time/status, `#inquiry` review and confirmation |
-| Modify styles directly OR use a day/night switch | Background button in `#interactive-tools` changes `document.body.style.backgroundColor` |
-| Choose one content/attribute option | Read More in `#about` (Our approach) changes extra content's `style.display` |
-| Button event listeners | Read More, category, time, sound, background and inquiry controls use `addEventListener` |
-| Keyboard events and arrow-key menu navigation | The five anchor links support arrow-key focus movement with wraparound |
-| Callback interaction: asynchronous OR multi-step form | `#inquiry` uses a three-step callback flow; Back retains the input values |
-| Meaningful `switch` statement | `#inventory` category matching: all, touring, performance, adventure |
-| Objects and methods | Vehicle objects hold card information and a method returns the displayed category/year label |
-| Arrays and explicit loops | Three vehicles are stored in an array; `for...of` creates cards |
-| Higher-order functions | `filter` receives a category predicate; `forEach` handles collections and listeners |
-| User-triggered sound without overlap | `#interactive-tools` uses one audio player, paused and rewound before playback |
-| Event-triggered animation | Inventory, content and form changes animate; reduced-motion preferences are respected |
+| Select individual and grouped DOM elements | `site.js`: `getElementById('assignmentNav')` and `navigation.querySelectorAll('.nav-link')`; `inventory.js` selects `[data-category]` buttons |
+| Update content dynamically | `inventory.js`: `grid.replaceChildren(fragment)` and `count.textContent`; `booking.js`: summary elements use `textContent` |
+| Modify styles directly OR use a day/night switch | Chosen direct-style option: `site.js` assigns `document.body.style.backgroundColor = color.value` in the background button callback |
+| Choose one content/attribute option | Chosen Read More option: `site.js` assigns `readMoreContent.style.display = expanded ? 'block' : 'none'` and updates `aria-expanded` |
+| Button event listeners | `site.js`: time/background/sound buttons use `addEventListener('click', ...)`; the time callback calls `new Date().toLocaleTimeString('en-GB')` |
+| Keyboard events and arrow-key menu navigation | `site.js`: the navigation's `keydown` listener handles arrow keys in a `switch`, calculates a wrapped index and calls `links[next].focus()` |
+| Callback interaction: asynchronous OR multi-step form | Chosen multi-step option: `booking.js` passes `showStep` to `navigateStep(1, showStep)`; `onStepChange(nextStep)` displays the step while existing inputs retain values |
+| Meaningful `switch` statement | `inventory.js`: `matchesCategory(vehicle)` switches on the selected category and returns its vehicle-matching condition |
+| Objects and methods | `site.js`: `createVehicle` returns objects with properties and `label()`; `inventory.js` displays `vehicle.label()` |
+| Arrays and explicit loops | `site.js`: `vehicles` array; `inventory.js`: `for (const vehicle of selectedVehicles)` appends dynamically created cards |
+| Higher-order functions | `inventory.js`: `vehicles.filter(matchesCategory)` receives a predicate function; `categoryButtons.forEach(...)` registers listeners |
+| User-triggered sound without overlap | `site.js`: one `new Audio('assets/chime.wav')`; `playChime()` calls `pause()`, sets `currentTime = 0`, then awaits `play()` |
+| Event-triggered animation | `site.js`: `Apex.animate` calls `element.animate(...)`; Read More, filtering and form steps trigger it; `prefers-reduced-motion` is checked |
 | Separate HTML, CSS and JS | One HTML file, one custom stylesheet and three external deferred scripts |
 | Readable, reusable functions and variables | Data, card rendering, category matching, validation, navigation, feedback and sound logic are separated |
 | Relevant theme and intuitive UX | Dealership collection, inquiry, visible controls, labels, feedback, keyboard focus and responsive navigation |
-| Commit, push and deploy | Application commit `4646afc`, successful GitHub Pages workflow `40744013953`, HTTP 200 and 77/77 live checks; recorded in the report |
+| Optional Favorites addition | `inventory.js`: Save button delegation updates `savedIds`, button state and count; `readSavedIds`/`storeSavedIds` use JSON and `localStorage`; Saved filters the current category with empty-state and storage-failure feedback |
+| Commit, push and deploy | `deployment.json` records the published application commit, Pages workflow and HTTP result; `test-results-live.json` applies to that recorded published version |
 | PDF report | Objective, team/group, step-by-step tasks, actual code and resulting-page screenshots, reflection and URL |
 | ZIP archive | Standalone project with HTML, CSS, JS, local assets, report and evidence |
 | Individual submission and defense | Each student submits PDF/ZIP and explains the implementation during the practice lesson |
@@ -43,3 +44,5 @@ The site uses one `index.html`, a custom stylesheet and three JavaScript files. 
 | Report | 10% |
 
 The technical project and report demonstrate the implementation criteria. Each student's defense depends on their own explanation and response to the instructor's task.
+
+The brief's OR groups require one chosen option per group. This implementation chooses direct style changes, Read More and a multi-step form. Favorites is extra functionality. For current verification totals and the checked target, read `screenshots/test-results.json` and the individual result records rather than treating earlier totals as results for a newer version.

@@ -198,7 +198,7 @@ def build():
     y -= 231
     y = paragraph(c, "<b>Team:</b> Apex Motors &nbsp;&nbsp; <b>Group:</b> SE-2507<br/>"
                      "<b>Members:</b> Arsen, Kuttibay, Farabi, Muhammad<br/>"
-                     "<b>Prepared:</b> 28 October 2026<br/>"
+                     "<b>Prepared:</b> 29 October 2026<br/>"
                      "<b>Build:</b> HTML, custom CSS and three JavaScript files", MARGIN, y) - 14
     y = paragraph(c, "<b>Objective.</b> Build a single-page dealership site with all required JavaScript "
                      "interactions directly available on the main page. Keep the team's familiar "
@@ -249,7 +249,7 @@ def build():
             [("page-inventory.png", "Inventory: the original three cards, now rendered from objects.")],
             "objects-loop", [("js/site.js", "label()", 6, 2),
                              ("js/site.js", "const vehicles = [", 5, 0),
-                             ("js/inventory.js", "for (const", 6, 2)],
+                             ("js/inventory.js", "for (const vehicle of selectedVehicles)", 6, 2)],
             web_height=215, code_height=245)
 
     feature(c, 4, "03 · Switch and higher-order functions", "Category filtering",
@@ -260,10 +260,22 @@ def build():
              "Pass that condition to filter, then render the resulting array and update the result count."],
             [("page-inventory-filtered.png", "Inventory: a selected category updates the collection.")],
             "switch-filter", [("js/inventory.js", "switch (", 12, 2),
-                              ("js/inventory.js", ".filter(", 8, 2)],
+                              ("js/inventory.js", "const selectedVehicles = vehicles.filter", 8, 2)],
             web_height=210, code_height=250)
 
-    feature(c, 5, "04 · Event handling", "Button and keyboard events",
+    feature(c, 5, "04 · Optional addition: favorites", "Favorites saved in this browser",
+            "Favorites extends the dealership theme with a personal shortlist. JavaScript updates "
+            "each card's saved state and the Saved filter; localStorage retains vehicle IDs when available.",
+            ["Use a card's Save button to add or remove that vehicle from the shortlist.",
+             "Serialize saved IDs to localStorage and restore valid IDs when the page opens.",
+             "Choose Saved to see the shortlist; show clear feedback for an empty list or unavailable storage."],
+            [("page-favorites.png", "Inventory: saved vehicles selected with the Saved filter.")],
+            "favorites", [("js/inventory.js", "const ids = JSON.parse", 4, 0),
+                          ("js/inventory.js", "function storeSavedIds()", 9, 0),
+                          ("js/inventory.js", "const wasSaved = savedIds.includes", 5, 0)],
+            web_height=215, code_height=255)
+
+    feature(c, 6, "05 · Event handling", "Button and keyboard events",
             "The five navigation links lead to sections on this page and support the required arrow-key "
             "focus movement. Buttons also update the page through event listeners.",
             ["Select the navigation links and register a keydown listener on the menu.",
@@ -276,7 +288,7 @@ def build():
                        ("js/site.js", "toLocaleTimeString", 5, 2)],
             web_height=195, code_height=255)
 
-    feature(c, 6, "05 · Callback interaction", "One inquiry, three steps",
+    feature(c, 7, "06 · Callback interaction", "One inquiry, three steps",
             "The multi-step form is the chosen callback option. The original inquiry fields are grouped "
             "into contact details, preferences, and review.",
             ["Keep the current step in state and validate it before moving forward.",
@@ -288,7 +300,7 @@ def build():
                          ("js/booking.js", "function showStep", 10, 0)],
             web_height=200, code_height=260)
 
-    feature(c, 7, "06 · Validation and feedback", "Validation, review and reset",
+    feature(c, 8, "07 · Validation and feedback", "Validation, review and reset",
             "The form checks required contact values and the user's preferences, then displays a local "
             "preview result. It does not send personal information to a server.",
             ["Prevent default submission, display field errors, and focus the first invalid control.",
@@ -300,7 +312,7 @@ def build():
                                  ("js/booking.js", "function clearValues", 10, 0)],
             web_height=200, code_height=245)
 
-    feature(c, 8, "07 · Sound and animations", "Sound and event-triggered animation",
+    feature(c, 9, "08 · Sound and animations", "Sound and event-triggered animation",
             "Sound and motion are attached to intentional user actions. The sound file is included "
             "locally and playback is reused instead of creating overlapping clips.",
             ["Load one Audio player and start it only after the notification button is clicked.",
@@ -311,7 +323,7 @@ def build():
                                 ("js/site.js", "prefers-reduced-motion", 9, 2)],
             web_height=205, code_height=255)
 
-    feature(c, 9, "08 · Structure and user experience", "One page, separate source files",
+    feature(c, 10, "09 · Structure and user experience", "One page, separate source files",
             "HTML, CSS and JavaScript are kept separate. All required features share one main page. "
             "The colour palette, hero, square cards and photographs continue the team's earlier design.",
             ["Link the custom stylesheet and three external deferred scripts from index.html.",
@@ -323,7 +335,7 @@ def build():
                           ("styles.css", "--apex-ink", 9, 1)],
             web_height=205, code_height=230)
 
-    base(c, 10, "09 · Verification, deployment and reflection")
+    base(c, 11, "10 · Verification, deployment and reflection")
     y = title(c, "Verification and reflection")
     y = paragraph(c, result_text(results), MARGIN, y) - 13
     y = paragraph(c, "<b>Evidence.</b> Screenshots show the resulting pages; source screenshots use "
@@ -333,20 +345,22 @@ def build():
     if live_path.is_file():
         live = json.loads(live_path.read_text(encoding="utf-8-sig"))
         live_summary = result_text(live).removeprefix("Recorded verification: ")
-        y = paragraph(c, "<b>Live verification.</b> " + live_summary, MARGIN, y) - 13
+        y = paragraph(c, "<b>Recorded live verification.</b> " + live_summary +
+                         " The result applies to the published version recorded below.", MARGIN, y) - 13
     deployment_path = ROOT / "deployment.json"
     if not deployment_path.is_file():
         deployment_path = ROOT / "reportdeploy.json"
     if deployment_path.is_file():
         deployment = json.loads(deployment_path.read_text(encoding="utf-8-sig"))
-        y = paragraph(c, "<b>Deployment.</b> " + escape(deployment.get("summary", "")), MARGIN, y) - 13
+        y = paragraph(c, "<b>Recorded deployment.</b> " + escape(deployment.get("summary", "")), MARGIN, y) - 13
     else:
         y = paragraph(c, f'<b>Published website:</b> <link href="{SITE}" color="#77472b">{SITE}</link><br/>'
-                         "The project is committed to the shared repository and served through GitHub Pages.",
+                         "Deployment evidence is recorded separately after publishing this version.",
                       MARGIN, y) - 13
     for heading, detail in [
         ("DOM and styling", "Read More visibility, dynamic inventory text, result counts and background colour."),
         ("Events and data", "Click listeners, arrow-key focus, object methods, arrays, loops, filter and switch."),
+        ("Favorites", "Save/remove buttons, Saved filter, persistent vehicle IDs and storage-failure feedback."),
         ("Inquiry", "Invalid values, Next and Back, retained values, review, confirmation and reset."),
         ("Sound, motion and layout", "Actual audio playback, repeated-click restart, transitions, offline assets and responsive sections.")
     ]:
@@ -354,11 +368,13 @@ def build():
     y = paragraph(c, "<b>Challenges and solutions.</b> Keeping the familiar visual design while making all "
                      "features visible on one page requires clear sections and reusable CSS rules. The scripts "
                      "target each interactive component. Form steps can hide invalid controls, so validation identifies and focuses the "
-                     "correct field before advancing. Repeated sound clicks are handled by restarting one player.",
+                     "correct field before advancing. Repeated sound clicks are handled by restarting one player. "
+                     "Saved IDs are validated when loaded, and unavailable browser storage receives visible feedback.",
                   MARGIN, y - 3) - 14
     y = paragraph(c, "<b>Reflection.</b> Reusable functions and structured vehicle data make the added features "
                      "easier to understand and change. A single main page also makes the required interactions "
-                     "easy to find. The inquiry remains an honest local demonstration.",
+                     "easy to find. Favorites adds a useful shortlist while storing only vehicle IDs. "
+                     "The inquiry remains an honest local demonstration.",
                   MARGIN, y) - 14
     y = paragraph(c, "<b>Defense and submission.</b> Every member should explain the code and practise a small "
                      "change. The defense is worth 40%. Each student submits the PDF and ZIP individually and "

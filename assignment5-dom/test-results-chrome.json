@@ -1,5 +1,5 @@
 {
-  "target": "http://127.0.0.1:8876/assignment5-dom/index.html",
+  "target": "http://127.0.0.1:8055/index.html",
   "channel": "chrome",
   "fileMode": false,
   "viewports": [
@@ -10,8 +10,8 @@
     992,
     1440
   ],
-  "checks": 77,
-  "passed": 77,
+  "checks": 99,
+  "passed": 99,
   "errors": [],
   "externalRequests": [],
   "frameworkRequests": [],
@@ -213,6 +213,11 @@
       "detail": ""
     },
     {
+      "label": "JavaScript also rejects email domains invalid under the browser email rules",
+      "passed": true,
+      "detail": ""
+    },
+    {
       "label": "Corrected contact values clear obsolete validation feedback",
       "passed": true,
       "detail": ""
@@ -318,6 +323,11 @@
       "detail": ""
     },
     {
+      "label": "Completion replaces the previous review progress instead of leaving step three active",
+      "passed": true,
+      "detail": ""
+    },
+    {
       "label": "Success clears personal details and private draft fields",
       "passed": true,
       "detail": ""
@@ -389,6 +399,106 @@
     },
     {
       "label": "A mobile anchor closes navigation and reaches the same-page inventory",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Each JavaScript-rendered card has an accessible unselected Save button",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Keyboard saving updates the heart, saved count and status while retaining focus",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Saving in a category retains the other saved car when all cars return",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Reload restores the saved cars and count from browser storage",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Saved filter shows exactly the saved cars with its pressed state and result count",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Saved and category filters combine and explain an empty category",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Removing a saved car immediately removes its card and keeps keyboard focus usable",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Removing the last saved car shows an empty state and focuses the Saved filter",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Removed favourites stay removed after a reload",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Turning Saved off restores the complete inventory",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Saved cards, heart buttons and controls fit at 320px",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Saved cards, heart buttons and controls fit at 390px",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "JavaScript builds new cards from array data and calls the object method at runtime",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Stored malformed JSON is handled without breaking inventory",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Stored a non-array value is handled without breaking inventory",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Stored duplicates and obsolete IDs is handled without breaking inventory",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "A storage read failure keeps saving usable and explains its temporary lifetime",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Category filtering still works after a storage read failure",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "A storage write failure keeps saving usable and explains its temporary lifetime",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Category filtering still works after a storage write failure",
       "passed": true,
       "detail": ""
     },

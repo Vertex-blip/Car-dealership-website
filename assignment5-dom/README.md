@@ -21,7 +21,7 @@ The inquiry is a classroom preview. It validates sample values and displays a re
 | Section | Try this |
 | --- | --- |
 | [Our approach](https://vertex-blip.github.io/Car-dealership-website/assignment5-dom/#about) | Read More reveals and hides the extra text |
-| [Inventory](https://vertex-blip.github.io/Car-dealership-website/assignment5-dom/#inventory) | Filter the three original cards and watch the result count change |
+| [Inventory](https://vertex-blip.github.io/Car-dealership-website/assignment5-dom/#inventory) | Filter the three original cards and watch the result count change; use Save to build a shortlist and Saved to filter it |
 | [Inquiry](https://vertex-blip.github.io/Car-dealership-website/assignment5-dom/#inquiry) | Complete contact details, preferences and review; try Next, Back, errors and Reset |
 | [Interactive tools](https://vertex-blip.github.io/Car-dealership-website/assignment5-dom/#interactive-tools) | Change the background, display the current time and play the notification sound |
 | [Team](https://vertex-blip.github.io/Car-dealership-website/assignment5-dom/#team) | The same four members and supplied photographs |
@@ -33,12 +33,14 @@ The brief offers alternatives. This project uses a direct JavaScript background-
 
 Sound starts only after a user clicks. One audio player is stopped and restarted to prevent overlapping playback. Animations respond to actions and respect reduced-motion preferences.
 
+Favorites is an optional addition to the assignment requirements. Each card has a Save button, and the Saved control filters the collection together with the selected category. JavaScript updates the heart, button state, count and feedback. Only known vehicle IDs are stored in this browser's `localStorage`; reloading restores the shortlist when storage is available. If storage is blocked, the shortlist works for the open page and a message explains that it could not be kept for the next visit.
+
 ## Files
 
 - `index.html`: all visible sections and the inquiry form.
 - `styles.css`: the complete responsive design and interaction states.
 - `js/site.js`: shared data, navigation, Read More, background, time, sound and animation.
-- `js/inventory.js`: card rendering and category filtering.
+- `js/inventory.js`: card rendering, category filtering, Save buttons, the Saved filter and browser storage.
 - `js/booking.js`: inquiry validation, step callbacks, review and reset.
 - `images/` and `assets/`: local photographs, logo and notification sound.
 - `screenshots/`: actual browser/source evidence and recorded verification.
@@ -49,9 +51,9 @@ Sound starts only after a user clicks. One audio player is stopped and restarted
 
 ## Verification and deployment
 
-The browser suite passed 77 checks in Chrome over HTTP, Edge over HTTP, and Chrome with a local file: **231/231 local checks**. The published single-page site passed a separate **77/77 live checks**. No runtime errors, missing resources, external framework/asset requests, or inquiry POST requests were recorded. Results are included in `screenshots/test-results.json` and `test-results-live.json`.
+The updated project passed **297/297 local checks**: 99 each in Chrome over HTTP, Edge over HTTP, and Chrome with a local file. The published version passed **99/99 live checks**. No runtime or resource errors were recorded. The local aggregate is in `screenshots/test-results.json`, with individual browser results in `test-results-chrome.json`, `test-results-msedge.json` and `test-results-chrome-file.json`. Checks include Favorites persistence, filtering and unavailable storage, and a runtime-data test proving cards are created by JavaScript from the vehicle array and object method.
 
-Application commit `4646afc` was pushed to the shared `main` branch. GitHub Pages workflow `40744013953` completed successfully, and the site returned HTTP 200. `deployment.json` records this application deployment; the final submission commit also adds the report and archive.
+`deployment.json` identifies published application commit `7946521`, successful Pages workflow `40754113629` and its HTTP result. `test-results-live.json` contains the live checks. Favorites, stricter email validation and the completed inquiry progress state are included in this deployed application version. The final submission commit adds the report, archive and current evidence.
 
 ## Submission and defense
 
