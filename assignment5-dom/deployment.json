@@ -1,11 +1,11 @@
 {
   "site_url": "https://vertex-blip.github.io/Car-dealership-website/assignment5-dom/",
-  "application_commit": "7946521d4f539c600d56205def793d59ca48ab6d",
-  "workflow_id": 40754113629,
-  "workflow_url": "https://github.com/Vertex-blip/Car-dealership-website/actions/runs/40754113629",
+  "application_commit": "013dc7ded3dc429137cd5a3b2d3256bb8b97286d",
+  "workflow_id": 40757833270,
+  "workflow_url": "https://github.com/Vertex-blip/Car-dealership-website/actions/runs/40757833270",
   "workflow_conclusion": "success",
   "http_status": 200,
-  "live_checks": 99,
-  "live_passed": 99,
-  "summary": "Application commit 7946521 was pushed to main. GitHub Pages workflow 40754113629 completed successfully and the site returned HTTP 200. All 99 live checks passed, including saved-car persistence, filtering, keyboard navigation, inquiry validation, sound and animations. No runtime or missing-resource errors were recorded."
+  "live_checks": 107,
+  "live_passed": 107,
+  "summary": "Application commit 013dc7d was pushed to main. GitHub Pages workflow 40757833270 completed successfully and the site returned HTTP 200. All 107 live checks passed, including the eight-car collection, shared inquiry choices, new-car inquiries, saved-car persistence, filtering, keyboard navigation, validation, sound and animations. No runtime or missing-resource errors were recorded."
 }

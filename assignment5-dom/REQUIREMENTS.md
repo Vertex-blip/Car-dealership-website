@@ -2,7 +2,7 @@
 
 Team Apex Motors | SE-2507 | Arsen, Kuttibay, Farabi, Muhammad
 
-The site uses one `index.html`, a custom stylesheet and three JavaScript files. Its visual design continues the team's Assignment 3 theme. All required interactions are directly available on this page.
+The site uses one `index.html`, a custom stylesheet and three JavaScript files. Its visual design continues the team's Assignment 3 theme. The collection contains eight cars: the original three listings plus Camaro, Huracan, Panamera, Expedition and LaFerrari. All required interactions are directly available on this page.
 
 | Requirement | Implementation and location |
 | --- | --- |
@@ -16,7 +16,8 @@ The site uses one `index.html`, a custom stylesheet and three JavaScript files. 
 | Callback interaction: asynchronous OR multi-step form | Chosen multi-step option: `booking.js` passes `showStep` to `navigateStep(1, showStep)`; `onStepChange(nextStep)` displays the step while existing inputs retain values |
 | Meaningful `switch` statement | `inventory.js`: `matchesCategory(vehicle)` switches on the selected category and returns its vehicle-matching condition |
 | Objects and methods | `site.js`: `createVehicle` returns objects with properties and `label()`; `inventory.js` displays `vehicle.label()` |
-| Arrays and explicit loops | `site.js`: `vehicles` array; `inventory.js`: `for (const vehicle of selectedVehicles)` appends dynamically created cards |
+| Arrays and explicit loops | `site.js`: eight objects in the `vehicles` array; `inventory.js`: `for (const vehicle of selectedVehicles)` appends dynamically created cards |
+| Collection and inquiry stay synchronized | `booking.js` loops over `window.Apex.vehicles` and creates each vehicle `option`; the eight choices use the same IDs and names as the cards |
 | Higher-order functions | `inventory.js`: `vehicles.filter(matchesCategory)` receives a predicate function; `categoryButtons.forEach(...)` registers listeners |
 | User-triggered sound without overlap | `site.js`: one `new Audio('assets/chime.wav')`; `playChime()` calls `pause()`, sets `currentTime = 0`, then awaits `play()` |
 | Event-triggered animation | `site.js`: `Apex.animate` calls `element.animate(...)`; Read More, filtering and form steps trigger it; `prefers-reduced-motion` is checked |

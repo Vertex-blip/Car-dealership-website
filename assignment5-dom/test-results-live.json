@@ -1,5 +1,5 @@
 {
-  "target": "https://vertex-blip.github.io/Car-dealership-website/assignment5-dom/?v=saved-a5",
+  "target": "https://vertex-blip.github.io/Car-dealership-website/assignment5-dom/?v=collection-a5",
   "channel": "chrome",
   "fileMode": false,
   "viewports": [
@@ -10,8 +10,8 @@
     992,
     1440
   ],
-  "checks": 99,
-  "passed": 99,
+  "checks": 107,
+  "passed": 107,
   "errors": [],
   "externalRequests": [],
   "frameworkRequests": [],
@@ -163,22 +163,27 @@
       "detail": ""
     },
     {
-      "label": "The original three vehicle objects render as named cards",
+      "label": "All eight vehicles render in their expected order with named cards and local images",
       "passed": true,
       "detail": ""
     },
     {
-      "label": "touring filters to its matching card with updated count/state",
+      "label": "JavaScript supplies all eight inquiry choices with names matching the visible cards",
       "passed": true,
       "detail": ""
     },
     {
-      "label": "performance filters to its matching card with updated count/state",
+      "label": "touring shows exactly its matching vehicles with updated count/state",
       "passed": true,
       "detail": ""
     },
     {
-      "label": "adventure filters to its matching card with updated count/state",
+      "label": "performance shows exactly its matching vehicles with updated count/state",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "adventure shows exactly its matching vehicles with updated count/state",
       "passed": true,
       "detail": ""
     },
@@ -499,6 +504,41 @@
     },
     {
       "label": "Category filtering still works after a storage write failure",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Chevrolet Camaro can be selected from its card and appears by name in the inquiry review",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Lamborghini Huracan can be selected from its card and appears by name in the inquiry review",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Porsche Panamera can be selected from its card and appears by name in the inquiry review",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Ford Expedition can be selected from its card and appears by name in the inquiry review",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Ferrari LaFerrari can be selected from its card and appears by name in the inquiry review",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "A newly added Ferrari remains saved after reload and is the only Saved result",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "The saved Ferrari inquiry retains its vehicle selection through review",
       "passed": true,
       "detail": ""
     },

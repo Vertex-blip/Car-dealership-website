@@ -5,7 +5,6 @@ Uses ReportLab and Pillow. Run after the browser evidence has been captured.
 from pathlib import Path
 from xml.sax.saxutils import escape
 from io import BytesIO
-import json
 import textwrap
 
 from PIL import Image, ImageDraw, ImageFont
@@ -153,24 +152,7 @@ def feature(c, number, label, heading, intro, steps, screenshots, code_name, spe
     c.showPage()
 
 
-def load_results():
-    path = SHOTS / "test-results.json"
-    if not path.is_file():
-        raise FileNotFoundError("Capture and verify the updated site before building the report.")
-    return json.loads(path.read_text(encoding="utf-8-sig"))
-
-
-def result_text(results):
-    if isinstance(results.get("checks"), int):
-        runs = results.get("runs", [])
-        suffix = f" across {len(runs)} browser runs" if runs else ""
-        return (f"Recorded verification: {results.get('passed', 0)}/{results['checks']} checks passed"
-                f"{suffix}; {len(results.get('errors', []))} runtime/resource errors.")
-    return "Recorded browser checks are supplied in screenshots/test-results.json."
-
-
 def build():
-    results = load_results()
     # Crop the real home screenshot to its navbar and original full-width hero.
     # Keep the uncropped browser evidence beside this report image.
     with Image.open(SHOTS / "page-home.png") as home:
@@ -241,15 +223,16 @@ def build():
             web_height=195, code_height=255)
 
     feature(c, 3, "02 · Data structures", "Objects, arrays and vehicle cards",
-            "The three inventory cards are generated from structured vehicle data. "
-            "The familiar square card design and original photographs are retained.",
+            "The eight-car collection retains the original three listings and adds Camaro, Huracan, "
+            "Panamera, Expedition and LaFerrari. Cards use structured objects and local photographs.",
             ["Store each vehicle's name, category, photo and description in an object with a label method.",
-             "Keep the vehicle objects in an array and create DOM cards in an explicit for...of loop.",
+             "Keep all eight vehicle objects in one array and create DOM cards in an explicit for...of loop.",
              "Read object properties and insert content with textContent rather than user-written HTML."],
-            [("page-inventory.png", "Inventory: the original three cards, now rendered from objects.")],
+            [("page-inventory.png", "Eight-car collection: first row shown; the result count covers all eight cars.")],
             "objects-loop", [("js/site.js", "label()", 6, 2),
-                             ("js/site.js", "const vehicles = [", 5, 0),
-                             ("js/inventory.js", "for (const vehicle of selectedVehicles)", 6, 2)],
+                             ("js/site.js", "const vehicles = [", 2, 0),
+                             ("js/site.js", "createVehicle('camaro'", 3, 0),
+                             ("js/inventory.js", "for (const vehicle of selectedVehicles)", 2, 1)],
             web_height=215, code_height=245)
 
     feature(c, 4, "03 · Switch and higher-order functions", "Category filtering",
@@ -290,14 +273,15 @@ def build():
 
     feature(c, 7, "06 · Callback interaction", "One inquiry, three steps",
             "The multi-step form is the chosen callback option. The original inquiry fields are grouped "
-            "into contact details, preferences, and review.",
+            "into contact details, preferences, and review. Its eight vehicle choices come from the same collection array.",
             ["Keep the current step in state and validate it before moving forward.",
              "Pass the step-display function as a callback to the navigation function.",
              "Hide or reveal fieldsets without recreating their inputs, so Back retains entered values."],
             [("page-form-preferences.png", "Step 2: inquiry preferences."),
              ("page-form-review.png", "Inquiry: review before confirmation.")],
             "callback", [("js/booking.js", "function navigateStep", 11, 0),
-                         ("js/booking.js", "function showStep", 10, 0)],
+                         ("js/booking.js", "function showStep", 4, 0),
+                         ("js/booking.js", "const vehicleOptions = document.createDocumentFragment();", 8, 0)],
             web_height=200, code_height=260)
 
     feature(c, 8, "07 · Validation and feedback", "Validation, review and reset",
@@ -335,51 +319,37 @@ def build():
                           ("styles.css", "--apex-ink", 9, 1)],
             web_height=205, code_height=230)
 
-    base(c, 11, "10 · Verification, deployment and reflection")
-    y = title(c, "Verification and reflection")
-    y = paragraph(c, result_text(results), MARGIN, y) - 13
-    y = paragraph(c, "<b>Evidence.</b> Screenshots show the resulting pages; source screenshots use "
-                     "literal current code with file names and line numbers. Browser results are stored "
-                     "in screenshots/test-results.json.", MARGIN, y) - 13
-    live_path = ROOT / "test-results-live.json"
-    if live_path.is_file():
-        live = json.loads(live_path.read_text(encoding="utf-8-sig"))
-        live_summary = result_text(live).removeprefix("Recorded verification: ")
-        y = paragraph(c, "<b>Recorded live verification.</b> " + live_summary +
-                         " The result applies to the published version recorded below.", MARGIN, y) - 13
-    deployment_path = ROOT / "deployment.json"
-    if not deployment_path.is_file():
-        deployment_path = ROOT / "reportdeploy.json"
-    if deployment_path.is_file():
-        deployment = json.loads(deployment_path.read_text(encoding="utf-8-sig"))
-        y = paragraph(c, "<b>Recorded deployment.</b> " + escape(deployment.get("summary", "")), MARGIN, y) - 13
-    else:
-        y = paragraph(c, f'<b>Published website:</b> <link href="{SITE}" color="#77472b">{SITE}</link><br/>'
-                         "Deployment evidence is recorded separately after publishing this version.",
-                      MARGIN, y) - 13
+    base(c, 11, "10 · Testing, deployment and reflection")
+    y = title(c, "Testing and reflection")
+    y = paragraph(c, "We checked the following interactions in the browser:", MARGIN, y) - 12
     for heading, detail in [
-        ("DOM and styling", "Read More visibility, dynamic inventory text, result counts and background colour."),
-        ("Events and data", "Click listeners, arrow-key focus, object methods, arrays, loops, filter and switch."),
-        ("Favorites", "Save/remove buttons, Saved filter, persistent vehicle IDs and storage-failure feedback."),
-        ("Inquiry", "Invalid values, Next and Back, retained values, review, confirmation and reset."),
-        ("Sound, motion and layout", "Actual audio playback, repeated-click restart, transitions, offline assets and responsive sections.")
+        ("Collection and styling", "All eight cars appear; categories update the cards and result count. "
+         "Read More reveals extra text, and the background button changes the page colour."),
+        ("Favorites", "Save and remove update each card and the saved count. The Saved filter shows "
+         "the shortlist, which is restored after a reload when browser storage is available."),
+        ("Inquiry", "The vehicle choices match the collection. Next validates inputs, Back retains "
+         "values, and review, confirmation and reset work through the three steps."),
+        ("Keyboard and layout", "Arrow keys move focus between menu links. The mobile menu opens "
+         "and closes, and the sections fit desktop and phone widths."),
+        ("Sound and motion", "The notification button plays the local sound. Repeated clicks restart "
+         "one player without overlapping clips, and content changes trigger animation.")
     ]:
-        y = paragraph(c, f"<b>{heading}.</b> {detail}", MARGIN, y) - 10
-    y = paragraph(c, "<b>Challenges and solutions.</b> Keeping the familiar visual design while making all "
-                     "features visible on one page requires clear sections and reusable CSS rules. The scripts "
-                     "target each interactive component. Form steps can hide invalid controls, so validation identifies and focuses the "
-                     "correct field before advancing. Repeated sound clicks are handled by restarting one player. "
-                     "Saved IDs are validated when loaded, and unavailable browser storage receives visible feedback.",
-                  MARGIN, y - 3) - 14
-    y = paragraph(c, "<b>Reflection.</b> Reusable functions and structured vehicle data make the added features "
-                     "easier to understand and change. A single main page also makes the required interactions "
-                     "easy to find. Favorites adds a useful shortlist while storing only vehicle IDs. "
-                     "The inquiry remains an honest local demonstration.",
+        y = paragraph(c, f"&#8226; <b>{heading}.</b> {detail}", MARGIN, y) - 10
+    y = paragraph(c, f'<b>Deployed website:</b><br/><link href="{SITE}" color="#77472b">{SITE}</link>',
+                  MARGIN, y - 2) - 17
+    y = paragraph(c, "<b>Challenges and solutions.</b> The cards and inquiry list must show the same "
+                     "models, so both are generated from one vehicle array. Form validation checks the "
+                     "current step and focuses its first invalid field before allowing the user to continue. "
+                     "Storage access uses try...catch so Favorites remains usable on the open page if "
+                     "the browser cannot save the shortlist.", MARGIN, y) - 14
+    y = paragraph(c, "<b>Reflection.</b> A shared collection means adding a vehicle requires one data "
+                     "entry to update both cards and form choices. Passing showStep as a callback separates "
+                     "step navigation from display; hiding the existing fieldsets retains the entered values. "
+                     "Saving vehicle IDs as JSON keeps the shortlist small, and checking restored IDs "
+                     "against the collection prevents stale entries. Contact details remain outside this storage.",
                   MARGIN, y) - 14
-    y = paragraph(c, "<b>Defense and submission.</b> Every member should explain the code and practise a small "
-                     "change. The defense is worth 40%. Each student submits the PDF and ZIP individually and "
-                     "attends the practice lesson. The supplied LMS screenshot shows 29 October 2026, 14:00; "
-                     "check the LMS for the current deadline.", MARGIN, y)
+    y = paragraph(c, "<b>Submission and defense.</b> Each member submits the PDF and ZIP individually "
+                     "and explains the implementation during the practice lesson.", MARGIN, y)
     if y < 49:
         raise ValueError("Final page overlaps the footer.")
     c.showPage()
