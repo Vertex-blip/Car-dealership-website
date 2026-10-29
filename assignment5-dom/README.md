@@ -6,59 +6,63 @@
 
 **Members:** Arsen, Kuttibay, Farabi, Muhammad
 
-A single-page dealership project built with HTML, CSS and JavaScript. It keeps the cream and copper colours, Georgia hero heading, square vehicle cards and original photographs from Assignment 3. All Assignment 5 interactions are on the main page.
-
-The collection contains eight cars: the original Solis GT, Meridian S and Atlas X, plus Chevrolet Camaro, Lamborghini Huracan, Porsche Panamera, Ford Expedition and Ferrari LaFerrari. The cards and inquiry vehicle choices are generated from the same JavaScript array.
-
-**Website:** https://vertex-blip.github.io/Car-dealership-website/assignment5-dom/
+A photographic dealership website with 17 vehicles, separate HTML pages, shared CSS and JavaScript. The collection, showroom, inquiry and team have their own addresses. Navigation opens another page instead of scrolling through one long document.
 
 ## Open the project
 
-Extract the ZIP and open `index.html`. All styles, scripts, photographs and sound are local. No installation, account, API key or internet connection is needed.
+Extract `Assignment-5-Project.zip`, open `Apex-Motors-Assignment-5`, then open `index.html` in a current desktop browser. Photographs, styles, scripts and sound are included locally. No installation, account or network service is required. For development, use an ordinary static HTTP server from this folder.
 
-The inquiry is a classroom preview. It validates sample values and displays a result locally; it does not send contact details to a server. Use sample details.
+The inquiry is a classroom demonstration: it validates values and displays confirmation in the browser. It does not send contact details to a dealership. Use sample values.
 
-## Where to find each feature
+## Pages and interactions
 
-| Section | Try this |
+| Page | What to try |
 | --- | --- |
-| [Our approach](https://vertex-blip.github.io/Car-dealership-website/assignment5-dom/#about) | Read More reveals and hides the extra text |
-| [Inventory](https://vertex-blip.github.io/Car-dealership-website/assignment5-dom/#inventory) | Filter all eight cars and watch the result count change; use Save to build a shortlist and Saved to filter it |
-| [Inquiry](https://vertex-blip.github.io/Car-dealership-website/assignment5-dom/#inquiry) | Choose from the same eight cars, complete contact details, preferences and review; try Next, Back, errors and Reset |
-| [Interactive tools](https://vertex-blip.github.io/Car-dealership-website/assignment5-dom/#interactive-tools) | Change the background, display the current time and play the notification sound |
-| [Team](https://vertex-blip.github.io/Car-dealership-website/assignment5-dom/#team) | The same four members and supplied photographs |
-| Main navigation | Focus a link with Tab, then move between links with the arrow keys |
+| `index.html` | Explore the photographic Mercedes feature and follow the collection and showroom links. |
+| `inventory.html` | Browse and filter 17 vehicles; save cars and use Saved to view the shortlist. |
+| `inventory.html?saved=1` | Open the saved collection directly. |
+| `showroom.html` | Choose thumbnails and use Previous/Next to explore the full-size photographic gallery. |
+| `inquiry.html` | Complete Contact, Preferences and Review. Try errors, Next, Back, confirmation and Reset. |
+| `about.html` | Meet the original team, expand Read More and explore the FAQ. |
+
+Every page shares navigation and appearance controls. The theme button switches day/night. The background button generates another hue each time rather than cycling three fixed colors. Preferences follow navigation and survive reloads when browser storage is available.
+
+Use Tab to reach navigation or press an arrow key when the page has focus. Right/Down moves forward and Left/Up backward, with wraparound and a short sound. Enter opens the focused page. Arrow navigation moves focus without scrolling the main content. Sound starts after a user action and can be muted. Reduced-motion preferences are respected.
+
+## Photography and shared vehicle data
+
+The home page uses high-resolution automotive photography. The showroom builds on that visual style with a full-size image, descriptive captions, thumbnails and previous/next controls. JavaScript updates the displayed image's `src` and `alt`, the caption and selected-thumbnail state. This directly demonstrates DOM attribute manipulation.
+
+The collection contains the Mercedes and 16 other listings. The original image records now use the photographed vehicle names Hyundai Accent, Audi RS 6 Avant and Audi A5 Sportback. Years and prices are illustrative guide values for this classroom project, not verified sale offers.
+
+## Source structure
+
+- Five `.html` files contain page structure and semantic controls.
+- `styles.css` contains responsive appearance and interaction states.
+- `js/data.js` contains shared vehicle objects, methods and collection data.
+- `js/theme-init.js` restores appearance preferences before the page is displayed.
+- `js/site.js` handles navigation, audio, appearance controls, Read More, FAQ and shared animation.
+- `js/inventory.js` creates cards, applies collection filters and manages saved vehicles.
+- `js/booking.js` fills vehicle choices, validates the inquiry and navigates steps using a callback.
+- `js/gallery.js` changes the photographic showroom's main image, caption and thumbnail state.
+- `images/` and `assets/` contain local photography, provenance records, icons and sound.
+- `screenshots/` contains browser evidence, source-code images and current verification.
+- `tools/verify.cjs` checks the site; `tools/build_report.py` creates the report from current source and evidence; `tools/package_project.py` verifies ZIP contents.
 
 ## Assignment choices
 
-The brief offers alternatives. This project uses a direct JavaScript background-colour change for dynamic styling, Read More for the content-visibility option, and a three-step form for the callback option. Category filtering uses `switch`. The vehicle collection demonstrates objects, an object method, an array, an explicit loop, and higher-order functions.
+The actual brief is **Frontend Assignment 5 JS and DOM Manipulation**. Its OR groups allow alternatives. This project implements dynamic styling and a day/night switch, provides both Read More and thumbnail-driven image changes for the content/attribute option, and uses a multistep inquiry for the callback option. Category filtering demonstrates `switch`; objects, an explicit loop and higher-order array functions demonstrate the data requirements. Sound and animation respond to user events.
 
-Sound starts only after a user clicks. One audio player is stopped and restarted to prevent overlapping playback. Animations respond to actions and respect reduced-motion preferences.
+The brief requires separation of HTML, CSS and JavaScript. It does not require all content to be in one HTML file. See `REQUIREMENTS.md` for the requirement map and `DEFENSE-GUIDE.md` for a Kazakh demonstration guide.
 
-Favorites is an optional addition to the assignment requirements. Each card has a Save button, and the Saved control filters the collection together with the selected category. JavaScript updates the heart, button state, count and feedback. Only known vehicle IDs are stored in this browser's `localStorage`; reloading restores the shortlist when storage is available. If storage is blocked, the shortlist works for the open page and a message explains that it could not be kept for the next visit.
+## Verification and publication
 
-## Files
+`screenshots/test-results.json` records checks against the revised local build. Read its checked address, browser, timestamp and results before referring to a pass count. Code and screenshots in the PDF come from the revised build.
 
-- `index.html`: all visible sections and the inquiry form.
-- `styles.css`: the complete responsive design and interaction states.
-- `js/site.js`: the shared eight-car collection, navigation, Read More, background, time, sound and animation.
-- `js/inventory.js`: card rendering, category filtering, Save buttons, the Saved filter and browser storage.
-- `js/booking.js`: vehicle choices from the shared collection, inquiry validation, step callbacks, review and reset.
-- `images/` and `assets/`: local photographs, logo and notification sound.
-- `screenshots/`: actual browser/source evidence and recorded verification.
-- `tools/`: verification, report generation and packaging utilities.
-- `Assignment-5-Report.pdf`: objective, task steps, code/page screenshots, verification, reflection and URL.
-- `REQUIREMENTS.md`: requirement-to-feature map.
-- `DEFENSE-GUIDE.md`: Kazakh explanation and demonstration sequence.
+**Publication address:** https://vertex-blip.github.io/Car-dealership-website/assignment5-dom/
 
-## Verification and deployment
+The revised build's publication is pending unless `deployment.json` explicitly records its successful deployment. An older live result does not verify the revised working copy. The assignment requires committing and pushing to the shared repository and redeploying, then including the deployed URL in the report.
 
-The latest recorded local results are in `screenshots/test-results.json`, with individual browser runs in `test-results-chrome.json`, `test-results-msedge.json` and `test-results-chrome-file.json`. Each record gives its checked target, pass count and errors. The suite covers collection rendering and filtering, inquiry behavior, Favorites persistence and unavailable storage, and a runtime-data test for cards generated by JavaScript from the vehicle array and object method.
+## Submission
 
-`deployment.json` identifies the recorded published application commit, Pages workflow and HTTP result. `test-results-live.json` contains the live checks for that version. Detailed verification records stay in these evidence files; the report presents the implementation, screenshots, a short testing summary and reflection. The packaged source and PDF match the checked eight-car version.
-
-## Submission and defense
-
-Submit `Assignment-5-Report.pdf` and `Assignment-5-Project.zip` individually through the LMS. Every member must attend the defense and understand the whole project. The supplied LMS screenshot shows 29 October 2026, 14:00; check the LMS for the current deadline.
-
-The defense is worth 40%. Run all interactions yourself and practise one small code change before the lesson.
+Each member submits `Assignment-5-Report.pdf` and `Assignment-5-Project.zip` separately through the LMS by its current deadline and defends the work during the practice lesson. The defense is worth 40%; every member should understand the entire implementation and be able to make a small change.

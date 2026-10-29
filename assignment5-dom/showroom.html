@@ -1,0 +1,409 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Apex Motors — a considered collection of exceptional cars. Explore the collection, explore the photographic showroom and find your next drive."
+    />
+    <meta name="theme-color" content="#f4f1eb" />
+    <title>The photographic showroom — Apex Motors</title>
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+    <script src="js/theme-init.js"></script>
+    <link rel="stylesheet" href="styles.css" />
+
+    <script src="js/data.js" defer></script>
+    <script src="js/site.js" defer></script>
+    <script src="js/gallery.js" defer></script>
+  </head>
+  <body data-page="showroom">
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <header class="site-header">
+      <div class="container navbar-inner">
+        <a class="brand" href="index.html" aria-label="Apex Motors home"
+          ><span class="brand-mark" aria-hidden="true">A<span>╱</span></span
+          ><span class="brand-name">APEX<span>MOTORS</span></span></a
+        >
+        <button
+          id="navToggle"
+          class="nav-toggle icon-button"
+          type="button"
+          aria-controls="assignmentNav"
+          aria-expanded="false"
+          aria-label="Open navigation"
+        >
+          <svg viewBox="0 0 24 24" aria-hidden="true" fill="none">
+            <path
+              d="M4 8h16M4 16h16"
+              stroke="currentColor"
+              stroke-width="1.5"
+            />
+          </svg>
+        </button>
+        <nav id="assignmentNav" class="main-nav" aria-label="Main navigation">
+          <a class="nav-link" href="index.html">Home</a
+          ><a class="nav-link" href="inventory.html">Collection</a
+          ><a class="nav-link" href="showroom.html" aria-current="page"
+            >Showroom</a
+          ><a class="nav-link" href="about.html">About</a
+          ><a class="nav-link" href="inquiry.html">Inquire</a>
+        </nav>
+        <div class="header-actions">
+          <button
+            id="soundToggle"
+            class="icon-button"
+            type="button"
+            aria-label="Mute interface sounds"
+            aria-pressed="true"
+            title="Interface sound"
+          >
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path
+                d="m11 5-6 4H2v6h3l6 4V5Z"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linejoin="round"
+              />
+              <path
+                class="sound-waves"
+                d="M15 8a6 6 0 0 1 0 8m3-11a10 10 0 0 1 0 14"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+              />
+            </svg>
+          </button>
+          <button
+            id="themeToggle"
+            class="icon-button"
+            type="button"
+            aria-label="Switch to night mode"
+            aria-pressed="false"
+            title="Day / night"
+          >
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <circle
+                cx="12"
+                cy="12"
+                r="4"
+                stroke="currentColor"
+                stroke-width="1.5"
+              />
+              <path
+                d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.4 1.4m11.2 11.2L19 19M5 19l1.4-1.4M17.6 6.4 19 5"
+                stroke="currentColor"
+                stroke-width="1.5"
+              />
+            </svg>
+          </button>
+          <button
+            id="appearanceToggle"
+            class="icon-button"
+            type="button"
+            aria-label="Customize appearance"
+            aria-controls="appearancePanel"
+            aria-expanded="false"
+            title="Studio atmosphere"
+          >
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <circle
+                cx="12"
+                cy="12"
+                r="8.5"
+                stroke="currentColor"
+                stroke-width="1.5"
+              />
+              <path d="M12 3.5a8.5 8.5 0 0 1 0 17V3.5Z" fill="currentColor" />
+            </svg>
+          </button>
+        </div>
+        <section
+          id="appearancePanel"
+          class="appearance-panel"
+          aria-labelledby="appearanceHeading"
+          hidden
+        >
+          <p class="eyebrow">Make it yours</p>
+          <h2 id="appearanceHeading">Studio atmosphere</h2>
+          <div class="theme-options" role="group" aria-label="Color mode">
+            <button type="button" data-theme-choice="light" aria-pressed="true">
+              Day</button
+            ><button
+              type="button"
+              data-theme-choice="dark"
+              aria-pressed="false"
+            >
+              Night
+            </button>
+          </div>
+          <label class="color-field" for="backgroundColor"
+            ><span>Choose an atmosphere hue</span
+            ><input id="backgroundColor" type="color" value="#b76a43"
+          /></label>
+          <button id="backgroundButton" class="btn btn-primary" type="button">
+            Surprise me
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path
+                d="M5 12h14M13 6l6 6-6 6"
+                stroke="currentColor"
+                stroke-width="1.6"
+              />
+            </svg>
+          </button>
+          <p id="backgroundStatus" class="mini-status" role="status">
+            Signature studio palette
+          </p>
+          <button id="backgroundReset" class="text-button" type="button">
+            Reset atmosphere
+          </button>
+        </section>
+      </div>
+    </header>
+    <main id="main-content" class="showroom-main">
+      <div class="container">
+        <section class="page-heading gallery-heading">
+          <div>
+            <p class="eyebrow">02 / The photographic showroom</p>
+            <h1>Every detail.<br />Worth a closer look.</h1>
+          </div>
+          <p class="lead">
+            Eight cars. Eight different characters.<br />Take your time and
+            explore the collection.
+          </p>
+        </section>
+        <section
+          class="photo-gallery"
+          aria-label="Vehicle photograph gallery"
+          tabindex="0"
+        >
+          <div class="gallery-stage">
+            <img
+              id="galleryMain"
+              src="images/hero-mercedes.jpg"
+              width="2400"
+              height="1110"
+              alt="Black Mercedes-AMG E 63 S with red brake calipers"
+              fetchpriority="high"
+            />
+            <div class="gallery-image-label">
+              <span>THE APEX SELECTION</span
+              ><span id="galleryCount" aria-live="polite">01 / 08</span>
+            </div>
+            <button
+              id="galleryPrevious"
+              class="gallery-arrow gallery-arrow-previous"
+              type="button"
+              aria-label="Previous car photograph"
+            >
+              ←</button
+            ><button
+              id="galleryNext"
+              class="gallery-arrow gallery-arrow-next"
+              type="button"
+              aria-label="Next car photograph"
+            >
+              →
+            </button>
+          </div>
+          <div class="gallery-caption-row">
+            <div>
+              <p class="eyebrow">In focus</p>
+              <h2 id="galleryCaption" aria-live="polite">
+                Mercedes-AMG E 63 S
+              </h2>
+            </div>
+            <p>Choose a car below.<br /><span>Use ← and → to explore.</span></p>
+          </div>
+          <div
+            class="gallery-thumbnails"
+            role="group"
+            aria-label="Choose a car photograph"
+          >
+            <button
+              class="gallery-thumbnail is-active"
+              data-gallery-src="images/hero-mercedes.jpg"
+              data-gallery-title="Mercedes-AMG E 63 S"
+              data-gallery-alt="Black Mercedes-AMG E 63 S with red brake calipers"
+              aria-label="Show Mercedes-AMG E 63 S photograph"
+              aria-pressed="true"
+            >
+              <img src="images/hero-mercedes.jpg" alt="" loading="lazy" /><span
+                >Mercedes-AMG E 63 S</span
+              >
+            </button>
+            <button
+              class="gallery-thumbnail"
+              data-gallery-src="images/car-10.jpg"
+              data-gallery-title="Porsche 911"
+              data-gallery-alt="White Porsche 911 on a country road"
+              aria-label="Show Porsche 911 photograph"
+              aria-pressed="false"
+            >
+              <img src="images/car-10.jpg" alt="" loading="lazy" /><span
+                >Porsche 911</span
+              >
+            </button>
+            <button
+              class="gallery-thumbnail"
+              data-gallery-src="images/car-11.jpg"
+              data-gallery-title="Audi R8"
+              data-gallery-alt="Black Audi R8 on a tree-lined road"
+              aria-label="Show Audi R8 photograph"
+              aria-pressed="false"
+            >
+              <img src="images/car-11.jpg" alt="" loading="lazy" /><span
+                >Audi R8</span
+              >
+            </button>
+            <button
+              class="gallery-thumbnail"
+              data-gallery-src="images/car-12.jpg"
+              data-gallery-title="Mercedes-AMG GT"
+              data-gallery-alt="Black Mercedes-AMG GT beside industrial silos"
+              aria-label="Show Mercedes-AMG GT photograph"
+              aria-pressed="false"
+            >
+              <img src="images/car-12.jpg" alt="" loading="lazy" /><span
+                >Mercedes-AMG GT</span
+              >
+            </button>
+            <button
+              class="gallery-thumbnail"
+              data-gallery-src="images/car-13.jpg"
+              data-gallery-title="McLaren 720S"
+              data-gallery-alt="Orange McLaren 720S with its doors raised"
+              aria-label="Show McLaren 720S photograph"
+              aria-pressed="false"
+            >
+              <img src="images/car-13.jpg" alt="" loading="lazy" /><span
+                >McLaren 720S</span
+              >
+            </button>
+            <button
+              class="gallery-thumbnail"
+              data-gallery-src="images/car-14.jpg"
+              data-gallery-title="Aston Martin DBS"
+              data-gallery-alt="Dark Aston Martin DBS on a country road at dusk"
+              aria-label="Show Aston Martin DBS photograph"
+              aria-pressed="false"
+            >
+              <img src="images/car-14.jpg" alt="" loading="lazy" /><span
+                >Aston Martin DBS</span
+              >
+            </button>
+            <button
+              class="gallery-thumbnail"
+              data-gallery-src="images/car-15.jpg"
+              data-gallery-title="BMW M4"
+              data-gallery-alt="Red BMW M4 driving beside a forest"
+              aria-label="Show BMW M4 photograph"
+              aria-pressed="false"
+            >
+              <img src="images/car-15.jpg" alt="" loading="lazy" /><span
+                >BMW M4</span
+              >
+            </button>
+            <button
+              class="gallery-thumbnail"
+              data-gallery-src="images/car-17.jpg"
+              data-gallery-title="Mercedes-Benz G-Class"
+              data-gallery-alt="Black Mercedes-Benz G-Class SUV on open tarmac"
+              aria-label="Show Mercedes-Benz G-Class photograph"
+              aria-pressed="false"
+            >
+              <img src="images/car-17.jpg" alt="" loading="lazy" /><span
+                >Mercedes-Benz G-Class</span
+              >
+            </button>
+          </div>
+        </section>
+        <section class="invitation-section">
+          <div>
+            <p class="eyebrow">From a closer look to your shortlist</p>
+            <h2>Find your next favourite.</h2>
+            <p>
+              Explore all 17 cars, compare guide prices, and save the ones you
+              like.
+            </p>
+          </div>
+          <a class="btn btn-primary" href="inventory.html"
+            >Browse the collection <span aria-hidden="true">↗</span></a
+          >
+        </section>
+        <div class="photo-credit">
+          Mercedes-AMG photograph:
+          <a
+            href="https://commons.wikimedia.org/wiki/File:2018_Mercedes-AMG_E_63_S_Premium_4MATIC_4.0_Front.jpg"
+            target="_blank"
+            rel="noopener"
+            >Vauxford / Wikimedia Commons</a
+          >
+          ·
+          <a
+            href="https://creativecommons.org/licenses/by-sa/4.0/"
+            target="_blank"
+            rel="noopener"
+            >CC BY-SA 4.0</a
+          >.
+        </div>
+      </div>
+    </main>
+    <div class="container page-rail" aria-label="Explore pages">
+      <a id="previousPage" href="inventory.html" class="page-previous"
+        ><span class="arrow-left"
+          ><svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path
+              d="M5 12h14M13 6l6 6-6 6"
+              stroke="currentColor"
+              stroke-width="1.6"
+            /></svg></span
+        ><span>Previous <strong>Collection</strong></span></a
+      >
+      <span class="keyboard-hint"
+        ><kbd>←</kbd><kbd>→</kbd> choose a page <span>·</span>
+        <kbd>Enter</kbd> explore</span
+      >
+      <a id="nextPage" href="about.html" class="page-next"
+        ><span>Next <strong>About</strong></span
+        ><svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path
+            d="M5 12h14M13 6l6 6-6 6"
+            stroke="currentColor"
+            stroke-width="1.6"
+          /></svg
+      ></a>
+    </div>
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <a class="brand footer-brand" href="index.html"
+          ><span class="brand-name">APEX<span>MOTORS</span></span></a
+        >
+        <p>For the love of the drive.</p>
+        <div class="footer-links">
+          <a href="inventory.html?saved=1">Saved cars</a
+          ><a href="about.html">Our team</a
+          ><a href="inquiry.html"
+            >Start a conversation
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path
+                d="M5 12h14M13 6l6 6-6 6"
+                stroke="currentColor"
+                stroke-width="1.6"
+              /></svg
+          ></a>
+        </div>
+        <p class="footer-note">
+          © 2026 Apex Motors <span>SE-2507 · Student project</span>
+        </p>
+      </div>
+    </footer>
+    <noscript
+      ><p class="noscript-message">
+        Please enable JavaScript for the vehicle collection, photographic
+        showroom and inquiry form. All five pages remain accessible using the
+        navigation above.
+      </p></noscript
+    >
+  </body>
+</html>

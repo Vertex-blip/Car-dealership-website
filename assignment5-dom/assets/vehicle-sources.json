@@ -1,0 +1,94 @@
+{
+  "note": "Existing car-01 through car-09 are retained project assets. The following photographs were sourced from Unsplash and stored locally. Listing years and guide prices are illustrative, not verified sale offers.",
+  "images": [
+    {
+      "file": "car-10.jpg",
+      "photo": "photo-1687209420672-b52e58f818ab",
+      "model": "Porsche 911",
+      "author": "Luke Thornton",
+      "source": "https://unsplash.com/photos/7mqiyL9cWbY",
+      "url": "https://images.unsplash.com/photo-1687209420672-b52e58f818ab?auto=format&fit=crop&w=1200&h=800&q=82&fm=jpg",
+      "license": "https://unsplash.com/license"
+    },
+    {
+      "file": "car-11.jpg",
+      "photo": "photo-1650803960583-d846f36a7127",
+      "model": "Audi R8",
+      "author": "Paul Steiner",
+      "source": "https://unsplash.com/photos/k13S2R5tkIw",
+      "url": "https://images.unsplash.com/photo-1650803960583-d846f36a7127?auto=format&fit=crop&w=1200&h=800&q=82&fm=jpg",
+      "license": "https://unsplash.com/license"
+    },
+    {
+      "file": "car-12.jpg",
+      "photo": "photo-1627440829335-b42fba2a15dd",
+      "model": "Mercedes-AMG GT",
+      "source": "https://unsplash.com/s/photos/amg-gt",
+      "url": "https://images.unsplash.com/photo-1627440829335-b42fba2a15dd?auto=format&fit=crop&w=1200&h=800&q=82&fm=jpg",
+      "license": "https://unsplash.com/license"
+    },
+    {
+      "file": "car-13.jpg",
+      "photo": "photo-1704134701637-0dcfd0b278b1",
+      "model": "McLaren 720S",
+      "author": "Blacklist Tallinn",
+      "source": "https://unsplash.com/photos/LWblV6Y9Xlk",
+      "url": "https://images.unsplash.com/photo-1704134701637-0dcfd0b278b1?auto=format&fit=crop&w=1200&h=800&q=82&fm=jpg",
+      "license": "https://unsplash.com/license"
+    },
+    {
+      "file": "car-14.jpg",
+      "photo": "photo-1611656667636-6c4b9f4a08e0",
+      "model": "Aston Martin DBS",
+      "source": "https://unsplash.com/s/photos/aston-martin",
+      "url": "https://images.unsplash.com/photo-1611656667636-6c4b9f4a08e0?auto=format&fit=crop&w=1200&h=800&q=82&fm=jpg",
+      "license": "https://unsplash.com/license"
+    },
+    {
+      "file": "car-15.jpg",
+      "photo": "photo-1633818806427-f6aef0115a2c",
+      "model": "BMW M4",
+      "author": "Erik Mclean",
+      "source": "https://unsplash.com/photos/4DmFOvBjCKw",
+      "url": "https://images.unsplash.com/photo-1633818806427-f6aef0115a2c?auto=format&fit=crop&w=1200&h=800&q=82&fm=jpg",
+      "license": "https://unsplash.com/license"
+    },
+    {
+      "file": "car-16.jpg",
+      "photo": "photo-1690235709293-6de0ba349eab",
+      "model": "Ford Mustang",
+      "author": "Vitali Adutskevich",
+      "source": "https://unsplash.com/photos/ixb82rmm3qg",
+      "url": "https://images.unsplash.com/photo-1690235709293-6de0ba349eab?auto=format&fit=crop&w=1200&h=800&q=82&fm=jpg",
+      "license": "https://unsplash.com/license"
+    },
+    {
+      "file": "car-17.jpg",
+      "photo": "photo-1648413653819-7c0fd93e8e6a",
+      "model": "Mercedes-Benz G-Class",
+      "source": "https://unsplash.com/s/photos/mercedes-g",
+      "url": "https://images.unsplash.com/photo-1648413653819-7c0fd93e8e6a?auto=format&fit=crop&crop=focalpoint&fp-y=0.65&w=1200&h=800&q=82&fm=jpg",
+      "license": "https://unsplash.com/license"
+    },
+    {
+      "file": "hero-mercedes.jpg",
+      "model": "2018 Mercedes-AMG E 63 S Premium 4MATIC (W213)",
+      "author": "Vauxford",
+      "source": "https://commons.wikimedia.org/wiki/File:2018_Mercedes-AMG_E_63_S_Premium_4MATIC_4.0_Front.jpg",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/7/77/2018_Mercedes-AMG_E_63_S_Premium_4MATIC_4.0_Front.jpg",
+      "license": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "licenseName": "CC BY-SA 4.0",
+      "changes": "Resized from 4200x1943 to 2400x1110 and JPEG optimized; no generated imagery, retouching or watermark removal."
+    },
+    {
+      "file": "gallery-mercedes.jpg",
+      "model": "2018 Mercedes-AMG E 63 S Premium 4MATIC (W213)",
+      "author": "Vauxford",
+      "source": "https://commons.wikimedia.org/wiki/File:2018_Mercedes-AMG_E_63_S_Premium_4MATIC_4.0_Rear.jpg",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/c/cc/2018_Mercedes-AMG_E_63_S_Premium_4MATIC_4.0_Rear.jpg",
+      "license": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "licenseName": "CC BY-SA 4.0",
+      "changes": "Resized from 4353x1862 to 2400x1027 and JPEG optimized; no generated imagery, retouching or watermark removal."
+    }
+  ]
+}

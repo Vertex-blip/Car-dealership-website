@@ -1,0 +1,478 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Apex Motors — a considered collection of exceptional cars. Explore the collection, visit our photographic showroom and find your next drive."
+    />
+    <meta name="theme-color" content="#f4f1eb" />
+    <title>Our story — Apex Motors</title>
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+    <script src="js/theme-init.js"></script>
+    <link rel="stylesheet" href="styles.css" />
+
+    <script src="js/data.js" defer></script>
+    <script src="js/site.js" defer></script>
+  </head>
+  <body data-page="about">
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <header class="site-header">
+      <div class="container navbar-inner">
+        <a class="brand" href="index.html" aria-label="Apex Motors home"
+          ><span class="brand-mark" aria-hidden="true">A<span>╱</span></span
+          ><span class="brand-name">APEX<span>MOTORS</span></span></a
+        >
+        <button
+          id="navToggle"
+          class="nav-toggle icon-button"
+          type="button"
+          aria-controls="assignmentNav"
+          aria-expanded="false"
+          aria-label="Open navigation"
+        >
+          <svg viewBox="0 0 24 24" aria-hidden="true" fill="none">
+            <path
+              d="M4 8h16M4 16h16"
+              stroke="currentColor"
+              stroke-width="1.5"
+            />
+          </svg>
+        </button>
+        <nav id="assignmentNav" class="main-nav" aria-label="Main navigation">
+          <a class="nav-link" href="index.html">Home</a
+          ><a class="nav-link" href="inventory.html">Collection</a
+          ><a class="nav-link" href="showroom.html">Showroom</a
+          ><a class="nav-link" href="about.html" aria-current="page">About</a
+          ><a class="nav-link" href="inquiry.html">Inquire</a>
+        </nav>
+        <div class="header-actions">
+          <button
+            id="soundToggle"
+            class="icon-button"
+            type="button"
+            aria-label="Mute interface sounds"
+            aria-pressed="true"
+            title="Interface sound"
+          >
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path
+                d="m11 5-6 4H2v6h3l6 4V5Z"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linejoin="round"
+              />
+              <path
+                class="sound-waves"
+                d="M15 8a6 6 0 0 1 0 8m3-11a10 10 0 0 1 0 14"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+              />
+            </svg>
+          </button>
+          <button
+            id="themeToggle"
+            class="icon-button"
+            type="button"
+            aria-label="Switch to night mode"
+            aria-pressed="false"
+            title="Day / night"
+          >
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <circle
+                cx="12"
+                cy="12"
+                r="4"
+                stroke="currentColor"
+                stroke-width="1.5"
+              />
+              <path
+                d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.4 1.4m11.2 11.2L19 19M5 19l1.4-1.4M17.6 6.4 19 5"
+                stroke="currentColor"
+                stroke-width="1.5"
+              />
+            </svg>
+          </button>
+          <button
+            id="appearanceToggle"
+            class="icon-button"
+            type="button"
+            aria-label="Customize appearance"
+            aria-controls="appearancePanel"
+            aria-expanded="false"
+            title="Appearance"
+          >
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <circle
+                cx="12"
+                cy="12"
+                r="8.5"
+                stroke="currentColor"
+                stroke-width="1.5"
+              />
+              <path d="M12 3.5a8.5 8.5 0 0 1 0 17V3.5Z" fill="currentColor" />
+            </svg>
+          </button>
+        </div>
+        <section
+          id="appearancePanel"
+          class="appearance-panel"
+          aria-labelledby="appearanceHeading"
+          hidden
+        >
+          <p class="eyebrow">Make it yours</p>
+          <h2 id="appearanceHeading">Appearance</h2>
+          <div class="theme-options" role="group" aria-label="Color mode">
+            <button type="button" data-theme-choice="light" aria-pressed="true">
+              Day</button
+            ><button
+              type="button"
+              data-theme-choice="dark"
+              aria-pressed="false"
+            >
+              Night
+            </button>
+          </div>
+          <label class="color-field" for="backgroundColor"
+            ><span>Choose an atmosphere hue</span
+            ><input id="backgroundColor" type="color" value="#b76a43"
+          /></label>
+          <button id="backgroundButton" class="btn btn-primary" type="button">
+            Surprise me
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path
+                d="M5 12h14M13 6l6 6-6 6"
+                stroke="currentColor"
+                stroke-width="1.6"
+              />
+            </svg>
+          </button>
+          <p id="backgroundStatus" class="mini-status" role="status">
+            Signature palette
+          </p>
+          <button id="backgroundReset" class="text-button" type="button">
+            Reset atmosphere
+          </button>
+        </section>
+      </div>
+    </header>
+    <main id="main-content">
+      <div class="container about-main">
+        <section class="page-heading">
+          <p class="eyebrow">03 / The people behind the drive</p>
+          <h1>Driven by cars.<br /><em>Built around people.</em></h1>
+          <p class="lead">
+            Four people, one shared interest. Cars worth getting to know.
+          </p>
+        </section>
+        <section class="about-story section" aria-labelledby="approachHeading">
+          <div class="story-image">
+            <img
+              src="images/car-04.jpg"
+              width="1200"
+              height="800"
+              alt="Turquoise Chevrolet Camaro against a desert landscape"
+              loading="lazy"
+            />
+          </div>
+          <div class="story-copy">
+            <p class="eyebrow">Our point of view</p>
+            <h2 id="approachHeading">Character comes<br />before everything.</h2>
+            <p>
+              Some cars make an everyday drive feel a little different. A
+              beautiful shape, a considered cabin, the way a car sits on the
+              road. Those are the details we look for.
+            </p>
+            <p id="readMoreContent" class="read-more-content" hidden>
+              Apex Motors is our shared web development project. Arsen,
+              Kuttibay, Farabi and Muhammad built this collection to bring that
+              interest into an experience you can explore: real photographs, a
+              photographic showroom and a thoughtful way to find your next
+              favourite. Every listing and guide price is illustrative.
+            </p>
+            <button
+              id="readMoreButton"
+              class="btn btn-outline-primary"
+              type="button"
+              aria-controls="readMoreContent"
+              aria-expanded="false"
+            >
+              More about Apex +
+            </button>
+          </div>
+        </section>
+        <section id="team" class="section" aria-labelledby="teamHeading">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Team Apex / SE-2507</p>
+              <h2 id="teamHeading">Meet the team.</h2>
+            </div>
+            <p class="muted">
+              Different perspectives.<br />The same attention to detail.
+            </p>
+          </div>
+          <div class="team-grid">
+            <article class="team-card card">
+              <div class="team-image">
+                <img
+                  class="team-photo portrait-kuttibay"
+                  src="images/kuttibay.jpg"
+                  width="600"
+                  height="750"
+                  alt="Kuttibay, Apex Motors team"
+                  loading="lazy"
+                /><span class="team-number">01</span>
+              </div>
+              <div class="card-body">
+                <h3 class="card-title">Kuttibay</h3>
+                <p class="card-text">Marketing Specialist</p>
+              </div>
+            </article>
+            <article class="team-card card">
+              <div class="team-image">
+                <img
+                  class="team-photo portrait-farabi"
+                  src="images/farabi.jpg"
+                  width="600"
+                  height="750"
+                  alt="Farabi, Apex Motors team"
+                  loading="lazy"
+                /><span class="team-number">02</span>
+              </div>
+              <div class="card-body">
+                <h3 class="card-title">Farabi</h3>
+                <p class="card-text">Owner</p>
+              </div>
+            </article>
+            <article class="team-card card">
+              <div class="team-image">
+                <img
+                  class="team-photo portrait-arsen"
+                  src="images/arsen.jpg"
+                  width="600"
+                  height="750"
+                  alt="Arsen, Apex Motors team"
+                  loading="lazy"
+                /><span class="team-number">03</span>
+              </div>
+              <div class="card-body">
+                <h3 class="card-title">Arsen</h3>
+                <p class="card-text">Sales Consultant</p>
+              </div>
+            </article>
+            <article class="team-card card">
+              <div class="team-image">
+                <img
+                  class="team-photo portrait-muhammad"
+                  src="images/muhammad.jpg"
+                  width="600"
+                  height="750"
+                  alt="Muhammad, Apex Motors team"
+                  loading="lazy"
+                /><span class="team-number">04</span>
+              </div>
+              <div class="card-body">
+                <h3 class="card-title">Muhammad</h3>
+                <p class="card-text">Technical Specialist</p>
+              </div>
+            </article>
+          </div>
+        </section>
+        <section class="section faq-section" aria-labelledby="faqHeading">
+          <div>
+            <p class="eyebrow">A few things to know</p>
+            <h2 id="faqHeading">Good questions.<br />Clear answers.</h2>
+          </div>
+          <div class="faq-list">
+            <details class="faq-item">
+              <summary>
+                Can I take a closer look at a car?<span aria-hidden="true"
+                  >+</span
+                >
+              </summary>
+              <p>
+                Yes. Open the Showroom and explore the full-size photographs.
+                Choose a thumbnail or use the arrow buttons to move through the
+                collection at your own pace.
+              </p>
+            </details>
+            <details class="faq-item">
+              <summary>
+                How do I save a car?<span aria-hidden="true">+</span>
+              </summary>
+              <p>
+                Press the heart on any car in the Collection. Your saved cars
+                stay in this browser. Use the Saved filter to see your
+                shortlist.
+              </p>
+            </details>
+            <details class="faq-item">
+              <summary>
+                Does the inquiry book a test drive?<span aria-hidden="true"
+                  >+</span
+                >
+              </summary>
+              <p>
+                The form creates a local preview of your preferences. This
+                student website does not send messages, take payments or reserve
+                appointments.
+              </p>
+            </details>
+            <details class="faq-item">
+              <summary>
+                Can I change the page atmosphere?<span aria-hidden="true"
+                  >+</span
+                >
+              </summary>
+              <p>
+                The sun button switches between day and night. The appearance
+                button opens a hue picker and a Surprise me button. Both choices
+                carry across the site when browser storage is available.
+              </p>
+            </details>
+          </div>
+        </section>
+        <section class="section feedback-section">
+          <div>
+            <p class="eyebrow">Your perspective</p>
+            <h2>How was the drive?</h2>
+            <p class="muted">Leave a quick rating of the experience.</p>
+          </div>
+          <div>
+            <div
+              class="rating-controls"
+              role="group"
+              aria-label="Rate the website"
+            >
+              <button
+                type="button"
+                class="rating-star"
+                data-rating="1"
+                aria-label="Rate 1 out of 5"
+                aria-pressed="false"
+              >
+                ★</button
+              ><button
+                type="button"
+                class="rating-star"
+                data-rating="2"
+                aria-label="Rate 2 out of 5"
+                aria-pressed="false"
+              >
+                ★</button
+              ><button
+                type="button"
+                class="rating-star"
+                data-rating="3"
+                aria-label="Rate 3 out of 5"
+                aria-pressed="false"
+              >
+                ★</button
+              ><button
+                type="button"
+                class="rating-star"
+                data-rating="4"
+                aria-label="Rate 4 out of 5"
+                aria-pressed="false"
+              >
+                ★</button
+              ><button
+                type="button"
+                class="rating-star"
+                data-rating="5"
+                aria-label="Rate 5 out of 5"
+                aria-pressed="false"
+              >
+                ★
+              </button>
+            </div>
+            <p
+              id="ratingStatus"
+              class="mini-status"
+              role="status"
+              aria-live="polite"
+            >
+              Choose from one to five stars.
+            </p>
+          </div>
+        </section>
+        <section class="utility-strip" aria-label="Studio controls">
+          <div>
+            <button id="timeButton" class="text-button" type="button">
+              Show local time ↗
+            </button>
+            <p id="timeOutput" class="mini-status" role="status">
+              Take your time. Find your drive.
+            </p>
+          </div>
+          <div>
+            <button id="soundButton" class="text-button" type="button">
+              Play studio chime ↗
+            </button>
+            <p id="soundStatus" class="mini-status" role="status">
+              A little sound, on your terms.
+            </p>
+          </div>
+        </section>
+      </div>
+    </main>
+    <div class="container page-rail" aria-label="Explore pages">
+      <a id="previousPage" href="showroom.html" class="page-previous"
+        ><span class="arrow-left"
+          ><svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path
+              d="M5 12h14M13 6l6 6-6 6"
+              stroke="currentColor"
+              stroke-width="1.6"
+            /></svg></span
+        ><span>Previous <strong>Showroom</strong></span></a
+      >
+      <span class="keyboard-hint"
+        ><kbd>←</kbd><kbd>→</kbd> choose a page <span>·</span>
+        <kbd>Enter</kbd> explore</span
+      >
+      <a id="nextPage" href="inquiry.html" class="page-next"
+        ><span>Next <strong>Inquire</strong></span
+        ><svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path
+            d="M5 12h14M13 6l6 6-6 6"
+            stroke="currentColor"
+            stroke-width="1.6"
+          /></svg
+      ></a>
+    </div>
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <a class="brand footer-brand" href="index.html"
+          ><span class="brand-name">APEX<span>MOTORS</span></span></a
+        >
+        <p>For the love of the drive.</p>
+        <div class="footer-links">
+          <a href="inventory.html?saved=1">Saved cars</a
+          ><a href="about.html">Our team</a
+          ><a href="inquiry.html"
+            >Start a conversation
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path
+                d="M5 12h14M13 6l6 6-6 6"
+                stroke="currentColor"
+                stroke-width="1.6"
+              /></svg
+          ></a>
+        </div>
+        <p class="footer-note">
+          © 2026 Apex Motors <span>SE-2507 · Student project</span>
+        </p>
+      </div>
+    </footer>
+    <noscript
+      ><p class="noscript-message">
+        Please enable JavaScript for the vehicle collection, photographic
+        showroom and inquiry form. All five pages remain accessible using the
+        navigation above.
+      </p></noscript
+    >
+  </body>
+</html>

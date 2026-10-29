@@ -1,568 +1,460 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="light">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta
       name="description"
-      content="Explore Apex Motors: filter our vehicles, build a three-step inquiry and meet the team. Assignment 5 JavaScript and DOM project, SE-2507."
+      content="Apex Motors — a considered collection of exceptional cars. Explore the collection, explore the photographic showroom and find your next drive."
     />
-    <title>Apex Motors | Interactive collection</title>
-    <link rel="icon" href="images/apex-motors-logo.png" />
-    <link rel="stylesheet" href="styles.css?v=collection-a5" />
-    <script src="js/site.js?v=collection-a5" defer></script>
-    <script src="js/inventory.js?v=collection-a5" defer></script>
-    <script src="js/booking.js?v=collection-a5" defer></script>
+    <meta name="theme-color" content="#f4f1eb" />
+    <title>For the love of the drive — Apex Motors</title>
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+    <script src="js/theme-init.js"></script>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="js/data.js" defer></script>
+    <script src="js/site.js" defer></script>
   </head>
-  <body>
-    <a class="skip-link" href="#main-content">Skip to main content</a>
+  <body data-page="index">
+    <a class="skip-link" href="#main-content">Skip to content</a>
     <header class="site-header">
       <div class="container navbar-inner">
-        <a class="brand" href="#home" aria-label="Apex Motors home"
-          ><img
-            class="brand-logo"
-            src="images/apex-motors-logo.png"
-            alt="Apex Motors"
-            width="164"
-            height="42"
-        /></a>
+        <a class="brand" href="index.html" aria-label="Apex Motors home"
+          ><span class="brand-mark" aria-hidden="true">A<span>╱</span></span
+          ><span class="brand-name">APEX<span>MOTORS</span></span></a
+        >
         <button
           id="navToggle"
-          class="nav-toggle"
+          class="nav-toggle icon-button"
           type="button"
-          aria-expanded="false"
           aria-controls="assignmentNav"
-          aria-label="Toggle navigation"
+          aria-expanded="false"
+          aria-label="Open navigation"
         >
-          <span aria-hidden="true">☰</span>
+          <svg viewBox="0 0 24 24" aria-hidden="true" fill="none">
+            <path
+              d="M4 8h16M4 16h16"
+              stroke="currentColor"
+              stroke-width="1.5"
+            />
+          </svg>
         </button>
         <nav id="assignmentNav" class="main-nav" aria-label="Main navigation">
-          <a class="nav-link" href="#home">Home</a>
-          <a class="nav-link" href="#inventory">Inventory</a>
-          <a class="nav-link" href="#inquiry">Inquiry</a>
-          <a class="nav-link" href="#interactive-tools">Interactive tools</a>
-          <a class="nav-link" href="#team">Our team</a>
+          <a class="nav-link" href="index.html" aria-current="page">Home</a
+          ><a class="nav-link" href="inventory.html">Collection</a
+          ><a class="nav-link" href="showroom.html">Showroom</a
+          ><a class="nav-link" href="about.html">About</a
+          ><a class="nav-link" href="inquiry.html">Inquire</a>
         </nav>
+        <div class="header-actions">
+          <button
+            id="soundToggle"
+            class="icon-button"
+            type="button"
+            aria-label="Mute interface sounds"
+            aria-pressed="true"
+            title="Interface sound"
+          >
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path
+                d="m11 5-6 4H2v6h3l6 4V5Z"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linejoin="round"
+              />
+              <path
+                class="sound-waves"
+                d="M15 8a6 6 0 0 1 0 8m3-11a10 10 0 0 1 0 14"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+              />
+            </svg>
+          </button>
+          <button
+            id="themeToggle"
+            class="icon-button"
+            type="button"
+            aria-label="Switch to night mode"
+            aria-pressed="false"
+            title="Day / night"
+          >
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <circle
+                cx="12"
+                cy="12"
+                r="4"
+                stroke="currentColor"
+                stroke-width="1.5"
+              />
+              <path
+                d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.4 1.4m11.2 11.2L19 19M5 19l1.4-1.4M17.6 6.4 19 5"
+                stroke="currentColor"
+                stroke-width="1.5"
+              />
+            </svg>
+          </button>
+          <button
+            id="appearanceToggle"
+            class="icon-button"
+            type="button"
+            aria-label="Customize appearance"
+            aria-controls="appearancePanel"
+            aria-expanded="false"
+            title="Studio atmosphere"
+          >
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <circle
+                cx="12"
+                cy="12"
+                r="8.5"
+                stroke="currentColor"
+                stroke-width="1.5"
+              />
+              <path d="M12 3.5a8.5 8.5 0 0 1 0 17V3.5Z" fill="currentColor" />
+            </svg>
+          </button>
+        </div>
+        <section
+          id="appearancePanel"
+          class="appearance-panel"
+          aria-labelledby="appearanceHeading"
+          hidden
+        >
+          <p class="eyebrow">Make it yours</p>
+          <h2 id="appearanceHeading">Studio atmosphere</h2>
+          <div class="theme-options" role="group" aria-label="Color mode">
+            <button type="button" data-theme-choice="light" aria-pressed="true">
+              Day</button
+            ><button
+              type="button"
+              data-theme-choice="dark"
+              aria-pressed="false"
+            >
+              Night
+            </button>
+          </div>
+          <label class="color-field" for="backgroundColor"
+            ><span>Choose an atmosphere hue</span
+            ><input id="backgroundColor" type="color" value="#b76a43"
+          /></label>
+          <button id="backgroundButton" class="btn btn-primary" type="button">
+            Surprise me
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path
+                d="M5 12h14M13 6l6 6-6 6"
+                stroke="currentColor"
+                stroke-width="1.6"
+              />
+            </svg>
+          </button>
+          <p id="backgroundStatus" class="mini-status" role="status">
+            Signature studio palette
+          </p>
+          <button id="backgroundReset" class="text-button" type="button">
+            Reset atmosphere
+          </button>
+        </section>
       </div>
     </header>
-
-    <main id="main-content">
-      <section id="home" class="hero-panel" aria-labelledby="hero-title">
-        <div class="container hero-copy">
-          <p class="eyebrow">Apex Motors · Group SE-2507</p>
-          <h1 id="hero-title">Considered cars.<br />Clear decisions.</h1>
-          <p class="lead">
-            Find a car that suits you. Filter the collection, choose your
-            preferences and prepare an inquiry in three simple steps.
-          </p>
-          <a class="btn btn-primary btn-large" href="#inventory"
-            >Browse and filter cars</a
-          >
-        </div>
-      </section>
-
-      <section
-        id="inventory"
-        class="container section"
-        aria-labelledby="inventory-heading"
-      >
-        <div class="section-heading">
-          <div>
-            <p class="eyebrow">The Apex collection</p>
-            <h2 id="inventory-heading">Find your next favourite.</h2>
-          </div>
-          <p class="section-lead">
-            Choose a category and save the cars you like. Your saved collection
-            stays in this browser for your next visit.
-          </p>
-        </div>
-        <div
-          class="filter-controls"
-          role="group"
-          aria-label="Filter the vehicle collection"
-        >
-          <button
-            class="btn btn-primary"
-            type="button"
-            data-category="all"
-            aria-pressed="true"
-          >
-            All vehicles
-          </button>
-          <button
-            class="btn btn-outline-primary"
-            type="button"
-            data-category="touring"
-            aria-pressed="false"
-          >
-            Grand touring
-          </button>
-          <button
-            class="btn btn-outline-primary"
-            type="button"
-            data-category="performance"
-            aria-pressed="false"
-          >
-            Performance
-          </button>
-          <button
-            class="btn btn-outline-primary"
-            type="button"
-            data-category="adventure"
-            aria-pressed="false"
-          >
-            Adventure
-          </button>
-          <button
-            id="savedOnlyButton"
-            class="btn btn-outline-primary saved-filter"
-            type="button"
-            aria-pressed="false"
-            aria-controls="inventoryGrid"
-          >
-            <span aria-hidden="true">♥</span> Saved (<span id="savedCount">0</span>)
-          </button>
-        </div>
-        <p id="savedStatus" class="mini-status saved-status" role="status" aria-live="polite">
-          Press Save on a car to keep it in your saved collection.
-        </p>
-        <p
-          id="inventoryCount"
-          class="mini-status muted"
-          role="status"
-          aria-live="polite"
-        >
-          Loading vehicles…
-        </p>
-        <div id="inventoryGrid" class="vehicle-grid"></div>
-        <p class="mini-status muted">
-          Classroom demonstration. Vehicle names and descriptions are sample
-          listings from our earlier project.
-        </p>
-        <noscript
-          ><p>
-            Please enable JavaScript to view the cars, save your favourites and use the inquiry form.
-          </p></noscript
-        >
-      </section>
-
-    <section id="about" class="container" aria-labelledby="approach-heading">
-        <div class="info-panel">
-          <p class="eyebrow">Our approach</p>
-          <h2 id="approach-heading">A straightforward way to explore.</h2>
-          <p>
-            Start with a category, then choose a car that interests you. Your
-            selected car will be added to the inquiry form.
-          </p>
-          <p id="readMoreContent" class="read-more-content" hidden>
-            You can go Back in the inquiry without losing your entries, review
-            your preferences and reset the form whenever you need. This student
-            project keeps everything in your browser: no inquiry is sent and no
-            appointment is booked.
-          </p>
-          <button
-            id="readMoreButton"
-            class="btn btn-outline-primary"
-            type="button"
-            aria-controls="readMoreContent"
-            aria-expanded="false"
-          >
-            Read more
-          </button>
-        </div>
-      </section>
-
-      <section
-        id="inquiry"
-        class="container section"
-        aria-labelledby="inquiry-heading"
-      >
-        <div class="section-heading">
-          <div>
-            <p class="eyebrow">Your next step</p>
-            <h2 id="inquiry-heading">Tell us what you're looking for.</h2>
-          </div>
-          <p class="section-lead">
-            Contact details, preferences, then review. Go back anytime to change
-            a detail.
-          </p>
-        </div>
-        <div class="inquiry-layout">
-          <div class="inquiry-panel">
-            <div class="section-heading">
-              <h3>Your inquiry</h3>
-              <p id="inquiryStepCount" class="mini-status muted">Step 1 of 3</p>
-            </div>
-            <ol class="inquiry-steps" aria-label="Inquiry steps">
-              <li data-step-label="0" aria-current="step">1. Contact</li>
-              <li data-step-label="1">2. Preferences</li>
-              <li data-step-label="2">3. Review</li>
-            </ol>
-            <p
-              id="inquiryProgress"
-              class="visually-hidden"
-              role="status"
-              aria-live="polite"
-            >
-              Step 1: Contact
+    <main id="main-content" class="home-main">
+      <section class="photo-hero" aria-labelledby="hero-title">
+        <img
+          class="hero-photograph"
+          src="images/hero-mercedes.jpg"
+          width="2400"
+          height="1110"
+          alt="Black Mercedes-AMG E 63 S with red brake calipers, photographed from the front"
+          fetchpriority="high"
+        />
+        <div class="hero-shade" aria-hidden="true"></div>
+        <div class="container photo-hero-content">
+          <div class="hero-topline">
+            <p class="eyebrow">
+              <span class="accent-line"></span> The featured collection
             </p>
-            <form id="inquiryForm" novalidate>
-              <fieldset data-inquiry-step="0">
-                <legend>Your contact details</legend>
-                <p class="mini-status muted">
-                  Name and email are required. Use sample details for this
-                  demonstration.
-                </p>
-                <div class="form-grid">
-                  <div class="field">
-                    <label class="form-label" for="fullName"
-                      >Full name <span aria-hidden="true">*</span></label
-                    ><input
-                      class="form-control"
-                      id="fullName"
-                      name="fullName"
-                      autocomplete="name"
-                      minlength="2"
-                      maxlength="80"
-                      required
-                      aria-describedby="fullNameError"
-                    />
-                    <p
-                      id="fullNameError"
-                      class="invalid-feedback"
-                      aria-live="polite"
-                    ></p>
-                  </div>
-                  <div class="field">
-                    <label class="form-label" for="email"
-                      >Email address <span aria-hidden="true">*</span></label
-                    ><input
-                      class="form-control"
-                      id="email"
-                      name="email"
-                      type="email"
-                      autocomplete="email"
-                      maxlength="120"
-                      required
-                      aria-describedby="emailError"
-                    />
-                    <p
-                      id="emailError"
-                      class="invalid-feedback"
-                      aria-live="polite"
-                    ></p>
-                  </div>
-                </div>
-              </fieldset>
-              <fieldset data-inquiry-step="1" hidden>
-                <legend>Your preferences</legend>
-                <div class="form-grid">
-                  <div class="field">
-                    <label class="form-label" for="vehicle"
-                      >Vehicle of interest</label
-                    ><select
-                      class="form-select"
-                      id="vehicle"
-                      name="vehicle"
-                      aria-describedby="vehicleError"
-                    >
-                      <option value="">Choose a vehicle (optional)</option>
-                    </select>
-                    <p
-                      id="vehicleError"
-                      class="invalid-feedback"
-                      aria-live="polite"
-                    ></p>
-                  </div>
-                  <div class="field">
-                    <label class="form-label" for="budget">Budget range</label>
-                    <div class="input-group">
-                      <span class="input-prefix">KZT</span
-                      ><input
-                        class="form-control"
-                        id="budget"
-                        name="budget"
-                        type="number"
-                        min="0"
-                        step="any"
-                        inputmode="decimal"
-                        placeholder="e.g. 18000000"
-                        aria-describedby="budgetError"
-                      />
-                    </div>
-                    <p
-                      id="budgetError"
-                      class="invalid-feedback"
-                      aria-live="polite"
-                    ></p>
-                  </div>
-                  <fieldset class="field field-wide">
-                    <legend class="form-label">
-                      How would you like us to reply?
-                    </legend>
-                    <div class="radio-group">
-                      <label for="replyEmail"
-                        ><input
-                          type="radio"
-                          name="replyMethod"
-                          id="replyEmail"
-                          value="email"
-                          checked
-                        />
-                        Email</label
-                      ><label for="replyPhone"
-                        ><input
-                          type="radio"
-                          name="replyMethod"
-                          id="replyPhone"
-                          value="phone"
-                        />
-                        Phone</label
-                      >
-                    </div>
-                  </fieldset>
-                  <div id="phoneField" class="field" hidden>
-                    <label class="form-label" for="phone"
-                      >Phone number <span aria-hidden="true">*</span></label
-                    ><input
-                      class="form-control"
-                      id="phone"
-                      name="phone"
-                      type="tel"
-                      autocomplete="tel"
-                      placeholder="+7 700 123 45 67"
-                      maxlength="30"
-                      aria-describedby="phoneError"
-                    />
-                    <p
-                      id="phoneError"
-                      class="invalid-feedback"
-                      aria-live="polite"
-                    ></p>
-                  </div>
-                  <div class="field field-wide">
-                    <label class="checkbox-label" for="testDrive"
-                      ><input
-                        type="checkbox"
-                        name="testDrive"
-                        value="yes"
-                        id="testDrive"
-                      />
-                      I'm interested in arranging a test drive.</label
-                    >
-                  </div>
-                  <div class="field field-wide">
-                    <label class="form-label" for="message"
-                      >Anything else we should know?</label
-                    ><textarea
-                      class="form-control"
-                      id="message"
-                      name="message"
-                      rows="4"
-                      maxlength="600"
-                      aria-describedby="messageError"
-                    ></textarea>
-                    <p
-                      id="messageError"
-                      class="invalid-feedback"
-                      aria-live="polite"
-                    ></p>
-                  </div>
-                </div>
-              </fieldset>
-              <fieldset data-inquiry-step="2" hidden>
-                <legend>Review your inquiry</legend>
-                <p class="muted">
-                  Check your sample details. Use Back to make changes.
-                </p>
-                <dl id="inquirySummary" class="inquiry-summary"></dl>
-                <p class="mini-status muted">
-                  Confirming displays a local preview. No inquiry is sent and no
-                  appointment is booked.
-                </p>
-              </fieldset>
-              <div class="form-actions">
-                <button
-                  id="previousStep"
-                  class="btn btn-outline-primary"
-                  type="button"
-                  hidden
-                >
-                  Back</button
-                ><button id="nextStep" class="btn btn-primary" type="button">
-                  Next</button
-                ><button
-                  id="submitInquiry"
-                  class="btn btn-primary"
-                  type="submit"
-                  hidden
-                >
-                  Confirm inquiry preview</button
-                ><button
-                  id="resetInquiry"
-                  class="btn btn-secondary"
-                  type="button"
-                >
-                  Reset form
-                </button>
-              </div>
-              <p
-                id="formStatus"
-                class="form-status"
-                role="status"
-                aria-live="polite"
-              ></p>
-            </form>
-            <div id="inquirySuccess" class="success-panel" hidden tabindex="-1">
-              <h3>Your inquiry preview is ready.</h3>
-              <p id="inquirySuccessText"></p>
-              <p>
-                No information was sent to a server. This is a local classroom
-                demonstration.
-              </p>
-              <button id="newInquiry" class="btn btn-primary" type="button">
-                Start a new inquiry
-              </button>
+            <span class="hero-edition">01 / MERCEDES-AMG</span>
+          </div>
+          <h1 id="hero-title">Mercedes-AMG.<br /><span>E 63 S.</span></h1>
+          <div class="hero-dock">
+            <div>
+              <p class="hero-tagline">An unmistakable presence.</p>
+              <p>Performance cars. Grand tourers. Your next drive.</p>
+            </div>
+            <div class="hero-ctas">
+              <a class="btn btn-primary" href="inventory.html"
+                >Explore collection <span aria-hidden="true">↗</span></a
+              ><a class="btn btn-light-outline" href="inquiry.html?vehicle=e63s"
+                >Enquire now <span aria-hidden="true">→</span></a
+              >
             </div>
           </div>
-          <aside>
-            <section
-              id="interactive-tools"
-              class="tools-panel"
-              aria-labelledby="tools-heading"
-            >
-              <p class="eyebrow">Try the controls</p>
-              <h2 id="tools-heading">Make it interactive.</h2>
-              <div class="tool-block">
-                <h3>Page background</h3>
-                <p class="muted">Choose cream, paper or soft blue.</p>
-                <button
-                  id="backgroundButton"
-                  class="btn btn-outline-primary"
-                  type="button"
-                >
-                  Change background
-                </button>
-                <p
-                  id="backgroundStatus"
-                  class="mini-status muted"
-                  role="status"
-                  aria-live="polite"
-                >
-                  Current background: Cream
-                </p>
-              </div>
-              <div class="tool-block">
-                <h3>Your local time</h3>
-                <button id="timeButton" class="btn btn-primary" type="button">
-                  Show current time
-                </button>
-                <p
-                  id="timeOutput"
-                  class="mini-status muted"
-                  role="status"
-                  aria-live="polite"
-                >
-                  Click the button to display your device time.
-                </p>
-              </div>
-              <div class="tool-block">
-                <h3>A short notification</h3>
-                <button
-                  id="soundButton"
-                  class="btn btn-outline-primary"
-                  type="button"
-                >
-                  Play notification
-                </button>
-                <p
-                  id="soundStatus"
-                  class="mini-status muted"
-                  role="status"
-                  aria-live="polite"
-                >
-                  The sound plays only when you press the button.
-                </p>
-              </div>
-            </section>
-          </aside>
         </div>
       </section>
-
+      <div class="marque-strip">
+        <div class="container marque-inner">
+          <span class="marque-label">Exceptional marques</span
+          ><span>MERCEDES-BENZ</span><span>PORSCHE</span><span>AUDI</span
+          ><span>BMW</span><span>McLAREN</span>
+        </div>
+      </div>
       <section
-        id="team"
-        class="container section"
-        aria-labelledby="team-heading"
+        class="container section home-featured"
+        aria-labelledby="featured-heading"
       >
         <div class="section-heading">
           <div>
-            <p class="eyebrow">Team Apex Motors · SE-2507</p>
-            <h2 id="team-heading">Meet the Apex Motors team.</h2>
+            <p class="eyebrow">Selected from the collection</p>
+            <h2 id="featured-heading">Cars with character.</h2>
           </div>
-          <p class="section-lead">
-            The same four team members and photographs from our previous
-            project.
-          </p>
+          <div class="section-heading-end">
+            <p>Discover the details. Find your favourite.</p>
+            <a class="text-link" href="inventory.html"
+              >View all 17 cars <span aria-hidden="true">↗</span></a
+            >
+          </div>
         </div>
-        <div class="team-grid">
-          <article class="card team-card">
-            <img
-              class="team-photo portrait-kuttibay"
-              src="images/kuttibay.jpg"
-              alt="Kuttibay, member of Team Apex Motors"
-              loading="lazy"
-            />
-            <div class="card-body">
-              <h3 class="card-title">Kuttibay</h3>
-              <p class="card-text">Marketing Specialist</p>
+        <div class="featured-grid">
+          <article class="featured-car">
+            <a class="featured-image" href="inquiry.html?vehicle=911"
+              ><img
+                src="images/car-10.jpg"
+                alt="White Porsche 911 on a country road"
+                width="1200"
+                height="800"
+                loading="lazy"
+              /><span class="photo-badge">Performance</span></a
+            >
+            <div class="featured-car-body">
+              <p class="eyebrow">Porsche / 2023</p>
+              <h3><a href="inquiry.html?vehicle=911">911</a></h3>
+              <div class="featured-car-bottom">
+                <span>₸ 82,400,000 <small>Guide price</small></span
+                ><a
+                  class="round-arrow"
+                  href="inquiry.html?vehicle=911"
+                  aria-label="Enquire about Porsche 911"
+                  >↗</a
+                >
+              </div>
             </div>
           </article>
-          <article class="card team-card">
-            <img
-              class="team-photo portrait-farabi"
-              src="images/farabi.jpg"
-              alt="Farabi, member of Team Apex Motors"
-              loading="lazy"
-            />
-            <div class="card-body">
-              <h3 class="card-title">Farabi</h3>
-              <p class="card-text">Owner</p>
+          <article class="featured-car">
+            <a class="featured-image" href="inquiry.html?vehicle=r8"
+              ><img
+                src="images/car-11.jpg"
+                alt="Black Audi R8 on a tree-lined road"
+                width="1200"
+                height="800"
+                loading="lazy"
+              /><span class="photo-badge">Performance</span></a
+            >
+            <div class="featured-car-body">
+              <p class="eyebrow">Audi / 2020</p>
+              <h3><a href="inquiry.html?vehicle=r8">R8</a></h3>
+              <div class="featured-car-bottom">
+                <span>₸ 69,700,000 <small>Guide price</small></span
+                ><a
+                  class="round-arrow"
+                  href="inquiry.html?vehicle=r8"
+                  aria-label="Enquire about Audi R8"
+                  >↗</a
+                >
+              </div>
             </div>
           </article>
-          <article class="card team-card">
-            <img
-              class="team-photo portrait-arsen"
-              src="images/arsen.jpg"
-              alt="Arsen, member of Team Apex Motors"
-              loading="lazy"
-            />
-            <div class="card-body">
-              <h3 class="card-title">Arsen</h3>
-              <p class="card-text">Finance Consultant</p>
-            </div>
-          </article>
-          <article class="card team-card">
-            <img
-              class="team-photo portrait-muhammad"
-              src="images/muhammad.jpg"
-              alt="Muhammad, member of Team Apex Motors"
-              loading="lazy"
-            />
-            <div class="card-body">
-              <h3 class="card-title">Muhammad</h3>
-              <p class="card-text">Client Care</p>
+          <article class="featured-car">
+            <a class="featured-image" href="inquiry.html?vehicle=720s"
+              ><img
+                src="images/car-13.jpg"
+                alt="Orange McLaren 720S with its doors raised"
+                width="1200"
+                height="800"
+                loading="lazy"
+              /><span class="photo-badge">Performance</span></a
+            >
+            <div class="featured-car-body">
+              <p class="eyebrow">McLaren / 2020</p>
+              <h3><a href="inquiry.html?vehicle=720s">720S</a></h3>
+              <div class="featured-car-bottom">
+                <span>₸ 139,000,000 <small>Guide price</small></span
+                ><a
+                  class="round-arrow"
+                  href="inquiry.html?vehicle=720s"
+                  aria-label="Enquire about McLaren 720S"
+                  >↗</a
+                >
+              </div>
             </div>
           </article>
         </div>
       </section>
+      <section
+        class="showroom-feature"
+        aria-labelledby="showroom-feature-title"
+      >
+        <div class="showroom-feature-image">
+          <img
+            src="images/car-12.jpg"
+            alt="Black Mercedes-AMG GT beside industrial silos"
+            width="1200"
+            height="800"
+            loading="lazy"
+          />
+        </div>
+        <div class="showroom-feature-copy">
+          <p class="eyebrow">The Apex showroom</p>
+          <h2 id="showroom-feature-title">
+            A closer look.<br />A clearer choice.
+          </h2>
+          <p>
+            Explore the shapes, the colours, and the details in our photographic
+            showroom. Eight exceptional cars, ready for a closer look.
+          </p>
+          <a class="btn btn-primary" href="showroom.html"
+            >Enter the showroom <span aria-hidden="true">↗</span></a
+          ><span class="feature-footnote">Real cars. Real photography.</span>
+        </div>
+      </section>
+      <section
+        class="container section categories-section"
+        aria-labelledby="categories-heading"
+      >
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Find your direction</p>
+            <h2 id="categories-heading">What moves you?</h2>
+          </div>
+          <p class="section-lead">
+            From everyday refinement to something extraordinary. Explore by the
+            way you drive.
+          </p>
+        </div>
+        <div class="category-grid">
+          <a class="category-card" href="inventory.html?category=performance"
+            ><img
+              src="images/car-15.jpg"
+              alt="Red BMW M4 in motion"
+              width="1200"
+              height="800"
+              loading="lazy"
+            />
+            <div>
+              <span>01 / THE THRILL OF THE DRIVE</span>
+              <h3>Performance</h3>
+              <span class="category-arrow" aria-hidden="true">↗</span>
+            </div></a
+          ><a class="category-card" href="inventory.html?category=touring"
+            ><img
+              src="images/car-07.jpg"
+              alt="Black Porsche Panamera on the open road"
+              width="1200"
+              height="800"
+              loading="lazy"
+            />
+            <div>
+              <span>02 / THE LONG WAY HOME</span>
+              <h3>Grand touring</h3>
+              <span class="category-arrow" aria-hidden="true">↗</span>
+            </div></a
+          ><a class="category-card" href="inventory.html?category=adventure"
+            ><img
+              src="images/car-17.jpg"
+              alt="Black Mercedes-Benz G-Class SUV"
+              width="1200"
+              height="800"
+              loading="lazy"
+            />
+            <div>
+              <span>03 / BEYOND THE EVERYDAY</span>
+              <h3>Adventure</h3>
+              <span class="category-arrow" aria-hidden="true">↗</span>
+            </div></a
+          >
+        </div>
+      </section>
+      <section class="container invitation-section">
+        <div>
+          <p class="eyebrow">Your next drive starts here</p>
+          <h2>Let’s talk cars.</h2>
+          <p>Have something in mind? Tell us what you are looking for.</p>
+        </div>
+        <a class="btn btn-primary" href="inquiry.html"
+          >Start an inquiry <span aria-hidden="true">↗</span></a
+        >
+      </section>
+      <div class="container photo-credit">
+        Featured photograph:
+        <a
+          href="https://commons.wikimedia.org/wiki/File:2018_Mercedes-AMG_E_63_S_Premium_4MATIC_4.0_Front.jpg"
+          target="_blank"
+          rel="noopener"
+          >Vauxford / Wikimedia Commons</a
+        >
+        ·
+        <a
+          href="https://creativecommons.org/licenses/by-sa/4.0/"
+          target="_blank"
+          rel="noopener"
+          >CC BY-SA 4.0</a
+        >. Displayed with a tonal overlay.
+      </div>
     </main>
-
+    <div class="container page-rail" aria-label="Explore pages">
+      <a id="previousPage" href="inquiry.html" class="page-previous"
+        ><span class="arrow-left"
+          ><svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path
+              d="M5 12h14M13 6l6 6-6 6"
+              stroke="currentColor"
+              stroke-width="1.6"
+            /></svg></span
+        ><span>Previous <strong>Inquire</strong></span></a
+      >
+      <span class="keyboard-hint"
+        ><kbd>←</kbd><kbd>→</kbd> choose a page <span>·</span>
+        <kbd>Enter</kbd> explore</span
+      >
+      <a id="nextPage" href="inventory.html" class="page-next"
+        ><span>Next <strong>Collection</strong></span
+        ><svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path
+            d="M5 12h14M13 6l6 6-6 6"
+            stroke="currentColor"
+            stroke-width="1.6"
+          /></svg
+      ></a>
+    </div>
     <footer class="site-footer">
       <div class="container footer-inner">
-        <p>Apex Motors · Group SE-2507</p>
-        <p>Team: Arsen · Kuttibay · Farabi · Muhammad</p>
-        <a href="#home">Back to top</a>
+        <a class="brand footer-brand" href="index.html"
+          ><span class="brand-name">APEX<span>MOTORS</span></span></a
+        >
+        <p>For the love of the drive.</p>
+        <div class="footer-links">
+          <a href="inventory.html?saved=1">Saved cars</a
+          ><a href="about.html">Our team</a
+          ><a href="inquiry.html"
+            >Start a conversation
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path
+                d="M5 12h14M13 6l6 6-6 6"
+                stroke="currentColor"
+                stroke-width="1.6"
+              /></svg
+          ></a>
+        </div>
+        <p class="footer-note">
+          © 2026 Apex Motors <span>SE-2507 · Student project</span>
+        </p>
       </div>
     </footer>
+    <noscript
+      ><p class="noscript-message">
+        Please enable JavaScript for the vehicle collection, photographic
+        showroom and inquiry form. All five pages remain accessible using the
+        navigation above.
+      </p></noscript
+    >
   </body>
 </html>

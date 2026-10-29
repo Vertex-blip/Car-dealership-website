@@ -1,1676 +1,577 @@
 {
-  "checks": 321,
-  "passed": 321,
-  "uniqueChecks": 107,
+  "target": "http://127.0.0.1:5185/",
+  "channel": "chrome",
+  "mode": "full",
+  "timestamp": "2026-10-29T13:33:07.488Z",
+  "passed": 113,
+  "total": 113,
   "errors": [],
-  "runs": [
+  "viewerDiagnostics": [],
+  "results": [
     {
-      "target": "http://127.0.0.1:8055/index.html",
-      "channel": "chrome",
-      "fileMode": false,
-      "viewports": [
-        320,
-        390,
-        641,
-        768,
-        992,
-        1440
-      ],
-      "checks": 107,
-      "passed": 107,
-      "errors": [],
-      "externalRequests": [],
-      "frameworkRequests": [],
-      "submissions": [],
-      "results": [
-        {
-          "label": "One HTML page contains every assignment interaction",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "No Bootstrap files, CDN, runtime or component attributes are used",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "HTML, CSS and JavaScript remain separated without inline authored behavior",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Five navigation links target sections of the same page",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "The original group and four team names remain",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Every local image decodes",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "All single-page sections fit at 320px",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "All single-page sections fit at 390px",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "All single-page sections fit at 641px",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "All single-page sections fit at 768px",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "All single-page sections fit at 992px",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "All single-page sections fit at 1440px",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Cream, copper, square cards and the Georgia hero preserve the original visual style",
-          "passed": true,
-          "detail": "{\"heroWidth\":1440,\"heroHeight\":470,\"background\":\"rgb(245, 240, 231)\",\"radius\":\"0px\",\"button\":\"rgb(154, 96, 58)\",\"heading\":\"Georgia, \\\"Times New Roman\\\", serif\",\"text\":\"Considered cars.Clear decisions.\"}"
-        },
-        {
-          "label": "The photographic hero remains full width with its original height",
-          "passed": true,
-          "detail": "{\"heroWidth\":1440,\"heroHeight\":470,\"background\":\"rgb(245, 240, 231)\",\"radius\":\"0px\",\"button\":\"rgb(154, 96, 58)\",\"heading\":\"Georgia, \\\"Times New Roman\\\", serif\",\"text\":\"Considered cars.Clear decisions.\"}"
-        },
-        {
-          "label": "Anchor #home navigates without reloading",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Anchor #inventory navigates without reloading",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Anchor #inquiry navigates without reloading",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Anchor #interactive-tools navigates without reloading",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Anchor #team navigates without reloading",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Menu ArrowRight focuses item 2",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Menu ArrowLeft focuses item 1",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Menu ArrowLeft focuses item 5",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Menu ArrowDown focuses item 1",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Menu ArrowUp focuses item 5",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Menu Home focuses item 1",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Menu End focuses item 5",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Read more begins hidden",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Read more updates display, visibility and accessible state",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Read less hides the same content",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "All eight vehicles render in their expected order with named cards and local images",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "JavaScript supplies all eight inquiry choices with names matching the visible cards",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "touring shows exactly its matching vehicles with updated count/state",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "performance shows exactly its matching vehicles with updated count/state",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "adventure shows exactly its matching vehicles with updated count/state",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "All vehicles restores all cards with an event-triggered animation",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Reduced motion suppresses the JavaScript entrance animation",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "A card preselects its car in the same-page inquiry",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Unknown vehicle parameters are ignored",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Blank contact values block progression with visible errors and focus",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Short names and invalid email addresses are rejected",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "JavaScript also rejects email domains invalid under the browser email rules",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Corrected contact values clear obsolete validation feedback",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Valid contact values advance with synchronized progress",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Negative budgets are rejected",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "A zero budget is accepted",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Phone reply reveals and requires the phone input",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "A phone reply blocks an empty number",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "A phone reply rejects fewer than seven digits",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Email reply hides phone validation and clears obsolete feedback",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Corrected preference values clear obsolete validation feedback",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Preferences and conditional phone fit at 320px",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Preferences and conditional phone fit at 390px",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Back retains contact values",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Returning to preferences retains all values and choices",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Review displays the complete contact and preferences summary",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Review wraps a long unbroken message at 320px",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Review wraps a long unbroken message at 390px",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "A different car returns to contact while preserving the draft",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Confirmation revalidates earlier steps and focuses invalid values",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Entered markup remains plain text instead of executable HTML",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Reset from review clears draft values, choices, errors and step state",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "A valid preview completes without reload or network submission",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Completion replaces the previous review progress instead of leaving step three active",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Success clears personal details and private draft fields",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "A car inquiry after success starts clean with the new selected car",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "New inquiry returns to a blank first step",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Reset from preferences clears displayed validation errors",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "The time button displays a real formatted local time",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "A user click decodes and advances the local audio file",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Rapid sound clicks reuse one player and avoid overlapping clips",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Background control applies Paper and updates its feedback",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Background control applies Soft blue and updates its feedback",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Background control applies Cream and updates its feedback",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "All four original team portraits are present and decoded",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "The custom mobile menu opens with synchronized expanded state",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Arrow navigation works inside the custom mobile menu",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Escape closes the custom menu and restores toggle focus",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "A mobile anchor closes navigation and reaches the same-page inventory",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Each JavaScript-rendered card has an accessible unselected Save button",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Keyboard saving updates the heart, saved count and status while retaining focus",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Saving in a category retains the other saved car when all cars return",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Reload restores the saved cars and count from browser storage",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Saved filter shows exactly the saved cars with its pressed state and result count",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Saved and category filters combine and explain an empty category",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Removing a saved car immediately removes its card and keeps keyboard focus usable",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Removing the last saved car shows an empty state and focuses the Saved filter",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Removed favourites stay removed after a reload",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Turning Saved off restores the complete inventory",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Saved cards, heart buttons and controls fit at 320px",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Saved cards, heart buttons and controls fit at 390px",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "JavaScript builds new cards from array data and calls the object method at runtime",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Stored malformed JSON is handled without breaking inventory",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Stored a non-array value is handled without breaking inventory",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Stored duplicates and obsolete IDs is handled without breaking inventory",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "A storage read failure keeps saving usable and explains its temporary lifetime",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Category filtering still works after a storage read failure",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "A storage write failure keeps saving usable and explains its temporary lifetime",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Category filtering still works after a storage write failure",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Chevrolet Camaro can be selected from its card and appears by name in the inquiry review",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Lamborghini Huracan can be selected from its card and appears by name in the inquiry review",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Porsche Panamera can be selected from its card and appears by name in the inquiry review",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Ford Expedition can be selected from its card and appears by name in the inquiry review",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Ferrari LaFerrari can be selected from its card and appears by name in the inquiry review",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "A newly added Ferrari remains saved after reload and is the only Saved result",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "The saved Ferrari inquiry retains its vehicle selection through review",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "No external or framework network resources are requested",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "All interactions complete without JavaScript or missing-resource errors",
-          "passed": true,
-          "detail": ""
-        }
-      ]
+      "label": "index.html: one main and h1",
+      "passed": true,
+      "detail": ""
     },
     {
-      "target": "http://127.0.0.1:8055/index.html",
-      "channel": "msedge",
-      "fileMode": false,
-      "viewports": [
-        320,
-        390,
-        641,
-        768,
-        992,
-        1440
-      ],
-      "checks": 107,
-      "passed": 107,
-      "errors": [],
-      "externalRequests": [],
-      "frameworkRequests": [],
-      "submissions": [],
-      "results": [
-        {
-          "label": "One HTML page contains every assignment interaction",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "No Bootstrap files, CDN, runtime or component attributes are used",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "HTML, CSS and JavaScript remain separated without inline authored behavior",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Five navigation links target sections of the same page",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "The original group and four team names remain",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Every local image decodes",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "All single-page sections fit at 320px",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "All single-page sections fit at 390px",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "All single-page sections fit at 641px",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "All single-page sections fit at 768px",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "All single-page sections fit at 992px",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "All single-page sections fit at 1440px",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Cream, copper, square cards and the Georgia hero preserve the original visual style",
-          "passed": true,
-          "detail": "{\"heroWidth\":1440,\"heroHeight\":470,\"background\":\"rgb(245, 240, 231)\",\"radius\":\"0px\",\"button\":\"rgb(154, 96, 58)\",\"heading\":\"Georgia, \\\"Times New Roman\\\", serif\",\"text\":\"Considered cars.Clear decisions.\"}"
-        },
-        {
-          "label": "The photographic hero remains full width with its original height",
-          "passed": true,
-          "detail": "{\"heroWidth\":1440,\"heroHeight\":470,\"background\":\"rgb(245, 240, 231)\",\"radius\":\"0px\",\"button\":\"rgb(154, 96, 58)\",\"heading\":\"Georgia, \\\"Times New Roman\\\", serif\",\"text\":\"Considered cars.Clear decisions.\"}"
-        },
-        {
-          "label": "Anchor #home navigates without reloading",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Anchor #inventory navigates without reloading",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Anchor #inquiry navigates without reloading",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Anchor #interactive-tools navigates without reloading",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Anchor #team navigates without reloading",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Menu ArrowRight focuses item 2",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Menu ArrowLeft focuses item 1",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Menu ArrowLeft focuses item 5",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Menu ArrowDown focuses item 1",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Menu ArrowUp focuses item 5",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Menu Home focuses item 1",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Menu End focuses item 5",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Read more begins hidden",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Read more updates display, visibility and accessible state",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Read less hides the same content",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "All eight vehicles render in their expected order with named cards and local images",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "JavaScript supplies all eight inquiry choices with names matching the visible cards",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "touring shows exactly its matching vehicles with updated count/state",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "performance shows exactly its matching vehicles with updated count/state",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "adventure shows exactly its matching vehicles with updated count/state",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "All vehicles restores all cards with an event-triggered animation",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Reduced motion suppresses the JavaScript entrance animation",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "A card preselects its car in the same-page inquiry",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Unknown vehicle parameters are ignored",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Blank contact values block progression with visible errors and focus",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Short names and invalid email addresses are rejected",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "JavaScript also rejects email domains invalid under the browser email rules",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Corrected contact values clear obsolete validation feedback",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Valid contact values advance with synchronized progress",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Negative budgets are rejected",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "A zero budget is accepted",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Phone reply reveals and requires the phone input",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "A phone reply blocks an empty number",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "A phone reply rejects fewer than seven digits",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Email reply hides phone validation and clears obsolete feedback",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Corrected preference values clear obsolete validation feedback",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Preferences and conditional phone fit at 320px",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Preferences and conditional phone fit at 390px",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Back retains contact values",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Returning to preferences retains all values and choices",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Review displays the complete contact and preferences summary",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Review wraps a long unbroken message at 320px",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Review wraps a long unbroken message at 390px",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "A different car returns to contact while preserving the draft",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Confirmation revalidates earlier steps and focuses invalid values",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Entered markup remains plain text instead of executable HTML",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Reset from review clears draft values, choices, errors and step state",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "A valid preview completes without reload or network submission",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Completion replaces the previous review progress instead of leaving step three active",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Success clears personal details and private draft fields",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "A car inquiry after success starts clean with the new selected car",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "New inquiry returns to a blank first step",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Reset from preferences clears displayed validation errors",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "The time button displays a real formatted local time",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "A user click decodes and advances the local audio file",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Rapid sound clicks reuse one player and avoid overlapping clips",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Background control applies Paper and updates its feedback",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Background control applies Soft blue and updates its feedback",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Background control applies Cream and updates its feedback",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "All four original team portraits are present and decoded",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "The custom mobile menu opens with synchronized expanded state",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Arrow navigation works inside the custom mobile menu",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Escape closes the custom menu and restores toggle focus",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "A mobile anchor closes navigation and reaches the same-page inventory",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Each JavaScript-rendered card has an accessible unselected Save button",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Keyboard saving updates the heart, saved count and status while retaining focus",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Saving in a category retains the other saved car when all cars return",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Reload restores the saved cars and count from browser storage",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Saved filter shows exactly the saved cars with its pressed state and result count",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Saved and category filters combine and explain an empty category",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Removing a saved car immediately removes its card and keeps keyboard focus usable",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Removing the last saved car shows an empty state and focuses the Saved filter",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Removed favourites stay removed after a reload",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Turning Saved off restores the complete inventory",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Saved cards, heart buttons and controls fit at 320px",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Saved cards, heart buttons and controls fit at 390px",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "JavaScript builds new cards from array data and calls the object method at runtime",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Stored malformed JSON is handled without breaking inventory",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Stored a non-array value is handled without breaking inventory",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Stored duplicates and obsolete IDs is handled without breaking inventory",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "A storage read failure keeps saving usable and explains its temporary lifetime",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Category filtering still works after a storage read failure",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "A storage write failure keeps saving usable and explains its temporary lifetime",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Category filtering still works after a storage write failure",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Chevrolet Camaro can be selected from its card and appears by name in the inquiry review",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Lamborghini Huracan can be selected from its card and appears by name in the inquiry review",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Porsche Panamera can be selected from its card and appears by name in the inquiry review",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Ford Expedition can be selected from its card and appears by name in the inquiry review",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Ferrari LaFerrari can be selected from its card and appears by name in the inquiry review",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "A newly added Ferrari remains saved after reload and is the only Saved result",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "The saved Ferrari inquiry retains its vehicle selection through review",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "No external or framework network resources are requested",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "All interactions complete without JavaScript or missing-resource errors",
-          "passed": true,
-          "detail": ""
-        }
-      ]
+      "label": "index.html: five real navigation pages",
+      "passed": true,
+      "detail": ""
     },
     {
-      "target": "file:///D:/%D0%9D%D0%BE%D0%B2%D0%B0%D1%8F%20%D0%BF%D0%B0%D0%BF%D0%BA%D0%B0/%D0%A3%D1%87%D0%B5%D0%B1%D0%B0/WEB/car-dealership-website/assignment5-dom/index.html",
-      "channel": "chrome",
-      "fileMode": true,
-      "viewports": [
-        320,
-        390,
-        641,
-        768,
-        992,
-        1440
-      ],
-      "checks": 107,
-      "passed": 107,
-      "errors": [],
-      "externalRequests": [],
-      "frameworkRequests": [],
-      "submissions": [],
-      "results": [
-        {
-          "label": "One HTML page contains every assignment interaction",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "No Bootstrap files, CDN, runtime or component attributes are used",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "HTML, CSS and JavaScript remain separated without inline authored behavior",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Five navigation links target sections of the same page",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "The original group and four team names remain",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Every local image decodes",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "All single-page sections fit at 320px",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "All single-page sections fit at 390px",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "All single-page sections fit at 641px",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "All single-page sections fit at 768px",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "All single-page sections fit at 992px",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "All single-page sections fit at 1440px",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Cream, copper, square cards and the Georgia hero preserve the original visual style",
-          "passed": true,
-          "detail": "{\"heroWidth\":1440,\"heroHeight\":470,\"background\":\"rgb(245, 240, 231)\",\"radius\":\"0px\",\"button\":\"rgb(154, 96, 58)\",\"heading\":\"Georgia, \\\"Times New Roman\\\", serif\",\"text\":\"Considered cars.Clear decisions.\"}"
-        },
-        {
-          "label": "The photographic hero remains full width with its original height",
-          "passed": true,
-          "detail": "{\"heroWidth\":1440,\"heroHeight\":470,\"background\":\"rgb(245, 240, 231)\",\"radius\":\"0px\",\"button\":\"rgb(154, 96, 58)\",\"heading\":\"Georgia, \\\"Times New Roman\\\", serif\",\"text\":\"Considered cars.Clear decisions.\"}"
-        },
-        {
-          "label": "Anchor #home navigates without reloading",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Anchor #inventory navigates without reloading",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Anchor #inquiry navigates without reloading",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Anchor #interactive-tools navigates without reloading",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Anchor #team navigates without reloading",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Menu ArrowRight focuses item 2",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Menu ArrowLeft focuses item 1",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Menu ArrowLeft focuses item 5",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Menu ArrowDown focuses item 1",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Menu ArrowUp focuses item 5",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Menu Home focuses item 1",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Menu End focuses item 5",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Read more begins hidden",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Read more updates display, visibility and accessible state",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Read less hides the same content",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "All eight vehicles render in their expected order with named cards and local images",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "JavaScript supplies all eight inquiry choices with names matching the visible cards",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "touring shows exactly its matching vehicles with updated count/state",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "performance shows exactly its matching vehicles with updated count/state",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "adventure shows exactly its matching vehicles with updated count/state",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "All vehicles restores all cards with an event-triggered animation",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Reduced motion suppresses the JavaScript entrance animation",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "A card preselects its car in the same-page inquiry",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Unknown vehicle parameters are ignored",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Blank contact values block progression with visible errors and focus",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Short names and invalid email addresses are rejected",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "JavaScript also rejects email domains invalid under the browser email rules",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Corrected contact values clear obsolete validation feedback",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Valid contact values advance with synchronized progress",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Negative budgets are rejected",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "A zero budget is accepted",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Phone reply reveals and requires the phone input",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "A phone reply blocks an empty number",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "A phone reply rejects fewer than seven digits",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Email reply hides phone validation and clears obsolete feedback",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Corrected preference values clear obsolete validation feedback",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Preferences and conditional phone fit at 320px",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Preferences and conditional phone fit at 390px",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Back retains contact values",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Returning to preferences retains all values and choices",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Review displays the complete contact and preferences summary",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Review wraps a long unbroken message at 320px",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Review wraps a long unbroken message at 390px",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "A different car returns to contact while preserving the draft",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Confirmation revalidates earlier steps and focuses invalid values",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Entered markup remains plain text instead of executable HTML",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Reset from review clears draft values, choices, errors and step state",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "A valid preview completes without reload or network submission",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Completion replaces the previous review progress instead of leaving step three active",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Success clears personal details and private draft fields",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "A car inquiry after success starts clean with the new selected car",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "New inquiry returns to a blank first step",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Reset from preferences clears displayed validation errors",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "The time button displays a real formatted local time",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "A user click decodes and advances the local audio file",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Rapid sound clicks reuse one player and avoid overlapping clips",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Background control applies Paper and updates its feedback",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Background control applies Soft blue and updates its feedback",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Background control applies Cream and updates its feedback",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "All four original team portraits are present and decoded",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "The custom mobile menu opens with synchronized expanded state",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Arrow navigation works inside the custom mobile menu",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Escape closes the custom menu and restores toggle focus",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "A mobile anchor closes navigation and reaches the same-page inventory",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Each JavaScript-rendered card has an accessible unselected Save button",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Keyboard saving updates the heart, saved count and status while retaining focus",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Saving in a category retains the other saved car when all cars return",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Reload restores the saved cars and count from browser storage",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Saved filter shows exactly the saved cars with its pressed state and result count",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Saved and category filters combine and explain an empty category",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Removing a saved car immediately removes its card and keeps keyboard focus usable",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Removing the last saved car shows an empty state and focuses the Saved filter",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Removed favourites stay removed after a reload",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Turning Saved off restores the complete inventory",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Saved cards, heart buttons and controls fit at 320px",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Saved cards, heart buttons and controls fit at 390px",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "JavaScript builds new cards from array data and calls the object method at runtime",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Stored malformed JSON is handled without breaking inventory",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Stored a non-array value is handled without breaking inventory",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Stored duplicates and obsolete IDs is handled without breaking inventory",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "A storage read failure keeps saving usable and explains its temporary lifetime",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Category filtering still works after a storage read failure",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "A storage write failure keeps saving usable and explains its temporary lifetime",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Category filtering still works after a storage write failure",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Chevrolet Camaro can be selected from its card and appears by name in the inquiry review",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Lamborghini Huracan can be selected from its card and appears by name in the inquiry review",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Porsche Panamera can be selected from its card and appears by name in the inquiry review",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Ford Expedition can be selected from its card and appears by name in the inquiry review",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "Ferrari LaFerrari can be selected from its card and appears by name in the inquiry review",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "A newly added Ferrari remains saved after reload and is the only Saved result",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "The saved Ferrari inquiry retains its vehicle selection through review",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "No external or framework network resources are requested",
-          "passed": true,
-          "detail": ""
-        },
-        {
-          "label": "All interactions complete without JavaScript or missing-resource errors",
-          "passed": true,
-          "detail": ""
-        }
-      ]
+      "label": "index.html: current-page state",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "index.html: photographs decode",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "index.html: no 3D viewer or remote embeds",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "index.html: HTML/CSS/JS separated",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "index.html: responsive at 320px",
+      "passed": true,
+      "detail": "{\"scroll\":320,\"offenders\":[]}"
+    },
+    {
+      "label": "index.html: responsive at 390px",
+      "passed": true,
+      "detail": "{\"scroll\":390,\"offenders\":[]}"
+    },
+    {
+      "label": "index.html: responsive at 768px",
+      "passed": true,
+      "detail": "{\"scroll\":768,\"offenders\":[]}"
+    },
+    {
+      "label": "index.html: responsive at 992px",
+      "passed": true,
+      "detail": "{\"scroll\":992,\"offenders\":[]}"
+    },
+    {
+      "label": "index.html: responsive at 1440px",
+      "passed": true,
+      "detail": "{\"scroll\":1440,\"offenders\":[]}"
+    },
+    {
+      "label": "inventory.html: one main and h1",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "inventory.html: five real navigation pages",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "inventory.html: current-page state",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "inventory.html: photographs decode",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "inventory.html: no 3D viewer or remote embeds",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "inventory.html: HTML/CSS/JS separated",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "inventory.html: responsive at 320px",
+      "passed": true,
+      "detail": "{\"scroll\":320,\"offenders\":[]}"
+    },
+    {
+      "label": "inventory.html: responsive at 390px",
+      "passed": true,
+      "detail": "{\"scroll\":390,\"offenders\":[]}"
+    },
+    {
+      "label": "inventory.html: responsive at 768px",
+      "passed": true,
+      "detail": "{\"scroll\":768,\"offenders\":[]}"
+    },
+    {
+      "label": "inventory.html: responsive at 992px",
+      "passed": true,
+      "detail": "{\"scroll\":992,\"offenders\":[]}"
+    },
+    {
+      "label": "inventory.html: responsive at 1440px",
+      "passed": true,
+      "detail": "{\"scroll\":1440,\"offenders\":[]}"
+    },
+    {
+      "label": "showroom.html: one main and h1",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "showroom.html: five real navigation pages",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "showroom.html: current-page state",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "showroom.html: photographs decode",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "showroom.html: no 3D viewer or remote embeds",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "showroom.html: HTML/CSS/JS separated",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "showroom.html: responsive at 320px",
+      "passed": true,
+      "detail": "{\"scroll\":320,\"offenders\":[]}"
+    },
+    {
+      "label": "showroom.html: responsive at 390px",
+      "passed": true,
+      "detail": "{\"scroll\":390,\"offenders\":[]}"
+    },
+    {
+      "label": "showroom.html: responsive at 768px",
+      "passed": true,
+      "detail": "{\"scroll\":768,\"offenders\":[]}"
+    },
+    {
+      "label": "showroom.html: responsive at 992px",
+      "passed": true,
+      "detail": "{\"scroll\":992,\"offenders\":[]}"
+    },
+    {
+      "label": "showroom.html: responsive at 1440px",
+      "passed": true,
+      "detail": "{\"scroll\":1440,\"offenders\":[]}"
+    },
+    {
+      "label": "about.html: one main and h1",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "about.html: five real navigation pages",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "about.html: current-page state",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "about.html: photographs decode",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "about.html: no 3D viewer or remote embeds",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "about.html: HTML/CSS/JS separated",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "about.html: responsive at 320px",
+      "passed": true,
+      "detail": "{\"scroll\":320,\"offenders\":[]}"
+    },
+    {
+      "label": "about.html: responsive at 390px",
+      "passed": true,
+      "detail": "{\"scroll\":390,\"offenders\":[]}"
+    },
+    {
+      "label": "about.html: responsive at 768px",
+      "passed": true,
+      "detail": "{\"scroll\":768,\"offenders\":[]}"
+    },
+    {
+      "label": "about.html: responsive at 992px",
+      "passed": true,
+      "detail": "{\"scroll\":992,\"offenders\":[]}"
+    },
+    {
+      "label": "about.html: responsive at 1440px",
+      "passed": true,
+      "detail": "{\"scroll\":1440,\"offenders\":[]}"
+    },
+    {
+      "label": "inquiry.html: one main and h1",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "inquiry.html: five real navigation pages",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "inquiry.html: current-page state",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "inquiry.html: photographs decode",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "inquiry.html: no 3D viewer or remote embeds",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "inquiry.html: HTML/CSS/JS separated",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "inquiry.html: responsive at 320px",
+      "passed": true,
+      "detail": "{\"scroll\":320,\"offenders\":[]}"
+    },
+    {
+      "label": "inquiry.html: responsive at 390px",
+      "passed": true,
+      "detail": "{\"scroll\":390,\"offenders\":[]}"
+    },
+    {
+      "label": "inquiry.html: responsive at 768px",
+      "passed": true,
+      "detail": "{\"scroll\":768,\"offenders\":[]}"
+    },
+    {
+      "label": "inquiry.html: responsive at 992px",
+      "passed": true,
+      "detail": "{\"scroll\":992,\"offenders\":[]}"
+    },
+    {
+      "label": "inquiry.html: responsive at 1440px",
+      "passed": true,
+      "detail": "{\"scroll\":1440,\"offenders\":[]}"
+    },
+    {
+      "label": "Page-level arrow focuses next page",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Arrow navigation produces sound",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Arrow navigation preserves scroll",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Arrow navigation wraps",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Enter opens a separate page",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Next-page button opens the photographic showroom",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Night mode changes theme",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Theme persists across pages",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Background generates more than three colors",
+      "passed": true,
+      "detail": "10 colors"
+    },
+    {
+      "label": "Appearance Escape closes and restores focus",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Background persists across pages",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Background reset restores default",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Collection contains 17 cars",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Objects have useful methods",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "touring: correct filtered cars",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "performance: correct filtered cars",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "adventure: correct filtered cars",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "all: correct filtered cars",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Search finds matching cars",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Empty search gives feedback",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Price sorting orders displayed cars",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Save updates state and count",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Saved choice survives reload",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Saved URL opens shortlist",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Removing last saved car shows empty state",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Home category URL works",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Car choice carries to inquiry page",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "All 17 cars appear in inquiry",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Contact validation prevents advancing",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Phone preference validates phone",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Back preserves contact details",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Next preserves preferences",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Review reflects actual inputs",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Finish shows truthful local preview",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Inquiry sends no network submission",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "New inquiry clears entered data",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Four original team members retained",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Read More changes display and expanded state",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Read More collapses again",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Rating updates stars and feedback",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "FAQ expands its content",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Time button displays device time",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "User-triggered chime plays",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Mute state updates",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Muted actions stay quiet",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Photographic showroom has at least eight slides",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Next changes the photograph and counter",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Previous wraps to last photograph",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Thumbnail updates the actual image attribute",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Photo caption follows selected car",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Gallery End selects last photograph",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Gallery Home returns to first photograph",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Mobile menu begins collapsed",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Mobile menu opens",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Escape closes mobile menu",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Blocked storage keeps saves usable",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "All photographs, scripts and styles load locally",
+      "passed": true,
+      "detail": "[]"
+    },
+    {
+      "label": "No authored-page script or resource errors",
+      "passed": true,
+      "detail": ""
     }
   ]
 }

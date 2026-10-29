@@ -1,0 +1,319 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Apex Motors — a considered collection of exceptional cars. Explore the collection, visit our photographic showroom and find your next drive."
+    />
+    <meta name="theme-color" content="#f4f1eb" />
+    <title>The collection — Apex Motors</title>
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+    <script src="js/theme-init.js"></script>
+    <link rel="stylesheet" href="styles.css" />
+
+    <script src="js/data.js" defer></script>
+    <script src="js/site.js" defer></script>
+    <script src="js/inventory.js" defer></script>
+  </head>
+  <body data-page="inventory">
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <header class="site-header">
+      <div class="container navbar-inner">
+        <a class="brand" href="index.html" aria-label="Apex Motors home"
+          ><span class="brand-mark" aria-hidden="true">A<span>╱</span></span
+          ><span class="brand-name">APEX<span>MOTORS</span></span></a
+        >
+        <button
+          id="navToggle"
+          class="nav-toggle icon-button"
+          type="button"
+          aria-controls="assignmentNav"
+          aria-expanded="false"
+          aria-label="Open navigation"
+        >
+          <svg viewBox="0 0 24 24" aria-hidden="true" fill="none">
+            <path
+              d="M4 8h16M4 16h16"
+              stroke="currentColor"
+              stroke-width="1.5"
+            />
+          </svg>
+        </button>
+        <nav id="assignmentNav" class="main-nav" aria-label="Main navigation">
+          <a class="nav-link" href="index.html">Home</a
+          ><a class="nav-link" href="inventory.html" aria-current="page"
+            >Collection</a
+          ><a class="nav-link" href="showroom.html">Showroom</a
+          ><a class="nav-link" href="about.html">About</a
+          ><a class="nav-link" href="inquiry.html">Inquire</a>
+        </nav>
+        <div class="header-actions">
+          <button
+            id="soundToggle"
+            class="icon-button"
+            type="button"
+            aria-label="Mute interface sounds"
+            aria-pressed="true"
+            title="Interface sound"
+          >
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path
+                d="m11 5-6 4H2v6h3l6 4V5Z"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linejoin="round"
+              />
+              <path
+                class="sound-waves"
+                d="M15 8a6 6 0 0 1 0 8m3-11a10 10 0 0 1 0 14"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+              />
+            </svg>
+          </button>
+          <button
+            id="themeToggle"
+            class="icon-button"
+            type="button"
+            aria-label="Switch to night mode"
+            aria-pressed="false"
+            title="Day / night"
+          >
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <circle
+                cx="12"
+                cy="12"
+                r="4"
+                stroke="currentColor"
+                stroke-width="1.5"
+              />
+              <path
+                d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.4 1.4m11.2 11.2L19 19M5 19l1.4-1.4M17.6 6.4 19 5"
+                stroke="currentColor"
+                stroke-width="1.5"
+              />
+            </svg>
+          </button>
+          <button
+            id="appearanceToggle"
+            class="icon-button"
+            type="button"
+            aria-label="Customize appearance"
+            aria-controls="appearancePanel"
+            aria-expanded="false"
+            title="Appearance"
+          >
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <circle
+                cx="12"
+                cy="12"
+                r="8.5"
+                stroke="currentColor"
+                stroke-width="1.5"
+              />
+              <path d="M12 3.5a8.5 8.5 0 0 1 0 17V3.5Z" fill="currentColor" />
+            </svg>
+          </button>
+        </div>
+        <section
+          id="appearancePanel"
+          class="appearance-panel"
+          aria-labelledby="appearanceHeading"
+          hidden
+        >
+          <p class="eyebrow">Make it yours</p>
+          <h2 id="appearanceHeading">Appearance</h2>
+          <div class="theme-options" role="group" aria-label="Color mode">
+            <button type="button" data-theme-choice="light" aria-pressed="true">
+              Day</button
+            ><button
+              type="button"
+              data-theme-choice="dark"
+              aria-pressed="false"
+            >
+              Night
+            </button>
+          </div>
+          <label class="color-field" for="backgroundColor"
+            ><span>Choose an atmosphere hue</span
+            ><input id="backgroundColor" type="color" value="#b76a43"
+          /></label>
+          <button id="backgroundButton" class="btn btn-primary" type="button">
+            Surprise me
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path
+                d="M5 12h14M13 6l6 6-6 6"
+                stroke="currentColor"
+                stroke-width="1.6"
+              />
+            </svg>
+          </button>
+          <p id="backgroundStatus" class="mini-status" role="status">
+            Signature palette
+          </p>
+          <button id="backgroundReset" class="text-button" type="button">
+            Reset atmosphere
+          </button>
+        </section>
+      </div>
+    </header>
+    <main id="main-content">
+      <div class="container collection-main">
+        <section class="page-heading">
+          <p class="eyebrow">01 / The collection</p>
+          <h1>A car for<br /><em>your kind of road.</em></h1>
+          <p class="lead">
+            Great design. Real character. Find the one that makes you look back.
+          </p>
+        </section>
+        <section class="collection-section" aria-label="Vehicle collection">
+          <div class="collection-toolbar">
+            <div
+              class="filter-controls"
+              role="group"
+              aria-label="Filter vehicles"
+            >
+              <button
+                class="filter-button btn btn-primary"
+                type="button"
+                data-category="all"
+                aria-pressed="true"
+              >
+                All cars
+              </button>
+              <button
+                class="filter-button btn btn-outline-primary"
+                type="button"
+                data-category="touring"
+                aria-pressed="false"
+              >
+                Grand touring
+              </button>
+              <button
+                class="filter-button btn btn-outline-primary"
+                type="button"
+                data-category="performance"
+                aria-pressed="false"
+              >
+                Performance
+              </button>
+              <button
+                class="filter-button btn btn-outline-primary"
+                type="button"
+                data-category="adventure"
+                aria-pressed="false"
+              >
+                Adventure
+              </button>
+              <button
+                id="savedOnlyButton"
+                class="filter-button btn btn-outline-primary saved-filter"
+                type="button"
+                aria-pressed="false"
+                aria-controls="inventoryGrid"
+              >
+                ♡ Saved <span id="savedCount">0</span>
+              </button>
+            </div>
+            <div class="collection-search">
+              <label class="visually-hidden" for="vehicleSearch"
+                >Search cars</label
+              ><input
+                class="form-control"
+                id="vehicleSearch"
+                type="search"
+                placeholder="Find a car…"
+              /><label class="visually-hidden" for="vehicleSort"
+                >Sort collection</label
+              ><select class="form-select" id="vehicleSort">
+                <option value="featured">Featured first</option>
+                <option value="price-low">Price: low to high</option>
+                <option value="price-high">Price: high to low</option>
+                <option value="year-new">Newest first</option>
+              </select>
+            </div>
+          </div>
+          <div class="collection-meta">
+            <p
+              id="inventoryCount"
+              class="mini-status"
+              role="status"
+              aria-live="polite"
+            >
+              Preparing the collection…
+            </p>
+            <p>Illustrative collection · Guide prices in KZT</p>
+          </div>
+          <p
+            id="savedStatus"
+            class="mini-status saved-status"
+            role="status"
+            aria-live="polite"
+          >
+            Keep your favourites. Your shortlist stays in this browser.
+          </p>
+          <div id="inventoryGrid" class="vehicle-grid"></div>
+        </section>
+      </div>
+    </main>
+    <div class="container page-rail" aria-label="Explore pages">
+      <a id="previousPage" href="index.html" class="page-previous"
+        ><span class="arrow-left"
+          ><svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path
+              d="M5 12h14M13 6l6 6-6 6"
+              stroke="currentColor"
+              stroke-width="1.6"
+            /></svg></span
+        ><span>Previous <strong>Home</strong></span></a
+      >
+      <span class="keyboard-hint"
+        ><kbd>←</kbd><kbd>→</kbd> choose a page <span>·</span>
+        <kbd>Enter</kbd> explore</span
+      >
+      <a id="nextPage" href="showroom.html" class="page-next"
+        ><span>Next <strong>Showroom</strong></span
+        ><svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path
+            d="M5 12h14M13 6l6 6-6 6"
+            stroke="currentColor"
+            stroke-width="1.6"
+          /></svg
+      ></a>
+    </div>
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <a class="brand footer-brand" href="index.html"
+          ><span class="brand-name">APEX<span>MOTORS</span></span></a
+        >
+        <p>For the love of the drive.</p>
+        <div class="footer-links">
+          <a href="inventory.html?saved=1">Saved cars</a
+          ><a href="about.html">Our team</a
+          ><a href="inquiry.html"
+            >Start a conversation
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path
+                d="M5 12h14M13 6l6 6-6 6"
+                stroke="currentColor"
+                stroke-width="1.6"
+              /></svg
+          ></a>
+        </div>
+        <p class="footer-note">
+          © 2026 Apex Motors <span>SE-2507 · Student project</span>
+        </p>
+      </div>
+    </footer>
+    <noscript
+      ><p class="noscript-message">
+        Please enable JavaScript for the vehicle collection, photographic
+        showroom and inquiry form. All five pages remain accessible using the
+        navigation above.
+      </p></noscript
+    >
+  </body>
+</html>

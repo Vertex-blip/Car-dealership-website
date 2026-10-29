@@ -1,0 +1,177 @@
+{
+  "target": "file:///D:/Новая%20папка/Учеба/WEB/car-dealership-website/assignment5-dom/index.html",
+  "channel": "chrome",
+  "mode": "smoke",
+  "timestamp": "2026-10-29T13:32:59.277Z",
+  "passed": 33,
+  "total": 33,
+  "errors": [],
+  "viewerDiagnostics": [],
+  "results": [
+    {
+      "label": "index.html: one main and h1",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "index.html: five real navigation pages",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "index.html: current-page state",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "index.html: photographs decode",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "index.html: no 3D viewer or remote embeds",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "index.html: HTML/CSS/JS separated",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "inventory.html: one main and h1",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "inventory.html: five real navigation pages",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "inventory.html: current-page state",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "inventory.html: photographs decode",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "inventory.html: no 3D viewer or remote embeds",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "inventory.html: HTML/CSS/JS separated",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "showroom.html: one main and h1",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "showroom.html: five real navigation pages",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "showroom.html: current-page state",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "showroom.html: photographs decode",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "showroom.html: no 3D viewer or remote embeds",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "showroom.html: HTML/CSS/JS separated",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "about.html: one main and h1",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "about.html: five real navigation pages",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "about.html: current-page state",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "about.html: photographs decode",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "about.html: no 3D viewer or remote embeds",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "about.html: HTML/CSS/JS separated",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "inquiry.html: one main and h1",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "inquiry.html: five real navigation pages",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "inquiry.html: current-page state",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "inquiry.html: photographs decode",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "inquiry.html: no 3D viewer or remote embeds",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "inquiry.html: HTML/CSS/JS separated",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Local image gallery loads on file protocol",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "All photographs, scripts and styles load locally",
+      "passed": true,
+      "detail": "[]"
+    },
+    {
+      "label": "No authored-page script or resource errors",
+      "passed": true,
+      "detail": ""
+    }
+  ]
+}
