@@ -46,6 +46,29 @@ EVIDENCE = set()
 APPLICATION_JS = ["data.js", "theme-init.js", "site.js", "inventory.js", "booking.js", "gallery.js"]
 
 
+def release_info():
+    """Published wording requires a successful release record and actual live checks."""
+    path = ROOT / "deployment.json"
+    deployment = json.loads(path.read_text(encoding="utf-8")) if path.is_file() else {}
+    if deployment.get("status") != "published":
+        return {"published": False, "deployment": deployment, "live": None}
+    if deployment.get("site_url", "").rstrip("/") != SITE.rstrip("/"):
+        raise ValueError("The published release URL does not match this project's existing URL.")
+    if deployment.get("workflow_conclusion") != "success":
+        raise ValueError("Published status requires a successful Pages workflow.")
+    if not deployment.get("application_commit") or not deployment.get("workflow_url"):
+        raise ValueError("Published status requires the application commit and workflow URL.")
+    live_path = SHOTS / "test-results-live.json"
+    live = json.loads(live_path.read_text(encoding="utf-8"))
+    total = live.get("total", 0)
+    if not isinstance(total, int) or total < 1 or live.get("passed") != total or live.get("errors"):
+        raise ValueError("The published release needs a completely successful live browser run.")
+    if not str(live.get("target", "")).startswith(SITE):
+        raise ValueError("The live browser run did not check the existing publication URL.")
+    EVIDENCE.add(live_path.relative_to(ROOT).as_posix())
+    return {"published": True, "deployment": deployment, "live": live}
+
+
 def paragraph(c, text, x, y, width=WIDTH, style=BODY):
     item = Paragraph(text, style)
     _, height = item.wrap(width, H)
@@ -159,6 +182,7 @@ def build():
     verification_path = SHOTS / "test-results.json"
     verification = json.loads(verification_path.read_text(encoding="utf-8"))
     EVIDENCE.add("screenshots/test-results.json")
+    release = release_info()
     for name in ["test-results-chrome-file.json"]:
         path = SHOTS / name
         if not path.is_file():
@@ -189,10 +213,12 @@ def build():
                      "updates, event handling, callbacks, data structures, sound and event-triggered "
                      "animation. Replace section-only navigation with five connected pages while "
                      "keeping shared appearance settings and a consistent experience.", MARGIN, y) - 12
+    cover_status = (f"Published on GitHub Pages; live browser checks "
+                    f"{release['live']['passed']}/{release['live']['total']} passed."
+                    if release["published"] else "Revised build checked locally; publication is pending.")
     y = paragraph(c, f'<b>Publication address:</b> <link href="{SITE}" color="#0078d6">{SITE}</link><br/>'
                      f'<b>Repository:</b> <link href="{REPO}" color="#0078d6">{REPO}</link><br/>'
-                     "<b>Status:</b> Revised build checked locally; redeployment is pending unless "
-                     "confirmed by the accompanying deployment record.", MARGIN, y, style=SMALL)
+                     f"<b>Status:</b> {cover_status}", MARGIN, y, style=SMALL)
     if y < 53:
         raise ValueError("Cover content overlaps footer.")
     c.showPage()
@@ -329,6 +355,11 @@ def build():
     file_checks = json.loads((SHOTS / "test-results-chrome-file.json").read_text(encoding="utf-8"))
     y = paragraph(c, f"<b>Additional runs:</b> Direct-file browser checks "
                      f"{file_checks.get('passed')}/{file_checks.get('total')}.", MARGIN, y) - 12
+    if release["published"]:
+        live = release["live"]
+        y = paragraph(c, f"<b>Live website:</b> {live['passed']}/{live['total']} browser checks "
+                         "passed at the deployed URL; results are in screenshots/test-results-live.json.",
+                      MARGIN, y) - 12
     for heading, detail in [
         ("DOM and events", "Appearance, Read More and filters update selected elements. "
          "Clicks and arrows call shared event handlers and maintain visible control states."),
@@ -340,10 +371,19 @@ def build():
          "local assets, labels, feedback and responsive layouts.")
     ]:
         y = paragraph(c, f"<b>{heading}.</b> {detail}", MARGIN, y) - 10
+    if release["published"]:
+        deployment = release["deployment"]
+        commit = escape(str(deployment["application_commit"])[:12])
+        workflow = escape(str(deployment["workflow_url"]), {'"': "&quot;"})
+        release_text = (f"The changes were committed, pushed and deployed through GitHub Pages. "
+                        f"Application commit: <b>{commit}</b>. The "
+                        f'<link href="{workflow}" color="#0078d6">Pages workflow completed successfully</link>, '
+                        "and the same publication URL passed the live browser run.")
+    else:
+        release_text = ("The revised source is locally verified. Committing, pushing and redeploying "
+                        "it remain pending. Historical live checks do not verify this revised source.")
     y = paragraph(c, f'<b>Publication URL:</b><br/><link href="{SITE}" color="#0078d6">{SITE}</link><br/>'
-                     "<b>Release status.</b> The revised source is locally verified. Committing, pushing "
-                     "and redeploying it are still required unless deployment.json records a successful "
-                     "release of this revised build. Historical live checks concern an earlier version.",
+                     f"<b>Release status.</b> {release_text}",
                   MARGIN, y - 2) - 14
     y = paragraph(c, "<b>Challenges and solutions.</b> Separate pages must share vehicle data and "
                      "appearance preferences, so common data and initialization are reused. Form steps "
@@ -370,7 +410,8 @@ def build():
                      for path in source_files}
     manifest = {"report": OUTPUT.name, "source_version": "revised-photographic",
                 "files": sorted(EVIDENCE), "source_hashes": source_hashes,
-                "publication_status": "pending-redeployment"}
+                "publication_status": "published" if release["published"] else "pending-redeployment",
+                "application_commit": release["deployment"].get("application_commit") if release["published"] else None}
     (SHOTS / "report-evidence.json").write_text(json.dumps(manifest, indent=2) + "\n", encoding="utf-8")
     print(f"Created {OUTPUT}")
     print(f"Evidence files: {len(EVIDENCE)}")

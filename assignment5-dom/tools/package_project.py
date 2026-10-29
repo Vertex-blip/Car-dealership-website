@@ -73,6 +73,17 @@ def main():
     deployment = ROOT / "deployment.json"
     if deployment.is_file():
         files.add(deployment)
+        release = json.loads(deployment.read_text(encoding="utf-8"))
+        published = release.get("status") == "published"
+        if published != (evidence.get("publication_status") == "published"):
+            raise ValueError("Release status changed after report generation; rebuild the report.")
+        if published:
+            if evidence.get("application_commit") != release.get("application_commit"):
+                raise ValueError("The report and deployment identify different application commits.")
+            live = ROOT / "screenshots/test-results-live.json"
+            if not live.is_file():
+                raise FileNotFoundError("Published packages require current live browser evidence.")
+            files.add(live)
 
     files = sorted(files, key=lambda path: path.relative_to(ROOT).as_posix())
     temporary = OUTPUT.with_suffix(".zip.tmp")

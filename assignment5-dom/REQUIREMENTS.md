@@ -25,7 +25,7 @@ The brief requires an interactive application continuing the team's project. The
 | Separate HTML, CSS and JS | Five HTML pages, external stylesheet/scripts and local resources. |
 | Readable functions and variables | Separate data, common controls, inventory, inquiry and image-gallery responsibilities. |
 | Relevant theme, intuitive UX and engagement | High-resolution vehicle photography, consistent navigation, saved collection, thumbnail gallery, feedback, labels and responsive layouts. |
-| Commit, push and redeploy | Required by Part 2. Publication is pending unless confirmed in `deployment.json`. |
+| Commit, push and redeploy | Completed: application commit `dfcfdf9481af`, successful Pages workflow `40892341554`, and 113/113 live checks at the original URL. `deployment.json` and `screenshots/test-results-live.json` record the release. |
 | PDF report | Objective; team/members/group; task steps; source-code and webpage screenshots; URL; reflection. |
 | Project ZIP | Standalone HTML/CSS/JS, local assets, report and current evidence; verified against disk. |
 | Individual submission and defense | Every member submits both files and explains the implementation in the practice lesson. |

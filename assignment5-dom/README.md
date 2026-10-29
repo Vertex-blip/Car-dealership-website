@@ -61,7 +61,9 @@ The brief requires separation of HTML, CSS and JavaScript. It does not require a
 
 **Publication address:** https://vertex-blip.github.io/Car-dealership-website/assignment5-dom/
 
-The revised build's publication is pending unless `deployment.json` explicitly records its successful deployment. An older live result does not verify the revised working copy. The assignment requires committing and pushing to the shared repository and redeploying, then including the deployed URL in the report.
+The photographic revision is **published and verified at the same URL**. Application commit: [`dfcfdf9481af`](https://github.com/Vertex-blip/Car-dealership-website/commit/dfcfdf9481af9c3929c8a43a08d2f10e03ed6272). The [GitHub Pages workflow completed successfully](https://github.com/Vertex-blip/Car-dealership-website/actions/runs/40892341554).
+
+Verification passed **113/113 local HTTP checks, 33/33 direct-file checks and 113/113 live website checks**. The current release record is `deployment.json`; the live target, application commit, workflow and browser results are in `screenshots/test-results-live.json`. The report and ZIP include this current publication evidence.
 
 ## Submission
 

@@ -28,6 +28,7 @@
     "screenshots/page-theme-dark.png",
     "screenshots/page-tools.png",
     "screenshots/test-results-chrome-file.json",
+    "screenshots/test-results-live.json",
     "screenshots/test-results.json"
   ],
   "source_hashes": {
@@ -44,5 +45,6 @@
     "showroom.html": "bc6b1d46e70fb4f0223358732e7c5b9f58002c48ea33664c0c5984c0572347ba",
     "styles.css": "8ce1e7f666558887113a6d804a7b258f236569c0ada7a1705393552b3f46ca1f"
   },
-  "publication_status": "pending-redeployment"
+  "publication_status": "published",
+  "application_commit": "dfcfdf9481af9c3929c8a43a08d2f10e03ed6272"
 }

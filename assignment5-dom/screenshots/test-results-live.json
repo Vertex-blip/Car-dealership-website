@@ -1,0 +1,579 @@
+{
+  "target": "https://vertex-blip.github.io/Car-dealership-website/assignment5-dom/",
+  "channel": "chrome",
+  "mode": "full",
+  "timestamp": "2026-10-29T14:33:11.907Z",
+  "passed": 113,
+  "total": 113,
+  "errors": [],
+  "viewerDiagnostics": [],
+  "results": [
+    {
+      "label": "index.html: one main and h1",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "index.html: five real navigation pages",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "index.html: current-page state",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "index.html: photographs decode",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "index.html: no 3D viewer or remote embeds",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "index.html: HTML/CSS/JS separated",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "index.html: responsive at 320px",
+      "passed": true,
+      "detail": "{\"scroll\":320,\"offenders\":[]}"
+    },
+    {
+      "label": "index.html: responsive at 390px",
+      "passed": true,
+      "detail": "{\"scroll\":390,\"offenders\":[]}"
+    },
+    {
+      "label": "index.html: responsive at 768px",
+      "passed": true,
+      "detail": "{\"scroll\":768,\"offenders\":[]}"
+    },
+    {
+      "label": "index.html: responsive at 992px",
+      "passed": true,
+      "detail": "{\"scroll\":992,\"offenders\":[]}"
+    },
+    {
+      "label": "index.html: responsive at 1440px",
+      "passed": true,
+      "detail": "{\"scroll\":1440,\"offenders\":[]}"
+    },
+    {
+      "label": "inventory.html: one main and h1",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "inventory.html: five real navigation pages",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "inventory.html: current-page state",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "inventory.html: photographs decode",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "inventory.html: no 3D viewer or remote embeds",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "inventory.html: HTML/CSS/JS separated",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "inventory.html: responsive at 320px",
+      "passed": true,
+      "detail": "{\"scroll\":320,\"offenders\":[]}"
+    },
+    {
+      "label": "inventory.html: responsive at 390px",
+      "passed": true,
+      "detail": "{\"scroll\":390,\"offenders\":[]}"
+    },
+    {
+      "label": "inventory.html: responsive at 768px",
+      "passed": true,
+      "detail": "{\"scroll\":768,\"offenders\":[]}"
+    },
+    {
+      "label": "inventory.html: responsive at 992px",
+      "passed": true,
+      "detail": "{\"scroll\":992,\"offenders\":[]}"
+    },
+    {
+      "label": "inventory.html: responsive at 1440px",
+      "passed": true,
+      "detail": "{\"scroll\":1440,\"offenders\":[]}"
+    },
+    {
+      "label": "showroom.html: one main and h1",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "showroom.html: five real navigation pages",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "showroom.html: current-page state",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "showroom.html: photographs decode",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "showroom.html: no 3D viewer or remote embeds",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "showroom.html: HTML/CSS/JS separated",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "showroom.html: responsive at 320px",
+      "passed": true,
+      "detail": "{\"scroll\":320,\"offenders\":[]}"
+    },
+    {
+      "label": "showroom.html: responsive at 390px",
+      "passed": true,
+      "detail": "{\"scroll\":390,\"offenders\":[]}"
+    },
+    {
+      "label": "showroom.html: responsive at 768px",
+      "passed": true,
+      "detail": "{\"scroll\":768,\"offenders\":[]}"
+    },
+    {
+      "label": "showroom.html: responsive at 992px",
+      "passed": true,
+      "detail": "{\"scroll\":992,\"offenders\":[]}"
+    },
+    {
+      "label": "showroom.html: responsive at 1440px",
+      "passed": true,
+      "detail": "{\"scroll\":1440,\"offenders\":[]}"
+    },
+    {
+      "label": "about.html: one main and h1",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "about.html: five real navigation pages",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "about.html: current-page state",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "about.html: photographs decode",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "about.html: no 3D viewer or remote embeds",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "about.html: HTML/CSS/JS separated",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "about.html: responsive at 320px",
+      "passed": true,
+      "detail": "{\"scroll\":320,\"offenders\":[]}"
+    },
+    {
+      "label": "about.html: responsive at 390px",
+      "passed": true,
+      "detail": "{\"scroll\":390,\"offenders\":[]}"
+    },
+    {
+      "label": "about.html: responsive at 768px",
+      "passed": true,
+      "detail": "{\"scroll\":768,\"offenders\":[]}"
+    },
+    {
+      "label": "about.html: responsive at 992px",
+      "passed": true,
+      "detail": "{\"scroll\":992,\"offenders\":[]}"
+    },
+    {
+      "label": "about.html: responsive at 1440px",
+      "passed": true,
+      "detail": "{\"scroll\":1440,\"offenders\":[]}"
+    },
+    {
+      "label": "inquiry.html: one main and h1",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "inquiry.html: five real navigation pages",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "inquiry.html: current-page state",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "inquiry.html: photographs decode",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "inquiry.html: no 3D viewer or remote embeds",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "inquiry.html: HTML/CSS/JS separated",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "inquiry.html: responsive at 320px",
+      "passed": true,
+      "detail": "{\"scroll\":320,\"offenders\":[]}"
+    },
+    {
+      "label": "inquiry.html: responsive at 390px",
+      "passed": true,
+      "detail": "{\"scroll\":390,\"offenders\":[]}"
+    },
+    {
+      "label": "inquiry.html: responsive at 768px",
+      "passed": true,
+      "detail": "{\"scroll\":768,\"offenders\":[]}"
+    },
+    {
+      "label": "inquiry.html: responsive at 992px",
+      "passed": true,
+      "detail": "{\"scroll\":992,\"offenders\":[]}"
+    },
+    {
+      "label": "inquiry.html: responsive at 1440px",
+      "passed": true,
+      "detail": "{\"scroll\":1440,\"offenders\":[]}"
+    },
+    {
+      "label": "Page-level arrow focuses next page",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Arrow navigation produces sound",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Arrow navigation preserves scroll",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Arrow navigation wraps",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Enter opens a separate page",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Next-page button opens the photographic showroom",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Night mode changes theme",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Theme persists across pages",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Background generates more than three colors",
+      "passed": true,
+      "detail": "10 colors"
+    },
+    {
+      "label": "Appearance Escape closes and restores focus",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Background persists across pages",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Background reset restores default",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Collection contains 17 cars",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Objects have useful methods",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "touring: correct filtered cars",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "performance: correct filtered cars",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "adventure: correct filtered cars",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "all: correct filtered cars",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Search finds matching cars",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Empty search gives feedback",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Price sorting orders displayed cars",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Save updates state and count",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Saved choice survives reload",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Saved URL opens shortlist",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Removing last saved car shows empty state",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Home category URL works",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Car choice carries to inquiry page",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "All 17 cars appear in inquiry",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Contact validation prevents advancing",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Phone preference validates phone",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Back preserves contact details",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Next preserves preferences",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Review reflects actual inputs",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Finish shows truthful local preview",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Inquiry sends no network submission",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "New inquiry clears entered data",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Four original team members retained",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Read More changes display and expanded state",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Read More collapses again",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Rating updates stars and feedback",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "FAQ expands its content",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Time button displays device time",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "User-triggered chime plays",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Mute state updates",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Muted actions stay quiet",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Photographic showroom has at least eight slides",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Next changes the photograph and counter",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Previous wraps to last photograph",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Thumbnail updates the actual image attribute",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Photo caption follows selected car",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Gallery End selects last photograph",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Gallery Home returns to first photograph",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Mobile menu begins collapsed",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Mobile menu opens",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Escape closes mobile menu",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Blocked storage keeps saves usable",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "All photographs, scripts and styles load locally",
+      "passed": true,
+      "detail": "[]"
+    },
+    {
+      "label": "No authored-page script or resource errors",
+      "passed": true,
+      "detail": ""
+    }
+  ],
+  "application_commit": "dfcfdf9481af9c3929c8a43a08d2f10e03ed6272",
+  "workflow_url": "https://github.com/Vertex-blip/Car-dealership-website/actions/runs/40892341554"
+}

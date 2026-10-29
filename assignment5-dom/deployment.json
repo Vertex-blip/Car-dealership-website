@@ -1,9 +1,24 @@
 {
   "site_url": "https://vertex-blip.github.io/Car-dealership-website/assignment5-dom/",
-  "status": "revised-working-copy-awaiting-publication",
-  "pages": ["index.html", "inventory.html", "showroom.html", "about.html", "inquiry.html"],
+  "status": "published",
+  "application_commit": "dfcfdf9481af9c3929c8a43a08d2f10e03ed6272",
+  "branch": "main",
+  "workflow_id": 40892341554,
+  "workflow_url": "https://github.com/Vertex-blip/Car-dealership-website/actions/runs/40892341554",
+  "workflow_conclusion": "success",
+  "http_status": 200,
+  "verified_at": "2026-10-29T14:33:11.907Z",
+  "pages": [
+    "index.html",
+    "inventory.html",
+    "showroom.html",
+    "about.html",
+    "inquiry.html"
+  ],
+  "live_evidence": "screenshots/test-results-live.json",
+  "live_checks": 113,
+  "live_passed": 113,
   "current_local_evidence": "screenshots/test-results.json",
-  "previous_published_commit": "013dc7ded3dc429137cd5a3b2d3256bb8b97286d",
-  "previous_workflow_url": "https://github.com/Vertex-blip/Car-dealership-website/actions/runs/40757833270",
-  "summary": "This revision is a five-page photographic dealership website with seventeen cars, a Mercedes-AMG E 63 S hero and an interactive local image gallery. The prior published commit and historical live test files describe the old single-page site. Publication of this revision has not been performed."
+  "previous_published_commit": "535ee0dd3c13b75e0e776d3bdc8872149af95ae2",
+  "summary": "The photographic five-page, seventeen-car revision is published at the existing submitted GitHub Pages URL. The Pages workflow succeeded for the application commit, the site returned HTTP 200, and all 113 live browser checks passed without script or resource errors. The URL and assignment folder are unchanged."
 }
