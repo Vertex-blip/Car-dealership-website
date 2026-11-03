@@ -4,6 +4,7 @@ Responsive dealership website by Team Apex Motors, Group SE-2507. The repository
 
 ## Live websites
 
+- **Assignment 6 (jQuery):** https://vertex-blip.github.io/Car-dealership-website/assignment6-jquery/
 - **Assignment 5 (Advanced JavaScript and DOM):** https://vertex-blip.github.io/Car-dealership-website/assignment5-dom/
 - **Midterm / Assignments 1–2:** https://vertex-blip.github.io/Car-dealership-website/
 - **Assignment 3 (Bootstrap):** https://vertex-blip.github.io/Car-dealership-website/assignment3-bootstrap/

@@ -1,0 +1,26 @@
+/* Search belongs to the collection: restrained surfaces, clear live feedback. */
+.search-combobox { position: relative; flex: 1; min-width: 230px; }
+.collection-search .search-combobox .form-control { width: 100%; min-width: 0; padding-right: 42px; }
+.search-clear { position: absolute; right: 8px; top: 50%; transform: translateY(-50%); width: 30px; height: 30px; border: 0; background: transparent; color: var(--muted, #6d7377); font-family: inherit; font-size: 23px; line-height: 1; cursor: pointer; border-radius: 50%; }
+.search-clear:hover { background: rgba(120, 130, 140, .14); color: var(--ink, #111); }
+.search-clear[hidden], .search-suggestions[hidden] { display: none; }
+.search-combobox input::-webkit-search-cancel-button, .faq-search-field input::-webkit-search-cancel-button { -webkit-appearance: none; }
+.search-suggestions { position: absolute; top: calc(100% + 8px); left: 0; right: 0; z-index: 25; list-style: none; margin: 0; padding: 7px; max-height: 360px; overflow-y: auto; background: var(--page-bg, #f4f1eb); border: 1px solid var(--line, #d9dadd); border-radius: 6px; box-shadow: 0 16px 40px rgba(0,0,0,.13); }
+.search-suggestions [role="option"] { padding: 12px; display: flex; align-items: center; justify-content: space-between; gap: 12px; cursor: pointer; font-size: 13px; border-radius: 3px; }
+.search-suggestions [role="option"] small { white-space: nowrap; color: var(--muted, #72757a); font-size: 10px; }
+.search-suggestions [role="option"]:hover, .search-suggestions [aria-selected="true"] { background: rgba(0, 120, 214, .11); }
+.search-highlight { padding: 0 .03em; border-radius: 2px; background: #f4df8b; color: #282516; box-decoration-break: clone; }
+.faq-search-wrap { max-width: 320px; margin-top: 30px; }
+.faq-search-wrap label { display: block; margin-bottom: 9px; font-size: 12px; font-weight: 600; }
+.faq-search-field { position: relative; }
+.faq-search-field input { width: 100%; padding-right: 42px; }
+.faq-search-wrap .mini-status { margin-top: 12px; }
+[data-theme="dark"] .search-suggestions { background: #182023; }
+[data-theme="dark"] .search-suggestions [role="option"]:hover,
+[data-theme="dark"] .search-suggestions [aria-selected="true"] { background: rgba(80, 170, 240, .18); }
+[data-theme="dark"] .search-clear:hover { color: #fff; }
+@media (max-width: 640px) {
+  .collection-search .search-combobox { flex: 1 1 100%; width: 100%; min-width: 0; }
+  .collection-search .search-combobox .form-control { width: 100%; }
+  .faq-search-wrap { max-width: none; }
+}
