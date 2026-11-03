@@ -18,6 +18,8 @@ Extract the project ZIP and open `index.html`. No build or account is needed. Th
 | Inquire | Try invalid details, then complete the three steps. Submit shows a spinner and disables repeated submissions before the local preview appears. Copy the preview to the clipboard. |
 | Showroom | Explore the original photographic gallery with thumbnails, buttons and arrow keys. |
 
+On About, hovering over or focusing a rating star highlights that star and all preceding stars; clicking commits the rating, and leaving the preview restores the selected value.
+
 The inquiry is a classroom simulation: it sends no contact data, books no appointment and processes no payment. Its short delay demonstrates submission feedback. Use sample details during the defense. Vehicle prices and years are illustrative.
 
 ## Files
@@ -44,7 +46,7 @@ Before committing a new release, run `python tools/version_assets.py` after the 
 
 Verification passed **122/122 local HTTP checks, 121/121 direct-file checks and 122/122 live website checks**, with zero authored JavaScript or resource errors. The direct-file run omits the secure-context clipboard readback assertion; copying feedback is still checked. The suite also exercises a blocked CDN, blocked storage, reduced-motion settings and FAQ text layout at four viewport widths in both themes. A focused FAQ regression passed **35/35 checks**. A cached-stylesheet regression passed **11/11 checks locally and 11/11 on the live site**, confirming that versioned URLs prevent the old styles from rotating the question text. Records are in `screenshots/test-results-faq-layout.json`, `screenshots/test-results-cache-local.json` and `screenshots/test-results-cache.json`.
 
-Publication is confirmed by `deployment.json` and `screenshots/test-results-live.json`. Application commit: [`41da2e152347`](https://github.com/Vertex-blip/Car-dealership-website/commit/41da2e1523474324532441462d135a23580628b5). The [GitHub Pages workflow completed successfully](https://github.com/Vertex-blip/Car-dealership-website/actions/runs/41619527356), and the new Assignment 6 address was verified in Chrome.
+Publication is confirmed by `deployment.json` and `screenshots/test-results-live.json`. Application commit: [`44205890704a`](https://github.com/Vertex-blip/Car-dealership-website/commit/44205890704abcc8c082d433448533d521d70872). The [GitHub Pages workflow completed successfully](https://github.com/Vertex-blip/Car-dealership-website/actions/runs/41621627211), and the new Assignment 6 address was verified in Chrome.
 
 **Assignment 6 address:** https://vertex-blip.github.io/Car-dealership-website/assignment6-jquery/
 

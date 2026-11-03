@@ -18,7 +18,7 @@ Team: **Apex Motors** | Group: **SE-2507** | Members: **Arsen, Kuttibay, Farabi,
 | Task 7: temporary notification | Shared jQuery toast confirms saves and completed actions and fades out | Save a vehicle and wait for notification dismissal. |
 | Task 8: clipboard button | Copy controls write actual snippet text, show a checkmark and Copied to clipboard tooltip only after success | Copy the completed inquiry preview and paste it. |
 | Task 9: image lazy loading | Deferred images hold actual URLs in `data-src`; viewport checks assign `src` only when visible | Open Collection at the top, then scroll to its last vehicle. |
-| Part 4: commit, push and redeploy | Published as a separate folder in the shared GitHub repository; application commit `41da2e152347`, successful Pages workflow `41619527356`; content-versioned assets prevent stale CSS/JS | `deployment.json` and `screenshots/test-results-live.json` record the release and 122/122 live checks; the live cached-stylesheet regression passed 11/11. |
+| Part 4: commit, push and redeploy | Published as a separate folder in the shared GitHub repository; application commit `44205890704a`, successful Pages workflow `41621627211`; content-versioned assets prevent stale CSS/JS | `deployment.json` and `screenshots/test-results-live.json` record the release and 122/122 live checks; the live cached-stylesheet regression passed 11/11. |
 | PDF report | Objective, team, task steps, actual source and webpage screenshots, reflection, URL | `Assignment-6-Report.pdf`. |
 | Complete project ZIP | HTML/CSS/JS, local assets, documentation and evidence | Extract and open `index.html`; no build needed. |
 

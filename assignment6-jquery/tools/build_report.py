@@ -255,6 +255,6 @@ y = picture(c, SHOTS / 'page-showroom.png', y - 3, 190, 'The photographic showro
 y = para(c, '<b>Defense preparation.</b> Demonstrate Tasks 0-9, explain .on(), .filter(), .text(), .attr(), .prop(), .animate() and .fadeOut(), then show the live URL. DEFENSE-GUIDE.md provides a Kazakh walkthrough and practice questions.', y)
 para(c, '<b>Limits.</b> This static student site demonstrates local state and a simulated inquiry. It does not connect to a dealership backend, make real reservations or verify vehicle availability and prices.', y, SMALL)
 c.save()
-evidence['source_files'] = {p.relative_to(ROOT).as_posix(): hashlib.sha256(p.read_bytes()).hexdigest() for p in [*sorted(ROOT.glob('*.html')), ROOT / 'script.js', ROOT / 'js/inventory.js', ROOT / 'js/search.js', ROOT / 'js/booking.js', ROOT / 'styles.css', ROOT / 'search.css', ROOT / 'tools/version_assets.py']}
+evidence['source_files'] = {p.relative_to(ROOT).as_posix(): hashlib.sha256(p.read_bytes()).hexdigest() for p in [*sorted(ROOT.glob('*.html')), ROOT / 'script.js', ROOT / 'js/site.js', ROOT / 'js/inventory.js', ROOT / 'js/search.js', ROOT / 'js/booking.js', ROOT / 'styles.css', ROOT / 'search.css', ROOT / 'tools/version_assets.py']}
 (SHOTS / 'report-evidence.json').write_text(json.dumps(evidence, indent=2), encoding='utf-8')
 print(json.dumps({'output': str(OUTPUT), 'pages': 13, 'published': published, 'bytes': OUTPUT.stat().st_size}))
