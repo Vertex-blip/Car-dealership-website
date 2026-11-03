@@ -1,0 +1,29 @@
+{
+  "task-0-home.png": "47b5f2520927bf03ff59aca29836c939c2e5bc0d771f52d7c934a54d14f8dd96",
+  "code-task-0.png": "dca181995675b0c68d764a3402c94dbdd9b9b9673a7739e0a1c556e6c0f6f81f",
+  "task-1-filter.png": "3b80487fcbd8cff6102c5201e43c31ebc60cd41752404352b27fe97e023741d0",
+  "code-task-1.png": "383501f97e44a6cdf349d7a893e6382795d0519b985e94eaed3245ba850fbc79",
+  "task-2-autocomplete.png": "f3a1746eeb8c112aed6858e4e94576199b7d808dca400fd6ca9d5b1cce420c40",
+  "code-task-2.png": "dcb2f43703cec5257632beb83bb4a909a3d0814265bfdf3872a770298f6be6f6",
+  "task-3-highlighting.png": "d1b4f052c109573f85b34205cfc409d48ada1fcc7566bee3d77b3ad78964189f",
+  "code-task-3.png": "0062320709a86c2a02320571fce0b96999fed695146a11c92b77ba9f4aaf8905",
+  "task-4-progress.png": "05c309e5517ac060e9731b93b985343801971ba1d8f6503d8b6d7e747e71e6b1",
+  "code-task-4.png": "fc569d3397f7d0400d8a04822e15e6775ccd1a0ec496e1c641b353222672d546",
+  "task-5-counters.png": "6529b91b911c4a1588b17207cde9658e8cb6ca37f56f06249360b26ea6153d0a",
+  "code-task-5.png": "31ee0bfc944278e21d16aebecd579cfa401368d36b76e661bc8eb6bb9a9a6b5b",
+  "task-6-spinner.png": "d49ef68c24a3d5c29d9d33adb91b47aeb072e837732bde2a39f98303e460d498",
+  "code-task-6.png": "de1b55d8aa1a7b982a9d3270be4344d3dab6d725791e4cfb42238c1dd07efba7",
+  "task-7-toast.png": "532dc98ec7931d35342e249b6843d48b58116ba5b5f0bfa896a486f60077ebad",
+  "code-task-7.png": "05f68203366082f7efcbb8808fced8071183741e35ae42bae146cba88b748a00",
+  "task-8-clipboard.png": "7468fcbaaf606dec8dff32eee7fcb337b3aab086c0835ef1e56edadea4f67f8a",
+  "code-task-8.png": "0efacc7b36c283df8c44c8ca4a8246e8e40cde727fde1203d18150186aff64aa",
+  "task-9-lazy.png": "46405df01c296b83ea20c1f56d38f6bcffcbb0fc72f877662853c7bb1ff054b8",
+  "code-task-9.png": "efb0b14a9ebb0d955a97a47c410fd3c7d404a91cb2c093515c32eec03359de75",
+  "page-showroom.png": "a62cfc44b02e89d6a8b096ee2351878ebc1f41c2c61f10c701c61f9a00324648",
+  "source_files": {
+    "script.js": "9f81bf1688823458c67b0a96b7bf2bb7d01a12e01bfa778e5215572307b70221",
+    "js\\inventory.js": "d3942c8dfa210df0bb8b5ab45c2903387116f9b36b87bad3afef7f3d7e908bb6",
+    "js\\search.js": "c4ff4a0b46ca2f07b38db70145158a7e93ecf31dccb9757920d67c0f6d83a7e4",
+    "js\\booking.js": "a3e76779ac96888e73b067bcb14444252bb585e587b9518a65e48252942991c0"
+  }
+}

@@ -1,0 +1,446 @@
+{
+  "target": "file:///D:/%D0%9D%D0%BE%D0%B2%D0%B0%D1%8F%20%D0%BF%D0%B0%D0%BF%D0%BA%D0%B0/%D0%A3%D1%87%D0%B5%D0%B1%D0%B0/WEB/car-dealership-website/assignment6-jquery/index.html",
+  "channel": "chrome",
+  "timestamp": "2026-11-03T10:16:06.197Z",
+  "passed": 87,
+  "total": 87,
+  "errors": [],
+  "diagnostics": [],
+  "results": [
+    {
+      "label": "index.html: jQuery 4 initialized",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "index.html: required CDN script is inside head",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "index.html: one main and h1",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "index.html: current navigation points to page",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "index.html: no horizontal overflow at 320px",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "index.html: no horizontal overflow at 390px",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "index.html: no horizontal overflow at 768px",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "index.html: no horizontal overflow at 1440px",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "inventory.html: jQuery 4 initialized",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "inventory.html: required CDN script is inside head",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "inventory.html: one main and h1",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "inventory.html: current navigation points to page",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "inventory.html: no horizontal overflow at 320px",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "inventory.html: no horizontal overflow at 390px",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "inventory.html: no horizontal overflow at 768px",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "inventory.html: no horizontal overflow at 1440px",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "showroom.html: jQuery 4 initialized",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "showroom.html: required CDN script is inside head",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "showroom.html: one main and h1",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "showroom.html: current navigation points to page",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "showroom.html: no horizontal overflow at 320px",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "showroom.html: no horizontal overflow at 390px",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "showroom.html: no horizontal overflow at 768px",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "showroom.html: no horizontal overflow at 1440px",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "about.html: jQuery 4 initialized",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "about.html: required CDN script is inside head",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "about.html: one main and h1",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "about.html: current navigation points to page",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "about.html: no horizontal overflow at 320px",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "about.html: no horizontal overflow at 390px",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "about.html: no horizontal overflow at 768px",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "about.html: no horizontal overflow at 1440px",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "inquiry.html: jQuery 4 initialized",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "inquiry.html: required CDN script is inside head",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "inquiry.html: one main and h1",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "inquiry.html: current navigation points to page",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "inquiry.html: no horizontal overflow at 320px",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "inquiry.html: no horizontal overflow at 390px",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "inquiry.html: no horizontal overflow at 768px",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "inquiry.html: no horizontal overflow at 1440px",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Task 0: exact ready console message",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Task 4: progress starts at zero",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Task 5: counters finish at truthful 17 / 3 / 4 totals",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Task 4: progress reaches 100 at page bottom",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Existing appearance persists across pages",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Task 9: offscreen card retains deferred real URL",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Task 9: entering viewport assigns and decodes actual image",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Task 9: real deferred request occurs after scroll",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Collection retains all 17 cars",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Task 1: typing immediately filters to two Porsches",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Task 3: each matching title highlights its search term",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Task 2: autocomplete displays three relevant options",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Task 2: ArrowDown exposes active option",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Task 2: Enter chooses suggestion and closes list",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Task 1: clear restores complete collection",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Task 1: matching is case insensitive",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Task 2: mouse selection chooses one car",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Search treats HTML-like input as text",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Task 1: no-match state offers readable feedback",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Existing category filter returns two adventure cars",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Search combines with active category",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Existing sorting preserves numeric price order",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Task 7: saving creates truthful notification",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Task 7: notification dismisses after delay",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Saved car persists and saved URL filters correctly",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Task 3: every FAQ occurrence is highlighted",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Task 3: answers with matches automatically expand",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Task 3: regex punctuation is literal and safe",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Task 3: clearing removes all generated marks",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Original four team members retained",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Invalid inquiry cannot advance or start spinner",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Task 6: submit shows spinner and Please wait",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Task 6: pending submit disabled and form busy",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Task 6: completed button restores label and enabled state",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Task 6: duplicate submissions produce one result",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Inquiry result is honest and sends no network data",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Task 8: copy displays checkmark and tooltip",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "New inquiry clears personal input and old copy snapshot",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Task 6: reset cancels pending completion",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Original showroom next arrow changes image",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Original showroom thumbnails select the correct image",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Mobile menu opens",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Escape closes mobile menu",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "CDN blocked: local jQuery fallback supports live search",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Blocked storage: saves remain usable with truthful feedback",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Reduced motion: counters resolve to their final values",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "No authored JavaScript or resource errors",
+      "passed": true,
+      "detail": ""
+    }
+  ]
+}

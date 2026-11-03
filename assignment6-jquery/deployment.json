@@ -1,0 +1,13 @@
+{
+  "status": "published",
+  "site_url": "https://vertex-blip.github.io/Car-dealership-website/assignment6-jquery/",
+  "repository": "https://github.com/Vertex-blip/Car-dealership-website",
+  "branch": "main",
+  "application_commit": "f627cf31c67884a7d400d3c83a0868af9b301f4a",
+  "workflow_id": 41617306934,
+  "workflow_url": "https://github.com/Vertex-blip/Car-dealership-website/actions/runs/41617306934",
+  "workflow_conclusion": "success",
+  "deployed_at": "2026-11-03T10:13:32Z",
+  "http_status": 200,
+  "verification": "screenshots/test-results-live.json"
+}
