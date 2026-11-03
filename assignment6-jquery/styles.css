@@ -1503,10 +1503,7 @@ input[type="checkbox"] {
   border: 0;
   color: #a8aeb4;
 }
-.rating-star:hover,
-.rating-star.is-active,
-.rating-star.active,
-.rating-star[aria-pressed="true"] {
+.rating-star.is-active {
   color: var(--accent);
 }
 .rating-controls + .mini-status {

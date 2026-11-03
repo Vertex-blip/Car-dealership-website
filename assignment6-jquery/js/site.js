@@ -389,22 +389,52 @@
     .forEach((summary) =>
       summary.addEventListener("click", () => Apex.playSound()),
     );
-  document.querySelectorAll("[data-rating]").forEach((button) =>
+  const ratingStars = [...document.querySelectorAll("[data-rating]")];
+  const ratingControls = document.querySelector(".rating-controls");
+  let selectedRating = 0;
+  let hoveredRating = null;
+  let focusedRating = null;
+  function paintRating() {
+    const preview = hoveredRating ?? focusedRating ?? selectedRating;
+    ratingStars.forEach((star) =>
+      star.classList.toggle("is-active", Number(star.dataset.rating) <= preview),
+    );
+  }
+  ratingStars.forEach((button) => {
+    const rating = Number(button.dataset.rating);
+    button.addEventListener("pointerenter", (event) => {
+      if (event.pointerType === "touch") return;
+      hoveredRating = rating;
+      paintRating();
+    });
+    button.addEventListener("focus", () => {
+      focusedRating = rating;
+      paintRating();
+    });
+    button.addEventListener("blur", () => {
+      focusedRating = null;
+      paintRating();
+    });
     button.addEventListener("click", () => {
-      const rating = Number(button.dataset.rating);
-      document
-        .querySelectorAll("[data-rating]")
-        .forEach((star) =>
-          star.setAttribute(
-            "aria-pressed",
-            String(Number(star.dataset.rating) <= rating),
-          ),
-        );
+      selectedRating = rating;
+      ratingStars.forEach((star) =>
+        star.setAttribute("aria-pressed", String(Number(star.dataset.rating) <= rating)),
+      );
+      paintRating();
       const status = document.getElementById("ratingStatus");
       if (status)
         status.textContent = `Thank you. Your rating: ${rating} of 5.`;
       Apex.playSound("confirm");
       Apex.animate(button.parentElement);
-    }),
-  );
+    });
+  });
+  ratingControls?.addEventListener("pointerleave", () => {
+    hoveredRating = null;
+    paintRating();
+  });
+  ratingControls?.addEventListener("pointercancel", () => {
+    hoveredRating = null;
+    paintRating();
+  });
+  paintRating();
 })();
