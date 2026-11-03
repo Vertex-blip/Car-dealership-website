@@ -1,0 +1,65 @@
+{
+  "target": "http://127.0.0.1:8066/assignment6-jquery/",
+  "channel": "chrome",
+  "timestamp": "2026-11-03T10:27:50.362Z",
+  "passed": 11,
+  "total": 11,
+  "errors": [],
+  "results": [
+    {
+      "label": "Reproduced: new span question plus old CSS rotates and enlarges question",
+      "passed": true,
+      "detail": "{\"transform\":\"matrix(0.707107, 0.707107, -0.707107, 0.707107, 0, 0)\",\"fontSize\":\"24px\",\"color\":\"rgb(97, 102, 108)\",\"summaryFont\":\"16px\",\"summaryColor\":\"rgb(22, 24, 27)\",\"iconTransform\":\"matrix(0.707107, 0.707107, -0.707107, 0.707107, 0, 0)\",\"tag\":\"SPAN\",\"overflow\":false}"
+    },
+    {
+      "label": "Updated HTML references versioned main stylesheet",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Cached-old-CSS scenario: 1860px question remains unrotated and inherits font/color",
+      "passed": true,
+      "detail": "{\"transform\":\"none\",\"fontSize\":\"16px\",\"color\":\"rgb(22, 24, 27)\",\"summaryFont\":\"16px\",\"summaryColor\":\"rgb(22, 24, 27)\",\"iconTransform\":\"matrix(0.707107, 0.707107, -0.707107, 0.707107, 0, 0)\",\"tag\":\"SPAN\",\"overflow\":false}"
+    },
+    {
+      "label": "Cached-old-CSS scenario: 1860px only expand icon rotates",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Cached-old-CSS scenario: 1860px all five highlights remain visible",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Cached-old-CSS scenario: 390px question remains unrotated and inherits font/color",
+      "passed": true,
+      "detail": "{\"transform\":\"none\",\"fontSize\":\"14px\",\"color\":\"rgb(22, 24, 27)\",\"summaryFont\":\"14px\",\"summaryColor\":\"rgb(22, 24, 27)\",\"iconTransform\":\"matrix(0.707107, 0.707107, -0.707107, 0.707107, 0, 0)\",\"tag\":\"SPAN\",\"overflow\":false}"
+    },
+    {
+      "label": "Cached-old-CSS scenario: 390px only expand icon rotates",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Cached-old-CSS scenario: 390px all five highlights remain visible",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Updated references bypass stale unversioned stylesheet",
+      "passed": true,
+      "detail": "0 stale stylesheet responses used"
+    },
+    {
+      "label": "file:// opening resolves CSS/JS query hashes and search works",
+      "passed": true,
+      "detail": "{\"transform\":\"none\",\"fontSize\":\"16px\",\"color\":\"rgb(22, 24, 27)\",\"summaryFont\":\"16px\",\"summaryColor\":\"rgb(22, 24, 27)\",\"iconTransform\":\"matrix(0.707107, 0.707107, -0.707107, 0.707107, 0, 0)\",\"tag\":\"SPAN\",\"overflow\":false}"
+    },
+    {
+      "label": "No JavaScript errors in current cached/file scenarios",
+      "passed": true,
+      "detail": ""
+    }
+  ]
+}

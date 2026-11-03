@@ -232,7 +232,7 @@ if published:
 else:
     y = para(c, '<b>Publication status:</b> pending verified release evidence. The address above is the intended deployment address; it is not claimed as published by this report.', y)
 y = para(c, '<b>Verification evidence</b>', y - 5)
-for name, title in [('test-results.json', 'Local HTTP'), ('test-results-file.json', 'Direct-file'), ('test-results-live.json', 'Live GitHub Pages'), ('test-results-faq-layout.json', 'Focused FAQ layout regression')]:
+for name, title in [('test-results.json', 'Local HTTP'), ('test-results-file.json', 'Direct-file'), ('test-results-live.json', 'Live GitHub Pages'), ('test-results-faq-layout.json', 'Focused FAQ layout regression'), ('test-results-cache.json', 'Live cached stylesheet regression')]:
     file = SHOTS / name
     if file.exists():
         r = json.loads(file.read_text(encoding='utf-8'))
@@ -248,12 +248,13 @@ for title, body in [
     ('Make asynchronous work predictable', 'A disabled button alone does not cover programmatic or keyboard submits. A pending guard prevents duplicate work; restoring control states and cancelling the timer on reset prevents stale success messages.'),
     ('Measure performance behavior', 'Native loading hints do not prove a request was deferred. The implementation holds the URL in data-src, and browser evidence checks that an offscreen image requests its real source after scrolling into view.'),
     ('Design for different situations', 'Keyboard autocomplete, focus handling, live regions, reduced-motion behavior, a local jQuery fallback and storage-error feedback keep the experience usable beyond the default desktop path.'),
+    ('Keep deployed assets consistent', 'Content hashes in CSS and JavaScript URLs prevent new HTML from being combined with an old cached stylesheet. Run tools/version_assets.py after asset changes and before publication.'),
 ]:
     y = para(c, f'<b>{title}.</b> {body}', y)
 y = picture(c, SHOTS / 'page-showroom.png', y - 3, 190, 'The photographic showroom and original dealership identity continue from Assignment 5.')
 y = para(c, '<b>Defense preparation.</b> Demonstrate Tasks 0-9, explain .on(), .filter(), .text(), .attr(), .prop(), .animate() and .fadeOut(), then show the live URL. DEFENSE-GUIDE.md provides a Kazakh walkthrough and practice questions.', y)
 para(c, '<b>Limits.</b> This static student site demonstrates local state and a simulated inquiry. It does not connect to a dealership backend, make real reservations or verify vehicle availability and prices.', y, SMALL)
 c.save()
-evidence['source_files'] = {p.relative_to(ROOT).as_posix(): hashlib.sha256(p.read_bytes()).hexdigest() for p in [ROOT / 'script.js', ROOT / 'js/inventory.js', ROOT / 'js/search.js', ROOT / 'js/booking.js', ROOT / 'about.html', ROOT / 'styles.css', ROOT / 'search.css']}
+evidence['source_files'] = {p.relative_to(ROOT).as_posix(): hashlib.sha256(p.read_bytes()).hexdigest() for p in [*sorted(ROOT.glob('*.html')), ROOT / 'script.js', ROOT / 'js/inventory.js', ROOT / 'js/search.js', ROOT / 'js/booking.js', ROOT / 'styles.css', ROOT / 'search.css', ROOT / 'tools/version_assets.py']}
 (SHOTS / 'report-evidence.json').write_text(json.dumps(evidence, indent=2), encoding='utf-8')
 print(json.dumps({'output': str(OUTPUT), 'pages': 13, 'published': published, 'bytes': OUTPUT.stat().st_size}))

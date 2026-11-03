@@ -1,6 +1,6 @@
 {
   "task-0-home.png": "47b5f2520927bf03ff59aca29836c939c2e5bc0d771f52d7c934a54d14f8dd96",
-  "code-task-0.png": "dca181995675b0c68d764a3402c94dbdd9b9b9673a7739e0a1c556e6c0f6f81f",
+  "code-task-0.png": "a05391d148cd47573b83893513f13f378dab83537e1f3563074ddf80679c994f",
   "task-1-filter.png": "3b80487fcbd8cff6102c5201e43c31ebc60cd41752404352b27fe97e023741d0",
   "code-task-1.png": "383501f97e44a6cdf349d7a893e6382795d0519b985e94eaed3245ba850fbc79",
   "task-2-autocomplete.png": "f3a1746eeb8c112aed6858e4e94576199b7d808dca400fd6ca9d5b1cce420c40",
@@ -21,12 +21,17 @@
   "code-task-9.png": "efb0b14a9ebb0d955a97a47c410fd3c7d404a91cb2c093515c32eec03359de75",
   "page-showroom.png": "a62cfc44b02e89d6a8b096ee2351878ebc1f41c2c61f10c701c61f9a00324648",
   "source_files": {
+    "about.html": "db81a2dcfc600e04a49eb538146d995f71ff85a8d9a21ad36aadfee635cea23b",
+    "index.html": "171d8bbf42ed3ab52ae4698dd5644f2ee4a360f87bb1a69d6d1918b9f532870e",
+    "inquiry.html": "f7290867a89ce95f255d783e17d4aee762e30fea70728bb2efd7001fb526aa93",
+    "inventory.html": "d69ea2542bf1cbf56eb0bdac323d0b4263811c2f9cacce39aec6294cc44717e1",
+    "showroom.html": "544cc4b92b7615742e632c6795b34835713ec2ac4a2ad4ab7e49bfee79b6b6a9",
     "script.js": "9f81bf1688823458c67b0a96b7bf2bb7d01a12e01bfa778e5215572307b70221",
     "js/inventory.js": "d3942c8dfa210df0bb8b5ab45c2903387116f9b36b87bad3afef7f3d7e908bb6",
     "js/search.js": "c4ff4a0b46ca2f07b38db70145158a7e93ecf31dccb9757920d67c0f6d83a7e4",
     "js/booking.js": "a3e76779ac96888e73b067bcb14444252bb585e587b9518a65e48252942991c0",
-    "about.html": "af1d2d7c73f2827018d9495656cd76f7f6991b9ea377b9947d8d259594a19b3c",
-    "styles.css": "5e8fd2d973750ae187ee82b0af14a9f1f1b0ab5564086a8c68eaa81105ee978d",
-    "search.css": "3abd90632654f77116a383ed8b41ada7fda21f3ef02176056dedb8778d3e3c41"
+    "styles.css": "15b0eb5a24568b1ef09efa8f8dec4b79db7d973c650ae6f8679546d8c66ba6db",
+    "search.css": "3abd90632654f77116a383ed8b41ada7fda21f3ef02176056dedb8778d3e3c41",
+    "tools/version_assets.py": "bc4e4127610cbe51322cf002827c92a69f96dd16c104f47d5d4a6bdfc5798565"
   }
 }
