@@ -1449,11 +1449,16 @@ input[type="checkbox"] {
 .faq-item summary::-webkit-details-marker {
   display: none;
 }
-.faq-item summary > span {
+.faq-question {
+  flex: 1;
+  min-width: 0;
+}
+.faq-item summary > .faq-icon {
+  flex: 0 0 auto;
   font-size: 24px;
   color: var(--muted);
 }
-.faq-item[open] summary > span {
+.faq-item[open] summary > .faq-icon {
   transform: rotate(45deg);
 }
 .faq-item p {
