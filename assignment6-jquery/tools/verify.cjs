@@ -30,6 +30,63 @@ async function fillInquiry() {
   await page.locator('#message').fill('Please show the details of this car.');
   await page.locator('#nextStep').click();
 }
+async function verifyFaqHighlightLayout() {
+  // A mark must remain inline inside the question, never become a flex item.
+  // Check real text geometry so a visually broken layout cannot pass on mark count alone.
+  for (const width of [1860, 1440, 390, 320]) {
+    await page.setViewportSize({ width, height: width < 500 ? 844 : 1000 });
+    for (const theme of ['light', 'dark']) {
+      if (await page.locator('html').getAttribute('data-theme') !== theme) {
+        await page.locator('#themeToggle').click();
+        await page.waitForTimeout(400);
+      }
+      for (const query of ['car', 'the', 'a car']) {
+        await page.locator('#faqSearch').fill(query);
+        const geometry = await page.locator('.faq-list').evaluate(list => {
+          const issues = [], marks = [...list.querySelectorAll('mark.search-highlight')];
+          const visibleMarks = marks.filter(mark => mark.getClientRects().length > 0);
+          for (const summary of list.querySelectorAll('summary')) {
+            const question = summary.querySelector('.faq-question'), icon = summary.querySelector('.faq-icon');
+            if (!question || !icon || summary.children.length !== 2) {
+              issues.push('Question text and icon must be two separate flex items.');
+              continue;
+            }
+            if (getComputedStyle(question).transform !== 'none') issues.push('Question text is rotated.');
+            if (summary.closest('details').open && getComputedStyle(icon).transform === 'none') issues.push('Open icon does not rotate.');
+            for (const mark of question.querySelectorAll('mark')) {
+              if (getComputedStyle(mark).display !== 'inline') issues.push('Highlight is not inline.');
+              const before = document.createRange();
+              before.setStart(question, 0);
+              before.setEndBefore(mark);
+              const prefixRects = [...before.getClientRects()].filter(rect => rect.width > 0);
+              const prefix = prefixRects.at(-1), highlighted = mark.getClientRects()[0];
+              if (prefix && highlighted && Math.abs(prefix.top - highlighted.top) < 3 && Math.abs(highlighted.left - prefix.right) > 8) {
+                issues.push(`Unexpected ${Math.round(highlighted.left - prefix.right)}px gap before highlighted text.`);
+              }
+            }
+          }
+          return { issues, total: marks.length, visible: visibleMarks.length, overflow: document.documentElement.scrollWidth > innerWidth + 1 };
+        });
+        check(`FAQ highlight layout: ${width}px ${theme}, "${query}"`, geometry.total > 1 && geometry.total === geometry.visible && !geometry.overflow && geometry.issues.length === 0, JSON.stringify(geometry));
+      }
+      await page.locator('#clearFaqSearch').click();
+      check(`FAQ clear restores closed questions: ${width}px ${theme}`, await page.locator('.faq-item mark').count() === 0 && await page.locator('.faq-item[open]').count() === 0);
+    }
+  }
+  await page.setViewportSize({ width: 1440, height: 1000 });
+  if (await page.locator('html').getAttribute('data-theme') !== 'light') {
+    await page.locator('#themeToggle').click();
+    await page.waitForTimeout(400);
+  }
+  await page.locator('#faqSearch').fill('car');
+  const firstSummary = page.locator('.faq-item summary').first();
+  await firstSummary.focus();
+  await page.keyboard.press('Enter');
+  check('Highlighted FAQ: Enter closes the focused question', !(await page.locator('.faq-item').first().evaluate(e => e.open)));
+  await page.keyboard.press('Space');
+  check('Highlighted FAQ: Space reopens the focused question', await page.locator('.faq-item').first().evaluate(e => e.open));
+  await snap('task-3-highlighting.png', '.faq-section');
+}
 (async () => {
   browser = await pw.chromium.launch({ channel, headless: true });
   const context = await browser.newContext({ viewport: { width: 1440, height: 1000 } });
@@ -133,7 +190,7 @@ async function fillInquiry() {
     const expectedMarks = await page.locator('.faq-list').evaluate(e => (e.textContent.match(/car/gi) || []).length);
     check('Task 3: every FAQ occurrence is highlighted', await page.locator('.faq-item mark.search-highlight').count() === expectedMarks && expectedMarks > 1);
     check('Task 3: answers with matches automatically expand', await page.locator('.faq-item').evaluateAll(es => es.every(e => !e.querySelector('mark') || e.open)));
-    await snap('task-3-highlighting.png', '.faq-section');
+    await verifyFaqHighlightLayout();
     await page.locator('#faqSearch').fill('[');
     check('Task 3: regex punctuation is literal and safe', await page.locator('.faq-item mark').count() === 0 && (await page.locator('#faqSearchStatus').textContent()).includes('0 matches'));
     await page.locator('#clearFaqSearch').click();

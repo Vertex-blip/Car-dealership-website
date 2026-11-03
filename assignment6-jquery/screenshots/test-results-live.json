@@ -1,9 +1,9 @@
 {
   "target": "https://vertex-blip.github.io/Car-dealership-website/assignment6-jquery/index.html",
   "channel": "chrome",
-  "timestamp": "2026-11-03T10:14:40.897Z",
-  "passed": 88,
-  "total": 88,
+  "timestamp": "2026-11-03T10:22:13.611Z",
+  "passed": 122,
+  "total": 122,
   "errors": [],
   "diagnostics": [],
   "results": [
@@ -339,6 +339,176 @@
     },
     {
       "label": "Task 3: answers with matches automatically expand",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "FAQ highlight layout: 1860px light, \"car\"",
+      "passed": true,
+      "detail": "{\"issues\":[],\"total\":5,\"visible\":5,\"overflow\":false}"
+    },
+    {
+      "label": "FAQ highlight layout: 1860px light, \"the\"",
+      "passed": true,
+      "detail": "{\"issues\":[],\"total\":13,\"visible\":13,\"overflow\":false}"
+    },
+    {
+      "label": "FAQ highlight layout: 1860px light, \"a car\"",
+      "passed": true,
+      "detail": "{\"issues\":[],\"total\":2,\"visible\":2,\"overflow\":false}"
+    },
+    {
+      "label": "FAQ clear restores closed questions: 1860px light",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "FAQ highlight layout: 1860px dark, \"car\"",
+      "passed": true,
+      "detail": "{\"issues\":[],\"total\":5,\"visible\":5,\"overflow\":false}"
+    },
+    {
+      "label": "FAQ highlight layout: 1860px dark, \"the\"",
+      "passed": true,
+      "detail": "{\"issues\":[],\"total\":13,\"visible\":13,\"overflow\":false}"
+    },
+    {
+      "label": "FAQ highlight layout: 1860px dark, \"a car\"",
+      "passed": true,
+      "detail": "{\"issues\":[],\"total\":2,\"visible\":2,\"overflow\":false}"
+    },
+    {
+      "label": "FAQ clear restores closed questions: 1860px dark",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "FAQ highlight layout: 1440px light, \"car\"",
+      "passed": true,
+      "detail": "{\"issues\":[],\"total\":5,\"visible\":5,\"overflow\":false}"
+    },
+    {
+      "label": "FAQ highlight layout: 1440px light, \"the\"",
+      "passed": true,
+      "detail": "{\"issues\":[],\"total\":13,\"visible\":13,\"overflow\":false}"
+    },
+    {
+      "label": "FAQ highlight layout: 1440px light, \"a car\"",
+      "passed": true,
+      "detail": "{\"issues\":[],\"total\":2,\"visible\":2,\"overflow\":false}"
+    },
+    {
+      "label": "FAQ clear restores closed questions: 1440px light",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "FAQ highlight layout: 1440px dark, \"car\"",
+      "passed": true,
+      "detail": "{\"issues\":[],\"total\":5,\"visible\":5,\"overflow\":false}"
+    },
+    {
+      "label": "FAQ highlight layout: 1440px dark, \"the\"",
+      "passed": true,
+      "detail": "{\"issues\":[],\"total\":13,\"visible\":13,\"overflow\":false}"
+    },
+    {
+      "label": "FAQ highlight layout: 1440px dark, \"a car\"",
+      "passed": true,
+      "detail": "{\"issues\":[],\"total\":2,\"visible\":2,\"overflow\":false}"
+    },
+    {
+      "label": "FAQ clear restores closed questions: 1440px dark",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "FAQ highlight layout: 390px light, \"car\"",
+      "passed": true,
+      "detail": "{\"issues\":[],\"total\":5,\"visible\":5,\"overflow\":false}"
+    },
+    {
+      "label": "FAQ highlight layout: 390px light, \"the\"",
+      "passed": true,
+      "detail": "{\"issues\":[],\"total\":13,\"visible\":13,\"overflow\":false}"
+    },
+    {
+      "label": "FAQ highlight layout: 390px light, \"a car\"",
+      "passed": true,
+      "detail": "{\"issues\":[],\"total\":2,\"visible\":2,\"overflow\":false}"
+    },
+    {
+      "label": "FAQ clear restores closed questions: 390px light",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "FAQ highlight layout: 390px dark, \"car\"",
+      "passed": true,
+      "detail": "{\"issues\":[],\"total\":5,\"visible\":5,\"overflow\":false}"
+    },
+    {
+      "label": "FAQ highlight layout: 390px dark, \"the\"",
+      "passed": true,
+      "detail": "{\"issues\":[],\"total\":13,\"visible\":13,\"overflow\":false}"
+    },
+    {
+      "label": "FAQ highlight layout: 390px dark, \"a car\"",
+      "passed": true,
+      "detail": "{\"issues\":[],\"total\":2,\"visible\":2,\"overflow\":false}"
+    },
+    {
+      "label": "FAQ clear restores closed questions: 390px dark",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "FAQ highlight layout: 320px light, \"car\"",
+      "passed": true,
+      "detail": "{\"issues\":[],\"total\":5,\"visible\":5,\"overflow\":false}"
+    },
+    {
+      "label": "FAQ highlight layout: 320px light, \"the\"",
+      "passed": true,
+      "detail": "{\"issues\":[],\"total\":13,\"visible\":13,\"overflow\":false}"
+    },
+    {
+      "label": "FAQ highlight layout: 320px light, \"a car\"",
+      "passed": true,
+      "detail": "{\"issues\":[],\"total\":2,\"visible\":2,\"overflow\":false}"
+    },
+    {
+      "label": "FAQ clear restores closed questions: 320px light",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "FAQ highlight layout: 320px dark, \"car\"",
+      "passed": true,
+      "detail": "{\"issues\":[],\"total\":5,\"visible\":5,\"overflow\":false}"
+    },
+    {
+      "label": "FAQ highlight layout: 320px dark, \"the\"",
+      "passed": true,
+      "detail": "{\"issues\":[],\"total\":13,\"visible\":13,\"overflow\":false}"
+    },
+    {
+      "label": "FAQ highlight layout: 320px dark, \"a car\"",
+      "passed": true,
+      "detail": "{\"issues\":[],\"total\":2,\"visible\":2,\"overflow\":false}"
+    },
+    {
+      "label": "FAQ clear restores closed questions: 320px dark",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Highlighted FAQ: Enter closes the focused question",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "label": "Highlighted FAQ: Space reopens the focused question",
       "passed": true,
       "detail": ""
     },

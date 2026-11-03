@@ -39,7 +39,13 @@ record = json.loads((SHOTS / 'test-results.json').read_text(encoding='utf-8'))
 assert record['passed'] == record['total'] and not record['errors'], 'Current local verification must pass before report generation.'
 deployment = json.loads((ROOT / 'deployment.json').read_text(encoding='utf-8')) if (ROOT / 'deployment.json').exists() else {}
 live = json.loads((SHOTS / 'test-results-live.json').read_text(encoding='utf-8')) if (SHOTS / 'test-results-live.json').exists() else {}
-published = deployment.get('status') == 'published' and live.get('total', 0) > 0 and live.get('passed') == live.get('total') and not live.get('errors')
+published = (deployment.get('status') == 'published'
+             and deployment.get('workflow_conclusion') == 'success'
+             and deployment.get('site_url') == SITE
+             and live.get('total', 0) > 0
+             and live.get('passed') == live.get('total')
+             and not live.get('errors')
+             and live.get('timestamp', '') >= deployment.get('deployed_at', ''))
 evidence = {}
 
 def para(c, text, y, style=BODY, x=M, width=WIDTH):
@@ -144,7 +150,7 @@ TASKS = [
     ], shot='task-2-autocomplete.png', caption='Three Mercedes suggestions appear beneath the active search field.', snippets=[('js/inventory.js', 'function showSuggestions()', 10), ('js/inventory.js', 'function selectSuggestion(index)', 7)]),
     dict(n=3, title='Make every match visible.', goal='Highlight all literal keyword occurrences in FAQ questions and answers, while preserving the original markup.', steps=[
         'Remove only previously generated mark elements, normalize text nodes, and escape regex metacharacters in the query.',
-        'Walk eligible text nodes and wrap each match in a mark element. Insert matched text with .text(), never executable input HTML.',
+        'Walk eligible text nodes and wrap each match in a mark element. Keep the whole question in one text wrapper so highlighted fragments remain inline beside the separate icon.',
         'Open answers containing matches, announce the total and restore previous open states when the search is cleared.'
     ], shot='task-3-highlighting.png', caption='The FAQ shows all occurrences of car, including matches inside expanded answers.', snippets=[('js/search.js', 'const escaped =', 8), ('js/search.js', 'const mark = document.createElement', 6)]),
     dict(n=4, title='A sense of progress.', goal='Show a colorful reading progress bar that responds to scrolling, resizing and changes in page height.', steps=[
@@ -226,7 +232,7 @@ if published:
 else:
     y = para(c, '<b>Publication status:</b> pending verified release evidence. The address above is the intended deployment address; it is not claimed as published by this report.', y)
 y = para(c, '<b>Verification evidence</b>', y - 5)
-for name, title in [('test-results.json', 'Local HTTP'), ('test-results-file.json', 'Direct-file'), ('test-results-live.json', 'Live GitHub Pages')]:
+for name, title in [('test-results.json', 'Local HTTP'), ('test-results-file.json', 'Direct-file'), ('test-results-live.json', 'Live GitHub Pages'), ('test-results-faq-layout.json', 'Focused FAQ layout regression')]:
     file = SHOTS / name
     if file.exists():
         r = json.loads(file.read_text(encoding='utf-8'))
@@ -248,6 +254,6 @@ y = picture(c, SHOTS / 'page-showroom.png', y - 3, 190, 'The photographic showro
 y = para(c, '<b>Defense preparation.</b> Demonstrate Tasks 0-9, explain .on(), .filter(), .text(), .attr(), .prop(), .animate() and .fadeOut(), then show the live URL. DEFENSE-GUIDE.md provides a Kazakh walkthrough and practice questions.', y)
 para(c, '<b>Limits.</b> This static student site demonstrates local state and a simulated inquiry. It does not connect to a dealership backend, make real reservations or verify vehicle availability and prices.', y, SMALL)
 c.save()
-evidence['source_files'] = {str(p.relative_to(ROOT)): hashlib.sha256(p.read_bytes()).hexdigest() for p in [ROOT / 'script.js', ROOT / 'js/inventory.js', ROOT / 'js/search.js', ROOT / 'js/booking.js']}
+evidence['source_files'] = {p.relative_to(ROOT).as_posix(): hashlib.sha256(p.read_bytes()).hexdigest() for p in [ROOT / 'script.js', ROOT / 'js/inventory.js', ROOT / 'js/search.js', ROOT / 'js/booking.js', ROOT / 'about.html', ROOT / 'styles.css', ROOT / 'search.css']}
 (SHOTS / 'report-evidence.json').write_text(json.dumps(evidence, indent=2), encoding='utf-8')
 print(json.dumps({'output': str(OUTPUT), 'pages': 13, 'published': published, 'bytes': OUTPUT.stat().st_size}))
