@@ -1449,9 +1449,13 @@ input[type="checkbox"] {
 .faq-item summary::-webkit-details-marker {
   display: none;
 }
-.faq-question {
+.faq-item summary > .faq-question,
+.faq-item[open] summary > .faq-question {
   flex: 1;
   min-width: 0;
+  font: inherit;
+  color: inherit;
+  transform: none;
 }
 .faq-item summary > .faq-icon {
   flex: 0 0 auto;
