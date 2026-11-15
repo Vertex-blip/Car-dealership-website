@@ -25,6 +25,10 @@
   "missing_local_references": 0,
   "live_api_example": {"make": "Porsche", "year": 2024, "model_count": 8},
   "sampled_text_contrast_minimum": 4.5,
-  "published_site_verified": false,
-  "note": "Summarises root's recorded final local checks. Additional assertions are separate from the 11 scenario groups. Does not claim cross-browser certification or completed deployment."
+  "published_site_verified": true,
+  "hosted_base": "https://vertex-blip.github.io/Car-dealership-website/final-project/",
+  "hosted_check_groups_passed": 11,
+  "hosted_errors": [],
+  "hosted_failures": [],
+  "note": "Local and hosted versions were checked on 15 November 2026. The same 11 browser scenario groups passed on both origins. The 27 additional assertions, static reference scan and navigation target count are recorded local evidence. Does not claim cross-browser certification."
 }

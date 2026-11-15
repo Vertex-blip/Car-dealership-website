@@ -4,6 +4,8 @@ A responsive car dealership website for visitors who want to explore a vehicle c
 
 Team: Arsen, Kuttibay, Farabi and Muhammad. Group: SE-2507.
 
+[Live website](https://vertex-blip.github.io/Car-dealership-website/final-project/) · [Repository source](https://github.com/Vertex-blip/Car-dealership-website/tree/main/final-project)
+
 ## Work division
 
 | Member | Responsibility |
@@ -22,6 +24,8 @@ python -m http.server 4173
 ```
 
 Then open <http://localhost:4173/>. VS Code Live Server is another option. Use the same address and port while testing so browser storage stays in the same origin. Internet access is needed for live API data.
+
+If Python is managed with uv, run `uv run python -m http.server 4173` instead.
 
 ## Pages
 
@@ -62,6 +66,6 @@ final-project/
 
 ## Before submission
 
-Publish this folder to a static host, verify the final hosted address and save both the repository URL and live website URL in the required links file. Do not reuse an earlier assignment's URL without checking that it opens this final version.
+The final version is hosted at the live website linked above. The repository and live website addresses are recorded in `ApexMotors_SE2507_Links.txt` in the submission set. Each team member submits the ZIP, PDF report and TXT links file individually in Moodle's FINAL EXAM folder.
 
-Use `docs/submission-checklist.md` for the three required submission files and `docs/presentation-plan.md` for the proposed 4:45 team demonstration. Rehearse against the final hosted site. The checklists describe preparation tasks rather than claiming that submission or deployment has been completed.
+Use `docs/submission-checklist.md` for the three required submission files and `docs/presentation-plan.md` for the proposed 4:45 team demonstration. Backup images are in `docs/screenshots/`. Recorded local and hosted Chromium checks are in `docs/verification-summary.json`; rehearsal and Moodle submission remain team actions.

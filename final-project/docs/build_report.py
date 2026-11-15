@@ -84,6 +84,8 @@ def build_report(args) -> Path:
     verification = json.loads(verification_file.read_text(encoding="utf-8"))
     if len(verification.get("passed", [])) != 11 or verification.get("errors") or verification.get("failures"):
         raise RuntimeError("The expected clean final browser verification record is missing.")
+    if args.published and (not verification.get("published_site_verified") or verification.get("hosted_check_groups_passed") != 11 or verification.get("hosted_errors") or verification.get("hosted_failures")):
+        raise RuntimeError("The expected clean hosted browser verification record is missing.")
 
     def p(text, name="Body"):
         return Paragraph(text, style[name])
@@ -242,18 +244,19 @@ def build_report(args) -> Path:
     story.append(PageBreak())
 
     story.extend(title(7, "Recorded checks and final delivery"))
-    story.append(p("Recorded local browser verification - 15 November 2026", "SectionApex"))
+    story.append(p("Recorded verification - 15 November 2026", "SectionApex"))
     story.append(table(["Coverage", "Recorded result"], [
         ["Functional browser checks", "11 check groups passed: guest access, validation, sign-up/hash/profile, collection/search, theme/gallery, inquiry, contact editing, navigation, live API and log-in/log-out."],
-        ["Responsive layout", "Seven authenticated pages at 320, 390, 768, 1024 and 1440 px, in both themes: no horizontal overflow. Sign-up widths were checked separately."],
+        ["Responsive layout", "Seven pages in a signed-in browser session at 320, 390, 768, 1024 and 1440 px, in both themes: no horizontal overflow. Sign-up widths were checked separately."],
         ["Runtime and resources", "Zero recorded JavaScript runtime errors and zero failed local resources in the verification run."],
         ["Independent review", "27 additional assertions passed: About disclosure, FAQ search/clear, rating persistence, clipboard, gallery keyboard/thumbnail behaviour, three sort orders and autocomplete keys."],
         ["Static paths and navigation", "283 local HTML/CSS references checked with zero missing targets; 44 unique local navigation targets returned successful HTTP responses."],
         ["External API", "The live NHTSA request returned eight Porsche models for 2024. Result filtering and links to Collection were exercised."],
+        ["Hosted browser checks", "The same 11 scenario groups passed on the final hosted origin, including authentication, profile, inquiry, search, responsive themes and live API. Zero runtime errors and zero failed local resources were recorded."],
     ], [137, WIDTH - 137]))
     story.append(Spacer(1, 9))
-    story.append(p("Checks were run against http://127.0.0.1:4173/. They describe the observed local build; external API availability and future hosting changes are outside that record. HTML, CSS, scripts and images are organised separately; shared data and page scripts avoid duplicating behaviour.", "SmallApex"))
-    story.append(p("<b>Browser scope:</b> the automated browser evidence is from Chromium. It does not claim Safari or Firefox certification. A final smoke check on the published address remains separate from local verification.", "SmallApex"))
+    story.append(p("The original checks used http://127.0.0.1:4173/. The same 11 browser scenario groups were then repeated successfully at the final hosted address below. The additional 27 assertions and static/reference counts are local evidence. These results describe the observed build; external API availability and future site changes can vary.", "SmallApex"))
+    story.append(p("<b>Browser scope:</b> local and hosted automated browser evidence is from Chromium. It does not claim Safari or Firefox certification.", "SmallApex"))
     story.append(p("Hosting and submission", "SectionApex"))
     live_status = "Verified final hosted website" if args.published else "Intended final website address (publication not yet verified)"
     story.append(p('Repository: <link href="https://github.com/Vertex-blip/Car-dealership-website" color="#9a6a35">github.com/Vertex-blip/Car-dealership-website</link><br/>' + live_status + ': <link href="https://vertex-blip.github.io/Car-dealership-website/final-project/" color="#9a6a35">vertex-blip.github.io/Car-dealership-website/final-project/</link>', "SmallApex"))

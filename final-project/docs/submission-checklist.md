@@ -28,11 +28,12 @@ The earlier Endterm report is historical context. Its test totals and deployment
 
 ## Links file
 
-Replace both placeholders with verified final addresses:
+The prepared links file contains these final addresses:
 
 ```text
-GitHub Repository: <final repository URL>
-Live Website: <final hosted website URL>
+GitHub Repository: https://github.com/Vertex-blip/Car-dealership-website
+Final Project Source: https://github.com/Vertex-blip/Car-dealership-website/tree/main/final-project
+Live Website: https://vertex-blip.github.io/Car-dealership-website/final-project/
 ```
 
 - [ ] The two addresses are different and both are present.
