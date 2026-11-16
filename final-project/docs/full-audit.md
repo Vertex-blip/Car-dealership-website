@@ -145,3 +145,16 @@ Live сайт: [Apex Motors](https://vertex-blip.github.io/Car-dealership-websit
 - [OWASP HTML5 Security](https://cheatsheetseries.owasp.org/cheatsheets/HTML5_Security_Cheat_Sheet.html): localStorage, session және same-origin шекаралары.
 - [MDN Content Security Policy](https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CSP) және [frame-ancestors](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Content-Security-Policy/frame-ancestors): CSP не шектейтіні және meta policy шектеуі.
 - [Ресми jQuery 4.0.0 файлы](https://code.jquery.com/jquery-4.0.0.min.js): жергілікті vendor файлын салыстыру көзі.
+
+
+## 9. Endterm функцияларын қалпына келтіру
+
+Endterm-дегі Appearance панелі барлық сегіз бетке қайтарылды. Түсті таңдау, кездейсоқ реңк, фонды бастапқы қалпына келтіру және light/dark режимі жұмыс істейді. Таңдау бет ауыстырғанда, қайта жүктегенде, басқа қойындыда және Back арқылы қайтқанда сақталады. Панель Close, Escape, сыртқа басу немесе фокусты шығарумен жабылады; мобильді мәзірмен қатар ашылмайды.
+
+Сол/оң бағыттауыш пернелері негізгі мәзірдегі фокусты айналдырады; Enter таңдалған бетті ашады. Мәтін өрістері, select, түс таңдағышы, Account қойындылары мен Showroom галереясы өз пернелерін сақтайды. Сақталған реңк CSS-ке қойылмас бұрын сан ретінде тексеріледі. Storage жабық болса, баптау осы бетте жұмыс істеп, сақталмағаны көрсетіледі.
+
+- Жергілікті Chrome және WebKit: 26 функционалдық топ, 192 ашық панель layout күйі; қосымша 24 қысқа/тар viewport күйі өтті. Екі Close/палитра батырмасы тексерісі де өтті.
+- Реңк пен режимнің 12 үлгісі тексерілді: бәсең мәтін контрасты кемінде 5.06:1, негізгі батырма мәтіні кемінде 4.97:1.
+- Жарияланған сайт: 26 функционалдық топ, 8 өкілдік layout күйі және 11 негізгі сайт тобы өтті. 48 application файлы HTTP 200 қайтарып, жергілікті нұсқамен сәйкес келді.
+- Тексерістерде күтпеген runtime/CSP/HTTP қатесі жоқ. Бұл Windows-тағы автоматтандырылған браузер тексеруі; нақты iPhone/Safari сертификаты емес.
+- Функционалдық commit: `21531e2`. [Сәтті deployment](https://github.com/Vertex-blip/Car-dealership-website/actions/runs/43895126548). Репорт скриншоттары жаңартылды; PDF бұрынғыдай 5 бет, датасыз, түсті фотолар және үш басылатын сілтеме.

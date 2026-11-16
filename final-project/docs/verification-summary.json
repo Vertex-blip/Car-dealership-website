@@ -124,5 +124,39 @@
     },
     "functional_revision": "682f8cea25a295972358c3155e692aab4912006b",
     "deployment_workflow": "https://github.com/Vertex-blip/Car-dealership-website/actions/runs/43887564861"
+  },
+  "appearance_navigation_follow_up": {
+    "date": "2026-11-16",
+    "status": "passed",
+    "features": [
+      "Endterm Appearance panel",
+      "validated persistent background tint",
+      "random tint and reset",
+      "Left/Right navigation focus and Enter activation"
+    ],
+    "local_functional_groups": {
+      "chromium": 13,
+      "webkit": 13
+    },
+    "local_open_panel_layout_states": 192,
+    "additional_short_viewport_states": 24,
+    "contrast_samples": 12,
+    "minimum_muted_body_contrast": 5.06,
+    "minimum_primary_action_contrast": 4.97,
+    "core_local_groups": 11,
+    "hosted_status": "passed",
+    "hosted_functional_groups": {
+      "chromium": 13,
+      "webkit": 13
+    },
+    "hosted_representative_layout_states": 8,
+    "core_hosted_groups": 11,
+    "hosted_application_files_checked": 48,
+    "runtime_errors": [],
+    "csp_errors": [],
+    "failed_resources": [],
+    "functional_revision": "21531e21b192ae99b9bb81e5720435aac3dc0730",
+    "deployment_workflow": "https://github.com/Vertex-blip/Car-dealership-website/actions/runs/43895126548",
+    "browser_scope": "Automated Chrome on Windows and WebKit; not a physical Safari/iPhone certification."
   }
 }
