@@ -3,7 +3,8 @@
 Requires reportlab and Pillow. Screenshots are read from docs/screenshots and
 cropped without colour changes in WEB/tmp/plain-report-colour.
 The PDF is written to WEB/final-submission unless --output is supplied.
-Dates and results are read from docs/verification-summary.json at build time.
+Results are read from docs/verification-summary.json at build time.
+Preparation and testing dates are intentionally omitted from the report.
 Use --published only after the current hosted version has been verified.
 """
 
@@ -12,7 +13,6 @@ from __future__ import annotations
 import argparse
 import json
 import sys
-from datetime import date
 from pathlib import Path
 from xml.sax.saxutils import escape
 
@@ -42,12 +42,6 @@ REPOSITORY = "https://github.com/Vertex-blip/Car-dealership-website"
 LIVE = "https://vertex-blip.github.io/Car-dealership-website/final-project/"
 
 
-def written_date(value) -> str:
-    """Require a dated record instead of silently assigning a new test date."""
-    parsed = date.fromisoformat(value)
-    return f"{parsed.day} {parsed.strftime('%B %Y')}"
-
-
 def recorded_count(value):
     return value if type(value) is int and value >= 0 else None
 
@@ -67,18 +61,15 @@ def verification_paragraphs(record, published=False):
     axe: states_checked, violations
     webkit: status='passed' records only a smoke check, not full certification.
     """
-    checked_on = written_date(record["date"])
     browser = escape(str(record.get("browser", "the recorded browser")))
     main_groups = len(record.get("passed", []))
     first = (
-        f"The {main_groups} main browser check groups passed locally in {browser} on {checked_on}. "
+        f"The {main_groups} main browser check groups passed locally in {browser}. "
         "They covered accounts, profile editing, inquiries, search, navigation, themes and the public API."
     )
     hosted_groups = recorded_count(record.get("hosted_check_groups_passed"))
     if published and record.get("published_site_verified") and hosted_groups:
-        hosted_date = record.get("hosted_date", record["date"])
-        date_text = f" on {written_date(hosted_date)}" if hosted_date != record["date"] else ""
-        first += f" The {hosted_groups} hosted browser groups also passed{date_text}."
+        first += f" The {hosted_groups} hosted browser groups also passed."
     if record.get("errors") == [] and record.get("failures") == []:
         first += " No uncaught runtime errors or failed local files were recorded."
     paragraphs = [first]
@@ -122,8 +113,6 @@ def verification_paragraphs(record, published=False):
     if completed_audit(audit, "webkit"):
         details.append("A separate WebKit smoke check also passed.")
     if details:
-        if audit.get("date") and audit["date"] != record["date"]:
-            details.insert(0, f"Further checks were completed on {written_date(audit['date'])}.")
         paragraphs.append(" ".join(details))
 
     references = recorded_count(record.get("local_html_css_references_checked"))
@@ -175,13 +164,11 @@ def build_report(args) -> Path:
         or verification.get("hosted_failures")
     ):
         raise RuntimeError("The recorded hosted verification summary is missing or contains failures.")
-    checked_on = written_date(verification["date"])
-    report_date = written_date(verification.get("report_date", verification["date"]))
     example = verification.get("live_api_example", {})
     example_count = recorded_count(example.get("model_count"))
     if isinstance(example.get("make"), str) and recorded_count(example.get("year")) and example_count is not None:
         example_text = (
-            f"In the verification completed on {checked_on}, the live request returned {example_count} "
+            f"The verified live request returned {example_count} "
             f"{escape(example['make'])} models for {example['year']}."
         )
     else:
@@ -238,7 +225,7 @@ def build_report(args) -> Path:
 
     story = [
         p("Apex Motors - Final Project Report", report_title),
-        p(f"Group: SE-2507<br/>Team members: Arsen, Kuttibay, Farabi, Muhammad<br/>{report_date}", information),
+        p("Group: SE-2507<br/>Team members: Arsen, Kuttibay, Farabi, Muhammad", information),
         h(1, "Project goal and description"),
         p("Apex Motors is a car dealership website. We continued the topic from our earlier assignments and expanded the project from five pages to eight connected pages. The website is intended for car enthusiasts and visitors who want to compare vehicles, save cars they like and prepare an inquiry."),
         p("The collection contains 17 sample vehicles. Visitors can search and filter the collection, view photographs in the showroom and find model names through a public vehicle API. The website uses HTML, CSS and JavaScript. Account data and inquiries are saved in the browser for the project demonstration."),
@@ -318,7 +305,7 @@ def build_report(args) -> Path:
         leftMargin=54, rightMargin=54, topMargin=45, bottomMargin=45,
         title="Apex Motors - Final Project Report",
         author="Arsen, Kuttibay, Farabi, Muhammad - SE-2507",
-        subject=f"Final project report, revised {report_date}",
+        subject="Final project report",
     )
     document.build(story, onFirstPage=footer, onLaterPages=footer)
     return args.output
