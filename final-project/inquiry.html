@@ -20,7 +20,7 @@
 <script src="js/account.js" defer></script>
 <script src="js/interactions.js" defer></script>
 <script src="js/search.js" defer></script>
-<script src="js/inquiry.js" defer></script>
+<script src="js/inquiry.js?v=budget-digits-1" defer></script>
 </head>
 <body data-page="inquiry">
 <a class="skip-link" href="#main-content">Skip to content</a>
@@ -131,7 +131,7 @@
                     ></p>
                   </div>
                   <div class="field">
-                    <label class="form-label" for="budget">Budget range</label>
+                    <label class="form-label" for="budget">Budget</label>
                     <div class="input-group">
                       <span class="input-prefix">KZT</span
                       ><input
@@ -141,11 +141,13 @@
                         type="text"
 
 
-                        inputmode="decimal"
+                        inputmode="numeric"
+                        spellcheck="false"
                         placeholder="e.g. 18000000"
-                        aria-describedby="budgetError"
+                        aria-describedby="budgetHint budgetError"
                       />
                     </div>
+                    <p id="budgetHint" class="field-hint">Optional. Whole KZT amounts, digits only.</p>
                     <p
                       id="budgetError"
                       class="invalid-feedback"

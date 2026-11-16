@@ -106,5 +106,17 @@
     "colour_screenshots": 7,
     "clickable_pdf_links": 3,
     "crc_and_hash_checks": "passed"
+  },
+  "budget_input_follow_up": {
+    "date": "2026-11-16",
+    "issue": "Budget accepted non-digit characters while editing; validation previously ran on Next/Submit.",
+    "fix": "Whole KZT digits-only editing, blocked invalid paste, safe restore/autofill handling and independent Next/Submit guards.",
+    "local_groups": {
+      "Chrome": 13,
+      "WebKit": 13
+    },
+    "layout_states": 16,
+    "runtime_errors": [],
+    "hosted_status": "pending"
   }
 }

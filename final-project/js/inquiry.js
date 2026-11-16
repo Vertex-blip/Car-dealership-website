@@ -20,6 +20,9 @@
   const input = (id) => document.getElementById(id);
   const value = (id) => input(id).value.trim();
   const byPhone = () => form.querySelector('[name="replyMethod"]:checked')?.value === "phone";
+  const budget = input("budget");
+  let lastBudgetDigits = "";
+  const budgetDigitsMessage = "Use digits only, for example 18000000. Leave this optional field empty if you have no budget yet.";
   for (const car of Apex.vehicles) {
     const option = document.createElement("option");
     option.value = car.id;
@@ -39,7 +42,7 @@
       case "fullName": return text.length >= 2 && text.length <= 80 ? "" : "Enter your name using 2 to 80 characters.";
       case "email": return Apex.account.emailError(text);
       case "vehicle": return !text || Apex.vehicles.some((car) => car.id === text) ? "" : "Choose a car from the list.";
-      case "budget": return !text || (/^\d+(?:\.\d{1,2})?$/.test(text) && Number.isFinite(Number(text)) && Number(text) <= 1e12) ? "" : "Enter a budget in KZT using a positive number, such as 18000000.";
+      case "budget": return budget.value === "" || (/^\d+$/.test(budget.value) && Number.isSafeInteger(Number(budget.value)) && Number(budget.value) <= 1e12) ? "" : "Enter a whole KZT amount from 0 to 1,000,000,000,000 using digits only.";
       case "phone": return byPhone() ? Apex.account.phoneError(text) : "";
       case "message": return input(id).value.length <= 600 ? "" : "Keep your message within 600 characters.";
       default: return "";
@@ -50,6 +53,19 @@
     for (const id of groups[index]) if (!setError(id, error(id)) && !first) first = input(id);
     if (focus) first?.focus();
     return !first;
+  }
+  function updateBudgetDigits() {
+    // Also covers autofill, restored pages, drop and composition edits.
+    if (!/^\d*$/.test(budget.value)) {
+      const caret = Math.min(budget.selectionStart ?? lastBudgetDigits.length, lastBudgetDigits.length);
+      budget.value = lastBudgetDigits;
+      budget.setSelectionRange(caret, caret);
+      setError("budget", budgetDigitsMessage);
+      return false;
+    }
+    lastBudgetDigits = budget.value;
+    setError("budget", error("budget"));
+    return true;
   }
   function updatePhone() {
     const visible = byPhone();
@@ -113,8 +129,24 @@
   next.addEventListener("click", forward);
   back.addEventListener("click", () => { if (!pending) showStep(Math.max(0, step - 1)); });
   form.querySelectorAll('[name="replyMethod"]').forEach((radio) => radio.addEventListener("change", updatePhone));
+  // Reject whole invalid edits instead of turning a pasted '-500' into '500'.
+  budget.addEventListener("beforeinput", (event) => {
+    if (event.data !== null && event.data !== undefined && !/^\d*$/.test(event.data)) {
+      if (event.cancelable) event.preventDefault();
+      setError("budget", budgetDigitsMessage);
+    }
+  });
+  budget.addEventListener("paste", (event) => {
+    const pasted = event.clipboardData?.getData("text");
+    if (pasted !== undefined && !/^\d*$/.test(pasted)) {
+      event.preventDefault();
+      setError("budget", budgetDigitsMessage);
+    }
+  });
   form.addEventListener("input", (event) => {
-    if (groups.flat().includes(event.target.id) && event.target.getAttribute("aria-invalid") === "true") setError(event.target.id, error(event.target.id));
+    if (event.target === budget) {
+      if (!updateBudgetDigits()) return;
+    } else if (groups.flat().includes(event.target.id) && event.target.getAttribute("aria-invalid") === "true") setError(event.target.id, error(event.target.id));
     if (groups[step].every((id) => !error(id))) status.textContent = "";
   });
   function prefill() {
@@ -130,6 +162,7 @@
   function reset(focus = true) {
     if (pending) return;
     form.reset();
+    lastBudgetDigits = budget.value;
     groups.flat().forEach((id) => setError(id, ""));
     input("completedInquiryPreview")?.remove();
     input("copyInquiry")?.remove();
@@ -152,7 +185,7 @@
   addEventListener("storage", (event) => {
     if (event.key === "apex-session" || event.key === "apex-users" || event.key === null) checkIdentity();
   });
-  addEventListener("pageshow", checkIdentity);
+  addEventListener("pageshow", () => { checkIdentity(); updateBudgetDigits(); });
   form.addEventListener("submit", (event) => {
     event.preventDefault();
     if (pending || form.hidden) return;
@@ -215,6 +248,7 @@
   prefill();
   const requested = new URLSearchParams(location.search).get("vehicle");
   if (Apex.vehicles.some((car) => car.id === requested)) vehicle.value = requested;
+  updateBudgetDigits();
   updatePhone();
   showStep(0, false);
 })();

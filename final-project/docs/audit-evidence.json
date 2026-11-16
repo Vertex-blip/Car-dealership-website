@@ -1099,5 +1099,195 @@
     "colour_screenshots": 7,
     "clickable_pdf_links": 3,
     "crc_and_hash_checks": "passed"
+  },
+  "budget_input_follow_up": {
+    "summary": {
+      "date": "2026-11-16",
+      "issue": "Budget accepted non-digit characters while editing; validation previously ran on Next/Submit.",
+      "fix": "Whole KZT digits-only editing, blocked invalid paste, safe restore/autofill handling and independent Next/Submit guards.",
+      "local_groups": {
+        "Chrome": 13,
+        "WebKit": 13
+      },
+      "layout_states": 16,
+      "runtime_errors": [],
+      "hosted_status": "pending"
+    },
+    "local": {
+      "base": "http://127.0.0.1:4173/",
+      "results": [
+        {
+          "browser": "Chrome",
+          "checks": [
+            "numeric keyboard hint with JavaScript validation and no forbidden browser validation attributes",
+            "real typed letters never enter budget and inline feedback is visible",
+            "valid digit typing clears feedback",
+            "six invalid/mixed pastes preserve prior digits instead of silently changing the amount",
+            "valid whole-digit paste is accepted once",
+            "selection, deletion and caret editing remain functional",
+            "maximum whole-KZT boundary accepted and larger numeric amount rejected",
+            "independent Next validation rejects six raw DOM-bypass values including padded digits and whitespace-only",
+            "zero is valid and optional blank saves as null",
+            "new inquiry and reset do not restore a previous budget snapshot",
+            "composition commit cannot leave non-digits in the budget",
+            "restored invalid value never becomes accepted snapshot for existing digits or optional blank",
+            "Submit rechecks hidden preferences and stores a valid budget as a number"
+          ],
+          "errors": []
+        },
+        {
+          "browser": "WebKit",
+          "checks": [
+            "numeric keyboard hint with JavaScript validation and no forbidden browser validation attributes",
+            "real typed letters never enter budget and inline feedback is visible",
+            "valid digit typing clears feedback",
+            "six invalid/mixed pastes preserve prior digits instead of silently changing the amount",
+            "valid whole-digit paste is accepted once",
+            "selection, deletion and caret editing remain functional",
+            "maximum whole-KZT boundary accepted and larger numeric amount rejected",
+            "independent Next validation rejects six raw DOM-bypass values including padded digits and whitespace-only",
+            "zero is valid and optional blank saves as null",
+            "new inquiry and reset do not restore a previous budget snapshot",
+            "composition commit cannot leave non-digits in the budget",
+            "restored invalid value never becomes accepted snapshot for existing digits or optional blank",
+            "Submit rechecks hidden preferences and stores a valid budget as a number"
+          ],
+          "errors": []
+        }
+      ]
+    },
+    "layout": {
+      "states": [
+        {
+          "browser": "Chrome",
+          "width": 320,
+          "theme": "light",
+          "overflow": false,
+          "covered": false,
+          "feedbackVisible": true
+        },
+        {
+          "browser": "Chrome",
+          "width": 320,
+          "theme": "dark",
+          "overflow": false,
+          "covered": false,
+          "feedbackVisible": true
+        },
+        {
+          "browser": "Chrome",
+          "width": 390,
+          "theme": "light",
+          "overflow": false,
+          "covered": false,
+          "feedbackVisible": true
+        },
+        {
+          "browser": "Chrome",
+          "width": 390,
+          "theme": "dark",
+          "overflow": false,
+          "covered": false,
+          "feedbackVisible": true
+        },
+        {
+          "browser": "Chrome",
+          "width": 768,
+          "theme": "light",
+          "overflow": false,
+          "covered": false,
+          "feedbackVisible": true
+        },
+        {
+          "browser": "Chrome",
+          "width": 768,
+          "theme": "dark",
+          "overflow": false,
+          "covered": false,
+          "feedbackVisible": true
+        },
+        {
+          "browser": "Chrome",
+          "width": 1440,
+          "theme": "light",
+          "overflow": false,
+          "covered": false,
+          "feedbackVisible": true
+        },
+        {
+          "browser": "Chrome",
+          "width": 1440,
+          "theme": "dark",
+          "overflow": false,
+          "covered": false,
+          "feedbackVisible": true
+        },
+        {
+          "browser": "WebKit",
+          "width": 320,
+          "theme": "light",
+          "overflow": false,
+          "covered": false,
+          "feedbackVisible": true
+        },
+        {
+          "browser": "WebKit",
+          "width": 320,
+          "theme": "dark",
+          "overflow": false,
+          "covered": false,
+          "feedbackVisible": true
+        },
+        {
+          "browser": "WebKit",
+          "width": 390,
+          "theme": "light",
+          "overflow": false,
+          "covered": false,
+          "feedbackVisible": true
+        },
+        {
+          "browser": "WebKit",
+          "width": 390,
+          "theme": "dark",
+          "overflow": false,
+          "covered": false,
+          "feedbackVisible": true
+        },
+        {
+          "browser": "WebKit",
+          "width": 768,
+          "theme": "light",
+          "overflow": false,
+          "covered": false,
+          "feedbackVisible": true
+        },
+        {
+          "browser": "WebKit",
+          "width": 768,
+          "theme": "dark",
+          "overflow": false,
+          "covered": false,
+          "feedbackVisible": true
+        },
+        {
+          "browser": "WebKit",
+          "width": 1440,
+          "theme": "light",
+          "overflow": false,
+          "covered": false,
+          "feedbackVisible": true
+        },
+        {
+          "browser": "WebKit",
+          "width": 1440,
+          "theme": "dark",
+          "overflow": false,
+          "covered": false,
+          "feedbackVisible": true
+        }
+      ],
+      "errors": []
+    }
   }
 }
