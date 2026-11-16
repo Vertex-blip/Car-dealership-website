@@ -1111,7 +1111,13 @@
       },
       "layout_states": 16,
       "runtime_errors": [],
-      "hosted_status": "pending"
+      "hosted_status": "passed",
+      "hosted_groups": {
+        "Chrome": 13,
+        "WebKit": 13
+      },
+      "functional_revision": "682f8cea25a295972358c3155e692aab4912006b",
+      "deployment_workflow": "https://github.com/Vertex-blip/Car-dealership-website/actions/runs/43887564861"
     },
     "local": {
       "base": "http://127.0.0.1:4173/",
@@ -1288,6 +1294,49 @@
         }
       ],
       "errors": []
+    },
+    "hosted": {
+      "base": "https://vertex-blip.github.io/Car-dealership-website/final-project/",
+      "results": [
+        {
+          "browser": "Chrome",
+          "checks": [
+            "numeric keyboard hint with JavaScript validation and no forbidden browser validation attributes",
+            "real typed letters never enter budget and inline feedback is visible",
+            "valid digit typing clears feedback",
+            "six invalid/mixed pastes preserve prior digits instead of silently changing the amount",
+            "valid whole-digit paste is accepted once",
+            "selection, deletion and caret editing remain functional",
+            "maximum whole-KZT boundary accepted and larger numeric amount rejected",
+            "independent Next validation rejects six raw DOM-bypass values including padded digits and whitespace-only",
+            "zero is valid and optional blank saves as null",
+            "new inquiry and reset do not restore a previous budget snapshot",
+            "composition commit cannot leave non-digits in the budget",
+            "restored invalid value never becomes accepted snapshot for existing digits or optional blank",
+            "Submit rechecks hidden preferences and stores a valid budget as a number"
+          ],
+          "errors": []
+        },
+        {
+          "browser": "WebKit",
+          "checks": [
+            "numeric keyboard hint with JavaScript validation and no forbidden browser validation attributes",
+            "real typed letters never enter budget and inline feedback is visible",
+            "valid digit typing clears feedback",
+            "six invalid/mixed pastes preserve prior digits instead of silently changing the amount",
+            "valid whole-digit paste is accepted once",
+            "selection, deletion and caret editing remain functional",
+            "maximum whole-KZT boundary accepted and larger numeric amount rejected",
+            "independent Next validation rejects six raw DOM-bypass values including padded digits and whitespace-only",
+            "zero is valid and optional blank saves as null",
+            "new inquiry and reset do not restore a previous budget snapshot",
+            "composition commit cannot leave non-digits in the budget",
+            "restored invalid value never becomes accepted snapshot for existing digits or optional blank",
+            "Submit rechecks hidden preferences and stores a valid budget as a number"
+          ],
+          "errors": []
+        }
+      ]
     }
   }
 }

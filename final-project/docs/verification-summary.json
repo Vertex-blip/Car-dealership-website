@@ -117,6 +117,12 @@
     },
     "layout_states": 16,
     "runtime_errors": [],
-    "hosted_status": "pending"
+    "hosted_status": "passed",
+    "hosted_groups": {
+      "Chrome": 13,
+      "WebKit": 13
+    },
+    "functional_revision": "682f8cea25a295972358c3155e692aab4912006b",
+    "deployment_workflow": "https://github.com/Vertex-blip/Car-dealership-website/actions/runs/43887564861"
   }
 }
