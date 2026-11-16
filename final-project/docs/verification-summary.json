@@ -41,9 +41,9 @@
     "year": 2024,
     "model_count": 8
   },
-  "published_site_verified": false,
+  "published_site_verified": true,
   "hosted_base": "https://vertex-blip.github.io/Car-dealership-website/final-project/",
-  "hosted_check_groups_passed": 0,
+  "hosted_check_groups_passed": 11,
   "hosted_errors": [],
   "hosted_failures": [],
   "final_audit": {
@@ -91,5 +91,20 @@
       "note": "Automated WebKit on Windows; not physical Safari/iPhone certification."
     }
   },
-  "note": "Full audit on 16 November 2026. Fresh local evidence complete; hosted verification for this revision is pending. Test groups, viewport states and repeated element instances are separate measures."
+  "note": "Full local and hosted audit completed on 16 November 2026. Hosted core and security suites passed. Test groups, viewport states and repeated element instances are separate measures. This coursework localStorage simulation is not production authentication.",
+  "hosted_date": "2026-11-16",
+  "hosted_console_errors": [],
+  "hosted_security_groups_passed": 16,
+  "functional_revision": "bcffccabd8de3ea34a695abe43b723ab57f29082",
+  "deployment_workflow": "https://github.com/Vertex-blip/Car-dealership-website/actions/runs/43822665241",
+  "hosted_application_files_checked": 48,
+  "hosted_application_file_mismatches": 0,
+  "submission_package": {
+    "outer_members": 3,
+    "project_files": 64,
+    "pdf_pages": 5,
+    "colour_screenshots": 7,
+    "clickable_pdf_links": 3,
+    "crc_and_hash_checks": "passed"
+  }
 }

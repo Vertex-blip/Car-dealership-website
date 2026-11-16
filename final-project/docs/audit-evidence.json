@@ -791,5 +791,313 @@
     "name": "jQuery",
     "version": "4.0.0",
     "matches_official_download_after_line_ending_normalisation": true
+  },
+  "core_hosted": {
+    "base": "https://vertex-blip.github.io/Car-dealership-website/final-project/",
+    "passed": [
+      "guest profile redirects to account",
+      "login required fields show inline errors",
+      "signup validates name/email/phone/password/confirmation, hashes password and opens profile",
+      "17 cars, search/category/empty states, persistent shortlist and API search links",
+      "theme persists across pages and showroom controls work",
+      "inquiry prefill, JS validation, review and save appear with shortlist on profile",
+      "profile contact editing persists",
+      "7 authenticated pages × 5 widths × both themes: no overflow, headings and JS-only forms",
+      "mobile navigation and real NHTSA models/filter render",
+      "logout, responsive signup, wrong credentials and case-insensitive login",
+      "zero runtime errors and zero failed local resources"
+    ],
+    "errors": [],
+    "failures": [],
+    "consoleErrors": [],
+    "date": "2026-11-16"
+  },
+  "security_hosted": {
+    "date": "2026-11-16",
+    "base": "https://vertex-blip.github.io/Car-dealership-website/final-project/",
+    "checks": [
+      "new signup uses salted 600000-round PBKDF2 and adopts guest shortlist once",
+      "profile shortlist stays isolated between accounts and refreshes after cross-tab switch",
+      "inquiry ownership uses account ID; guest/email claims and malformed record objects are excluded; XSS stays text",
+      "cross-tab account changes clear old inquiry contact/message and bind new record to current owner",
+      "same-tab session mutation is revalidated before advancing the inquiry",
+      "restored inquiry does not reveal a logged-out account draft",
+      "legacy 120000-round hashes still authenticate correctly",
+      "external, script, path traversal, missing-page and account-loop return destinations are rejected",
+      "an account deleted during asynchronous password verification cannot open a stale session",
+      "corrupt account/password storage fails closed with visible feedback",
+      "malformed account JSON does not expose a profile or crash JavaScript",
+      "BFCache profile restoration revalidates a removed session",
+      "password fields and visibility state are cleared before cached navigation",
+      "failed inquiry storage preserves details and never reports false success",
+      "CSP blocks inline handlers, foreign scripts and external form submission before network access",
+      "zero unexpected JavaScript runtime errors throughout security regressions"
+    ],
+    "errors": [],
+    "expectedCspViolations": [
+      "script-src-attr",
+      "script-src-elem",
+      "form-action"
+    ],
+    "blockedExternalRequests": 0
+  },
+  "functional_revision": "bcffccabd8de3ea34a695abe43b723ab57f29082",
+  "deployment_workflow": "https://github.com/Vertex-blip/Car-dealership-website/actions/runs/43822665241",
+  "external_visible_links_http_200": 3,
+  "shipped_secret_pattern_matches": 0,
+  "hosted_application_files": {
+    "date": "2026-11-16",
+    "base": "https://vertex-blip.github.io/Car-dealership-website/final-project/",
+    "files": [
+      {
+        "path": "about.html",
+        "status": 200,
+        "matchesLocal": true
+      },
+      {
+        "path": "account.html",
+        "status": 200,
+        "matchesLocal": true
+      },
+      {
+        "path": "assets/favicon.svg",
+        "status": 200,
+        "matchesLocal": true
+      },
+      {
+        "path": "assets/image-placeholder.svg",
+        "status": 200,
+        "matchesLocal": true
+      },
+      {
+        "path": "assets/vehicle-sources.json",
+        "status": 200,
+        "matchesLocal": true
+      },
+      {
+        "path": "css/enhancements.css",
+        "status": 200,
+        "matchesLocal": true
+      },
+      {
+        "path": "css/final.css",
+        "status": 200,
+        "matchesLocal": true
+      },
+      {
+        "path": "css/search.css",
+        "status": 200,
+        "matchesLocal": true
+      },
+      {
+        "path": "css/style.css",
+        "status": 200,
+        "matchesLocal": true
+      },
+      {
+        "path": "images/arsen.jpg",
+        "status": 200,
+        "matchesLocal": true
+      },
+      {
+        "path": "images/car-01.jpg",
+        "status": 200,
+        "matchesLocal": true
+      },
+      {
+        "path": "images/car-02.jpg",
+        "status": 200,
+        "matchesLocal": true
+      },
+      {
+        "path": "images/car-03.jpg",
+        "status": 200,
+        "matchesLocal": true
+      },
+      {
+        "path": "images/car-04.jpg",
+        "status": 200,
+        "matchesLocal": true
+      },
+      {
+        "path": "images/car-06.jpg",
+        "status": 200,
+        "matchesLocal": true
+      },
+      {
+        "path": "images/car-07.jpg",
+        "status": 200,
+        "matchesLocal": true
+      },
+      {
+        "path": "images/car-08.jpg",
+        "status": 200,
+        "matchesLocal": true
+      },
+      {
+        "path": "images/car-09.jpg",
+        "status": 200,
+        "matchesLocal": true
+      },
+      {
+        "path": "images/car-10.jpg",
+        "status": 200,
+        "matchesLocal": true
+      },
+      {
+        "path": "images/car-11.jpg",
+        "status": 200,
+        "matchesLocal": true
+      },
+      {
+        "path": "images/car-12.jpg",
+        "status": 200,
+        "matchesLocal": true
+      },
+      {
+        "path": "images/car-13.jpg",
+        "status": 200,
+        "matchesLocal": true
+      },
+      {
+        "path": "images/car-14.jpg",
+        "status": 200,
+        "matchesLocal": true
+      },
+      {
+        "path": "images/car-15.jpg",
+        "status": 200,
+        "matchesLocal": true
+      },
+      {
+        "path": "images/car-16.jpg",
+        "status": 200,
+        "matchesLocal": true
+      },
+      {
+        "path": "images/car-17.jpg",
+        "status": 200,
+        "matchesLocal": true
+      },
+      {
+        "path": "images/farabi.jpg",
+        "status": 200,
+        "matchesLocal": true
+      },
+      {
+        "path": "images/hero-mercedes.jpg",
+        "status": 200,
+        "matchesLocal": true
+      },
+      {
+        "path": "images/kuttibay.jpg",
+        "status": 200,
+        "matchesLocal": true
+      },
+      {
+        "path": "images/muhammad.jpg",
+        "status": 200,
+        "matchesLocal": true
+      },
+      {
+        "path": "index.html",
+        "status": 200,
+        "matchesLocal": true
+      },
+      {
+        "path": "inquiry.html",
+        "status": 200,
+        "matchesLocal": true
+      },
+      {
+        "path": "inventory.html",
+        "status": 200,
+        "matchesLocal": true
+      },
+      {
+        "path": "js/account.js",
+        "status": 200,
+        "matchesLocal": true
+      },
+      {
+        "path": "js/data.js",
+        "status": 200,
+        "matchesLocal": true
+      },
+      {
+        "path": "js/gallery.js",
+        "status": 200,
+        "matchesLocal": true
+      },
+      {
+        "path": "js/inquiry.js",
+        "status": 200,
+        "matchesLocal": true
+      },
+      {
+        "path": "js/interactions.js",
+        "status": 200,
+        "matchesLocal": true
+      },
+      {
+        "path": "js/inventory.js",
+        "status": 200,
+        "matchesLocal": true
+      },
+      {
+        "path": "js/research.js",
+        "status": 200,
+        "matchesLocal": true
+      },
+      {
+        "path": "js/search.js",
+        "status": 200,
+        "matchesLocal": true
+      },
+      {
+        "path": "js/site.js",
+        "status": 200,
+        "matchesLocal": true
+      },
+      {
+        "path": "js/theme-init.js",
+        "status": 200,
+        "matchesLocal": true
+      },
+      {
+        "path": "profile.html",
+        "status": 200,
+        "matchesLocal": true
+      },
+      {
+        "path": "research.html",
+        "status": 200,
+        "matchesLocal": true
+      },
+      {
+        "path": "showroom.html",
+        "status": 200,
+        "matchesLocal": true
+      },
+      {
+        "path": "vendor/jquery-4.0.0.min.js",
+        "status": 200,
+        "matchesLocal": true
+      },
+      {
+        "path": "vendor/LICENSE.txt",
+        "status": 200,
+        "matchesLocal": true
+      }
+    ],
+    "failures": []
+  },
+  "submission_package": {
+    "outer_members": 3,
+    "project_files": 64,
+    "pdf_pages": 5,
+    "colour_screenshots": 7,
+    "clickable_pdf_links": 3,
+    "crc_and_hash_checks": "passed"
   }
 }
