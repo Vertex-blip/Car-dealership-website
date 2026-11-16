@@ -265,8 +265,8 @@ def build_report(args) -> Path:
         p("Each page has a separate HTML file. Shared styles are in css/, JavaScript is in js/, photographs are in images/, and supporting media and source information are in assets/. The local jQuery library and its licence are in vendor/. Shared vehicle data is used by the Collection and Inquiry pages. Comments explain the more complex storage, account and API code."),
         PageBreak(),
         h(7, "Design and responsiveness"),
-        p("We used the same fonts, spacing, buttons and navigation across the website. Vehicle photographs are the main visual content. CSS Grid and Flexbox adapt the cards, forms and page sections to desktop, tablet and mobile screens. The mobile navigation opens through a menu button."),
-        p("The light/dark switch changes the page colours, and localStorage keeps the selected mode across pages and reloads. Both modes keep the text and controls readable. Hover transitions, save notifications, counters and button loading states give feedback. Reduced-motion preferences are respected."),
+        p("We kept the Endterm fonts, spacing and vehicle photographs. CSS Grid and Flexbox adapt the pages to desktop, tablet and mobile screens. The mobile menu opens through a button. Left/right arrow keys move between navigation links; Enter opens the selected page."),
+        p("The light/dark switch and Appearance panel remember the mode and background tint across pages and reloads. Visitors can choose a tint, try a random colour or reset the background. Both modes keep text readable. Hover transitions, notifications and button loading states give feedback. Reduced-motion preferences are respected."),
     ]
 
     # Two ordinary screenshots, without frames, backgrounds or decorative rules.

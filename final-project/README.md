@@ -42,8 +42,8 @@ If Python is managed with uv, run `uv run python -m http.server 4173` instead.
 
 ## Main features
 
-- Responsive layouts, keyboard-accessible controls and shared navigation.
-- Light/dark preferences and saved vehicles persisted in `localStorage`.
+- Responsive layouts and shared navigation: Left/Right move between menu links; Enter opens the selected page.
+- Light/dark mode and the Endterm Appearance panel, with a background colour picker, random tint and reset. Appearance preferences and saved vehicles persist in `localStorage`.
 - Saved vehicles are separated by account; guest favourites transfer once on sign-up or log-in. Inquiry history is linked to the account that created it.
 - JavaScript form validation with visible field errors and `novalidate` forms.
 - Simulated sign-up, credential checking and a profile page.

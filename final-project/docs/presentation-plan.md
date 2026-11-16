@@ -20,7 +20,7 @@ The About page and PDF report use the same approved work division.
 | Time | Speaker | Show and explain |
 | --- | --- | --- |
 | 0:00–0:30 | Kuttibay | Introduce all four members and SE-2507. Explain that Apex Motors helps car enthusiasts explore an illustrative dealership collection and prepare inquiries. |
-| 0:30–1:10 | Muhammad | On Home, describe the colour palette, typography and spacing. Toggle light/dark mode and navigate to show persistence. Use prepared desktop, tablet and mobile presets to show how navigation and cards adapt. Show a hover or button transition. |
+| 0:30–1:10 | Muhammad | On Home, describe the colour palette, typography and spacing. Show the Appearance panel, choose a background tint and toggle light/dark. Use Left/Right and Enter to navigate and show persistence. Use prepared device presets to show responsive layouts. |
 | 1:10–1:50 | Farabi | Search Collection for a car, change a category, sort and save one vehicle. Open the Showroom and change the main image using thumbnails and controls. |
 | 1:50–2:55 | Arsen | Open Account. Submit incomplete or invalid details to reveal friendly inline errors. Create the demo account below, show the profile, log out and log in again. Explain that this is a browser-storage simulation. |
 | 2:55–3:30 | Arsen | Open Inquiry. Demonstrate an invalid email or phone, correct it, move through the steps and show the review. Submit to display the local confirmation and copy feedback. State that no real inquiry is sent. |
