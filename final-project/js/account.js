@@ -5,7 +5,8 @@
   const keys = Object.freeze({ users: "apex-users", session: "apex-session", saved: "apex-motors-saved-vehicles", inquiries: "apex-inquiries" });
   const accountPage = document.querySelector("[data-account-page]");
   const profilePage = document.querySelector("[data-profile-page]");
-  const iterations = 120000;
+  // OWASP's PBKDF2-HMAC-SHA256 work factor; stored older hashes remain readable.
+  const iterations = 600000;
 
   function read(key, fallback) {
     let raw;
@@ -25,7 +26,16 @@
   }
   function users() {
     const data = read(keys.users, []);
-    if (!Array.isArray(data) || data.some((user) => !user || typeof user.id !== "string" || typeof user.name !== "string" || typeof user.email !== "string" || typeof user.phone !== "string")) {
+    const valid = (user) => user && typeof user === "object" && !Array.isArray(user)
+      && typeof user.id === "string" && user.id.length > 0 && user.id.length <= 100
+      && typeof user.name === "string" && !nameError(user.name)
+      && typeof user.email === "string" && !emailError(user.email)
+      && typeof user.phone === "string" && !phoneError(user.phone)
+      && typeof user.createdAt === "string" && user.createdAt.length <= 50 && Number.isFinite(Date.parse(user.createdAt))
+      && safePasswordRecord(user.password);
+    if (!Array.isArray(data) || data.some((user) => !valid(user))
+      || new Set(data.map((user) => user.id)).size !== data.length
+      || new Set(data.map((user) => user.email.toLowerCase())).size !== data.length) {
       throw new Error("Your saved accounts could not be read. Reset this site’s browser data and try again.");
     }
     return data;
@@ -44,6 +54,22 @@
     try { return publicUser(resolveUser()); }
     catch { return null; }
   }
+  function savedStorageKey(user = currentUser()) {
+    return user?.id ? `${keys.saved}:${user.id}` : keys.saved;
+  }
+  function adoptGuestSaved(user) {
+    const known = new Set((Apex.vehicles || []).map((vehicle) => vehicle.id));
+    const ids = (key) => {
+      try {
+        const data = read(key, []);
+        return Array.isArray(data) ? data.filter((id) => typeof id === "string" && known.has(id)) : [];
+      } catch { return []; }
+    };
+    const guest = ids(keys.saved);
+    if (guest.length) write(savedStorageKey(user), [...new Set([...ids(savedStorageKey(user)), ...guest])]);
+    // A later account must not inherit the previous visitor's browser shortlist.
+    remove(keys.saved);
+  }
   function returnPath() {
     const value = new URLSearchParams(location.search).get("return");
     if (!value) return "profile.html";
@@ -51,7 +77,8 @@
       const target = new URL(value, location.href);
       const base = new URL(".", location.href);
       const file = target.pathname.slice(base.pathname.length);
-      if (target.origin !== base.origin || !target.pathname.startsWith(base.pathname) || !/^[a-z0-9-]+\.html$/i.test(file) || /^(account|login|signup)\.html$/i.test(file)) return "profile.html";
+      const pages = new Set(["index.html", "inventory.html", "showroom.html", "research.html", "about.html", "inquiry.html", "profile.html"]);
+      if (target.origin !== base.origin || !target.pathname.startsWith(base.pathname) || !pages.has(file)) return "profile.html";
       return file + target.search + target.hash;
     } catch { return "profile.html"; }
   }
@@ -77,14 +104,14 @@
       return false;
     }
   }
-  Apex.account = Object.freeze({ keys, currentUser, requireUser, logout });
+  Apex.account = Object.freeze({ keys, currentUser, requireUser, logout, savedStorageKey, emailError, phoneError });
   function updateAccountLink() {
     const link = document.getElementById("accountLink");
     const label = document.getElementById("accountLinkLabel");
     if (!link) return;
     const signedIn = Boolean(currentUser());
     link.href = signedIn ? "profile.html" : "account.html";
-    link.setAttribute("aria-label", signedIn ? "Open your profile" : "Sign in to your account");
+    link.setAttribute("aria-label", signedIn ? "Profile" : "Sign in");
     if (label) label.textContent = signedIn ? "Profile" : "Sign in";
   }
   updateAccountLink();
@@ -113,8 +140,19 @@
   }
   function value(id) { return document.getElementById(id)?.value.trim() || ""; }
   function nameError(text) { return text.length < 2 ? "Enter your full name (at least 2 characters)." : text.length > 80 ? "Keep your name within 80 characters." : ""; }
-  function emailError(text) { return text.length <= 254 && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(text) ? "" : "Enter a valid email address, such as name@example.com."; }
-  function phoneError(text) { return /^\+?[\d\s()\-]+$/.test(text) && text.replace(/\D/g, "").length >= 7 && text.replace(/\D/g, "").length <= 15 ? "" : "Enter a phone number with 7 to 15 digits, including your country code."; }
+  function emailError(text) {
+    const invalid = "Enter a valid email address, such as name@example.com.";
+    if (typeof text !== "string" || text.length > 254) return invalid;
+    const parts = text.split("@");
+    if (parts.length !== 2) return invalid;
+    const [local, domain] = parts;
+    if (!local || local.length > 64 || local.startsWith(".") || local.endsWith(".") || local.includes("..")
+      || !/^[A-Za-z0-9.!#$%&'*+/=?^_`{|}~-]+$/.test(local)) return invalid;
+    const labels = domain.split(".");
+    if (labels.length < 2 || labels.some((label) => !/^[A-Za-z0-9](?:[A-Za-z0-9-]{0,61}[A-Za-z0-9])?$/.test(label))) return invalid;
+    return /^(?:[A-Za-z]{2,63}|xn--[A-Za-z0-9-]{2,59})$/.test(labels.at(-1)) ? "" : invalid;
+  }
+  function phoneError(text) { return text.length <= 40 && /^\+?[\d\s()\-]+$/.test(text) && text.replace(/\D/g, "").length >= 7 && text.replace(/\D/g, "").length <= 15 ? "" : "Enter a phone number with 7 to 15 digits, including your country code."; }
   function passwordError(text) {
     if (text.length < 8) return "Use at least 8 characters for your password.";
     if (text.length > 128) return "Keep your password within 128 characters.";
@@ -136,7 +174,11 @@
     return hex(new Uint8Array(result));
   }
   function safePasswordRecord(record) {
-    return record && /^[0-9a-f]{32}$/.test(record.salt) && /^[0-9a-f]{64}$/.test(record.hash) && Number.isInteger(record.iterations) && record.iterations >= 10000 && record.iterations <= 1000000;
+    return record && typeof record === "object" && !Array.isArray(record)
+      && typeof record.salt === "string" && /^[0-9a-f]{32}$/.test(record.salt)
+      && typeof record.hash === "string" && /^[0-9a-f]{64}$/.test(record.hash)
+      && (record.algorithm === undefined || record.algorithm === "PBKDF2-SHA-256")
+      && Number.isInteger(record.iterations) && record.iterations >= 10000 && record.iterations <= 1000000;
   }
   function sameHash(left, right) {
     if (left.length !== right.length) return false;
@@ -167,6 +209,21 @@
     const signupForm = document.getElementById("signupForm");
     const tabs = [document.getElementById("loginTab"), document.getElementById("signupTab")];
     let pending = false;
+    function clearPasswords() {
+      document.querySelectorAll('[autocomplete="current-password"], [autocomplete="new-password"]').forEach((field) => {
+        field.value = "";
+        field.type = "password";
+      });
+      document.querySelectorAll("[data-password-toggle]").forEach((button) => {
+        button.textContent = "Show";
+        button.setAttribute("aria-pressed", "false");
+        button.setAttribute("aria-label", `Show password${button.dataset.passwordToggle === "signupConfirm" ? " confirmation" : ""}`);
+      });
+    }
+    addEventListener("pagehide", clearPasswords);
+    addEventListener("pageshow", (event) => {
+      if (event.persisted && currentUser()) location.replace(returnPath());
+    });
     try {
       if (resolveUser()) { location.replace(returnPath()); return; }
     } catch (error) { status("loginStatus", error.message, true); }
@@ -229,7 +286,15 @@
           document.getElementById("loginPassword").focus();
           return;
         }
+        // Hashing is asynchronous: do not open a session for an account changed meanwhile.
+        const latest = users().find((item) => item.id === user.id && item.email.toLowerCase() === email);
+        if (!latest || latest.password.hash !== user.password.hash || latest.password.salt !== user.password.salt || latest.password.iterations !== user.password.iterations) {
+          status("loginStatus", "This account changed while you were logging in. Check your details and try again.", true);
+          return;
+        }
+        adoptGuestSaved(latest);
         write(keys.session, { userId: user.id });
+        clearPasswords();
         location.assign(returnPath());
       } catch (error) { status("loginStatus", error.message, true); }
       finally { pending = false; busy(loginForm, false); }
@@ -264,8 +329,9 @@
         }
         const user = { id: `apex-${hex(crypto.getRandomValues(new Uint8Array(12)))}`, name, email, phone, password: { algorithm: "PBKDF2-SHA-256", iterations, salt, hash }, createdAt: new Date().toISOString() };
         write(keys.users, [...latest, user]);
-        try { write(keys.session, { userId: user.id }); }
+        try { adoptGuestSaved(user); write(keys.session, { userId: user.id }); }
         catch (error) { throw new Error(`Your account was created, but we couldn’t open a session. Try logging in. ${error.message}`); }
+        clearPasswords();
         location.assign(returnPath());
       } catch (error) { status("signupStatus", error.message, true); }
       finally { pending = false; busy(signupForm, false); }
@@ -279,6 +345,7 @@
     return node;
   }
   function dateLabel(value) {
+    if (typeof value !== "string") return "Date unavailable";
     const date = new Date(value);
     return Number.isNaN(date.getTime()) ? "Date unavailable" : date.toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" });
   }
@@ -307,8 +374,11 @@
     function renderSaved() {
       const grid = document.getElementById("profileSavedCars");
       grid.replaceChildren();
+      document.getElementById("profileSavedCount").textContent = "0";
+      const ownerId = user.id;
+      const storageKey = savedStorageKey(user);
       let ids;
-      try { ids = read(keys.saved, []); }
+      try { ids = read(storageKey, []); }
       catch (error) { grid.append(element("p", "account-empty", error.message)); return; }
       const vehicles = Array.isArray(Apex.vehicles) ? Apex.vehicles : [];
       const cars = vehicles.filter((car) => Array.isArray(ids) && ids.includes(car.id));
@@ -337,8 +407,10 @@
         button.setAttribute("aria-label", `Remove ${car.name} from saved cars`);
         button.addEventListener("click", () => {
           try {
-            const saved = read(keys.saved, []);
-            write(keys.saved, Array.isArray(saved) ? saved.filter((id) => id !== car.id) : []);
+            const authenticated = currentUser();
+            if (!authenticated || authenticated.id !== ownerId) { content.hidden = true; location.replace(loginUrl()); return; }
+            const saved = read(storageKey, []);
+            write(storageKey, Array.isArray(saved) ? saved.filter((id) => id !== car.id) : []);
             renderSaved();
             status("profileSavedStatus", `${car.name} was removed from your saved cars.`);
             (grid.querySelector("button") || grid.closest("section")?.querySelector("a"))?.focus();
@@ -353,11 +425,22 @@
     function renderInquiries() {
       const region = document.getElementById("profileInquiries");
       region.replaceChildren();
+      document.getElementById("profileInquiryCount").textContent = "0";
       let data;
       try { data = read(keys.inquiries, []); }
       catch (error) { region.append(element("p", "account-empty", error.message)); return; }
-      // Authenticated requests belong to the account ID; guest requests can match its email.
-      const inquiries = (Array.isArray(data) ? data : []).filter((item) => item && (item.userId === user.id || (!item.userId && typeof item.email === "string" && item.email.toLowerCase() === user.email.toLowerCase()))).sort((a, b) => (Date.parse(b.createdAt) || 0) - (Date.parse(a.createdAt) || 0));
+      // An unverified email address does not establish ownership of a guest inquiry.
+      const records = Array.isArray(data) ? data : [];
+      const safe = (item) => item && typeof item === "object" && !Array.isArray(item)
+        && typeof item.userId === "string" && item.userId === user.id
+        && typeof item.vehicleName === "string" && item.vehicleName.length <= 150
+        && typeof item.email === "string" && !emailError(item.email)
+        && typeof item.phone === "string" && item.phone.length <= 40
+        && typeof item.message === "string" && item.message.length <= 600
+        && (item.budget === null || (typeof item.budget === "number" && Number.isFinite(item.budget) && item.budget >= 0 && item.budget <= 1e12))
+        && ["email", "phone"].includes(item.replyMethod) && (item.replyMethod !== "phone" || !phoneError(item.phone)) && typeof item.testDrive === "boolean"
+        && typeof item.createdAt === "string" && item.createdAt.length <= 50 && Number.isFinite(Date.parse(item.createdAt));
+      const inquiries = records.filter(safe).sort((a, b) => Date.parse(b.createdAt) - Date.parse(a.createdAt));
       document.getElementById("profileInquiryCount").textContent = inquiries.length;
       if (!inquiries.length) { region.append(element("p", "account-empty", "No inquiries yet. Choose a car and tell us what you’re looking for.")); return; }
       for (const inquiry of inquiries) {
@@ -396,6 +479,7 @@
         write(keys.users, list.map((item) => item.id === user.id ? updated : item));
         user = publicUser(updated);
         renderDetails();
+        renderSaved();
         renderInquiries();
         edit(false);
         status("profileStatus", "Your details have been updated.");
@@ -426,9 +510,10 @@
         user = latest;
         edit(false);
         renderDetails();
+        renderSaved();
         renderInquiries();
       }
-      if (event.key === keys.saved || event.key === null) renderSaved();
+      if (event.key === savedStorageKey(user) || event.key === null) renderSaved();
       if (event.key === keys.inquiries || event.key === null) renderInquiries();
     });
     renderDetails();

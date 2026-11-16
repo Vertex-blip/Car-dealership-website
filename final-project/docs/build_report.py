@@ -1,23 +1,26 @@
-"""Build the seven-page final report from verified website screenshots.
+"""Create the plain Apex Motors student report with original-colour screenshots.
 
-Run from any directory with a Python environment containing reportlab and Pillow.
-Screenshots default to docs/screenshots. The report is written outside the
-website folder, into WEB/final-submission. Pass --published only after verifying
-the final hosted URL; otherwise the report explicitly marks publication pending.
+Requires reportlab and Pillow. Screenshots are read from docs/screenshots and
+cropped without colour changes in WEB/tmp/plain-report-colour.
+The PDF is written to WEB/final-submission unless --output is supplied.
+Dates and results are read from docs/verification-summary.json at build time.
+Use --published only after the current hosted version has been verified.
 """
 
 from __future__ import annotations
 
 import argparse
 import json
+import sys
+from datetime import date
 from pathlib import Path
 from xml.sax.saxutils import escape
 
 from PIL import Image as PILImage
 from reportlab.lib import colors
-from reportlab.lib.enums import TA_LEFT
+from reportlab.lib.enums import TA_CENTER, TA_LEFT
 from reportlab.lib.pagesizes import A4
-from reportlab.lib.styles import ParagraphStyle, getSampleStyleSheet
+from reportlab.lib.styles import ParagraphStyle
 from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
 from reportlab.platypus import (
@@ -34,260 +37,290 @@ from reportlab.platypus import (
 
 WORKSPACE = Path(__file__).resolve().parents[2]
 PROJECT = WORKSPACE / "final-project"
-NAVY = colors.HexColor("#172631")
-GOLD = colors.HexColor("#9a6a35")
-MUTED = colors.HexColor("#52606b")
-PALE = colors.HexColor("#f3f0ea")
-LINE = colors.HexColor("#dcdedc")
-WIDTH = A4[0] - 88
+WIDTH = A4[0] - 108
+REPOSITORY = "https://github.com/Vertex-blip/Car-dealership-website"
+LIVE = "https://vertex-blip.github.io/Car-dealership-website/final-project/"
+
+
+def written_date(value) -> str:
+    """Require a dated record instead of silently assigning a new test date."""
+    parsed = date.fromisoformat(value)
+    return f"{parsed.day} {parsed.strftime('%B %Y')}"
+
+
+def recorded_count(value):
+    return value if type(value) is int and value >= 0 else None
+
+
+def completed_audit(audit, name):
+    entry = audit.get(name, {})
+    return entry if isinstance(entry, dict) and entry.get("status") == "passed" else {}
+
+
+def verification_paragraphs(record, published=False):
+    """Describe recorded results; absent and pending optional audits stay omitted.
+
+    Optional final_audit entries use status='passed' plus their own count fields:
+    frontend: groups_passed, responsive_states, widths (a list)
+    security: groups_passed, invalid_email_cases_passed
+    api: cases_passed, live_makes_passed
+    axe: states_checked, violations
+    webkit: status='passed' records only a smoke check, not full certification.
+    """
+    checked_on = written_date(record["date"])
+    browser = escape(str(record.get("browser", "the recorded browser")))
+    main_groups = len(record.get("passed", []))
+    first = (
+        f"The {main_groups} main browser check groups passed locally in {browser} on {checked_on}. "
+        "They covered accounts, profile editing, inquiries, search, navigation, themes and the public API."
+    )
+    hosted_groups = recorded_count(record.get("hosted_check_groups_passed"))
+    if published and record.get("published_site_verified") and hosted_groups:
+        hosted_date = record.get("hosted_date", record["date"])
+        date_text = f" on {written_date(hosted_date)}" if hosted_date != record["date"] else ""
+        first += f" The {hosted_groups} hosted browser groups also passed{date_text}."
+    if record.get("errors") == [] and record.get("failures") == []:
+        first += " No uncaught runtime errors or failed local files were recorded."
+    paragraphs = [first]
+
+    audit = record.get("final_audit", {})
+    if not isinstance(audit, dict):
+        audit = {}
+    details = []
+    frontend = completed_audit(audit, "frontend")
+    groups = recorded_count(frontend.get("groups_passed"))
+    states = recorded_count(frontend.get("responsive_states"))
+    widths = frontend.get("widths", [])
+    if groups:
+        text = f"Frontend checks passed {groups} groups"
+        if states:
+            text += f" and {states} layout states"
+        if isinstance(widths, list) and widths:
+            text += f" at {len(widths)} widths"
+        details.append(text + ".")
+    security = completed_audit(audit, "security")
+    groups = recorded_count(security.get("groups_passed"))
+    emails = recorded_count(security.get("invalid_email_cases_passed"))
+    if groups:
+        text = f"Security checks passed {groups} groups"
+        if emails:
+            text += f" and {emails} invalid-email cases"
+        details.append(text + ".")
+    api = completed_audit(audit, "api")
+    scenarios = recorded_count(api.get("cases_passed"))
+    makes = recorded_count(api.get("live_makes_passed"))
+    if scenarios:
+        text = f"The API passed {scenarios} scenarios"
+        if makes:
+            text += f" and live requests for {makes} makes"
+        details.append(text + ".")
+    axe = completed_audit(audit, "axe")
+    states = recorded_count(axe.get("states_checked"))
+    violations = recorded_count(axe.get("violations"))
+    if states and violations is not None:
+        details.append(f"Axe reported {violations} violations across {states} checked states.")
+    if completed_audit(audit, "webkit"):
+        details.append("A separate WebKit smoke check also passed.")
+    if details:
+        if audit.get("date") and audit["date"] != record["date"]:
+            details.insert(0, f"Further checks were completed on {written_date(audit['date'])}.")
+        paragraphs.append(" ".join(details))
+
+    references = recorded_count(record.get("local_html_css_references_checked"))
+    missing = recorded_count(record.get("missing_local_references"))
+    navigation = recorded_count(record.get("local_navigation_targets_successful"))
+    resources = []
+    if references is not None and missing is not None:
+        resources.append(f"The local file scan checked {references} HTML/CSS references and found {missing} missing targets.")
+    if navigation is not None:
+        resources.append(f"All {navigation} checked local navigation targets opened successfully.")
+    if resources:
+        paragraphs.append(" ".join(resources))
+    return paragraphs
 
 
 def register_fonts() -> None:
     font_dir = Path("C:/Windows/Fonts")
-    fonts = (("Apex", "arial.ttf", "Helvetica"), ("ApexBold", "arialbd.ttf", "Helvetica-Bold"), ("ApexItalic", "ariali.ttf", "Helvetica-Oblique"))
+    fonts = (
+        ("ReportText", "times.ttf", "Times-Roman"),
+        ("ReportBold", "timesbd.ttf", "Times-Bold"),
+        ("ReportItalic", "timesi.ttf", "Times-Italic"),
+    )
     for name, filename, fallback in fonts:
         if (font_dir / filename).is_file():
             pdfmetrics.registerFont(TTFont(name, str(font_dir / filename)))
         else:
             pdfmetrics.registerFont(pdfmetrics.Font(name, fallback, "WinAnsiEncoding"))
-    pdfmetrics.registerFontFamily("Apex", normal="Apex", bold="ApexBold", italic="ApexItalic", boldItalic="ApexBold")
-
-
-def styles():
-    sheet = getSampleStyleSheet()
-    definitions = {
-        "Body": dict(fontName="Apex", fontSize=10, leading=14.1, textColor=NAVY, spaceAfter=8),
-        "TitleApex": dict(fontName="ApexBold", fontSize=34, leading=39, textColor=NAVY, spaceAfter=6),
-        "SubtitleApex": dict(fontName="Apex", fontSize=15, leading=20, textColor=MUTED, spaceAfter=14),
-        "Kicker": dict(fontName="ApexBold", fontSize=9, leading=12, textColor=GOLD, spaceAfter=10),
-        "HeadingApex": dict(fontName="ApexBold", fontSize=21, leading=25, textColor=NAVY, spaceAfter=13),
-        "SectionApex": dict(fontName="ApexBold", fontSize=12, leading=16, textColor=NAVY, spaceBefore=5, spaceAfter=6),
-        "CaptionApex": dict(fontName="ApexItalic", fontSize=8.2, leading=11.2, textColor=MUTED, spaceBefore=5, spaceAfter=11),
-        "SmallApex": dict(fontName="Apex", fontSize=8.5, leading=12, textColor=MUTED, spaceAfter=7),
-        "CellApex": dict(fontName="Apex", fontSize=9.1, leading=12.4, textColor=NAVY, spaceAfter=0),
-        "CellHeadApex": dict(fontName="ApexBold", fontSize=9.1, leading=12.4, textColor=NAVY, spaceAfter=0),
-        "CalloutApex": dict(fontName="Apex", fontSize=9.1, leading=13, textColor=NAVY, spaceAfter=0),
-    }
-    for name, settings in definitions.items():
-        sheet.add(ParagraphStyle(name=name, alignment=TA_LEFT, **settings))
-    return sheet
+    pdfmetrics.registerFontFamily(
+        "ReportText", normal="ReportText", bold="ReportBold",
+        italic="ReportItalic", boldItalic="ReportBold",
+    )
 
 
 def build_report(args) -> Path:
     register_fonts()
-    style = styles()
-    screenshots = args.screenshots.resolve()
-    temp = WORKSPACE / "tmp" / "report"
+    temp = WORKSPACE / "tmp" / "plain-report-colour"
     temp.mkdir(parents=True, exist_ok=True)
     args.output.parent.mkdir(parents=True, exist_ok=True)
-    verification_file = PROJECT / "docs" / "verification-summary.json"
-    verification = json.loads(verification_file.read_text(encoding="utf-8"))
-    if len(verification.get("passed", [])) != 11 or verification.get("errors") or verification.get("failures"):
-        raise RuntimeError("The expected clean final browser verification record is missing.")
-    if args.published and (not verification.get("published_site_verified") or verification.get("hosted_check_groups_passed") != 11 or verification.get("hosted_errors") or verification.get("hosted_failures")):
-        raise RuntimeError("The expected clean hosted browser verification record is missing.")
+    screenshots = args.screenshots.resolve()
+    verification = json.loads(
+        (PROJECT / "docs" / "verification-summary.json").read_text(encoding="utf-8")
+    )
+    if not verification.get("passed") or verification.get("errors") or verification.get("failures"):
+        raise RuntimeError("The recorded local verification summary is missing or contains failures.")
+    if args.published and (
+        not verification.get("published_site_verified")
+        or not recorded_count(verification.get("hosted_check_groups_passed"))
+        or verification.get("hosted_errors")
+        or verification.get("hosted_failures")
+    ):
+        raise RuntimeError("The recorded hosted verification summary is missing or contains failures.")
+    checked_on = written_date(verification["date"])
+    report_date = written_date(verification.get("report_date", verification["date"]))
+    example = verification.get("live_api_example", {})
+    example_count = recorded_count(example.get("model_count"))
+    if isinstance(example.get("make"), str) and recorded_count(example.get("year")) and example_count is not None:
+        example_text = (
+            f"In the verification completed on {checked_on}, the live request returned {example_count} "
+            f"{escape(example['make'])} models for {example['year']}."
+        )
+    else:
+        example_text = ""
 
-    def p(text, name="Body"):
-        return Paragraph(text, style[name])
+    body = ParagraphStyle(
+        "Body", fontName="ReportText", fontSize=12, leading=14.4,
+        textColor=colors.black, alignment=TA_LEFT, spaceAfter=8,
+    )
+    heading = ParagraphStyle(
+        "Heading", parent=body, fontName="ReportBold", fontSize=14,
+        leading=17, spaceBefore=7, spaceAfter=9, keepWithNext=True,
+    )
+    report_title = ParagraphStyle(
+        "ReportTitle", parent=heading, alignment=TA_CENTER,
+        spaceBefore=0, spaceAfter=8,
+    )
+    information = ParagraphStyle(
+        "Information", parent=body, alignment=TA_CENTER,
+        leading=14.4, spaceAfter=14,
+    )
+    caption = ParagraphStyle(
+        "Caption", parent=body, fontSize=11, leading=13.2,
+        spaceBefore=5, spaceAfter=10,
+    )
+    links = ParagraphStyle(
+        "Links", parent=body, fontSize=11, leading=13.2,
+        spaceAfter=7, splitLongWords=True,
+    )
 
-    def title(number, text):
-        return [p(f"FINAL PROJECT / {number:02d}", "Kicker"), p(text, "HeadingApex")]
+    def p(text, style=body):
+        return Paragraph(text, style)
 
-    def table(headers, rows, widths):
-        data = [[p(escape(x), "CellHeadApex") for x in headers]]
-        data.extend([[p(x, "CellApex") for x in row] for row in rows])
-        result = Table(data, colWidths=widths, hAlign="LEFT", repeatRows=1)
-        result.setStyle(TableStyle([
-            ("BACKGROUND", (0, 0), (-1, 0), PALE),
-            ("LINEBELOW", (0, 0), (-1, 0), 0.7, GOLD),
-            ("LINEBELOW", (0, 1), (-1, -1), 0.4, LINE),
-            ("VALIGN", (0, 0), (-1, -1), "TOP"),
-            ("LEFTPADDING", (0, 0), (-1, -1), 9),
-            ("RIGHTPADDING", (0, 0), (-1, -1), 9),
-            ("TOPPADDING", (0, 0), (-1, -1), 8),
-            ("BOTTOMPADDING", (0, 0), (-1, -1), 8),
-        ]))
-        return result
+    def h(number, text):
+        return p(f"{number}. {text}", heading)
 
     def shot(name, width, height, top=0):
-        """Crop a readable detail without distorting the captured website."""
+        """Preserve image proportions and original screenshot colours."""
         source = screenshots / name
         if not source.is_file():
-            raise FileNotFoundError(f"Verified screenshot required: {source}")
+            raise FileNotFoundError(f"Screenshot not found: {source}")
         with PILImage.open(source) as original:
-            rgb = original.convert("RGB")
-            source_width, source_height = rgb.size
+            photograph = original.convert("RGB")
+            source_width, source_height = photograph.size
             crop_height = min(round(height / width * source_width), source_height)
-            crop_top = min(round(top / 1440 * source_width), source_height - crop_height)
-            crop_top = max(0, crop_top)
-            crop = rgb.crop((0, crop_top, source_width, crop_top + crop_height))
-            destination = temp / f"{source.stem}-{int(width)}-{int(height)}-{int(top)}.jpg"
-            crop.save(destination, quality=95, subsampling=0)
+            crop_top = max(0, min(round(top / 1440 * source_width), source_height - crop_height))
+            crop = photograph.crop((0, crop_top, source_width, crop_top + crop_height))
+            destination = temp / f"{source.stem}-{int(width)}-{int(height)}-{int(top)}.png"
+            crop.save(destination)
         return Image(str(destination), width=width, height=height)
 
-    def figure(name, height, caption, top=0):
-        return [shot(name, WIDTH, height, top), p(caption, "CaptionApex")]
+    def figure(name, height, text, top=0):
+        return KeepTogether([shot(name, WIDTH, height, top), p(text, caption)])
 
-    def callout(text):
-        box = Table([[p(text, "CalloutApex")]], colWidths=[WIDTH])
-        box.setStyle(TableStyle([
-            ("BACKGROUND", (0, 0), (-1, -1), PALE),
-            ("BOX", (0, 0), (-1, -1), 0.5, LINE),
-            ("LEFTPADDING", (0, 0), (-1, -1), 12),
-            ("RIGHTPADDING", (0, 0), (-1, -1), 12),
-            ("TOPPADDING", (0, 0), (-1, -1), 10),
-            ("BOTTOMPADDING", (0, 0), (-1, -1), 10),
-        ]))
-        return box
-
-    story = []
-    story.extend([
-        p("WEB TECHNOLOGIES / SE-2507 / 15 NOVEMBER 2026", "Kicker"),
-        p("Apex Motors", "TitleApex"),
-        p("Final Project Report", "SubtitleApex"),
-        p("A responsive car dealership website for exploring a curated collection, saving favourite vehicles and preparing an inquiry. The final project continues the team's existing Apex Motors topic and expands the earlier five-page site into eight connected pages."),
-        Spacer(1, 4),
-    ])
-    story.extend(figure("index-desktop.png", 282, "Figure 1. Home page, final local version. A restrained layout gives vehicle photography and clear calls to action priority."))
-    story.extend([
-        table(["Project", "Team"], [["Apex Motors<br/>Group SE-2507", "Arsen, Kuttibay, Farabi, Muhammad"]], [168, WIDTH - 168]),
-        Spacer(1, 12),
-        callout("<b>Scope:</b> HTML, CSS and JavaScript frontend with local account simulation, persistent preferences and a public vehicle API. The collection contains <b>17 illustrative vehicle records</b>. There is no dealership backend or real payment/inquiry delivery."),
-        Spacer(1, 10),
-        p("Prepared for the Final Project submission and five-minute team presentation.", "SmallApex"),
+    story = [
+        p("Apex Motors - Final Project Report", report_title),
+        p(f"Group: SE-2507<br/>Team members: Arsen, Kuttibay, Farabi, Muhammad<br/>{report_date}", information),
+        h(1, "Project goal and description"),
+        p("Apex Motors is a car dealership website. We continued the topic from our earlier assignments and expanded the project from five pages to eight connected pages. The website is intended for car enthusiasts and visitors who want to compare vehicles, save cars they like and prepare an inquiry."),
+        p("The collection contains 17 sample vehicles. Visitors can search and filter the collection, view photographs in the showroom and find model names through a public vehicle API. The website uses HTML, CSS and JavaScript. Account data and inquiries are saved in the browser for the project demonstration."),
+        h(2, "Work division"),
+        p("<b>Muhammad:</b> visual design, responsive layouts and light/dark styles."),
+        p("<b>Arsen:</b> sign-up, log-in, profile and inquiry form validation."),
+        p("<b>Farabi:</b> vehicle data, search and filters, and public API integration."),
+        p("<b>Kuttibay:</b> page content, photograph organisation, usability testing and submission preparation."),
+        figure("index-desktop.png", 270, "Figure 1. The Home page of Apex Motors."),
         PageBreak(),
-    ])
+        h(3, "Website pages"),
+        p("All eight pages use the same navigation and styles. The account link opens either the sign-in form or the visitor's profile, depending on the saved session."),
+        p("<b>Home (index.html).</b> Introduces the project and shows featured cars, categories and collection counters."),
+        p("<b>Collection (inventory.html).</b> Displays the vehicle cards. Visitors can search by name, use suggestions, select a category, change the sorting order and show only saved cars."),
+        p("<b>Showroom (showroom.html).</b> Shows vehicle photographs. Thumbnails, previous/next buttons and keyboard arrows change the main photograph and caption."),
+        p("<b>About (about.html).</b> Contains the project story and team members. It also includes FAQ search, expandable answers and a rating control."),
+        p("<b>Inquiry (inquiry.html).</b> Uses Contact, Preferences and Review steps. After validation, the inquiry is saved locally and a confirmation is shown."),
+        p("<b>Account (account.html).</b> Contains sign-up and log-in forms, password visibility controls and inline error messages."),
+        p("<b>Profile (profile.html).</b> Shows the signed-in user's details, saved cars and inquiry history. Contact details can be edited, and the user can log out."),
+        p("<b>Model finder (research.html).</b> Loads model names for a selected make and year. Visitors can filter these names and use a model to search the Collection."),
+        figure("inventory-desktop.png", 185, "Figure 2. Collection search controls, filters and vehicle cards.", top=425),
+        PageBreak(),
+        h(4, "JavaScript functionality and form validation"),
+        p("Sign-up validates the user's details and password confirmation. Passwords need at least eight characters with uppercase and lowercase letters, a number and a symbol. localStorage keeps the account record, using a salted PBKDF2 hash with 600,000 rounds. Log-in checks the credentials and opens Profile; guests are sent to Account. Return redirects are restricted to known pages within this project."),
+        figure("profile-desktop.png", 171, "Figure 3. Profile details and cars saved by the demo user.", top=190),
+        p("Every form uses novalidate. JavaScript applies practical email syntax checks, password rules and phone checks for 7 to 15 digits, with inline errors. Browser validation attributes are not the validation mechanism. Inquiries belong to account IDs rather than editable email addresses. Step changes keep the current inquiry values; changing accounts clears old drafts."),
+        figure("inquiry-desktop.png", 162, "Figure 4. The first step of the Inquiry form.", top=435),
+        p("Search, categories, sorting and the saved-only filter work together. Favourites are stored separately per account; signing in adopts the guest shortlist. FAQ search highlights matching text. A shared Content Security Policy restricts loaded scripts and resource origins, but browser-local accounts are a simulation, not a backend security boundary."),
+        PageBreak(),
+        h(5, "Public API integration"),
+        p("The Model finder uses the public NHTSA vPIC API. A visitor chooses a make and model year, and fetch() with async/await requests model names in JSON format. The result names are sorted and displayed as cards. Each card links to a Collection search, so the API is connected to the main car browsing features."),
+        figure("research-desktop.png", 254, "Figure 5. Porsche model names returned by the NHTSA API.", top=220),
+        p("The page shows a loading message while the request is running. Network errors and requests that take too long produce an explanation and a Try again button. Successful results can be kept for 24 hours. If the live request fails, a matching saved result is clearly marked as saved data. The API supplies reference model names; it does not represent the dealership's stock or provide its prices."),
+        p("The request uses the GetModelsForMakeYear endpoint with the selected make, model year and format=json. " + example_text),
+        p('Official documentation: <link href="https://vpic.nhtsa.dot.gov/api/" color="blue"><u>https://vpic.nhtsa.dot.gov/api/</u></link>', links),
+        h(6, "File organisation"),
+        p("Each page has a separate HTML file. Shared styles are in css/, JavaScript is in js/, photographs are in images/, and supporting media and source information are in assets/. The local jQuery library and its licence are in vendor/. Shared vehicle data is used by the Collection and Inquiry pages. Comments explain the more complex storage, account and API code."),
+        PageBreak(),
+        h(7, "Design and responsiveness"),
+        p("We used the same fonts, spacing, buttons and navigation across the website. Vehicle photographs are the main visual content. CSS Grid and Flexbox adapt the cards, forms and page sections to desktop, tablet and mobile screens. The mobile navigation opens through a menu button."),
+        p("The light/dark switch changes the page colours, and localStorage keeps the selected mode across pages and reloads. Both modes keep the text and controls readable. Hover transitions, save notifications, counters and button loading states give feedback. Reduced-motion preferences are respected."),
+    ]
 
-    story.extend(title(2, "Purpose, team and page structure"))
-    story.append(p("<b>Goal and audience.</b> Apex Motors serves car enthusiasts and visitors comparing vehicle styles. A visitor can discover a car, narrow the collection, keep a shortlist and prepare an inquiry. Model finder adds reference information relevant to the same car-shopping journey."))
-    story.append(p("Approved work division", "SectionApex"))
-    story.append(table(["Member", "Responsibility"], [
-        ["Muhammad", "Visual design, responsive layouts, light/dark styles."],
-        ["Arsen", "Account, log-in, profile and inquiry validation."],
-        ["Farabi", "Vehicle data, search/filter and public API integration."],
-        ["Kuttibay", "Content, photography organisation, usability testing and submission preparation."],
-    ], [98, WIDTH - 98]))
-    story.append(Spacer(1, 12))
-    story.append(p("Eight connected pages", "SectionApex"))
-    story.append(table(["Page / file", "Purpose and main functionality"], [
-        ["Home<br/><b>index.html</b>", "Introduces the collection with featured vehicles, categories and data-based counters."],
-        ["Collection<br/><b>inventory.html</b>", "Search, suggestions, category filters, sorting, empty results and persistent saved cars."],
-        ["Showroom<br/><b>showroom.html</b>", "Vehicle photographs, thumbnails, captions, previous/next controls and keyboard navigation."],
-        ["About<br/><b>about.html</b>", "Project story, four team members, searchable FAQ and interactive rating."],
-        ["Inquiry<br/><b>inquiry.html</b>", "Contact details, vehicle preferences, JavaScript validation, review and local confirmation."],
-        ["Account<br/><b>account.html</b>", "Sign-up and log-in forms, password visibility controls and inline validation."],
-        ["Profile<br/><b>profile.html</b>", "Authenticated user details, editable contact information, saved cars, local inquiries and log-out."],
-        ["Model finder<br/><b>research.html</b>", "Live model names by make/year, result filtering and links back to Collection search."],
-    ], [126, WIDTH - 126]))
-    story.append(PageBreak())
-
-    story.extend(title(3, "Discovery, photography and interaction"))
-    story.append(p("<b>Collection.</b> The 17 vehicle records share a consistent data structure. Search updates cards and result counts immediately; categories, sorting and the saved-only view work together. Saving a car updates the local shortlist. Model finder results can start a Collection search through the URL query."))
-    story.extend(figure("inventory-desktop.png", 193, "Figure 2. Collection detail: clear search and filter controls lead into consistently styled vehicle cards.", top=425))
-    story.append(p("<b>Showroom and About.</b> The gallery changes its photograph, caption and selected thumbnail together. Previous/next buttons and keyboard arrows offer alternative controls. About introduces the team and includes FAQ search and a rating interaction, keeping supporting content useful."))
-    story.extend(figure("showroom-desktop.png", 212, "Figure 3. Showroom detail: large photography, concise labels and gallery controls support visual browsing.", top=397))
-    story.append(p("<b>UI effects.</b> Hover transitions, button feedback, counters and save notifications communicate actions. Motion respects reduced-motion preferences. Shared navigation and reusable components keep the experience consistent across pages.", "SmallApex"))
-    story.append(PageBreak())
-
-    story.extend(title(4, "Accounts, profile and validated inquiries"))
-    story.append(p("<b>Authentication simulation.</b> Sign-up validates name, email, phone, password complexity and confirmation. Passwords require at least eight characters with uppercase, lowercase, number and symbol. A salted PBKDF2 hash is stored in localStorage rather than the plain password. Log-in checks the stored credentials; a guest visiting Profile is redirected to Account."))
-    story.extend(figure("profile-desktop.png", 180, "Figure 4. Profile detail: the signed-in visitor can review account details and saved activity.", top=190))
-    story.append(p("<b>Profile continuity.</b> Validated contact editing, the saved shortlist and local inquiry history bring activity together. Log-out removes the session; storage errors receive readable feedback."))
-    story.append(p("<b>Inquiry flow.</b> Contact, Preferences and Review form three clear steps. Data remains available when moving back; signed-in contact details can prefill the form. Required fields, email and phone formats are checked in JavaScript, with errors next to the relevant controls. All forms use <b>novalidate</b>; browser validation attributes are not the validation mechanism."))
-    story.extend(figure("inquiry-desktop.png", 169, "Figure 5. Inquiry detail: a step indicator and focused form make the simulated process easy to follow.", top=435))
-    story.append(callout("<b>Local demonstration:</b> submitting an inquiry saves a local record and confirmation; it does not send email or contact a real dealership. Account data and session state remain in this browser and origin. This is coursework authentication, not a production security system."))
-    story.append(PageBreak())
-
-    story.extend(title(5, "A public API that fits the project"))
-    story.append(p("Model finder uses the <b>NHTSA vPIC public API</b> to retrieve vehicle model names for a selected make and model year. It complements the local curated Collection: API reference models are not presented as vehicles the dealership has in stock."))
-    story.extend(figure("research-desktop.png", 269, "Figure 6. Model finder detail: make/year selection and live model results. The local browser verification returned eight Porsche models for 2024.", top=220))
-    story.append(table(["Behaviour", "Implementation"], [
-        ["Request", "fetch() with async/await; the JSON Results array supplies model names and IDs. Duplicate names are removed and results are sorted."],
-        ["Loading and failure", "Visible status and busy feedback; a 15-second timeout; clear network/error text and a Try again action. A changed selection supersedes an older request."],
-        ["Saved results", "Successful results are cached for up to 24 hours. If live access fails, a matching saved result is clearly labelled; cache size is bounded."],
-        ["Useful next step", "Result filtering is immediate. Each model links to a Collection search, connecting external data to the website's main purpose."],
-    ], [112, WIDTH - 112]))
-    story.append(Spacer(1, 10))
-    story.append(p("<b>Endpoint used</b><br/>GetModelsForMakeYear/make/{make}/modelyear/{year}?format=json", "SmallApex"))
-    story.append(p('Official API documentation: <link href="https://vpic.nhtsa.dot.gov/api/" color="#9a6a35">https://vpic.nhtsa.dot.gov/api/</link>. Model catalogue data is external and can change. The request does not supply stock availability, pricing or photographs.', "SmallApex"))
-    story.append(PageBreak())
-
-    story.extend(title(6, "A consistent design on every screen"))
-    story.append(p("<b>Design decisions.</b> A restrained palette, strong typography, consistent spacing and vehicle photography establish the dealership theme. Grid and flex layouts adapt the cards, forms and navigation. Light/dark colour variables preserve hierarchy, and the selected theme is retained across pages through localStorage."))
-    design_detail = Table([
-        [shot("index-dark.png", 333, 185, top=0)],
-        [p("<b>Shared visual choices</b><br/>Serif display headings and clean body text.<br/>Photography-led layouts and restrained blue actions.<br/>Consistent surfaces, borders and spacing.<br/>Visible focus, field errors and progress feedback.", "SmallApex")],
-    ], colWidths=[333])
-    design_detail.setStyle(TableStyle([
-        ("LEFTPADDING", (0, 0), (-1, -1), 0),
-        ("RIGHTPADDING", (0, 0), (-1, -1), 0),
-        ("TOPPADDING", (0, 0), (-1, 0), 0),
-        ("TOPPADDING", (0, 1), (-1, -1), 12),
-        ("BOTTOMPADDING", (0, 0), (-1, -1), 0),
-    ]))
-    preview = Table([[
-        design_detail,
-        shot("account-mobile.png", 153, 392, top=480),
-    ]], colWidths=[WIDTH - 164, 164], hAlign="LEFT")
-    preview.setStyle(TableStyle([
+    # Two ordinary screenshots, without frames, backgrounds or decorative rules.
+    images = Table([[
+        shot("index-dark.png", 360, 200),
+        shot("account-mobile.png", 110, 282, top=480),
+    ]], colWidths=[WIDTH - 120, 120], hAlign="LEFT")
+    images.setStyle(TableStyle([
         ("VALIGN", (0, 0), (-1, -1), "TOP"),
         ("LEFTPADDING", (0, 0), (-1, -1), 0),
         ("RIGHTPADDING", (0, 0), (-1, -1), 0),
         ("TOPPADDING", (0, 0), (-1, -1), 0),
         ("BOTTOMPADDING", (0, 0), (-1, -1), 0),
     ]))
-    story.append(preview)
-    story.append(p("Figure 7. Dark Home and mobile Account details demonstrate the shared design system at different sizes.", "CaptionApex"))
-    story.append(p("<b>Responsive behaviour.</b> Wide layouts provide space for photography and controls. Smaller layouts stack content, adapt the collection grid and expose compact navigation. Form controls and text stay within the viewport. Desktop, tablet and mobile widths were included in the recorded Chromium run."))
-    story.append(p("<b>Themes and interaction.</b> The same visual hierarchy is retained in both modes. Sampled body text, muted text, buttons and navigation met a contrast ratio of at least 4.5:1 in both themes. Focus feedback, readable errors and control labels support navigation; gallery arrows and search suggestions also have keyboard interactions."))
-    story.append(p("<b>Code organisation.</b> HTML pages, shared CSS, JavaScript modules, photographs, support assets and the local library are separated into clear folders. Shared vehicle data supplies the collection and inquiry choices. Complex state, storage and API behaviour include explanatory comments."))
-    story.append(PageBreak())
+    story.extend([
+        KeepTogether([images, p("Figure 6. Dark mode on Home and the Account form on a mobile screen.", caption)]),
+        h(8, "Testing, hosting and limitations"),
+    ])
+    story.extend(p(text) for text in verification_paragraphs(verification, args.published))
+    status = "Live website" if args.published else "Website address (publication not verified)"
+    story.extend([
+        p(f'Repository: <link href="{REPOSITORY}" color="blue"><u>{REPOSITORY}</u></link>', links),
+        p(f'{status}: <link href="{LIVE}" color="blue"><u>{LIVE}</u></link>', links),
+        p("This is a frontend course project. Account data stays in the browser, inquiries are not sent to a real dealership, and vehicle prices are sample values. A future version could add a backend, verified inventory and real inquiry delivery."),
+    ])
 
-    story.extend(title(7, "Recorded checks and final delivery"))
-    story.append(p("Recorded verification - 15 November 2026", "SectionApex"))
-    story.append(table(["Coverage", "Recorded result"], [
-        ["Functional browser checks", "11 check groups passed: guest access, validation, sign-up/hash/profile, collection/search, theme/gallery, inquiry, contact editing, navigation, live API and log-in/log-out."],
-        ["Responsive layout", "Seven pages in a signed-in browser session at 320, 390, 768, 1024 and 1440 px, in both themes: no horizontal overflow. Sign-up widths were checked separately."],
-        ["Runtime and resources", "Zero recorded JavaScript runtime errors and zero failed local resources in the verification run."],
-        ["Independent review", "27 additional assertions passed: About disclosure, FAQ search/clear, rating persistence, clipboard, gallery keyboard/thumbnail behaviour, three sort orders and autocomplete keys."],
-        ["Static paths and navigation", "283 local HTML/CSS references checked with zero missing targets; 44 unique local navigation targets returned successful HTTP responses."],
-        ["External API", "The live NHTSA request returned eight Porsche models for 2024. Result filtering and links to Collection were exercised."],
-        ["Hosted browser checks", "The same 11 scenario groups passed on the final hosted origin, including authentication, profile, inquiry, search, responsive themes and live API. Zero runtime errors and zero failed local resources were recorded."],
-    ], [137, WIDTH - 137]))
-    story.append(Spacer(1, 9))
-    story.append(p("The original checks used http://127.0.0.1:4173/. The same 11 browser scenario groups were then repeated successfully at the final hosted address below. The additional 27 assertions and static/reference counts are local evidence. These results describe the observed build; external API availability and future site changes can vary.", "SmallApex"))
-    story.append(p("<b>Browser scope:</b> local and hosted automated browser evidence is from Chromium. It does not claim Safari or Firefox certification.", "SmallApex"))
-    story.append(p("Hosting and submission", "SectionApex"))
-    live_status = "Verified final hosted website" if args.published else "Intended final website address (publication not yet verified)"
-    story.append(p('Repository: <link href="https://github.com/Vertex-blip/Car-dealership-website" color="#9a6a35">github.com/Vertex-blip/Car-dealership-website</link><br/>' + live_status + ': <link href="https://vertex-blip.github.io/Car-dealership-website/final-project/" color="#9a6a35">vertex-blip.github.io/Car-dealership-website/final-project/</link>', "SmallApex"))
-    story.append(p("<b>Future improvements:</b> a secure backend, verified inventory and genuine inquiry delivery. Presentation preparation and the ZIP/PDF/TXT submission checklist are included in docs/.", "SmallApex"))
-    story.append(p("The submission set consists of ApexMotors_SE2507_FinalProject.zip, ApexMotors_SE2507_Report.pdf and ApexMotors_SE2507_Links.txt. Each team member submits all three files individually. The report PDF is separate from the website source folder.", "SmallApex"))
-
-    def frame(canvas, doc):
+    def footer(canvas, document):
         canvas.saveState()
-        canvas.setFillColor(NAVY)
-        canvas.setFont("ApexBold", 9)
-        canvas.drawString(44, A4[1] - 31, "APEX MOTORS")
-        canvas.setFillColor(MUTED)
-        canvas.setFont("Apex", 8)
-        canvas.drawRightString(A4[0] - 44, A4[1] - 31, "FINAL PROJECT REPORT")
-        canvas.setStrokeColor(LINE)
-        canvas.setLineWidth(0.6)
-        canvas.line(44, A4[1] - 40, A4[0] - 44, A4[1] - 40)
-        canvas.line(44, 40, A4[0] - 44, 40)
-        canvas.setFont("Apex", 8)
-        canvas.setFillColor(MUTED)
-        canvas.drawString(44, 26, "SE-2507  |  15 November 2026")
-        canvas.drawRightString(A4[0] - 44, 26, f"{doc.page} / 7")
+        canvas.setFillColor(colors.black)
+        canvas.setFont("ReportText", 10)
+        canvas.drawCentredString(A4[0] / 2, 28, str(document.page))
         canvas.restoreState()
 
     document = SimpleDocTemplate(
-        str(args.output), pagesize=A4, rightMargin=44, leftMargin=44,
-        topMargin=58, bottomMargin=52, title="Apex Motors - Final Project Report",
+        str(args.output), pagesize=A4,
+        leftMargin=54, rightMargin=54, topMargin=45, bottomMargin=45,
+        title="Apex Motors - Final Project Report",
         author="Arsen, Kuttibay, Farabi, Muhammad - SE-2507",
-        subject="Responsive eight-page car dealership website final project",
+        subject=f"Final project report, revised {report_date}",
     )
-    document.build(story, onFirstPage=frame, onLaterPages=frame)
+    document.build(story, onFirstPage=footer, onLaterPages=footer)
     return args.output
 
 
@@ -296,6 +329,8 @@ if __name__ == "__main__":
     parser.add_argument("--screenshots", type=Path, default=PROJECT / "docs" / "screenshots")
     parser.add_argument("--output", type=Path, default=WORKSPACE / "final-submission" / "ApexMotors_SE2507_Report.pdf")
     parser.add_argument("--published", action="store_true")
-    options = parser.parse_args()
-    result = build_report(options)
-    print(result)
+    arguments = parser.parse_args()
+    output = build_report(arguments)
+    if hasattr(sys.stdout, "reconfigure"):
+        sys.stdout.reconfigure(encoding="utf-8")
+    print(output)

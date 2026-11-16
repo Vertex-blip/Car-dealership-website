@@ -1,0 +1,795 @@
+{
+  "date": "2026-11-16",
+  "core_local": {
+    "base": "http://127.0.0.1:4173/",
+    "passed": [
+      "guest profile redirects to account",
+      "login required fields show inline errors",
+      "signup validates name/email/phone/password/confirmation, hashes password and opens profile",
+      "17 cars, search/category/empty states, persistent shortlist and API search links",
+      "theme persists across pages and showroom controls work",
+      "inquiry prefill, JS validation, review and save appear with shortlist on profile",
+      "profile contact editing persists",
+      "7 authenticated pages × 5 widths × both themes: no overflow, headings and JS-only forms",
+      "mobile navigation and real NHTSA models/filter render",
+      "logout, responsive signup, wrong credentials and case-insensitive login",
+      "zero runtime errors and zero failed local resources"
+    ],
+    "errors": [],
+    "failures": [],
+    "consoleErrors": [],
+    "date": "2026-11-16"
+  },
+  "frontend": {
+    "date": "2026-11-16",
+    "base": "http://127.0.0.1:4173/",
+    "browser": "Chromium",
+    "passes": [
+      "rating rejects malformed out-of-range stored data",
+      "About disclosure, FAQ matching/literal symbols/clear and persistent rating",
+      "theme persists on reload/navigation and refreshes on cached-page return",
+      "guest shortlist migrates into newly signed-in account only",
+      "collection categories, search/empty/query links, all sort orders and keyboard suggestions",
+      "shortlist filter/removal, cross-tab updates, cached-page refresh and account changes",
+      "gallery every thumbnail, arrows, wrap, Home/End and keyboard selection",
+      "clipboard controls copy current origin/path; notifications dismiss and failure is honest",
+      "126 signed-in page/width/theme states: no overflow, missing/placeholder images or unnamed visible controls",
+      "signup form reflows at all nine widths in both themes",
+      "mobile menu open/close/Escape/outside click and resize preserve usable navigation",
+      "reduced-motion preference suppresses decorative animation and all counters reach data values",
+      "touch autocomplete selection works without blur losing the selected option"
+    ],
+    "issues": [],
+    "runtime": [],
+    "csp": [],
+    "httpFailures": [],
+    "renderedStates": 126,
+    "imagesChecked": 738,
+    "controlsChecked": 3232,
+    "uniqueLocalTargets": 38,
+    "externalTargets": [
+      "https://commons.wikimedia.org/wiki/File:2018_Mercedes-AMG_E_63_S_Premium_4MATIC_4.0_Front.jpg",
+      "https://creativecommons.org/licenses/by-sa/4.0/",
+      "https://vpic.nhtsa.dot.gov/api/"
+    ],
+    "apiData": "Deterministic NHTSA-shaped fixture used for frontend layout; real API verified separately."
+  },
+  "frontend_layout": {
+    "checkedInteractiveCentres": 980,
+    "coveredControls": [],
+    "runtimeErrors": [],
+    "cspErrors": []
+  },
+  "security": {
+    "date": "2026-11-16",
+    "base": "http://127.0.0.1:4173/",
+    "checks": [
+      "new signup uses salted 600000-round PBKDF2 and adopts guest shortlist once",
+      "profile shortlist stays isolated between accounts and refreshes after cross-tab switch",
+      "inquiry ownership uses account ID; guest/email claims and malformed record objects are excluded; XSS stays text",
+      "cross-tab account changes clear old inquiry contact/message and bind new record to current owner",
+      "same-tab session mutation is revalidated before advancing the inquiry",
+      "restored inquiry does not reveal a logged-out account draft",
+      "legacy 120000-round hashes still authenticate correctly",
+      "external, script, path traversal, missing-page and account-loop return destinations are rejected",
+      "an account deleted during asynchronous password verification cannot open a stale session",
+      "corrupt account/password storage fails closed with visible feedback",
+      "malformed account JSON does not expose a profile or crash JavaScript",
+      "BFCache profile restoration revalidates a removed session",
+      "password fields and visibility state are cleared before cached navigation",
+      "failed inquiry storage preserves details and never reports false success",
+      "CSP blocks inline handlers, foreign scripts and external form submission before network access",
+      "zero unexpected JavaScript runtime errors throughout security regressions"
+    ],
+    "errors": [],
+    "expectedCspViolations": [
+      "script-src-attr",
+      "script-src-elem",
+      "form-action"
+    ],
+    "blockedExternalRequests": 0
+  },
+  "email_validation": {
+    "badEmailCases": [
+      "a@b..com",
+      ".name@example.com",
+      "name..x@example.com",
+      "name@example-.com",
+      "name@-example.com",
+      "name@exam_ple.com",
+      "name@example.c",
+      "name@ example.com"
+    ],
+    "validEmailCases": [
+      "alice@example.com",
+      "name+tag@example.com",
+      "first.last@example.co.uk",
+      "o'reilly@example.com",
+      "USER@EXAMPLE.COM"
+    ],
+    "signupUiRejects": 8,
+    "loginUiRejects": 8,
+    "inquiryUiRejects": 8,
+    "validPlusTagInquiry": true,
+    "excessPhoneSpacingRejected": true,
+    "errors": []
+  },
+  "api": {
+    "phase": "final",
+    "date": "2026-11-16",
+    "base": "http://127.0.0.1:4173/",
+    "cases": [
+      {
+        "name": "loading feedback, sorted deduplicated models, filtering and safe text rendering",
+        "passed": true
+      },
+      {
+        "name": "HTTP failure has usable retry and successful retry clears error",
+        "passed": true
+      },
+      {
+        "name": "network failure shows inline error without uncaught exception",
+        "passed": true
+      },
+      {
+        "name": "malformed JSON shows inline error without uncaught exception",
+        "passed": true
+      },
+      {
+        "name": "wrong response shape shows inline error without uncaught exception",
+        "passed": true
+      },
+      {
+        "name": "empty valid catalogue has friendly empty state and hides filter",
+        "passed": true
+      },
+      {
+        "name": "fresh saved catalogue is labelled and filterable when live request fails",
+        "passed": true
+      },
+      {
+        "name": "expired cache is ignored safely on network failure",
+        "passed": true
+      },
+      {
+        "name": "future timestamp cache is ignored safely on network failure",
+        "passed": true
+      },
+      {
+        "name": "invalid JSON cache is ignored safely on network failure",
+        "passed": true
+      },
+      {
+        "name": "primitive cache is ignored safely on network failure",
+        "passed": true
+      },
+      {
+        "name": "invalid record cache is ignored safely on network failure",
+        "passed": true
+      },
+      {
+        "name": "oversized entry cache is ignored safely on network failure",
+        "passed": true
+      },
+      {
+        "name": "cache is bounded to twelve entries after live success",
+        "passed": true
+      },
+      {
+        "name": "blocked browser storage does not prevent live research",
+        "passed": true
+      },
+      {
+        "name": "saved-choice corruption and tampered dropdown values cannot redirect API calls",
+        "passed": true
+      },
+      {
+        "name": "newer selection wins when an older aborted response finishes later",
+        "passed": true
+      },
+      {
+        "name": "fifteen-second timeout ends loading and exposes retry",
+        "passed": true
+      },
+      {
+        "name": "malformed Unicode model names cannot crash results or generate unsafe links",
+        "passed": true
+      },
+      {
+        "name": "BFCache-style page restoration restarts an aborted loading request",
+        "passed": true
+      }
+    ],
+    "realResponses": [],
+    "summary": {
+      "passed": 20,
+      "failed": 0
+    }
+  },
+  "api_live": {
+    "phase": "baseline",
+    "date": "2026-11-16",
+    "base": "http://127.0.0.1:4173/",
+    "cases": [
+      {
+        "name": "real NHTSA requests and browser CORS for all eight advertised makes",
+        "passed": true
+      },
+      {
+        "name": "loading feedback, sorted deduplicated models, filtering and safe text rendering",
+        "passed": true
+      },
+      {
+        "name": "HTTP failure has usable retry and successful retry clears error",
+        "passed": true
+      },
+      {
+        "name": "network failure shows inline error without uncaught exception",
+        "passed": true
+      },
+      {
+        "name": "malformed JSON shows inline error without uncaught exception",
+        "passed": true
+      },
+      {
+        "name": "wrong response shape shows inline error without uncaught exception",
+        "passed": true
+      },
+      {
+        "name": "empty valid catalogue has friendly empty state and hides filter",
+        "passed": true
+      },
+      {
+        "name": "fresh saved catalogue is labelled and filterable when live request fails",
+        "passed": true
+      },
+      {
+        "name": "expired cache is ignored safely on network failure",
+        "passed": true
+      },
+      {
+        "name": "future timestamp cache is ignored safely on network failure",
+        "passed": true
+      },
+      {
+        "name": "invalid JSON cache is ignored safely on network failure",
+        "passed": true
+      },
+      {
+        "name": "primitive cache is ignored safely on network failure",
+        "passed": true
+      },
+      {
+        "name": "invalid record cache is ignored safely on network failure",
+        "passed": true
+      },
+      {
+        "name": "oversized entry cache is ignored safely on network failure",
+        "passed": true
+      },
+      {
+        "name": "cache is bounded to twelve entries after live success",
+        "passed": true
+      },
+      {
+        "name": "blocked browser storage does not prevent live research",
+        "passed": true
+      },
+      {
+        "name": "saved-choice corruption and tampered dropdown values cannot redirect API calls",
+        "passed": true
+      },
+      {
+        "name": "newer selection wins when an older aborted response finishes later",
+        "passed": true
+      },
+      {
+        "name": "fifteen-second timeout ends loading and exposes retry",
+        "passed": true
+      },
+      {
+        "name": "malformed Unicode model names cannot crash results or generate unsafe links",
+        "passed": false,
+        "error": "page.waitForFunction: Timeout 30000ms exceeded.",
+        "runtime": [
+          "URI malformed"
+        ]
+      },
+      {
+        "name": "BFCache-style page restoration restarts an aborted loading request",
+        "passed": false,
+        "error": "page.waitForFunction: Timeout 30000ms exceeded.",
+        "runtime": []
+      }
+    ],
+    "realResponses": [
+      {
+        "url": "https://vpic.nhtsa.dot.gov/api/vehicles/GetModelsForMakeYear/make/PORSCHE/modelyear/2024?format=json",
+        "status": 200,
+        "allowOrigin": "*"
+      },
+      {
+        "url": "https://vpic.nhtsa.dot.gov/api/vehicles/GetModelsForMakeYear/make/MERCEDES-BENZ/modelyear/2024?format=json",
+        "status": 200,
+        "allowOrigin": "*"
+      },
+      {
+        "url": "https://vpic.nhtsa.dot.gov/api/vehicles/GetModelsForMakeYear/make/BMW/modelyear/2024?format=json",
+        "status": 200,
+        "allowOrigin": "*"
+      },
+      {
+        "url": "https://vpic.nhtsa.dot.gov/api/vehicles/GetModelsForMakeYear/make/AUDI/modelyear/2024?format=json",
+        "status": 200,
+        "allowOrigin": "*"
+      },
+      {
+        "url": "https://vpic.nhtsa.dot.gov/api/vehicles/GetModelsForMakeYear/make/MCLAREN/modelyear/2024?format=json",
+        "status": 200,
+        "allowOrigin": "*"
+      },
+      {
+        "url": "https://vpic.nhtsa.dot.gov/api/vehicles/GetModelsForMakeYear/make/CHEVROLET/modelyear/2024?format=json",
+        "status": 200,
+        "allowOrigin": "*"
+      },
+      {
+        "url": "https://vpic.nhtsa.dot.gov/api/vehicles/GetModelsForMakeYear/make/HYUNDAI/modelyear/2024?format=json",
+        "status": 200,
+        "allowOrigin": "*"
+      },
+      {
+        "url": "https://vpic.nhtsa.dot.gov/api/vehicles/GetModelsForMakeYear/make/NISSAN/modelyear/2024?format=json",
+        "status": 200,
+        "allowOrigin": "*"
+      }
+    ],
+    "summary": {
+      "passed": 19,
+      "failed": 2
+    }
+  },
+  "accessibility": {
+    "date": "2026-11-16",
+    "base": "http://127.0.0.1:4173/",
+    "tool": "axe-core",
+    "states": [
+      {
+        "name": "index",
+        "width": 1440,
+        "theme": "light",
+        "passes": 24,
+        "incomplete": 3
+      },
+      {
+        "name": "index",
+        "width": 1440,
+        "theme": "dark",
+        "passes": 24,
+        "incomplete": 3
+      },
+      {
+        "name": "index",
+        "width": 390,
+        "theme": "light",
+        "passes": 23,
+        "incomplete": 3
+      },
+      {
+        "name": "index",
+        "width": 390,
+        "theme": "dark",
+        "passes": 23,
+        "incomplete": 3
+      },
+      {
+        "name": "inventory",
+        "width": 1440,
+        "theme": "light",
+        "passes": 27,
+        "incomplete": 2
+      },
+      {
+        "name": "inventory",
+        "width": 1440,
+        "theme": "dark",
+        "passes": 27,
+        "incomplete": 2
+      },
+      {
+        "name": "inventory",
+        "width": 390,
+        "theme": "light",
+        "passes": 27,
+        "incomplete": 2
+      },
+      {
+        "name": "inventory",
+        "width": 390,
+        "theme": "dark",
+        "passes": 27,
+        "incomplete": 2
+      },
+      {
+        "name": "showroom",
+        "width": 1440,
+        "theme": "light",
+        "passes": 23,
+        "incomplete": 2
+      },
+      {
+        "name": "showroom",
+        "width": 1440,
+        "theme": "dark",
+        "passes": 23,
+        "incomplete": 2
+      },
+      {
+        "name": "showroom",
+        "width": 390,
+        "theme": "light",
+        "passes": 23,
+        "incomplete": 2
+      },
+      {
+        "name": "showroom",
+        "width": 390,
+        "theme": "dark",
+        "passes": 23,
+        "incomplete": 2
+      },
+      {
+        "name": "research",
+        "width": 1440,
+        "theme": "light",
+        "passes": 28,
+        "incomplete": 2
+      },
+      {
+        "name": "research",
+        "width": 1440,
+        "theme": "dark",
+        "passes": 28,
+        "incomplete": 2
+      },
+      {
+        "name": "research",
+        "width": 390,
+        "theme": "light",
+        "passes": 27,
+        "incomplete": 2
+      },
+      {
+        "name": "research",
+        "width": 390,
+        "theme": "dark",
+        "passes": 27,
+        "incomplete": 2
+      },
+      {
+        "name": "about",
+        "width": 1440,
+        "theme": "light",
+        "passes": 27,
+        "incomplete": 2
+      },
+      {
+        "name": "about",
+        "width": 1440,
+        "theme": "dark",
+        "passes": 27,
+        "incomplete": 2
+      },
+      {
+        "name": "about",
+        "width": 390,
+        "theme": "light",
+        "passes": 26,
+        "incomplete": 2
+      },
+      {
+        "name": "about",
+        "width": 390,
+        "theme": "dark",
+        "passes": 26,
+        "incomplete": 2
+      },
+      {
+        "name": "inquiry",
+        "width": 1440,
+        "theme": "light",
+        "passes": 28,
+        "incomplete": 1
+      },
+      {
+        "name": "inquiry",
+        "width": 1440,
+        "theme": "dark",
+        "passes": 28,
+        "incomplete": 1
+      },
+      {
+        "name": "inquiry",
+        "width": 390,
+        "theme": "light",
+        "passes": 27,
+        "incomplete": 1
+      },
+      {
+        "name": "inquiry",
+        "width": 390,
+        "theme": "dark",
+        "passes": 27,
+        "incomplete": 1
+      },
+      {
+        "name": "account",
+        "width": 1440,
+        "theme": "light",
+        "passes": 28,
+        "incomplete": 1
+      },
+      {
+        "name": "account",
+        "width": 1440,
+        "theme": "dark",
+        "passes": 28,
+        "incomplete": 1
+      },
+      {
+        "name": "account",
+        "width": 390,
+        "theme": "light",
+        "passes": 28,
+        "incomplete": 1
+      },
+      {
+        "name": "account",
+        "width": 390,
+        "theme": "dark",
+        "passes": 28,
+        "incomplete": 1
+      },
+      {
+        "name": "account-signup",
+        "width": 1440,
+        "theme": "light",
+        "passes": 28,
+        "incomplete": 1
+      },
+      {
+        "name": "account-signup",
+        "width": 1440,
+        "theme": "dark",
+        "passes": 28,
+        "incomplete": 1
+      },
+      {
+        "name": "account-signup",
+        "width": 390,
+        "theme": "light",
+        "passes": 28,
+        "incomplete": 1
+      },
+      {
+        "name": "account-signup",
+        "width": 390,
+        "theme": "dark",
+        "passes": 28,
+        "incomplete": 1
+      },
+      {
+        "name": "profile",
+        "width": 1440,
+        "theme": "light",
+        "passes": 24,
+        "incomplete": 1
+      },
+      {
+        "name": "profile",
+        "width": 1440,
+        "theme": "dark",
+        "passes": 24,
+        "incomplete": 1
+      },
+      {
+        "name": "profile",
+        "width": 390,
+        "theme": "light",
+        "passes": 23,
+        "incomplete": 1
+      },
+      {
+        "name": "profile",
+        "width": 390,
+        "theme": "dark",
+        "passes": 23,
+        "incomplete": 1
+      },
+      {
+        "name": "profile-edit",
+        "width": 1440,
+        "theme": "light",
+        "passes": 25,
+        "incomplete": 1
+      },
+      {
+        "name": "profile-edit",
+        "width": 1440,
+        "theme": "dark",
+        "passes": 25,
+        "incomplete": 1
+      },
+      {
+        "name": "profile-edit",
+        "width": 390,
+        "theme": "light",
+        "passes": 24,
+        "incomplete": 1
+      },
+      {
+        "name": "profile-edit",
+        "width": 390,
+        "theme": "dark",
+        "passes": 24,
+        "incomplete": 1
+      },
+      {
+        "name": "inquiry-preferences",
+        "width": 1440,
+        "theme": "light",
+        "passes": 28,
+        "incomplete": 1
+      },
+      {
+        "name": "inquiry-preferences",
+        "width": 1440,
+        "theme": "dark",
+        "passes": 28,
+        "incomplete": 1
+      },
+      {
+        "name": "inquiry-preferences",
+        "width": 390,
+        "theme": "light",
+        "passes": 27,
+        "incomplete": 1
+      },
+      {
+        "name": "inquiry-preferences",
+        "width": 390,
+        "theme": "dark",
+        "passes": 27,
+        "incomplete": 1
+      },
+      {
+        "name": "inquiry-review",
+        "width": 1440,
+        "theme": "light",
+        "passes": 27,
+        "incomplete": 1
+      },
+      {
+        "name": "inquiry-review",
+        "width": 1440,
+        "theme": "dark",
+        "passes": 27,
+        "incomplete": 1
+      },
+      {
+        "name": "inquiry-review",
+        "width": 390,
+        "theme": "light",
+        "passes": 26,
+        "incomplete": 1
+      },
+      {
+        "name": "inquiry-review",
+        "width": 390,
+        "theme": "dark",
+        "passes": 26,
+        "incomplete": 1
+      },
+      {
+        "name": "inquiry-confirmation",
+        "width": 1440,
+        "theme": "light",
+        "passes": 25,
+        "incomplete": 1
+      },
+      {
+        "name": "inquiry-confirmation",
+        "width": 1440,
+        "theme": "dark",
+        "passes": 25,
+        "incomplete": 1
+      },
+      {
+        "name": "inquiry-confirmation",
+        "width": 390,
+        "theme": "light",
+        "passes": 24,
+        "incomplete": 1
+      },
+      {
+        "name": "inquiry-confirmation",
+        "width": 390,
+        "theme": "dark",
+        "passes": 24,
+        "incomplete": 1
+      }
+    ],
+    "violations": [],
+    "errors": []
+  },
+  "webkit": {
+    "date": "2026-11-16",
+    "base": "http://127.0.0.1:4173/",
+    "browser": "Automated WebKit on Windows",
+    "checks": [
+      "7 public pages at 3 widths and both themes reflow in WebKit",
+      "WebCrypto signup and profile redirect work",
+      "search, save, gallery and persistent theme work",
+      "inquiry validation, save and account-owned history work",
+      "live NHTSA fetch, CORS and model filtering work",
+      "logout removes access to profile",
+      "zero WebKit runtime errors and failed local resources"
+    ],
+    "errors": [],
+    "failures": []
+  },
+  "static": {
+    "pages": [
+      {
+        "page": "about.html",
+        "forms": 0,
+        "errors": []
+      },
+      {
+        "page": "account.html",
+        "forms": 2,
+        "errors": []
+      },
+      {
+        "page": "index.html",
+        "forms": 0,
+        "errors": []
+      },
+      {
+        "page": "inquiry.html",
+        "forms": 1,
+        "errors": []
+      },
+      {
+        "page": "inventory.html",
+        "forms": 0,
+        "errors": []
+      },
+      {
+        "page": "profile.html",
+        "forms": 1,
+        "errors": []
+      },
+      {
+        "page": "research.html",
+        "forms": 1,
+        "errors": []
+      },
+      {
+        "page": "showroom.html",
+        "forms": 0,
+        "errors": []
+      }
+    ],
+    "page_count": 8,
+    "forms": 5,
+    "html_reference_instances": 296,
+    "local_reference_instances": 283,
+    "errors": 0
+  },
+  "vendor": {
+    "name": "jQuery",
+    "version": "4.0.0",
+    "matches_official_download_after_line_ending_normalisation": true
+  }
+}

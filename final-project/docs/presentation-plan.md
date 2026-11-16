@@ -13,7 +13,7 @@ The team is Arsen, Kuttibay, Farabi and Muhammad, group SE-2507. The following i
 | Farabi | Vehicle data, search/filter and public API integration. | Demonstrate Collection, Showroom and the NHTSA model finder. |
 | Kuttibay | Content, photography organisation, usability testing and submission preparation. | Introduce the team, topic and audience; conclude. |
 
-Use the same approved work division in the PDF report. The character roles displayed on the About page are separate from this development work.
+The About page and PDF report use the same approved work division.
 
 ## Timed demonstration
 

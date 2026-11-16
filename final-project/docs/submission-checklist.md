@@ -4,13 +4,18 @@ Project: Apex Motors. Group: SE-2507. Team: Arsen, Kuttibay, Farabi and Muhammad
 
 Deadline shown in the assignment: **18 November 2026 at 23:59**. Cut-off: nine hours later, **19 November 2026 at 08:59**. Verify the LMS deadline display before uploading.
 
-## Three files required from every student
+## One ZIP for Moodle
 
-Each student must upload all three files together in Moodle's **FINAL EXAM folder**, even though this is a team project.
+The approved format for this submission is **one outer ZIP** containing the three required files. Each student uploads `ApexMotors_SE2507_Submission.zip` to Moodle's **FINAL EXAM folder**, even though this is a team project.
+
+The outer ZIP must contain these three files at its top level:
 
 - [ ] `ApexMotors_SE2507_FinalProject.zip` — complete project folder, preserving all HTML, CSS, JavaScript, images, media, local library files and folder structure. ZIP is the required archive format.
 - [ ] `ApexMotors_SE2507_Report.pdf` — final project report in PDF format.
 - [ ] `ApexMotors_SE2507_Links.txt` — plain-text file containing both the final repository and final hosted website URLs.
+
+- [ ] Open `ApexMotors_SE2507_Submission.zip` and confirm that all three files above are present.
+- [ ] Upload the outer submission ZIP to Moodle.
 
 The guideline's filename example says `Report.docx`, but its explicit report-format rule requires PDF and lists DOCX among the penalised formats. Use the `.pdf` filename above.
 

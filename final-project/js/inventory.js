@@ -12,7 +12,10 @@ $(document).ready(function () {
   const savedStatus = document.getElementById("savedStatus");
   const searchInput = document.getElementById("vehicleSearch");
   const sortSelect = document.getElementById("vehicleSort");
-  const storageKey = "apex-motors-saved-vehicles";
+  function currentStorageKey() {
+    return window.Apex.account?.savedStorageKey?.() || "apex-motors-saved-vehicles";
+  }
+  let storageKey = currentStorageKey();
   const query = new URLSearchParams(window.location.search);
   if (searchInput && query.has("q")) {
     searchInput.value = (query.get("q") || "").slice(0, 120);
@@ -29,6 +32,7 @@ $(document).ready(function () {
   let savedIds = readSavedIds();
 
   function readSavedIds() {
+    storageKey = currentStorageKey();
     let stored;
     try {
       stored = window.localStorage.getItem(storageKey);
@@ -109,7 +113,7 @@ $(document).ready(function () {
     savedOnlyButton.setAttribute("aria-pressed", String(savedOnly));
     savedOnlyButton.setAttribute(
       "aria-label",
-      `Show saved vehicles only (${savedIds.length} saved)`,
+      `Saved ${savedIds.length}, show saved vehicles only`,
     );
     savedOnlyButton.classList.toggle("active", savedOnly);
     savedOnlyButton.classList.toggle("btn-primary", savedOnly);
@@ -353,6 +357,8 @@ $(document).ready(function () {
       (item) => item.id === button?.dataset.saveVehicle,
     );
     if (!vehicle) return;
+    // Read the latest list before changing it, including updates from another tab.
+    savedIds = readSavedIds();
     const wasSaved = savedIds.includes(vehicle.id);
     savedIds = wasSaved
       ? savedIds.filter((id) => id !== vehicle.id)
@@ -376,11 +382,18 @@ $(document).ready(function () {
     }
   });
 
-  window.addEventListener("storage", (event) => {
-    if (event.key !== storageKey) return;
+  function refreshSaved() {
+    const previousKey = storageKey;
     savedIds = readSavedIds();
+    if (previousKey !== storageKey && savedStatus) savedStatus.textContent = "Keep your favourites. Your shortlist stays in this browser.";
     render(false);
+    closeSuggestions();
+  }
+  window.addEventListener("storage", (event) => {
+    if (![storageKey, currentStorageKey(), "apex-users", "apex-session", null].includes(event.key)) return;
+    refreshSaved();
   });
+  window.addEventListener("pageshow", refreshSaved);
   if (!storageAvailable && savedStatus) {
     savedStatus.textContent =
       "You can save cars while this page is open; your browser cannot keep them for your next visit.";

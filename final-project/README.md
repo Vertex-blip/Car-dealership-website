@@ -44,6 +44,7 @@ If Python is managed with uv, run `uv run python -m http.server 4173` instead.
 
 - Responsive layouts, keyboard-accessible controls and shared navigation.
 - Light/dark preferences and saved vehicles persisted in `localStorage`.
+- Saved vehicles are separated by account; guest favourites transfer once on sign-up or log-in. Inquiry history is linked to the account that created it.
 - JavaScript form validation with visible field errors and `novalidate` forms.
 - Simulated sign-up, credential checking and a profile page.
 - Dynamic inventory and FAQ search, vehicle gallery, animations and feedback.
@@ -66,6 +67,8 @@ final-project/
 
 ## Before submission
 
-The final version is hosted at the live website linked above. The repository and live website addresses are recorded in `ApexMotors_SE2507_Links.txt` in the submission set. Each team member submits the ZIP, PDF report and TXT links file individually in Moodle's FINAL EXAM folder.
+The final version is hosted at the live website linked above. The repository and live website addresses are recorded in `ApexMotors_SE2507_Links.txt`. For the approved single-file submission, each team member uploads `ApexMotors_SE2507_Submission.zip` to Moodle's FINAL EXAM folder. That archive contains the project ZIP, the PDF report and the TXT links file.
 
 Use `docs/submission-checklist.md` for the three required submission files and `docs/presentation-plan.md` for the proposed 4:45 team demonstration. Backup images are in `docs/screenshots/`. Recorded local and hosted Chromium checks are in `docs/verification-summary.json`; rehearsal and Moodle submission remain team actions.
+
+The full criteria, frontend and security review is in `docs/full-audit.md`; supporting results are in `docs/audit-evidence.json`. Browser-local accounts are a coursework simulation and do not protect data from someone who can read or alter browser storage.

@@ -1,7 +1,5 @@
 {
   "base": "http://127.0.0.1:4173/",
-  "date": "2026-11-15",
-  "browser": "Chromium",
   "passed": [
     "guest profile redirects to account",
     "login required fields show inline errors",
@@ -10,25 +8,88 @@
     "theme persists across pages and showroom controls work",
     "inquiry prefill, JS validation, review and save appear with shortlist on profile",
     "profile contact editing persists",
-    "7 authenticated pages x 5 widths x both themes: no overflow, headings and JS-only forms",
+    "7 authenticated pages × 5 widths × both themes: no overflow, headings and JS-only forms",
     "mobile navigation and real NHTSA models/filter render",
     "logout, responsive signup, wrong credentials and case-insensitive login",
     "zero runtime errors and zero failed local resources"
   ],
   "errors": [],
   "failures": [],
-  "additional_assertions_passed": 27,
-  "responsive_widths": [320, 390, 768, 1024, 1440],
-  "responsive_themes": ["light", "dark"],
+  "consoleErrors": [],
+  "date": "2026-11-16",
+  "browser": "Chrome (Chromium)",
+  "responsive_widths": [
+    320,
+    375,
+    390,
+    600,
+    700,
+    701,
+    768,
+    1024,
+    1440
+  ],
+  "responsive_themes": [
+    "light",
+    "dark"
+  ],
   "local_navigation_targets_successful": 44,
   "local_html_css_references_checked": 283,
   "missing_local_references": 0,
-  "live_api_example": {"make": "Porsche", "year": 2024, "model_count": 8},
-  "sampled_text_contrast_minimum": 4.5,
-  "published_site_verified": true,
+  "live_api_example": {
+    "make": "Porsche",
+    "year": 2024,
+    "model_count": 8
+  },
+  "published_site_verified": false,
   "hosted_base": "https://vertex-blip.github.io/Car-dealership-website/final-project/",
-  "hosted_check_groups_passed": 11,
+  "hosted_check_groups_passed": 0,
   "hosted_errors": [],
   "hosted_failures": [],
-  "note": "Local and hosted versions were checked on 15 November 2026. The same 11 browser scenario groups passed on both origins. The 27 additional assertions, static reference scan and navigation target count are recorded local evidence. Does not claim cross-browser certification."
+  "final_audit": {
+    "frontend": {
+      "status": "passed",
+      "groups_passed": 13,
+      "responsive_states": 126,
+      "widths": [
+        320,
+        375,
+        390,
+        600,
+        700,
+        701,
+        768,
+        1024,
+        1440
+      ],
+      "signup_states": 18,
+      "images_checked_instances": 738,
+      "named_control_instances": 3232,
+      "interactive_centres_checked": 980
+    },
+    "security": {
+      "status": "passed",
+      "groups_passed": 16,
+      "invalid_email_cases_passed": 24,
+      "pbkdf2_sha256_iterations_new_accounts": 600000,
+      "unexpected_errors": 0
+    },
+    "api": {
+      "status": "passed",
+      "cases_passed": 20,
+      "live_makes_passed": 8
+    },
+    "axe": {
+      "status": "passed",
+      "states_checked": 52,
+      "violations": 0
+    },
+    "webkit": {
+      "status": "passed",
+      "groups_passed": 7,
+      "public_layout_states": 42,
+      "note": "Automated WebKit on Windows; not physical Safari/iPhone certification."
+    }
+  },
+  "note": "Full audit on 16 November 2026. Fresh local evidence complete; hosted verification for this revision is pending. Test groups, viewport states and repeated element instances are separate measures."
 }

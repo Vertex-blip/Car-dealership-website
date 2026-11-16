@@ -15,6 +15,8 @@
   const phone = document.getElementById("phone");
   let step = 0;
   let pending = false;
+  const currentIdentity = () => Apex.account?.currentUser()?.id || null;
+  let draftUserId = currentIdentity();
   const input = (id) => document.getElementById(id);
   const value = (id) => input(id).value.trim();
   const byPhone = () => form.querySelector('[name="replyMethod"]:checked')?.value === "phone";
@@ -35,10 +37,10 @@
     const text = value(id);
     switch (id) {
       case "fullName": return text.length >= 2 && text.length <= 80 ? "" : "Enter your name using 2 to 80 characters.";
-      case "email": return text.length <= 120 && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(text) ? "" : "Enter a valid email, such as name@example.com.";
+      case "email": return Apex.account.emailError(text);
       case "vehicle": return !text || Apex.vehicles.some((car) => car.id === text) ? "" : "Choose a car from the list.";
       case "budget": return !text || (/^\d+(?:\.\d{1,2})?$/.test(text) && Number.isFinite(Number(text)) && Number(text) <= 1e12) ? "" : "Enter a budget in KZT using a positive number, such as 18000000.";
-      case "phone": return !byPhone() || (/^\+?[\d\s()\-]+$/.test(text) && text.replace(/\D/g, "").length >= 7 && text.replace(/\D/g, "").length <= 15) ? "" : "Enter a phone number with 7 to 15 digits, including the country code.";
+      case "phone": return byPhone() ? Apex.account.phoneError(text) : "";
       case "message": return input(id).value.length <= 600 ? "" : "Keep your message within 600 characters.";
       default: return "";
     }
@@ -94,6 +96,7 @@
     });
     input("inquiryProgress").textContent = `Step ${step + 1} of 3: ${["Contact details", "Preferences", "Review"][step]}`;
     status.textContent = "";
+    status.classList.remove("is-error");
     if (step === 2) renderSummary();
     if (focus) {
       const legend = steps[step].querySelector("legend");
@@ -103,6 +106,7 @@
   }
   function forward() {
     if (pending) return;
+    if (!checkIdentity()) return;
     if (!validate(step)) { status.textContent = "Please correct the highlighted fields before continuing."; return; }
     showStep(Math.min(2, step + 1));
   }
@@ -123,23 +127,36 @@
       }
     } catch { /* The form can still be filled manually. */ }
   }
-  function reset() {
+  function reset(focus = true) {
     if (pending) return;
     form.reset();
     groups.flat().forEach((id) => setError(id, ""));
     input("completedInquiryPreview")?.remove();
     input("copyInquiry")?.remove();
     prefill();
+    draftUserId = currentIdentity();
     updatePhone();
     form.hidden = false;
     success.hidden = true;
-    showStep(0);
+    showStep(0, focus);
   }
-  input("resetInquiry").addEventListener("click", reset);
-  input("newInquiry").addEventListener("click", reset);
+  function checkIdentity() {
+    if (currentIdentity() === draftUserId) return true;
+    // Do not expose or attribute a previous account's contact draft to another account.
+    reset(false);
+    status.textContent = "Your signed-in account changed. The previous draft was cleared; start a new inquiry with your current details.";
+    return false;
+  }
+  input("resetInquiry").addEventListener("click", () => reset());
+  input("newInquiry").addEventListener("click", () => reset());
+  addEventListener("storage", (event) => {
+    if (event.key === "apex-session" || event.key === "apex-users" || event.key === null) checkIdentity();
+  });
+  addEventListener("pageshow", checkIdentity);
   form.addEventListener("submit", (event) => {
     event.preventDefault();
     if (pending || form.hidden) return;
+    if (!checkIdentity()) return;
     if (step < 2) { forward(); return; }
     for (let index = 0; index < groups.length; index++) {
       if (!validate(index, false)) { showStep(index, false); validate(index); status.textContent = "Please correct the highlighted fields."; return; }
@@ -152,8 +169,9 @@
       const records = raw === null ? [] : JSON.parse(raw);
       if (!Array.isArray(records)) throw new Error("Unreadable inquiry history");
       const user = Apex.account?.currentUser();
+      if ((user?.id || null) !== draftUserId) { checkIdentity(); return; }
       const record = {
-        id: crypto.randomUUID(), userId: user?.id || null,
+        id: crypto.randomUUID(), userId: draftUserId,
         fullName: value("fullName"), email: value("email").toLowerCase(),
         vehicleId: vehicle.value, vehicleName: selectedCar()?.name || "General inquiry",
         budget: value("budget") ? Number(value("budget")) : null,

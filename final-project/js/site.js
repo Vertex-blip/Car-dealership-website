@@ -50,7 +50,7 @@
     updateTheme();
   });
   addEventListener("storage", (event) => {
-    if (event.key === "apex-theme") {
+    if (event.key === "apex-theme" || event.key === null) {
       root.dataset.theme = event.newValue === "dark" ? "dark" : "light";
       updateTheme();
     }
@@ -74,8 +74,13 @@
 
   const stars = [...document.querySelectorAll("[data-rating]")];
   const ratingStatus = document.getElementById("ratingStatus");
-  let rating = 0;
-  try { rating = Number(localStorage.getItem("apex-rating")) || 0; } catch { /* Optional preference. */ }
+  function readRating() {
+    try {
+      const saved = Number(localStorage.getItem("apex-rating"));
+      return Number.isInteger(saved) && saved >= 1 && saved <= 5 ? saved : 0;
+    } catch { return 0; }
+  }
+  let rating = readRating();
   function paintRating(value = rating) {
     stars.forEach((star) => {
       star.classList.toggle("is-active", Number(star.dataset.rating) <= value);
@@ -97,4 +102,22 @@
   document.querySelector(".rating-controls")?.addEventListener("pointerleave", () => paintRating());
   paintRating();
   if (rating && ratingStatus) ratingStatus.textContent = `Your previous rating: ${rating} of 5.`;
+  function restoreRating() {
+    rating = readRating();
+    paintRating();
+    if (ratingStatus) ratingStatus.textContent = rating
+      ? `Your previous rating: ${rating} of 5.`
+      : "Choose from one to five stars.";
+  }
+  addEventListener("storage", (event) => {
+    if (event.key === "apex-rating" || event.key === null) restoreRating();
+  });
+  // A cached page can return after preferences were changed elsewhere in this tab.
+  addEventListener("pageshow", () => {
+    try {
+      root.dataset.theme = localStorage.getItem("apex-theme") === "dark" ? "dark" : "light";
+    } catch { /* Keep the current page preference if browser storage is blocked. */ }
+    updateTheme();
+    restoreRating();
+  });
 })();

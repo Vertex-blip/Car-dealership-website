@@ -101,8 +101,8 @@
     visible.forEach((model) => {
       const card = document.createElement("a");
       card.className = "research-model";
-      card.href = `inventory.html?q=${encodeURIComponent(model.name)}`;
-      card.setAttribute("aria-label", `Search our collection for ${makeLabel(activeChoice.make)} ${model.name}`);
+      // URLSearchParams also handles malformed Unicode in external or cached data.
+      card.href = `inventory.html?${new URLSearchParams({ q: model.name })}`;
       const label = document.createElement("span");
       label.className = "eyebrow";
       label.textContent = `${makeLabel(activeChoice.make)} / ${activeChoice.year}`;
@@ -225,6 +225,10 @@
   addEventListener("pagehide", () => {
     ++requestId;
     controller?.abort();
+  });
+  addEventListener("pageshow", (event) => {
+    // A restored page keeps its script state, including the request aborted above.
+    if (event.persisted) loadModels();
   });
   // Fresh requests on arrival make the external data visible during a demo.
   loadModels();
