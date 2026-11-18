@@ -1,5 +1,15 @@
 # Apex Motors
 
+## Final project
+
+The final project is in **[final-project/](final-project/)** and continues the team's Apex Motors topic. It has eight connected pages, local account/profile and inquiry simulation, search and filters, a showroom, saved cars, persistent appearance settings and the NHTSA vehicle API.
+
+- **[Open the final website](https://vertex-blip.github.io/Car-dealership-website/final-project/)**
+- **[View the final project source](https://github.com/Vertex-blip/Car-dealership-website/tree/main/final-project)**
+- [Final project documentation and presentation plan](final-project/README.md)
+
+## Earlier assignments
+
 Responsive dealership website by Team Apex Motors, Group SE-2507. The repository contains the framework-free Assignment 1/2 site at its root, Assignment 3 in `assignment3-bootstrap/`, Assignment 4 in `assignment4-javascript/`, and the plain HTML/CSS/JavaScript Assignment 5 in `assignment5-dom/`.
 
 ## Live websites

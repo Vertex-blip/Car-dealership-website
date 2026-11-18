@@ -13,6 +13,8 @@
 .appearance-panel .text-button { min-height: 44px; }
 .appearance-note { font-size: 12px; line-height: 1.5; color: var(--muted); margin-top: 12px; }
 .javascript-notice { padding-block: 18px; color: var(--error); }
+.inquiry-image { overflow: hidden; }
+.inquiry-image img { width: 100%; height: auto; aspect-ratio: inherit; object-fit: cover; }
 .footer-links { flex-wrap: wrap; }
 .footer-bottom { gap: 16px; }
 .footer-bottom > p:last-child { font-size: 12px; color: #a5adb5; }
