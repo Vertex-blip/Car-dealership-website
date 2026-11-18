@@ -5221,5 +5221,860 @@
       "layout": [],
       "bfcache": []
     }
+  },
+  "final_rubric_review_20261118": {
+    "summary": {
+      "date": "2026-11-18",
+      "status": "completed_with_loading_observations",
+      "hosted_core_groups_passed": 11,
+      "api_scenarios_passed": 21,
+      "real_api_makes_passed": 8,
+      "local_frontend_groups_passed": 13,
+      "local_frontend_layout_states": 126,
+      "local_security_groups_passed": 16,
+      "invalid_email_ui_rejections": 24,
+      "budget_groups_per_browser": 13,
+      "hosted_representative_appearance_states_passed": 8,
+      "hosted_fixed_photo_states_passed": 8,
+      "hosted_application_files_checked": 48,
+      "fixed_issue": "Inquiry photograph was stretched because its HTML height did not shrink with width; corrected dimensions and a cover crop now preserve proportions.",
+      "loading_observations": "Concurrent cold browser checks had 30-45 second navigation/image wait timeouts. A measured Home visit had controls ready in 1.876s and completed the 777466-byte hero transfer in 19.199s; subsequent serial functional checks passed. These waits are retained as observations, not counted as passing attempts.",
+      "local_remote_scope": "Core/API and representative UI checks ran on the hosted site. The 13-group detailed frontend, 16-group security, email and budget suites passed locally; hosted application bytes were separately compared with local source.",
+      "functional_revision": "435ce0110c530be8549c06ece0d4162ea99036cc",
+      "deployment_workflow": "https://github.com/Vertex-blip/Car-dealership-website/actions/runs/44359724855",
+      "presentation": "Actual team delivery remains ungraded; a rehearsal plan is prepared."
+    },
+    "functional": {
+      "date": "2026-11-18",
+      "base": "https://vertex-blip.github.io/Car-dealership-website/final-project/",
+      "core": {
+        "passedGroups": 11,
+        "runtimeErrors": [],
+        "consoleErrors": [],
+        "failedLocalResources": []
+      },
+      "api": {
+        "summary": {
+          "passed": 21,
+          "failed": 0
+        },
+        "realBrowserRequests": [
+          {
+            "url": "https://vpic.nhtsa.dot.gov/api/vehicles/GetModelsForMakeYear/make/PORSCHE/modelyear/2024?format=json",
+            "status": 200,
+            "allowOrigin": "*"
+          },
+          {
+            "url": "https://vpic.nhtsa.dot.gov/api/vehicles/GetModelsForMakeYear/make/MERCEDES-BENZ/modelyear/2024?format=json",
+            "status": 200,
+            "allowOrigin": "*"
+          },
+          {
+            "url": "https://vpic.nhtsa.dot.gov/api/vehicles/GetModelsForMakeYear/make/BMW/modelyear/2024?format=json",
+            "status": 200,
+            "allowOrigin": "*"
+          },
+          {
+            "url": "https://vpic.nhtsa.dot.gov/api/vehicles/GetModelsForMakeYear/make/AUDI/modelyear/2024?format=json",
+            "status": 200,
+            "allowOrigin": "*"
+          },
+          {
+            "url": "https://vpic.nhtsa.dot.gov/api/vehicles/GetModelsForMakeYear/make/MCLAREN/modelyear/2024?format=json",
+            "status": 200,
+            "allowOrigin": "*"
+          },
+          {
+            "url": "https://vpic.nhtsa.dot.gov/api/vehicles/GetModelsForMakeYear/make/CHEVROLET/modelyear/2024?format=json",
+            "status": 200,
+            "allowOrigin": "*"
+          },
+          {
+            "url": "https://vpic.nhtsa.dot.gov/api/vehicles/GetModelsForMakeYear/make/HYUNDAI/modelyear/2024?format=json",
+            "status": 200,
+            "allowOrigin": "*"
+          },
+          {
+            "url": "https://vpic.nhtsa.dot.gov/api/vehicles/GetModelsForMakeYear/make/NISSAN/modelyear/2024?format=json",
+            "status": 200,
+            "allowOrigin": "*"
+          }
+        ]
+      },
+      "appearance": {
+        "initialPassedGroups": 24,
+        "initialFailedGroups": [
+          {
+            "name": "back navigation restores current saved appearance",
+            "error": "page.goto: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"https://vertex-blip.github.io/Car-dealership-website/final-project/index.html\", waiting until \"load\"\u001b[22m\n\n    at goto (D:\\РќРѕРІР°СЏ РїР°РїРєР°\\РЈС‡РµР±Р°\\WEB\\tmp\\appearance-followup\\verify-appearance.mjs:31:49)\n    at D:\\РќРѕРІР°СЏ РїР°РїРєР°\\РЈС‡РµР±Р°\\WEB\\tmp\\appearance-followup\\verify-appearance.mjs:193:13\n    at async test (D:\\РќРѕРІР°СЏ РїР°РїРєР°\\РЈС‡РµР±Р°\\WEB\\tmp\\appearance-followup\\verify-appearance.mjs:46:9)\n    at async file:///D:/%D0%9D%D0%BE%D0%B2%D0%B0%D1%8F%20%D0%BF%D0%B0%D0%BF%D0%BA%D0%B0/%D0%A3%D1%87%D0%B5%D0%B1%D0%B0/WEB/tmp/appearance-followup/verify-appearance.mjs:187:3"
+          },
+          {
+            "name": "representative mobile and desktop states in both modes with panel open",
+            "error": "page.goto: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"https://vertex-blip.github.io/Car-dealership-website/final-project/index.html\", waiting until \"load\"\u001b[22m\n\n    at goto (D:\\РќРѕРІР°СЏ РїР°РїРєР°\\РЈС‡РµР±Р°\\WEB\\tmp\\appearance-followup\\verify-appearance.mjs:31:49)\n    at D:\\РќРѕРІР°СЏ РїР°РїРєР°\\РЈС‡РµР±Р°\\WEB\\tmp\\appearance-followup\\verify-appearance.mjs:230:13\n    at async test (D:\\РќРѕРІР°СЏ РїР°РїРєР°\\РЈС‡РµР±Р°\\WEB\\tmp\\appearance-followup\\verify-appearance.mjs:46:9)\n    at async file:///D:/%D0%9D%D0%BE%D0%B2%D0%B0%D1%8F%20%D0%BF%D0%B0%D0%BF%D0%BA%D0%B0/%D0%A3%D1%87%D0%B5%D0%B1%D0%B0/WEB/tmp/appearance-followup/verify-appearance.mjs:222:3"
+          }
+        ],
+        "runtimeErrors": [],
+        "cspErrors": [],
+        "failedLocalResources": [],
+        "serialPassed": [
+          "back navigation restores current saved appearance",
+          "login and profile preserve appearance"
+        ],
+        "serialChromeActualBFCache": [
+          {
+            "engine": "chromium",
+            "sameInstance": true,
+            "shows": [
+              false,
+              true
+            ]
+          }
+        ],
+        "representativePassedStates": 8,
+        "representativeStateProblems": [],
+        "profileTargetedErrors": [],
+        "profileTargetedFailedResources": []
+      },
+      "networkObservations": {
+        "navigationTimeoutAttempts": 4,
+        "timeouts": "Three 30-second full-load waits; one 45-second DOMContentLoaded wait. No HTTP error or uncaught JS error was recorded. Targeted serial controls/profile checks subsequently passed.",
+        "coldContextProbeEvents": [
+          {
+            "event": "domcontentloaded",
+            "ms": 1876
+          },
+          {
+            "event": "load",
+            "ms": 19199
+          }
+        ],
+        "heroFileBytes": 777466,
+        "heroRequest": {
+          "url": "https://vertex-blip.github.io/Car-dealership-website/final-project/images/hero-mercedes.jpg",
+          "resourceType": "image",
+          "startMs": 889,
+          "status": 200,
+          "responseMs": 1559,
+          "finishMs": 19188,
+          "timing": {
+            "startTime": 1795022781515.1682,
+            "domainLookupStart": -1,
+            "domainLookupEnd": -1,
+            "connectStart": -1,
+            "secureConnectionStart": -1,
+            "connectEnd": -1,
+            "requestStart": 1.737,
+            "responseStart": 630.148,
+            "responseEnd": 18294.741
+          }
+        }
+      },
+      "recommendedCriterionScores": {
+        "enhancedJavaScript": {
+          "score": 25,
+          "maximum": 25,
+          "reason": "Signup/login/profile, custom form validation and dynamic search/filter/persistence satisfy the explicit frontend assignment requirements."
+        },
+        "externalAPI": {
+          "score": 10,
+          "maximum": 10,
+          "reason": "Relevant real NHTSA public API works across all eight advertised makes; loading, error, retry and caching behaviour pass controlled scenarios."
+        }
+      },
+      "limits": "These checks do not establish production-grade authentication security or guarantee the teacher grade. Frontend-only local authentication is explicitly required; no backend deduction is justified."
+    },
+    "frontend_local": {
+      "date": "2026-11-18",
+      "base": "http://127.0.0.1:4191/",
+      "browser": "Chromium",
+      "passes": [
+        "rating rejects malformed out-of-range stored data",
+        "About disclosure, FAQ matching/literal symbols/clear and persistent rating",
+        "theme persists on reload/navigation and refreshes on cached-page return",
+        "guest shortlist migrates into newly signed-in account only",
+        "collection categories, search/empty/query links, all sort orders and keyboard suggestions",
+        "shortlist filter/removal, cross-tab updates, cached-page refresh and account changes",
+        "gallery every thumbnail, arrows, wrap, Home/End and keyboard selection",
+        "clipboard controls copy current origin/path; notifications dismiss and failure is honest",
+        "126 signed-in page/width/theme states: no overflow, missing/placeholder images or unnamed visible controls",
+        "signup form reflows at all nine widths in both themes",
+        "mobile menu open/close/Escape/outside click and resize preserve usable navigation",
+        "reduced-motion preference suppresses decorative animation and all counters reach data values",
+        "touch autocomplete selection works without blur losing the selected option"
+      ],
+      "issues": [],
+      "runtime": [],
+      "csp": [],
+      "httpFailures": [],
+      "renderedStates": 126,
+      "imagesChecked": 738,
+      "controlsChecked": 3358,
+      "uniqueLocalTargets": 38,
+      "externalTargets": [
+        "https://commons.wikimedia.org/wiki/File:2018_Mercedes-AMG_E_63_S_Premium_4MATIC_4.0_Front.jpg",
+        "https://creativecommons.org/licenses/by-sa/4.0/",
+        "https://vpic.nhtsa.dot.gov/api/"
+      ],
+      "apiData": "Deterministic NHTSA-shaped fixture used for frontend layout; real API verified separately.",
+      "metadata_note": "Date corrected from the older temporary test script literal; this result was executed on 18 November 2026."
+    },
+    "security_local": {
+      "date": "2026-11-18",
+      "base": "http://127.0.0.1:4189/",
+      "checks": [
+        "new signup uses salted 600000-round PBKDF2 and adopts guest shortlist once",
+        "profile shortlist stays isolated between accounts and refreshes after cross-tab switch",
+        "inquiry ownership uses account ID; guest/email claims and malformed record objects are excluded; XSS stays text",
+        "cross-tab account changes clear old inquiry contact/message and bind new record to current owner",
+        "same-tab session mutation is revalidated before advancing the inquiry",
+        "restored inquiry does not reveal a logged-out account draft",
+        "legacy 120000-round hashes still authenticate correctly",
+        "external, script, path traversal, missing-page and account-loop return destinations are rejected",
+        "an account deleted during asynchronous password verification cannot open a stale session",
+        "corrupt account/password storage fails closed with visible feedback",
+        "malformed account JSON does not expose a profile or crash JavaScript",
+        "BFCache profile restoration revalidates a removed session",
+        "password fields and visibility state are cleared before cached navigation",
+        "failed inquiry storage preserves details and never reports false success",
+        "CSP blocks inline handlers, foreign scripts and external form submission before network access",
+        "zero unexpected JavaScript runtime errors throughout security regressions"
+      ],
+      "errors": [],
+      "expectedCspViolations": [
+        "script-src-attr",
+        "script-src-elem",
+        "form-action"
+      ],
+      "blockedExternalRequests": 0
+    },
+    "email_validation": {
+      "badEmailCases": [
+        "a@b..com",
+        ".name@example.com",
+        "name..x@example.com",
+        "name@example-.com",
+        "name@-example.com",
+        "name@exam_ple.com",
+        "name@example.c",
+        "name@ example.com"
+      ],
+      "validEmailCases": [
+        "alice@example.com",
+        "name+tag@example.com",
+        "first.last@example.co.uk",
+        "o'reilly@example.com",
+        "USER@EXAMPLE.COM"
+      ],
+      "signupUiRejects": 8,
+      "loginUiRejects": 8,
+      "inquiryUiRejects": 8,
+      "validPlusTagInquiry": true,
+      "excessPhoneSpacingRejected": true,
+      "errors": []
+    },
+    "budget_local": {
+      "base": "http://127.0.0.1:4189/",
+      "results": [
+        {
+          "browser": "Chrome",
+          "checks": [
+            "numeric keyboard hint with JavaScript validation and no forbidden browser validation attributes",
+            "real typed letters never enter budget and inline feedback is visible",
+            "valid digit typing clears feedback",
+            "six invalid/mixed pastes preserve prior digits instead of silently changing the amount",
+            "valid whole-digit paste is accepted once",
+            "selection, deletion and caret editing remain functional",
+            "maximum whole-KZT boundary accepted and larger numeric amount rejected",
+            "independent Next validation rejects six raw DOM-bypass values including padded digits and whitespace-only",
+            "zero is valid and optional blank saves as null",
+            "new inquiry and reset do not restore a previous budget snapshot",
+            "composition commit cannot leave non-digits in the budget",
+            "restored invalid value never becomes accepted snapshot for existing digits or optional blank",
+            "Submit rechecks hidden preferences and stores a valid budget as a number"
+          ],
+          "errors": []
+        },
+        {
+          "browser": "WebKit",
+          "checks": [
+            "numeric keyboard hint with JavaScript validation and no forbidden browser validation attributes",
+            "real typed letters never enter budget and inline feedback is visible",
+            "valid digit typing clears feedback",
+            "six invalid/mixed pastes preserve prior digits instead of silently changing the amount",
+            "valid whole-digit paste is accepted once",
+            "selection, deletion and caret editing remain functional",
+            "maximum whole-KZT boundary accepted and larger numeric amount rejected",
+            "independent Next validation rejects six raw DOM-bypass values including padded digits and whitespace-only",
+            "zero is valid and optional blank saves as null",
+            "new inquiry and reset do not restore a previous budget snapshot",
+            "composition commit cannot leave non-digits in the budget",
+            "restored invalid value never becomes accepted snapshot for existing digits or optional blank",
+            "Submit rechecks hidden preferences and stores a valid budget as a number"
+          ],
+          "errors": []
+        }
+      ]
+    },
+    "fixed_photo_hosted": {
+      "base": "https://vertex-blip.github.io/Car-dealership-website/final-project/",
+      "rows": [
+        {
+          "viewport": 320,
+          "theme": "light",
+          "natural": [
+            1400,
+            933
+          ],
+          "image": [
+            284,
+            189.328125
+          ],
+          "wrapper": [
+            284,
+            189.328125
+          ],
+          "objectFit": "cover",
+          "aspectRatio": "1.5 / 1",
+          "wrapperAspectRatio": "1.5 / 1",
+          "bodyOverflow": false,
+          "imageExceedsWrapper": false,
+          "pass": true
+        },
+        {
+          "viewport": 320,
+          "theme": "dark",
+          "natural": [
+            1400,
+            933
+          ],
+          "image": [
+            284,
+            189.328125
+          ],
+          "wrapper": [
+            284,
+            189.328125
+          ],
+          "objectFit": "cover",
+          "aspectRatio": "1.5 / 1",
+          "wrapperAspectRatio": "1.5 / 1",
+          "bodyOverflow": false,
+          "imageExceedsWrapper": false,
+          "pass": true
+        },
+        {
+          "viewport": 375,
+          "theme": "light",
+          "natural": [
+            1400,
+            933
+          ],
+          "image": [
+            339,
+            226
+          ],
+          "wrapper": [
+            339,
+            226
+          ],
+          "objectFit": "cover",
+          "aspectRatio": "1.5 / 1",
+          "wrapperAspectRatio": "1.5 / 1",
+          "bodyOverflow": false,
+          "imageExceedsWrapper": false,
+          "pass": true
+        },
+        {
+          "viewport": 375,
+          "theme": "dark",
+          "natural": [
+            1400,
+            933
+          ],
+          "image": [
+            339,
+            226
+          ],
+          "wrapper": [
+            339,
+            226
+          ],
+          "objectFit": "cover",
+          "aspectRatio": "1.5 / 1",
+          "wrapperAspectRatio": "1.5 / 1",
+          "bodyOverflow": false,
+          "imageExceedsWrapper": false,
+          "pass": true
+        },
+        {
+          "viewport": 768,
+          "theme": "light",
+          "natural": [
+            1400,
+            933
+          ],
+          "image": [
+            252.71875,
+            187.1875
+          ],
+          "wrapper": [
+            252.71875,
+            187.1875
+          ],
+          "objectFit": "cover",
+          "aspectRatio": "1.35 / 1",
+          "wrapperAspectRatio": "1.35 / 1",
+          "bodyOverflow": false,
+          "imageExceedsWrapper": false,
+          "pass": true
+        },
+        {
+          "viewport": 768,
+          "theme": "dark",
+          "natural": [
+            1400,
+            933
+          ],
+          "image": [
+            252.71875,
+            187.1875
+          ],
+          "wrapper": [
+            252.71875,
+            187.1875
+          ],
+          "objectFit": "cover",
+          "aspectRatio": "1.35 / 1",
+          "wrapperAspectRatio": "1.35 / 1",
+          "bodyOverflow": false,
+          "imageExceedsWrapper": false,
+          "pass": true
+        },
+        {
+          "viewport": 1440,
+          "theme": "light",
+          "natural": [
+            1400,
+            933
+          ],
+          "image": [
+            502.03125,
+            371.875
+          ],
+          "wrapper": [
+            502.03125,
+            371.875
+          ],
+          "objectFit": "cover",
+          "aspectRatio": "1.35 / 1",
+          "wrapperAspectRatio": "1.35 / 1",
+          "bodyOverflow": false,
+          "imageExceedsWrapper": false,
+          "pass": true
+        },
+        {
+          "viewport": 1440,
+          "theme": "dark",
+          "natural": [
+            1400,
+            933
+          ],
+          "image": [
+            502.03125,
+            371.875
+          ],
+          "wrapper": [
+            502.03125,
+            371.875
+          ],
+          "objectFit": "cover",
+          "aspectRatio": "1.35 / 1",
+          "wrapperAspectRatio": "1.35 / 1",
+          "bodyOverflow": false,
+          "imageExceedsWrapper": false,
+          "pass": true
+        }
+      ]
+    },
+    "hosted_assets": {
+      "date": "2026-11-18",
+      "base": "https://vertex-blip.github.io/Car-dealership-website/final-project/",
+      "files": [
+        {
+          "path": "about.html",
+          "status": 200,
+          "matchesLocal": true,
+          "verified": "after_photo_fix"
+        },
+        {
+          "path": "account.html",
+          "status": 200,
+          "matchesLocal": true,
+          "verified": "after_photo_fix"
+        },
+        {
+          "path": "assets/favicon.svg",
+          "status": 200,
+          "matchesLocal": true,
+          "verified": "before_photo_fix_unchanged_in_git"
+        },
+        {
+          "path": "assets/image-placeholder.svg",
+          "status": 200,
+          "matchesLocal": true,
+          "verified": "before_photo_fix_unchanged_in_git"
+        },
+        {
+          "path": "assets/vehicle-sources.json",
+          "status": 200,
+          "matchesLocal": true,
+          "verified": "before_photo_fix_unchanged_in_git"
+        },
+        {
+          "path": "css/enhancements.css",
+          "status": 200,
+          "matchesLocal": true,
+          "verified": "before_photo_fix_unchanged_in_git"
+        },
+        {
+          "path": "css/final.css",
+          "status": 200,
+          "matchesLocal": true,
+          "verified": "after_photo_fix"
+        },
+        {
+          "path": "css/search.css",
+          "status": 200,
+          "matchesLocal": true,
+          "verified": "before_photo_fix_unchanged_in_git"
+        },
+        {
+          "path": "css/style.css",
+          "status": 200,
+          "matchesLocal": true,
+          "verified": "before_photo_fix_unchanged_in_git"
+        },
+        {
+          "path": "images/arsen.jpg",
+          "status": 200,
+          "matchesLocal": true,
+          "verified": "before_photo_fix_unchanged_in_git"
+        },
+        {
+          "path": "images/car-01.jpg",
+          "status": 200,
+          "matchesLocal": true,
+          "verified": "before_photo_fix_unchanged_in_git"
+        },
+        {
+          "path": "images/car-02.jpg",
+          "status": 200,
+          "matchesLocal": true,
+          "verified": "before_photo_fix_unchanged_in_git"
+        },
+        {
+          "path": "images/car-03.jpg",
+          "status": 200,
+          "matchesLocal": true,
+          "verified": "before_photo_fix_unchanged_in_git"
+        },
+        {
+          "path": "images/car-04.jpg",
+          "status": 200,
+          "matchesLocal": true,
+          "verified": "before_photo_fix_unchanged_in_git"
+        },
+        {
+          "path": "images/car-06.jpg",
+          "status": 200,
+          "matchesLocal": true,
+          "verified": "before_photo_fix_unchanged_in_git"
+        },
+        {
+          "path": "images/car-07.jpg",
+          "status": 200,
+          "matchesLocal": true,
+          "verified": "before_photo_fix_unchanged_in_git"
+        },
+        {
+          "path": "images/car-08.jpg",
+          "status": 200,
+          "matchesLocal": true,
+          "verified": "before_photo_fix_unchanged_in_git"
+        },
+        {
+          "path": "images/car-09.jpg",
+          "status": 200,
+          "matchesLocal": true,
+          "verified": "before_photo_fix_unchanged_in_git"
+        },
+        {
+          "path": "images/car-10.jpg",
+          "status": 200,
+          "matchesLocal": true,
+          "verified": "before_photo_fix_unchanged_in_git"
+        },
+        {
+          "path": "images/car-11.jpg",
+          "status": 200,
+          "matchesLocal": true,
+          "verified": "before_photo_fix_unchanged_in_git"
+        },
+        {
+          "path": "images/car-12.jpg",
+          "status": 200,
+          "matchesLocal": true,
+          "verified": "before_photo_fix_unchanged_in_git"
+        },
+        {
+          "path": "images/car-13.jpg",
+          "status": 200,
+          "matchesLocal": true,
+          "verified": "before_photo_fix_unchanged_in_git"
+        },
+        {
+          "path": "images/car-14.jpg",
+          "status": 200,
+          "matchesLocal": true,
+          "verified": "before_photo_fix_unchanged_in_git"
+        },
+        {
+          "path": "images/car-15.jpg",
+          "status": 200,
+          "matchesLocal": true,
+          "verified": "before_photo_fix_unchanged_in_git"
+        },
+        {
+          "path": "images/car-16.jpg",
+          "status": 200,
+          "matchesLocal": true,
+          "verified": "before_photo_fix_unchanged_in_git"
+        },
+        {
+          "path": "images/car-17.jpg",
+          "status": 200,
+          "matchesLocal": true,
+          "verified": "before_photo_fix_unchanged_in_git"
+        },
+        {
+          "path": "images/farabi.jpg",
+          "status": 200,
+          "matchesLocal": true,
+          "verified": "before_photo_fix_unchanged_in_git"
+        },
+        {
+          "path": "images/hero-mercedes.jpg",
+          "status": 200,
+          "matchesLocal": true,
+          "verified": "before_photo_fix_unchanged_in_git"
+        },
+        {
+          "path": "images/kuttibay.jpg",
+          "status": 200,
+          "matchesLocal": true,
+          "verified": "before_photo_fix_unchanged_in_git"
+        },
+        {
+          "path": "images/muhammad.jpg",
+          "status": 200,
+          "matchesLocal": true,
+          "verified": "before_photo_fix_unchanged_in_git"
+        },
+        {
+          "path": "index.html",
+          "status": 200,
+          "matchesLocal": true,
+          "verified": "after_photo_fix"
+        },
+        {
+          "path": "inquiry.html",
+          "status": 200,
+          "matchesLocal": true,
+          "verified": "after_photo_fix"
+        },
+        {
+          "path": "inventory.html",
+          "status": 200,
+          "matchesLocal": true,
+          "verified": "after_photo_fix"
+        },
+        {
+          "path": "js/account.js",
+          "status": 200,
+          "matchesLocal": true,
+          "verified": "before_photo_fix_unchanged_in_git"
+        },
+        {
+          "path": "js/data.js",
+          "status": 200,
+          "matchesLocal": true,
+          "verified": "before_photo_fix_unchanged_in_git"
+        },
+        {
+          "path": "js/gallery.js",
+          "status": 200,
+          "matchesLocal": true,
+          "verified": "before_photo_fix_unchanged_in_git"
+        },
+        {
+          "path": "js/inquiry.js",
+          "status": 200,
+          "matchesLocal": true,
+          "verified": "before_photo_fix_unchanged_in_git"
+        },
+        {
+          "path": "js/interactions.js",
+          "status": 200,
+          "matchesLocal": true,
+          "verified": "before_photo_fix_unchanged_in_git"
+        },
+        {
+          "path": "js/inventory.js",
+          "status": 200,
+          "matchesLocal": true,
+          "verified": "before_photo_fix_unchanged_in_git"
+        },
+        {
+          "path": "js/research.js",
+          "status": 200,
+          "matchesLocal": true,
+          "verified": "before_photo_fix_unchanged_in_git"
+        },
+        {
+          "path": "js/search.js",
+          "status": 200,
+          "matchesLocal": true,
+          "verified": "before_photo_fix_unchanged_in_git"
+        },
+        {
+          "path": "js/site.js",
+          "status": 200,
+          "matchesLocal": true,
+          "verified": "before_photo_fix_unchanged_in_git"
+        },
+        {
+          "path": "js/theme-init.js",
+          "status": 200,
+          "matchesLocal": true,
+          "verified": "before_photo_fix_unchanged_in_git"
+        },
+        {
+          "path": "profile.html",
+          "status": 200,
+          "matchesLocal": true,
+          "verified": "after_photo_fix"
+        },
+        {
+          "path": "research.html",
+          "status": 200,
+          "matchesLocal": true,
+          "verified": "after_photo_fix"
+        },
+        {
+          "path": "showroom.html",
+          "status": 200,
+          "matchesLocal": true,
+          "verified": "after_photo_fix"
+        },
+        {
+          "path": "vendor/jquery-4.0.0.min.js",
+          "status": 200,
+          "matchesLocal": true,
+          "verified": "before_photo_fix_unchanged_in_git"
+        },
+        {
+          "path": "vendor/LICENSE.txt",
+          "status": 200,
+          "matchesLocal": true,
+          "verified": "before_photo_fix_unchanged_in_git"
+        }
+      ],
+      "failures": [],
+      "scope": "48 files compared on today's baseline. All 9 changed application files rechecked after the photo fix; git confirms the other 39 application files were unchanged.",
+      "baseline_revision": "35dd0db406d59fbb245b1058ec69f67a5dbf961e",
+      "current_revision": "435ce0110c530be8549c06ece0d4162ea99036cc",
+      "baseline_metadata_note": "The older full-check script used a November16 date literal; the baseline command and current follow-up were actually executed on November18. Test results and file matches are unchanged."
+    },
+    "report_qa": {
+      "date_of_check": "2026-11-18",
+      "pdf": "D:\\Новая папка\\Учеба\\WEB\\final-submission\\ApexMotors_SE2507_Report.pdf",
+      "sha256": "2c50f7c1b32d16d6dfcf7c20ea62eac7ce1af24f091ae04f03ae65fe9a8d71ff",
+      "pages": 5,
+      "images": [
+        {
+          "page": 1,
+          "width": 1440,
+          "height": 798,
+          "contains_colour": true
+        },
+        {
+          "page": 2,
+          "width": 1440,
+          "height": 547,
+          "contains_colour": true
+        },
+        {
+          "page": 3,
+          "width": 1440,
+          "height": 479,
+          "contains_colour": true
+        },
+        {
+          "page": 3,
+          "width": 1440,
+          "height": 505,
+          "contains_colour": true
+        },
+        {
+          "page": 4,
+          "width": 1440,
+          "height": 751,
+          "contains_colour": true
+        },
+        {
+          "page": 5,
+          "width": 1440,
+          "height": 800,
+          "contains_colour": true
+        },
+        {
+          "page": 5,
+          "width": 390,
+          "height": 1000,
+          "contains_colour": true
+        }
+      ],
+      "colour_image_count": 7,
+      "clickable_links": [
+        {
+          "page": 4,
+          "uri": "https://vpic.nhtsa.dot.gov/api/"
+        },
+        {
+          "page": 5,
+          "uri": "https://github.com/Vertex-blip/Car-dealership-website"
+        },
+        {
+          "page": 5,
+          "uri": "https://vertex-blip.github.io/Car-dealership-website/final-project/"
+        }
+      ],
+      "date_strings_in_visible_pdf_text": [],
+      "text_colours_rgb_hex": [
+        "000000",
+        "0000ff"
+      ],
+      "drawing_strokes_including_link_underlines": 3,
+      "visual_pages_inspected": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "visual_findings": "All five supplied current renderings inspected. Plain black text, normal blue links, original-colour screenshots, consistent margins and legible captions. No overlaps, clipped document text, missing images or decorative rules. The updated Inquiry car photograph has natural proportions with a landscape crop.",
+      "package_hash_check": "pending root repack-ready signal"
+    },
+    "additional_hosted_test_limit": "The older detailed frontend script also stopped on network-idle waits, leaving dependent fixtures incomplete and timing out before offscreen image transfers completed. The complete 13-group suite subsequently passed locally. Its original failure screenshots remain in the audit workspace."
   }
 }

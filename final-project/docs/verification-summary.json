@@ -158,5 +158,26 @@
     "functional_revision": "21531e21b192ae99b9bb81e5720435aac3dc0730",
     "deployment_workflow": "https://github.com/Vertex-blip/Car-dealership-website/actions/runs/43895126548",
     "browser_scope": "Automated Chrome on Windows and WebKit; not a physical Safari/iPhone certification."
+  },
+  "final_rubric_review_20261118": {
+    "date": "2026-11-18",
+    "status": "completed_with_loading_observations",
+    "hosted_core_groups_passed": 11,
+    "api_scenarios_passed": 21,
+    "real_api_makes_passed": 8,
+    "local_frontend_groups_passed": 13,
+    "local_frontend_layout_states": 126,
+    "local_security_groups_passed": 16,
+    "invalid_email_ui_rejections": 24,
+    "budget_groups_per_browser": 13,
+    "hosted_representative_appearance_states_passed": 8,
+    "hosted_fixed_photo_states_passed": 8,
+    "hosted_application_files_checked": 48,
+    "fixed_issue": "Inquiry photograph was stretched because its HTML height did not shrink with width; corrected dimensions and a cover crop now preserve proportions.",
+    "loading_observations": "Concurrent cold browser checks had 30-45 second navigation/image wait timeouts. A measured Home visit had controls ready in 1.876s and completed the 777466-byte hero transfer in 19.199s; subsequent serial functional checks passed. These waits are retained as observations, not counted as passing attempts.",
+    "local_remote_scope": "Core/API and representative UI checks ran on the hosted site. The 13-group detailed frontend, 16-group security, email and budget suites passed locally; hosted application bytes were separately compared with local source.",
+    "functional_revision": "435ce0110c530be8549c06ece0d4162ea99036cc",
+    "deployment_workflow": "https://github.com/Vertex-blip/Car-dealership-website/actions/runs/44359724855",
+    "presentation": "Actual team delivery remains ungraded; a rehearsal plan is prepared."
   }
 }
